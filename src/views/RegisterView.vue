@@ -1,3 +1,13 @@
 <template>
-  <h1>Register View</h1>
+  <RegisterPage />
 </template>
+
+<script>
+import RegisterPage from "@/components/pages/RegisterPage.vue";
+
+export default {
+  components: {
+    RegisterPage,
+  },
+};
+</script>

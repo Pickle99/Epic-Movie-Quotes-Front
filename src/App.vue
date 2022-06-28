@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <header>
+  <header class="font-monsterrat">
     <router-view v-slot="{ Component }">
       <keep-alive>
         <component :is="Component" />
@@ -9,3 +9,9 @@
     </router-view>
   </header>
 </template>
+
+<style>
+html {
+  background: black;
+}
+</style>

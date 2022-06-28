@@ -1,15 +1,15 @@
 <script>
-import Landing from "@/components/Landing.vue";
+import LandingPage from "@/components/pages/LandingPage.vue";
 
 export default {
   components: {
-    Landing,
+    LandingPage,
   },
 };
 </script>
 
 <template>
   <main>
-    <Landing />
+    <LandingPage />
   </main>
 </template>
