@@ -18,6 +18,11 @@ const router = createRouter({
       name: "login",
       component: () => import("@/views/AuthView.vue"),
     },
+    {
+      path: "/email-verification-sent",
+      name: "email-sent",
+      component: () => import("@/views/EmailSentView.vue"),
+    },
   ],
 });
 
