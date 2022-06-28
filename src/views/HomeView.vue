@@ -1,9 +1,15 @@
-<script setup>
-import TheWelcome from "@/components/TheWelcome.vue";
+<script>
+import Landing from "@/components/Landing.vue";
+
+export default {
+  components: {
+    Landing,
+  },
+};
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Landing />
   </main>
 </template>
