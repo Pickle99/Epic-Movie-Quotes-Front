@@ -2,6 +2,7 @@ import { configure } from "vee-validate";
 import { localize } from "@vee-validate/i18n";
 
 configure({
+  validateOnInput: true,
   generateMessage: localize({
     en: {
       names: {
@@ -9,12 +10,13 @@ configure({
         email: "Email",
         password: "Password",
         password_confirm: "Password Confirmation",
+        user: "User",
       },
       messages: {
-        required: "The {field} field is required",
-        min: "The {field} must contain at least 0:{min} symbols",
-        max: "The {field} can contain maximum of 0:{max} symbols",
-        email: "The {field} field must be email format",
+        required: "{field} field is required",
+        min: "{field} must contain at least 0:{min} symbols",
+        max: "{field} can contain maximum of 0:{max} symbols",
+        email: "{field} field must be email format",
         confirmed: "Passwords don't match",
       },
     },
@@ -23,7 +25,8 @@ configure({
         username: "სახელი",
         email: "მეილი",
         password: "პაროლი",
-        password_confirm: "Password confirmation",
+        password_confirm: "გაიმეორეთ პაროლი",
+        user: "მომხმარებელი",
       },
       messages: {
         required: "{field}ს ველი სავალდებულოა",

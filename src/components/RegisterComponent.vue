@@ -6,75 +6,21 @@
         <p class="text-[#6C757D] mt-3">Start your journey!</p>
       </div>
       <form>
-        <div class="flex flex-col">
-          <div class="flex flex-row">
-            <label class="text-white mb-2" for="first_name">Name</label>
-            <p class="text-[#DC3545]">*</p>
-          </div>
-          <Field
-            name="username"
-            class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
-            placeholder="At least 3 & max.15 lower case characters"
-            rules="required|min:3|max:15"
-          />
-          <div class="mb-5">
-            <ErrorMessage class="text-red-500" name="username" />
-          </div>
-        </div>
-        <div>
-          <div class="flex flex-row">
-            <label class="text-white mb-2" for="email">Email</label>
-            <p class="text-[#DC3545]">*</p>
-          </div>
-          <Field
-            name="email"
-            class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
-            placeholder="Enter your email"
-            rules="required|email"
-          />
-          <div class="mb-5">
-            <ErrorMessage class="text-red-500" name="email" />
-          </div>
-        </div>
-        <div>
-          <div class="flex flex-row">
-            <label class="text-white mb-2" for="password">Password</label>
-            <p class="text-[#DC3545]">*</p>
-          </div>
-          <Field
-            name="password"
-            class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
-            placeholder="At least 8 & max.15 lower case characters"
-            rules="required|min:8|max:15"
-          />
-          <div class="mb-5">
-            <ErrorMessage class="text-red-500" name="password" />
-          </div>
-        </div>
-        <div>
-          <div class="flex flex-row">
-            <label class="text-white mb-2" for="password_confirm"
-              >Confirm password</label
-            >
-            <p class="text-[#DC3545]">*</p>
-          </div>
-          <Field
-            name="password_confirm"
-            class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
-            placeholder="Confirm password"
-            rules="required|confirmed:@password"
-          />
-          <div class="mb-5">
-            <ErrorMessage class="text-red-500" name="password_confirm" />
-          </div>
-        </div>
+        <basic-input
+          :key="option.id"
+          v-for="option in options"
+          :name="option.name"
+          :placeholder="option.placeholder"
+          :rules="option.rules"
+          :labelName="option.labelName"
+        />
       </form>
       <div class="flex flex-col">
         <button
           :class="
             !meta.valid
-              ? 'text-white bg-[#E31221] py-2 rounded-md opacity-50'
-              : 'opacity-100 text-white bg-[#E31221] py-2 rounded-md'
+              ? 'text-white bg-[#E31221] py-2 rounded-md opacity-50 w-96'
+              : 'opacity-100 text-white bg-[#E31221] py-2 rounded-md w-96'
           "
           @click="onSubmit()"
           :disabled="!meta.valid"
@@ -100,19 +46,57 @@
   </blur-panel>
 </template>
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form } from "vee-validate";
 import BlurPanel from "@/components/BlurPanel.vue";
+import BasicInput from "@/components/UI/BasicInput.vue";
 export default {
   components: {
-    BlurPanel,
     Form,
-    Field,
-    ErrorMessage,
+    BlurPanel,
+    BasicInput,
   },
   methods: {
     onSubmit() {
       console.log("hi");
     },
+  },
+  data() {
+    return {
+      options: [
+        {
+          id: 1,
+          name: "username",
+          placeholder: "At least 3 & max.15 lower case characters",
+          rules: "required|min:3|max:15",
+          labelFor: "username",
+          labelName: "Name",
+        },
+        {
+          id: 2,
+          name: "email",
+          placeholder: "Enter your email",
+          rules: "required|email",
+          labelFor: "email",
+          labelName: "Email",
+        },
+        {
+          id: 3,
+          name: "password",
+          placeholder: "At least 8 & max.15 lower case characters",
+          rules: "required|min:8|max:15",
+          labelFor: "password",
+          labelName: "Password",
+        },
+        {
+          id: 4,
+          name: "password_confirm",
+          placeholder: "Confirm Password",
+          rules: "required|confirmed:@password",
+          labelFor: "password_confirm",
+          labelName: "Confirm Password",
+        },
+      ],
+    };
   },
 };
 </script>

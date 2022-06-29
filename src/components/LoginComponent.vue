@@ -6,32 +6,14 @@
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
       <div>
-        <div class="flex flex-row">
-          <label class="text-white mb-2" for="user">Email</label>
-        </div>
-        <Field
-          name="user"
-          class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
-          placeholder="Enter your email"
-          rules="required|min:3"
+        <basic-input
+          v-for="option in options"
+          :key="option.id"
+          :name="option.name"
+          :placeholder="option.placeholder"
+          :rules="option.rules"
+          :labelName="option.labelName"
         />
-        <div class="mb-5">
-          <ErrorMessage class="text-red-500" name="user" />
-        </div>
-      </div>
-      <div>
-        <div class="flex flex-row">
-          <label class="text-white mb-2" for="password">Password</label>
-        </div>
-        <Field
-          name="password"
-          class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
-          placeholder="Password"
-          rules="required"
-        />
-        <div class="mb-5">
-          <ErrorMessage class="text-red-500" name="password" />
-        </div>
       </div>
       <div class="text-sm flex justify-between">
         <div class="flex items-center">
@@ -74,17 +56,39 @@
 <script>
 import BlurPanel from "@/components/BlurPanel.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
+import BasicInput from "@/components/UI/BasicInput.vue";
 export default {
   components: {
     BlurPanel,
     Form,
     Field,
     ErrorMessage,
+    BasicInput,
   },
   methods: {
     onSubmit() {
       console.log("hi");
     },
+  },
+  data() {
+    return {
+      options: [
+        {
+          id: 1,
+          name: "user",
+          placeholder: "Enter your email",
+          rules: "required|min:3",
+          labelName: "Email",
+        },
+        {
+          id: 2,
+          name: "password",
+          placeholder: "Password",
+          rules: "required",
+          labelName: "Password",
+        },
+      ],
+    };
   },
 };
 </script>
