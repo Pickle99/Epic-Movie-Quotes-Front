@@ -1,12 +1,9 @@
 <template>
-  <EmailVerificationSentPage />
+  <EmailVerifySentComponent />
 </template>
-
 <script>
-import EmailVerificationSentPage from "@/components/pages/EmailVerificationSentPage.vue";
+import EmailVerifySentComponent from "@/components/EmailVerifySentComponent.vue";
 export default {
-  components: {
-    EmailVerificationSentPage,
-  },
+  components: { EmailVerifySentComponent },
 };
 </script>

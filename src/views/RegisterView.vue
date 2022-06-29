@@ -1,13 +1,20 @@
 <template>
-  <RegisterPage />
+  <LandingComponent :class="this.blur" />
+  <RegisterComponent />
 </template>
 
 <script>
-import RegisterPage from "@/components/pages/RegisterPage.vue";
-
+import LandingComponent from "@/components/LandingComponent.vue";
+import RegisterComponent from "@/components/RegisterComponent.vue";
 export default {
   components: {
-    RegisterPage,
+    LandingComponent,
+    RegisterComponent,
+  },
+  data() {
+    return {
+      blur: "blur-sm",
+    };
   },
 };
 </script>

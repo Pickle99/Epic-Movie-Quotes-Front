@@ -24,9 +24,12 @@
           <h1>millions of movie lines</h1>
         </h1>
       </div>
-      <div class="bg-red-500 rounded-md px-6 py-2">
-        <p class="text-white">Get started</p>
-      </div>
+
+      <RouterLink
+        class="text-white px-10 py-3 rounded-md bg-[#E31221]"
+        :to="{ name: 'register' }"
+        >Get started</RouterLink
+      >
     </div>
   </div>
 </template>
