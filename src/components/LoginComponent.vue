@@ -4,7 +4,7 @@
       <h1 class="text-white text-4xl mb-5">Log in to your account</h1>
       <p class="text-[#6C757D]">Welcome back! Please enter your details</p>
     </div>
-    <form>
+    <Form v-slot="{ meta }" @submit="onSubmit()">
       <div>
         <div class="flex flex-row">
           <label class="text-white mb-2" for="user">Email</label>
@@ -44,7 +44,12 @@
       </div>
       <div class="flex justify-center flex-col">
         <button
-          class="mt-10 text-white text-md px-[10.5rem] py-1.5 bg-[#E31221] rounded-md"
+          :class="
+            !meta.valid
+              ? 'text-white bg-[#E31221] py-2 rounded-md opacity-50 mt-5'
+              : 'opacity-100 text-white bg-[#E31221] py-2 rounded-md mt-5'
+          "
+          :disabled="!meta.valid"
         >
           Sign in
         </button>
@@ -63,7 +68,7 @@
           >Sign up</RouterLink
         >
       </div>
-    </form>
+    </Form>
   </blur-panel>
 </template>
 <script>
@@ -75,6 +80,11 @@ export default {
     Form,
     Field,
     ErrorMessage,
+  },
+  methods: {
+    onSubmit() {
+      console.log("hi");
+    },
   },
 };
 </script>
