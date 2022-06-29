@@ -7,13 +7,17 @@
     <form>
       <div>
         <div class="flex flex-row">
-          <label class="text-white mb-2" for="email">Email</label>
+          <label class="text-white mb-2" for="user">Email</label>
         </div>
         <Field
-          name="email"
-          class="bg-[#CED4DA] mb-7 px-3 py-2 rounded-md w-96"
+          name="user"
+          class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
           placeholder="Enter your email"
+          rules="required|min:3"
         />
+        <div class="mb-5">
+          <ErrorMessage class="text-red-500" name="user" />
+        </div>
       </div>
       <div>
         <div class="flex flex-row">
@@ -21,9 +25,13 @@
         </div>
         <Field
           name="password"
-          class="bg-[#CED4DA] mb-7 px-3 py-2 rounded-md w-96"
+          class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
           placeholder="Password"
+          rules="required"
         />
+        <div class="mb-5">
+          <ErrorMessage class="text-red-500" name="password" />
+        </div>
       </div>
       <div class="text-sm flex justify-between">
         <div class="flex items-center">

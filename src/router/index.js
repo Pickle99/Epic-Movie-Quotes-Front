@@ -11,17 +11,27 @@ const router = createRouter({
     {
       path: "/register",
       name: "register",
-      component: () => import("@/views/RegisterView.vue"),
+      // component: () => import("@/views/RegisterView.vue"),
+      components: {
+        default: () => import("@/views/HomeView.vue"),
+        RegisterView: () => import("@/views/RegisterView.vue"),
+      },
     },
     {
       path: "/login",
       name: "login",
-      component: () => import("@/views/AuthView.vue"),
+      components: {
+        default: () => import("@/views/HomeView.vue"),
+        AuthView: () => import("@/views/AuthView.vue"),
+      },
     },
     {
       path: "/email-verification-sent",
       name: "email-sent",
-      component: () => import("@/views/EmailSentView.vue"),
+      components: {
+        default: () => import("@/views/HomeView.vue"),
+        EmailSentView: () => import("@/views/EmailSentView.vue"),
+      },
     },
   ],
 });
