@@ -1,6 +1,6 @@
 <template>
   <blur-panel>
-    <Form as="div" class="flex flex-col">
+    <Form as="div" class="flex flex-col" v-slot="{ meta }">
       <div class="text-center mb-8">
         <h1 class="text-white text-4xl">Create an account</h1>
         <p class="text-[#6C757D] mt-3">Start your journey!</p>
@@ -12,10 +12,14 @@
             <p class="text-[#DC3545]">*</p>
           </div>
           <Field
-            name="first_name"
-            class="bg-[#CED4DA] mb-7 px-3 py-2 rounded-md w-96"
+            name="username"
+            class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
             placeholder="At least 3 & max.15 lower case characters"
+            rules="required|min:3|max:15"
           />
+          <div class="mb-5">
+            <ErrorMessage class="text-red-500" name="username" />
+          </div>
         </div>
         <div>
           <div class="flex flex-row">
@@ -24,9 +28,13 @@
           </div>
           <Field
             name="email"
-            class="bg-[#CED4DA] mb-7 px-3 py-2 rounded-md w-96"
+            class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
             placeholder="Enter your email"
+            rules="required|email"
           />
+          <div class="mb-5">
+            <ErrorMessage class="text-red-500" name="email" />
+          </div>
         </div>
         <div>
           <div class="flex flex-row">
@@ -35,9 +43,13 @@
           </div>
           <Field
             name="password"
-            class="bg-[#CED4DA] mb-7 px-3 py-2 rounded-md w-96"
+            class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
             placeholder="At least 8 & max.15 lower case characters"
+            rules="required|min:8|max:15"
           />
+          <div class="mb-5">
+            <ErrorMessage class="text-red-500" name="password" />
+          </div>
         </div>
         <div>
           <div class="flex flex-row">
@@ -48,13 +60,25 @@
           </div>
           <Field
             name="password_confirm"
-            class="bg-[#CED4DA] mb-7 px-3 py-2 rounded-md w-96"
+            class="bg-[#CED4DA] mb-2 px-3 py-2 rounded-md w-96"
             placeholder="Confirm password"
+            rules="required|confirmed:@password"
           />
+          <div class="mb-5">
+            <ErrorMessage class="text-red-500" name="password_confirm" />
+          </div>
         </div>
       </form>
       <div class="flex flex-col">
-        <button class="text-white bg-[#E31221] py-2 rounded-md">
+        <button
+          :class="
+            !meta.valid
+              ? 'text-white bg-[#E31221] py-2 rounded-md opacity-50'
+              : 'opacity-100 text-white bg-[#E31221] py-2 rounded-md'
+          "
+          @click="onSubmit()"
+          :disabled="!meta.valid"
+        >
           Get started
         </button>
         <button
@@ -84,6 +108,11 @@ export default {
     Form,
     Field,
     ErrorMessage,
+  },
+  methods: {
+    onSubmit() {
+      console.log("hi");
+    },
   },
 };
 </script>
