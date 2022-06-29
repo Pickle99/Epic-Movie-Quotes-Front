@@ -1,5 +1,4 @@
 <template>
-  <LandingComponent :class="blur" />
   <blur-panel>
     <div class="text-center mb-7">
       <h1 class="text-white text-4xl mb-5">Log in to your account</h1>
@@ -61,20 +60,13 @@
 </template>
 <script>
 import BlurPanel from "@/components/BlurPanel.vue";
-import LandingComponent from "@/components/LandingComponent.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 export default {
   components: {
     BlurPanel,
-    LandingComponent,
     Form,
     Field,
     ErrorMessage,
-  },
-  data() {
-    return {
-      blur: "blur-sm",
-    };
   },
 };
 </script>
