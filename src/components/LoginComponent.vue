@@ -37,7 +37,7 @@
       </div>
       <div class="flex justify-center flex-col">
         <button
-          class="mt-10 text-white text-sm px-[10.5rem] py-1.5 bg-[#E31221] rounded-md"
+          class="mt-10 text-white text-md px-[10.5rem] py-1.5 bg-[#E31221] rounded-md"
         >
           Sign in
         </button>
