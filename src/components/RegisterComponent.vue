@@ -2,8 +2,12 @@
   <blur-panel>
     <Form as="div" class="flex flex-col" v-slot="{ meta }">
       <div class="text-center mb-8">
-        <h1 class="text-white text-4xl">Create an account</h1>
-        <p class="text-[#6C757D] mt-3">Start your journey!</p>
+        <h1 class="text-white text-4xl">
+          {{ $t("message.create_an_account") }}
+        </h1>
+        <p class="text-[#6C757D] mt-3">
+          {{ $t("message.start_your_journey") }}!
+        </p>
       </div>
       <form>
         <basic-input
@@ -25,21 +29,23 @@
           @click="onSubmit()"
           :disabled="!meta.valid"
         >
-          Get started
+          {{ $t("message.get_started") }}
         </button>
         <button
           class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
         >
-          <img class="mr-2" src="@/assets/images/google.png" alt="img" /> Sign
-          up with Google
+          <img class="mr-2" src="@/assets/images/google.png" alt="img" />
+          {{ $t("message.sign_up_google") }}
         </button>
       </div>
       <div class="flex justify-center mt-10">
-        <p class="text-[#6C757D]">Already have an account?</p>
+        <p class="text-[#6C757D]">
+          {{ $t("message.already_have_an_account") }}?
+        </p>
         <RouterLink
           :to="{ name: 'login' }"
           class="text-[#0D6EFD] underline ml-2"
-          >Log in</RouterLink
+          >{{ $t("message.login") }}</RouterLink
         >
       </div>
     </Form>
@@ -66,34 +72,30 @@ export default {
         {
           id: 1,
           name: "username",
-          placeholder: "At least 3 & max.15 lower case characters",
+          placeholder: "message.at_least_3_max_15",
           rules: "required|min:3|max:15",
-          labelFor: "username",
-          labelName: "Name",
+          labelName: "message.name",
         },
         {
           id: 2,
           name: "email",
-          placeholder: "Enter your email",
+          placeholder: "message.enter_your_email",
           rules: "required|email",
-          labelFor: "email",
-          labelName: "Email",
+          labelName: "message.email",
         },
         {
           id: 3,
           name: "password",
-          placeholder: "At least 8 & max.15 lower case characters",
+          placeholder: "message.at_least_8_max_15",
           rules: "required|min:8|max:15",
-          labelFor: "password",
-          labelName: "Password",
+          labelName: "message.password",
         },
         {
           id: 4,
           name: "password_confirm",
-          placeholder: "Confirm Password",
+          placeholder: "message.confirm_password",
           rules: "required|confirmed:@password",
-          labelFor: "password_confirm",
-          labelName: "Confirm Password",
+          labelName: "message.confirm_password",
         },
       ],
     };

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row">
-    <label class="text-white mb-2" :for="name">{{ labelName }}</label>
+    <label class="text-white mb-2" :for="name">{{ $t(labelName) }}</label>
     <p class="text-[#DC3545]">*</p>
   </div>
   <Field :name="name" v-slot="{ meta, field }" :rules="rules">
@@ -13,7 +13,7 @@
               : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none   w-96 border-red-500 border-2'
             : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 focus:border-2  w-96'
         "
-        :placeholder="placeholder"
+        :placeholder="$t(placeholder)"
         v-bind="field"
       />
       <div v-if="meta.dirty || meta.touched" class="-ml-10 mr-3">
@@ -22,7 +22,7 @@
       </div>
     </div>
   </Field>
-  <div class="mb-5">
+  <div class="mb-5 w-72">
     <ErrorMessage class="text-red-500" :name="name" />
   </div>
 </template>

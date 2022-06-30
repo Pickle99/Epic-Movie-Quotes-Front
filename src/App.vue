@@ -1,11 +1,4 @@
-<script>
-import LandingComponent from "@/components/LandingComponent.vue";
-export default {
-  components: {
-    LandingComponent,
-  },
-};
-</script>
+<script setup></script>
 
 <template>
   <header class="font-monsterrat">
