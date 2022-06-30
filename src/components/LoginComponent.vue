@@ -4,7 +4,7 @@
       <h1 class="text-white text-4xl mb-5">
         {{ $t("message.log_in_to_acc") }}
       </h1>
-      <p class="text-[#6C757D]">{{ $t("message.welcome_back") }} !</p>
+      <p class="w-96 text-[#6C757D]">{{ $t("message.welcome_back") }}</p>
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
       <div>
