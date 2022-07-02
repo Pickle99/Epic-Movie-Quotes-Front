@@ -2,11 +2,11 @@
   <LandingComponent
     :class="
       $route.name === 'register'
-        ? 'blur-sm'
+        ? 'blur-sm pointer-events-none'
         : $route.name === 'login'
-        ? 'blur-sm'
+        ? 'blur-sm pointer-events-none'
         : $route.name === 'email-sent'
-        ? 'blur-sm'
+        ? 'blur-sm pointer-events-none'
         : 'blur-none'
     "
   />

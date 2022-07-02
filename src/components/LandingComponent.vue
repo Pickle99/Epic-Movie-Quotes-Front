@@ -35,8 +35,12 @@ export default {
           <div
             class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 text-sm font-medium text-white hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
           >
-            <p v-if="this.$i18n.locale === 'en'">Eng</p>
-            <p v-if="this.$i18n.locale === 'ka'">Geo</p>
+            <p v-if="this.$i18n.locale === 'en'">
+              {{ $t("message.eng") }}
+            </p>
+            <p v-if="this.$i18n.locale === 'ka'">
+              {{ $t("message.geo") }}
+            </p>
             <svg
               class="-mr-1 ml-2 h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +56,12 @@ export default {
             </svg>
           </div>
           <div v-if="isDisabled" class="absolute ml-4">
-            <p class="mt-2" @click="change('ka')">{{ $t("message.geo") }}</p>
-            <p class="mt-2" @click="change('en')">{{ $t("message.eng") }}</p>
+            <p class="mt-2" @click="change('ka')">
+              {{ $t("message.geo") }}
+            </p>
+            <p class="mt-2" @click="change('en')">
+              {{ $t("message.eng") }}
+            </p>
           </div>
         </button>
 

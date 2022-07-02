@@ -11,8 +11,8 @@
       </div>
       <form>
         <basic-input
-          :key="option.id"
           v-for="option in options"
+          :key="option.id"
           :name="option.name"
           :placeholder="option.placeholder"
           :rules="option.rules"
@@ -53,17 +53,24 @@
 </template>
 <script>
 import { Form } from "vee-validate";
+import { useDataStore } from "@/stores/data/data.js";
 import BlurPanel from "@/components/BlurPanel.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
+import axios from "@/config/axios/index.js";
+import { mapWritableState } from "pinia";
 export default {
   components: {
     Form,
     BlurPanel,
     BasicInput,
   },
+  computed: {
+    ...mapWritableState(useDataStore, ["data"]),
+  },
   methods: {
     onSubmit() {
-      console.log("hi");
+      console.log(this.data);
+      axios.post("register", this.data);
     },
   },
   data() {
@@ -73,7 +80,7 @@ export default {
           id: 1,
           name: "username",
           placeholder: "message.at_least_3_max_15",
-          rules: "required|min:3|max:15",
+          rules: "required|min:3|max:15|alpha_lower",
           labelName: "message.name",
         },
         {
@@ -87,12 +94,12 @@ export default {
           id: 3,
           name: "password",
           placeholder: "message.at_least_8_max_15",
-          rules: "required|min:8|max:15",
+          rules: "required|min:8|max:15|alpha_lower",
           labelName: "message.password",
         },
         {
           id: 4,
-          name: "password_confirm",
+          name: "password_confirmation",
           placeholder: "message.confirm_password",
           rules: "required|confirmed:@password",
           labelName: "message.confirm_password",

@@ -60,19 +60,38 @@
 </template>
 <script>
 import BlurPanel from "@/components/BlurPanel.vue";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form } from "vee-validate";
 import BasicInput from "@/components/UI/BasicInput.vue";
+import axios from "@/config/axios/index.js";
+import { setJwtToken } from "@/helpers/jwt/index.js";
+import { mapWritableState } from "pinia";
+import { useDataStore } from "@/stores/data/data.js";
+
 export default {
   components: {
     BlurPanel,
     Form,
-    Field,
-    ErrorMessage,
     BasicInput,
+  },
+  computed: {
+    ...mapWritableState(useDataStore, ["data"]),
   },
   methods: {
     onSubmit() {
-      console.log("hi");
+      console.log(this.data.user, this.data.password);
+      axios
+        .post("login", {
+          email: this.data.user,
+          password: this.data.password,
+        })
+        .then((response) => {
+          alert("Login Successful!");
+          setJwtToken(response.data.access_token, response.data.expires_in);
+          this.$router.push({ name: "movies" });
+        })
+        .catch((error) => {
+          alert(error.response.data.error);
+        });
     },
   },
   data() {

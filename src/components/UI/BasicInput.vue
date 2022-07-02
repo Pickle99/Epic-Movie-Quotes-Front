@@ -3,7 +3,15 @@
     <label class="text-white mb-2" :for="name">{{ $t(labelName) }}</label>
     <p class="text-[#DC3545]">*</p>
   </div>
-  <Field :name="name" v-slot="{ meta, field }" :rules="rules">
+  <Field
+    @input="updateField(name, $event.target.value)"
+    :value="data.name"
+    :name="name"
+    v-slot="{ meta, field }"
+    :rules="rules"
+    :placeholder="placeholder"
+    type="text"
+  >
     <div class="bg-[#CED4DA] mb-2 flex items-center w-fit rounded-md">
       <input
         :class="
@@ -14,6 +22,7 @@
             : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 focus:border-2  w-96'
         "
         :placeholder="$t(placeholder)"
+        type="text"
         v-bind="field"
       />
       <div v-if="meta.dirty || meta.touched" class="-ml-10 mr-3">
@@ -28,13 +37,22 @@
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Field, ErrorMessage } from "vee-validate";
+import { useDataStore } from "@/stores/data/data.js";
+import { mapActions } from "pinia";
+import { mapWritableState } from "pinia";
 export default {
   components: {
-    Form,
     Field,
     ErrorMessage,
   },
+  computed: {
+    ...mapWritableState(useDataStore, ["data"]),
+  },
+  methods: {
+    ...mapActions(useDataStore, ["updateField"]),
+  },
+
   props: {
     name: {
       type: String,

@@ -33,6 +33,11 @@ const router = createRouter({
         EmailSentView: () => import("@/views/EmailSentView.vue"),
       },
     },
+    {
+      path: "/movies",
+      name: "movies",
+      component: () => import("@/views/MoviesView.vue"),
+    },
   ],
 });
 
