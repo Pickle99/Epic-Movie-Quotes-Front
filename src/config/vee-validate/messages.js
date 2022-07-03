@@ -11,6 +11,7 @@ configure({
         password: "Password",
         password_confirm: "Password Confirmation",
         user: "User",
+        forgot_password: "Forgot Password",
       },
       messages: {
         required: "{field} field is required",
@@ -27,6 +28,7 @@ configure({
         password: "პაროლი",
         password_confirm: "გაიმეორეთ პაროლი",
         user: "მომხმარებელი",
+        forgot_password: "პარლის აღდგენა",
       },
       messages: {
         required: "{field}ს ველი სავალდებულოა",

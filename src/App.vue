@@ -10,6 +10,8 @@
     <router-view name="RegisterView"></router-view>
     <router-view name="AuthView"></router-view>
     <router-view name="EmailSentView"></router-view>
+    <router-view name="ForgotPasswordView"></router-view>
+    <router-view name="PasswordResetView"></router-view>
   </header>
 </template>
 

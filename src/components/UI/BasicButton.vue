@@ -5,7 +5,6 @@
         ? 'text-white bg-[#E31221] py-2 rounded-md opacity-50'
         : 'opacity-100 text-white bg-[#E31221] py-2 rounded-md'
     "
-    @click="onSubmit()"
     :disabled="isDisabled"
   >
     <slot></slot>

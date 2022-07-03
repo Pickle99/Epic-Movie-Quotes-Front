@@ -1,5 +1,4 @@
 <template>
-  <LandingComponent :class="blur" />
   <blur-panel>
     <div
       class="flex flex-col justify-center items-center text-center text-white"
@@ -21,11 +20,9 @@
 
 <script>
 import BlurPanel from "@/components/BlurPanel.vue";
-import LandingComponent from "@/components/LandingComponent.vue";
 export default {
   components: {
     BlurPanel,
-    LandingComponent,
   },
   data() {
     return {

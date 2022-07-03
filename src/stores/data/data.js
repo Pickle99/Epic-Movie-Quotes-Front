@@ -9,6 +9,7 @@ export const useDataStore = defineStore("data", {
         email: "",
         password: "",
         password_confirmation: "",
+        forgot_password: "",
       },
     };
   },

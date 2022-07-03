@@ -69,8 +69,13 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.data);
-      axios.post("register", this.data);
+      axios.post("register", {
+        email: this.data.email,
+        username: this.data.username,
+        password: this.data.password,
+        password_confirmation: this.data.password_confirmation,
+      });
+      this.$router.push({ name: "email-sent" });
     },
   },
   data() {

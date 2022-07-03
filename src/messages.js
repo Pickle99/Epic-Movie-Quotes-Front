@@ -27,6 +27,7 @@ export const messages = {
       forgot_password: "Forgot password",
       sign_in_google: "Sign in with Google",
       dont_have_an_account_yet: "Don't have an account yet",
+      reset_password: "Reset Password",
     },
   },
   ka: {
@@ -58,6 +59,7 @@ export const messages = {
       forgot_password: "დამავიწყდა პაროლი",
       sign_in_google: "გუგლით შესვლა",
       dont_have_an_account_yet: "არ გაქვთ ანგარიში",
+      reset_password: "პაროლის აღდგენა",
     },
   },
 };

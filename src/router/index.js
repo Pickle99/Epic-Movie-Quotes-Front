@@ -34,9 +34,35 @@ const router = createRouter({
       },
     },
     {
+      path: "/forgot-password",
+      name: "forgot-password",
+      components: {
+        default: () => import("@/views/HomeView.vue"),
+        ForgotPasswordView: () => import("@/views/ForgotPasswordView.vue"),
+      },
+    },
+    {
+      path: "/reset-password/:token/:email",
+      name: "password-reset",
+      components: {
+        default: () => import("@/views/HomeView.vue"),
+        PasswordResetView: () => import("@/views/PasswordResetView.vue"),
+      },
+    },
+    {
       path: "/movies",
       name: "movies",
       component: () => import("@/views/MoviesView.vue"),
+    },
+    {
+      path: "/successfully-verified/:token",
+      name: "user-verified",
+      component: () => import("@/views/UserVerified.vue"),
+    },
+    {
+      path: "/password-reset-sent",
+      name: "password-reset-sent",
+      component: () => import("@/views/PasswordResetSentView.vue"),
     },
   ],
 });
