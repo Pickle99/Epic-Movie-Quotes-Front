@@ -41,6 +41,7 @@
           {{ $t("message.sign_in") }}
         </button>
         <button
+          @click="google()"
           class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
         >
           <img class="mr-2" src="@/assets/images/google.png" alt="img" />
@@ -80,6 +81,9 @@ export default {
     ...mapWritableState(useDataStore, ["data"]),
   },
   methods: {
+    google() {
+      window.location.href = "http://localhost:8000/auth/google/redirect";
+    },
     onSubmit() {
       console.log(this.data.user, this.data.password);
       axios
