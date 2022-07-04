@@ -24,10 +24,5 @@ export default {
   components: {
     BlurPanel,
   },
-  data() {
-    return {
-      blur: "blur-sm",
-    };
-  },
 };
 </script>

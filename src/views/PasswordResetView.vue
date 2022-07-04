@@ -13,16 +13,12 @@
           placeholder="message.password"
           rules="required|min:8|max:15"
           labelName="message.password"
-          :type="PasswordType"
-          :click="setPasswordFieldType"
         />
         <password-input
           name="password_confirmation"
           placeholder="message.confirm_password"
           rules="required|confirmed:@password"
           labelName="message.confirm_password"
-          :type="PasswordConfirmationType"
-          :click="setPasswordConfirmationFieldType"
         />
       </div>
       <div class="flex justify-center flex-col">
@@ -43,10 +39,9 @@
 <script>
 import BlurPanel from "@/components/BlurPanel.vue";
 import { Form } from "vee-validate";
-import BasicInput from "@/components/UI/BasicInput.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
-import { mapWritableState, mapActions, mapGetters } from "pinia";
+import { mapWritableState } from "pinia";
 import { useDataStore } from "@/stores/data/data.js";
 
 export default {
@@ -57,13 +52,8 @@ export default {
   },
   computed: {
     ...mapWritableState(useDataStore, ["data"]),
-    ...mapGetters(useDataStore, ["PasswordType", "PasswordConfirmationType"]),
   },
   methods: {
-    ...mapActions(useDataStore, [
-      "setPasswordFieldType",
-      "setPasswordConfirmationFieldType",
-    ]),
     onSubmit() {
       axios
         .post(`reset-password/${this.$route.params.token}`, {

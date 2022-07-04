@@ -20,13 +20,13 @@
             : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 focus:border-2  w-96'
         "
         :placeholder="$t(placeholder)"
-        :type="type"
+        :type="PasswordType"
         v-bind="field"
       />
       <div class="-ml-10 mr-3">
         <img
           class="hover:cursor-pointer"
-          @click="click"
+          @click="setPasswordType()"
           src="@/assets/images/eye.png"
           alt="img"
         />
@@ -41,22 +41,30 @@
 <script>
 import { Field, ErrorMessage } from "vee-validate";
 import { useDataStore } from "@/stores/data/data.js";
-import { mapActions, mapWritableState, mapGetters } from "pinia";
+import { mapActions, mapWritableState } from "pinia";
 export default {
+  data() {
+    return {
+      isPasswordVisible: false,
+    };
+  },
   components: {
     Field,
     ErrorMessage,
   },
   computed: {
-    ...mapGetters(useDataStore, ["PasswordType", "PasswordConfirmationType"]),
     ...mapWritableState(useDataStore, ["data"]),
+    PasswordType() {
+      if (this.isPasswordVisible) {
+        return "text";
+      } else return "password";
+    },
   },
   methods: {
-    ...mapActions(useDataStore, [
-      "updateField",
-      "setPasswordFieldType",
-      "setPasswordConfirmationFieldType",
-    ]),
+    ...mapActions(useDataStore, ["updateField"]),
+    setPasswordType() {
+      this.isPasswordVisible = !this.isPasswordVisible;
+    },
   },
 
   props: {
@@ -74,14 +82,6 @@ export default {
     },
     labelName: {
       type: String,
-      required: true,
-    },
-    type: {
-      type: String,
-      required: true,
-    },
-    click: {
-      type: Function,
       required: true,
     },
   },

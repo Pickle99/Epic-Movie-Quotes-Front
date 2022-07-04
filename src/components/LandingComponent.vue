@@ -49,5 +49,56 @@ export default {
         >{{ $t("message.get_started") }}</RouterLink
       >
     </div>
+    <div class="mt-60 font-bold">
+      <div>
+        <div class="absolute mt-[27.2rem] ml-52">
+          <p class="text-white text-5xl">__</p>
+        </div>
+        <div class="absolute mt-[29rem] ml-80">
+          <h1 class="text-white text-4xl">
+            “You have to leave something
+            <h1 class="text-white text-3xl">behind to go forward”</h1>
+          </h1>
+          <p class="text-white text-xl mt-4">Interstellar, 2014</p>
+        </div>
+        <img src="@/assets/images/movies/Interstellar.png" alt="img" />
+      </div>
+
+      <div>
+        <div class="absolute mt-[27.8rem] ml-52">
+          <p class="text-white text-5xl">__</p>
+        </div>
+        <div class="absolute mt-[29rem] ml-80">
+          <h1 class="text-white text-4xl">
+            I think we’re just gonna have to be secretly in love with earch
+            other
+            <h1 class="text-white text-4xl">
+              to be secretly in love with earch other
+            </h1>
+            <h1 class="text-white text-4xl">and leave it that</h1>
+          </h1>
+          <p class="text-white text-xl mt-4">The Royal Tenenbaums,2001</p>
+        </div>
+        <img src="@/assets/images/movies/TheRoyalTenenbaums.png" alt="img" />
+      </div>
+
+      <div>
+        <div class="absolute mt-[40.8rem] ml-52">
+          <p class="text-white text-5xl">__</p>
+        </div>
+        <div class="absolute mt-[42rem] ml-80">
+          <h1 class="text-white text-4xl">
+            I think we’re just gonna have to be secretly in love with earch
+            other
+            <h1 class="text-white text-4xl">
+              to be secretly in love with earch other
+            </h1>
+            <h1 class="text-white text-4xl">and leave it that</h1>
+          </h1>
+          <p class="text-white text-xl mt-4">The Royal Tenenbaums,2001</p>
+        </div>
+        <img src="@/assets/images/movies/TheRoyalTenenbaums-2.png" alt="img" />
+      </div>
+    </div>
   </div>
 </template>

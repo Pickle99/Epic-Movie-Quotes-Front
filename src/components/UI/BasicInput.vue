@@ -4,13 +4,17 @@
     <p class="text-[#DC3545]">*</p>
   </div>
   <Field
+    v-slot="{ meta, field, resetField }"
     @input="updateField(name, $event.target.value)"
     :name="name"
-    v-slot="{ meta, field }"
     :rules="rules"
     :value="data.name"
   >
-    <div class="bg-[#CED4DA] mb-2 flex items-center w-fit rounded-md">
+    <div
+      @mouseleave="this.focused = false"
+      @mouseenter="this.focused = true"
+      class="bg-[#CED4DA] mb-2 flex items-center w-fit rounded-md"
+    >
       <input
         :class="
           meta.touched
@@ -23,17 +27,26 @@
         type="text"
         v-bind="field"
       />
-      <div v-if="meta.touched" class="-ml-10 mr-3">
+      <div class="-ml-10 mr-3">
         <img
-          v-if="meta.valid && !data.error"
-          src="@/assets/images/correct.png"
+          @click="resetField()"
+          v-if="focused"
+          src="@/assets/images/close.png"
           alt="img"
         />
-        <img
-          v-if="!meta.valid || data.error"
-          src="@/assets/images/invalid.png"
-          alt="img"
-        />
+
+        <div v-if="meta.touched">
+          <img
+            v-if="meta.valid && !data.error && !focused"
+            src="@/assets/images/correct.png"
+            alt="img"
+          />
+          <img
+            v-if="!meta.valid && data.error && !focused"
+            src="@/assets/images/invalid.png"
+            alt="img"
+          />
+        </div>
       </div>
     </div>
   </Field>
@@ -48,6 +61,11 @@ import { useDataStore } from "@/stores/data/data.js";
 import { mapActions } from "pinia";
 import { mapWritableState } from "pinia";
 export default {
+  data() {
+    return {
+      focused: false,
+    };
+  },
   components: {
     Field,
     ErrorMessage,
