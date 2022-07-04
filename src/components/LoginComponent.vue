@@ -8,13 +8,18 @@
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
       <div>
+        <p class="text-red-500 text-center">{{ data.error }}</p>
         <basic-input
-          v-for="option in options"
-          :key="option.id"
-          :name="option.name"
-          :placeholder="option.placeholder"
-          :rules="option.rules"
-          :labelName="option.labelName"
+          name="user"
+          placeholder="message.enter_your_email"
+          rules="required|min:3"
+          labelName="message.email"
+        />
+        <password-input
+          name="password"
+          placeholder="message.password"
+          rules="required|min:3"
+          labelName="message.password"
         />
       </div>
       <div class="text-sm flex justify-between">
@@ -31,6 +36,7 @@
       </div>
       <div class="flex justify-center flex-col">
         <button
+          type="submit"
           :class="
             !meta.valid
               ? 'text-white bg-[#E31221] py-2 rounded-md opacity-50 mt-5'
@@ -66,6 +72,7 @@
 import BlurPanel from "@/components/BlurPanel.vue";
 import { Form } from "vee-validate";
 import BasicInput from "@/components/UI/BasicInput.vue";
+import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import { mapWritableState } from "pinia";
@@ -76,6 +83,7 @@ export default {
     BlurPanel,
     Form,
     BasicInput,
+    PasswordInput,
   },
   computed: {
     ...mapWritableState(useDataStore, ["data"]),
@@ -97,29 +105,10 @@ export default {
           this.$router.push({ name: "movies" });
         })
         .catch((error) => {
-          alert(error.response.data.error);
+          this.data.error = error.response.data.error;
         });
+      this.data.password = "";
     },
-  },
-  data() {
-    return {
-      options: [
-        {
-          id: 1,
-          name: "user",
-          placeholder: "message.enter_your_email",
-          rules: "required|min:3",
-          labelName: "message.email",
-        },
-        {
-          id: 2,
-          name: "password",
-          placeholder: "message.password",
-          rules: "required",
-          labelName: "message.password",
-        },
-      ],
-    };
   },
 };
 </script>

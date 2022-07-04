@@ -2,7 +2,6 @@ import { configure } from "vee-validate";
 import { localize } from "@vee-validate/i18n";
 
 configure({
-  validateOnInput: true,
   generateMessage: localize({
     en: {
       names: {

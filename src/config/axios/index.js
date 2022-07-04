@@ -3,7 +3,7 @@ import { getJwtToken } from "@/helpers/jwt/index.js";
 
 const axiosInstance = axios.create({
   baseURL: "http://127.0.0.1:8000/api/",
-  timeout: 3500,
+  timeout: 3600,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",

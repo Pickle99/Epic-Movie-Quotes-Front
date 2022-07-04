@@ -18,6 +18,18 @@
           :rules="option.rules"
           :labelName="option.labelName"
         />
+        <password-input
+          name="password"
+          placeholder="message.at_least_8_max_15"
+          rules="required|min:8|max:15|alpha_lower"
+          labelName="message.password"
+        />
+        <password-input
+          name="password_confirmation"
+          placeholder="message.confirm_password"
+          rules="required|confirmed:@password"
+          labelName="message.confirm_password"
+        />
       </form>
       <div class="flex flex-col">
         <button
@@ -56,6 +68,7 @@ import { Form } from "vee-validate";
 import { useDataStore } from "@/stores/data/data.js";
 import BlurPanel from "@/components/BlurPanel.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
+import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 export default {
@@ -63,6 +76,7 @@ export default {
     Form,
     BlurPanel,
     BasicInput,
+    PasswordInput,
   },
   computed: {
     ...mapWritableState(useDataStore, ["data"]),
@@ -94,20 +108,6 @@ export default {
           placeholder: "message.enter_your_email",
           rules: "required|email",
           labelName: "message.email",
-        },
-        {
-          id: 3,
-          name: "password",
-          placeholder: "message.at_least_8_max_15",
-          rules: "required|min:8|max:15|alpha_lower",
-          labelName: "message.password",
-        },
-        {
-          id: 4,
-          name: "password_confirmation",
-          placeholder: "message.confirm_password",
-          rules: "required|confirmed:@password",
-          labelName: "message.confirm_password",
         },
       ],
     };

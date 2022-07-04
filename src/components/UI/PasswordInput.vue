@@ -20,18 +20,13 @@
             : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 focus:border-2  w-96'
         "
         :placeholder="$t(placeholder)"
-        type="text"
+        :type="PasswordType"
         v-bind="field"
       />
-      <div v-if="meta.touched" class="-ml-10 mr-3">
+      <div class="-ml-10 mr-3">
         <img
-          v-if="meta.valid && !data.error"
-          src="@/assets/images/correct.png"
-          alt="img"
-        />
-        <img
-          v-if="!meta.valid || data.error"
-          src="@/assets/images/invalid.png"
+          @click="setPasswordFieldType()"
+          src="@/assets/images/eye.png"
           alt="img"
         />
       </div>
@@ -45,18 +40,18 @@
 <script>
 import { Field, ErrorMessage } from "vee-validate";
 import { useDataStore } from "@/stores/data/data.js";
-import { mapActions } from "pinia";
-import { mapWritableState } from "pinia";
+import { mapActions, mapWritableState, mapGetters } from "pinia";
 export default {
   components: {
     Field,
     ErrorMessage,
   },
-  methods: {
-    ...mapActions(useDataStore, ["updateField"]),
-  },
   computed: {
+    ...mapGetters(useDataStore, ["PasswordType"]),
     ...mapWritableState(useDataStore, ["data"]),
+  },
+  methods: {
+    ...mapActions(useDataStore, ["updateField", "setPasswordFieldType"]),
   },
 
   props: {
