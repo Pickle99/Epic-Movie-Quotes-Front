@@ -30,6 +30,7 @@ export const messages = {
       dont_have_an_account_yet: "Don't have an account yet",
       reset_password: "Reset Password",
       forgot_password_no_problem: "Forgot your password?",
+      all_rights_reserved: "ALL RIGHTS RESERVED",
     },
   },
   ka: {
@@ -64,6 +65,7 @@ export const messages = {
       dont_have_an_account_yet: "არ გაქვთ ანგარიში",
       reset_password: "პაროლის აღდგენა",
       forgot_password_no_problem: "დაგავიწყდა პაროლი?",
+      all_rights_reserved: "ყველა უფლება დაცულია",
     },
   },
 };
