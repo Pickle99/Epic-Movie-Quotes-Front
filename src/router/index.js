@@ -57,7 +57,10 @@ const router = createRouter({
     {
       path: "/successfully-verified/:token",
       name: "user-verified",
-      component: () => import("@/views/UserVerified.vue"),
+      components: {
+        default: () => import("@/views/HomeView.vue"),
+        UserVerifiedView: () => import("@/views/UserVerifiedView.vue"),
+      },
     },
     {
       path: "/password-reset-sent",

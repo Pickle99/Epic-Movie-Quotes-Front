@@ -1,17 +1,7 @@
 <template>
   <LandingComponent
     :class="
-      $route.name === 'register'
-        ? 'blur-sm pointer-events-none'
-        : $route.name === 'login'
-        ? 'blur-sm pointer-events-none'
-        : $route.name === 'email-sent'
-        ? 'blur-sm pointer-events-none'
-        : $route.name === 'forgot-password'
-        ? 'blur-sm pointer-events-none'
-        : $route.name === 'password-reset'
-        ? 'blur-sm pointer-events-none'
-        : 'blur-none'
+      $route.name === 'landing' ? 'blur-none' : 'blur-sm pointer-events-none'
     "
   />
 </template>

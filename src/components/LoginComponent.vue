@@ -112,10 +112,10 @@ export default {
         })
         .catch((error) => {
           this.data.error = error.response.data.error;
+          setTimeout(() => {
+            this.data.error = "";
+          }, 3000);
         });
-      setTimeout(() => {
-        this.data.error = "";
-      }, 3000);
     },
   },
 };
