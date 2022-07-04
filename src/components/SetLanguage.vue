@@ -41,7 +41,8 @@ import { mapActions, mapState } from "pinia/dist/pinia";
 export default {
   methods: {
     change(lang) {
-      setLocale((this.$i18n.locale = lang));
+      localStorage.setItem("locale", lang);
+      setLocale((this.$i18n.locale = localStorage.getItem("locale")));
     },
     ...mapActions(useLocaleStore, ["currentLanguage", "setDisabled"]),
   },

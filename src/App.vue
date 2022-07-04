@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+import { setLocale } from "@vee-validate/i18n";
+
+setLocale(localStorage.getItem("locale") || "en");
+</script>
 
 <template>
   <header class="font-monsterrat">

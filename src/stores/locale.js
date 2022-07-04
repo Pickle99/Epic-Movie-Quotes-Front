@@ -6,6 +6,7 @@ export const useLocaleStore = defineStore("locale", {
       isDisabled: false,
     };
   },
+
   actions: {
     setDisabled() {
       this.isDisabled = !this.isDisabled;

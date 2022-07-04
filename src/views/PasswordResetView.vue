@@ -6,6 +6,7 @@
       </h1>
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
+      <p class="text-red-500 mb-3">{{ data.error }}</p>
       <div>
         <password-input
           name="password"
@@ -52,7 +53,6 @@ export default {
   components: {
     BlurPanel,
     Form,
-    BasicInput,
     PasswordInput,
   },
   computed: {
@@ -65,13 +65,24 @@ export default {
       "setPasswordConfirmationFieldType",
     ]),
     onSubmit() {
-      axios.post(`reset-password/${this.$route.params.token}`, {
-        email: this.$route.params.email,
-        token: this.$route.params.token,
-        password: this.data.password,
-        password_confirmation: this.data.password_confirmation,
-      });
-      this.$router.push({ name: "reset-success" });
+      axios
+        .post(`reset-password/${this.$route.params.token}`, {
+          email: this.$route.params.email,
+          token: this.$route.params.token,
+          password: this.data.password,
+          password_confirmation: this.data.password_confirmation,
+        })
+        .then(() => {
+          this.$router.push({ name: "login" });
+        })
+        .catch(() => {
+          this.data.error =
+            "Sorry, you already reset your password, your token is expired";
+          setTimeout(() => {
+            this.data.error = "";
+            this.$router.push({ name: "login" });
+          }, 2000);
+        });
     },
   },
 };

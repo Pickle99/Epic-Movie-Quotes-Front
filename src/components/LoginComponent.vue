@@ -107,12 +107,11 @@ export default {
           password: this.data.password,
         })
         .then((response) => {
-          alert("Login Successful!");
           setJwtToken(response.data.access_token, response.data.expires_in);
           this.$router.push({ name: "movies" });
         })
         .catch((error) => {
-          this.data.error = $t(`message.${error.response.data.error}`);
+          this.data.error = error.response.data.error;
         });
       setTimeout(() => {
         this.data.error = "";

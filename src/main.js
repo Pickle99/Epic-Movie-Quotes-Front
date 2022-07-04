@@ -13,7 +13,7 @@ app.use(store);
 app.use(router);
 
 const i18n = createI18n({
-  locale: "en",
+  locale: localStorage.getItem("locale") || "en",
   fallBackLocale: "en",
   messages,
 });

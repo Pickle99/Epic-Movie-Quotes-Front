@@ -1,6 +1,7 @@
 export const messages = {
   en: {
     message: {
+      "": "",
       get_started: "Get started",
       sign_up: "Sign up",
       sign_in: "Sign in",
@@ -28,12 +29,12 @@ export const messages = {
       sign_in_google: "Sign in with Google",
       dont_have_an_account_yet: "Don't have an account yet",
       reset_password: "Reset Password",
-      wrong_credentials: "Wrong Credentials!",
       forgot_password_no_problem: "Forgot your password?",
     },
   },
   ka: {
     message: {
+      "": "",
       get_started: "დაწყება",
       sign_up: "რეგისტრაცია",
       sign_in: "შესვლა",
@@ -62,7 +63,6 @@ export const messages = {
       sign_in_google: "გუგლით შესვლა",
       dont_have_an_account_yet: "არ გაქვთ ანგარიში",
       reset_password: "პაროლის აღდგენა",
-      wrong_credentials: "მონაცემები არასწორია!",
       forgot_password_no_problem: "დაგავიწყდა პაროლი?",
     },
   },
