@@ -23,12 +23,16 @@
           placeholder="message.at_least_8_max_15"
           rules="required|min:8|max:15|alpha_lower"
           labelName="message.password"
+          :type="PasswordType"
+          :click="setPasswordFieldType"
         />
         <password-input
           name="password_confirmation"
           placeholder="message.confirm_password"
           rules="required|confirmed:@password"
           labelName="message.confirm_password"
+          :type="PasswordConfirmationType"
+          :click="setPasswordConfirmationFieldType"
         />
       </form>
       <div class="flex flex-col">
@@ -70,7 +74,7 @@ import BlurPanel from "@/components/BlurPanel.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapActions, mapGetters } from "pinia";
 export default {
   components: {
     Form,
@@ -80,8 +84,14 @@ export default {
   },
   computed: {
     ...mapWritableState(useDataStore, ["data"]),
+    ...mapGetters(useDataStore, ["PasswordType", "PasswordConfirmationType"]),
+
   },
   methods: {
+    ...mapActions(useDataStore, [
+      "setPasswordFieldType",
+      "setPasswordConfirmationFieldType",
+    ]),
     onSubmit() {
       axios.post("register", {
         email: this.data.email,

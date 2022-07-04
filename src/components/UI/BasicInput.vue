@@ -5,10 +5,10 @@
   </div>
   <Field
     @input="updateField(name, $event.target.value)"
-    :value="data.name"
     :name="name"
     v-slot="{ meta, field }"
     :rules="rules"
+    :value="data.name"
   >
     <div class="bg-[#CED4DA] mb-2 flex items-center w-fit rounded-md">
       <input

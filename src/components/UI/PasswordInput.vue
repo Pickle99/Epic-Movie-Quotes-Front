@@ -20,12 +20,13 @@
             : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 focus:border-2  w-96'
         "
         :placeholder="$t(placeholder)"
-        :type="PasswordType"
+        :type="type"
         v-bind="field"
       />
       <div class="-ml-10 mr-3">
         <img
-          @click="setPasswordFieldType()"
+          class="hover:cursor-pointer"
+          @click="click"
           src="@/assets/images/eye.png"
           alt="img"
         />
@@ -47,11 +48,15 @@ export default {
     ErrorMessage,
   },
   computed: {
-    ...mapGetters(useDataStore, ["PasswordType"]),
+    ...mapGetters(useDataStore, ["PasswordType", "PasswordConfirmationType"]),
     ...mapWritableState(useDataStore, ["data"]),
   },
   methods: {
-    ...mapActions(useDataStore, ["updateField", "setPasswordFieldType"]),
+    ...mapActions(useDataStore, [
+      "updateField",
+      "setPasswordFieldType",
+      "setPasswordConfirmationFieldType",
+    ]),
   },
 
   props: {
@@ -69,6 +74,14 @@ export default {
     },
     labelName: {
       type: String,
+      required: true,
+    },
+    type: {
+      type: String,
+      required: true,
+    },
+    click: {
+      type: Function,
       required: true,
     },
   },

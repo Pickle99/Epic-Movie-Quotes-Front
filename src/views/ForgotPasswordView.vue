@@ -2,9 +2,8 @@
   <blur-panel>
     <div class="text-center mb-7">
       <h1 class="text-white text-4xl mb-5">
-        {{ $t("message.log_in_to_acc") }}
+        {{ $t("message.forgot_password_no_problem") }}
       </h1>
-      <p class="w-96 text-[#6C757D]">{{ $t("message.welcome_back") }}</p>
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
       <div>
@@ -27,12 +26,6 @@
           :disabled="!meta.valid"
         >
           {{ $t("message.reset_password") }}
-        </button>
-        <button
-          class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
-        >
-          <img class="mr-2" src="@/assets/images/google.png" alt="img" />
-          {{ $t("message.sign_in_google") }}
         </button>
       </div>
       <div class="flex justify-center mt-6">

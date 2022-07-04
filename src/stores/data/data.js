@@ -13,6 +13,7 @@ export const useDataStore = defineStore("data", {
         error: "",
       },
       isPasswordVisible: false,
+      isPasswordConfirmationVisible: false,
     };
   },
   getters: {
@@ -24,6 +25,14 @@ export const useDataStore = defineStore("data", {
         return "password";
       }
     },
+    PasswordConfirmationType(state) {
+      if (state.isPasswordConfirmationVisible === true) {
+        return "text";
+      }
+      if (state.isPasswordConfirmationVisible === false) {
+        return "password";
+      }
+    },
   },
   actions: {
     updateField(state, payload) {
@@ -31,6 +40,9 @@ export const useDataStore = defineStore("data", {
     },
     setPasswordFieldType() {
       this.isPasswordVisible = !this.isPasswordVisible;
+    },
+    setPasswordConfirmationFieldType() {
+      this.isPasswordConfirmationVisible = !this.isPasswordConfirmationVisible;
     },
   },
 });
