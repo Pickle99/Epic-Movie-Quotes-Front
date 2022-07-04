@@ -22,8 +22,6 @@
           placeholder="message.password"
           rules="required|min:3"
           labelName="message.password"
-          :type="PasswordType"
-          :click="setPasswordFieldType"
         />
       </div>
       <div class="text-sm flex justify-between">
@@ -79,7 +77,7 @@ import BasicInput from "@/components/UI/BasicInput.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
-import { mapWritableState, mapActions, mapGetters } from "pinia";
+import { mapWritableState } from "pinia";
 import { useDataStore } from "@/stores/data/data.js";
 
 export default {
@@ -90,12 +88,9 @@ export default {
     PasswordInput,
   },
   computed: {
-    ...mapGetters(useDataStore, ["PasswordType"]),
-
     ...mapWritableState(useDataStore, ["data"]),
   },
   methods: {
-    ...mapActions(useDataStore, ["setPasswordFieldType"]),
     google() {
       window.location.href = "http://localhost:8000/auth/google/redirect";
     },
@@ -120,5 +115,3 @@ export default {
   },
 };
 </script>
-
-
