@@ -9,8 +9,8 @@ export default {
 </script>
 
 <template>
-  <div class="h-screen">
-    <header class="flex justify-between mx-40 mt-5 items-center">
+  <div class="h-screen overflow-scroll snap-y snap-mandatory">
+    <header class="snap-start flex justify-between mx-40 mt-5 items-center">
       <div>
         <h1 class="text-[#DDCCAA]">{{ $t("message.movie_quotes") }}</h1>
       </div>
@@ -44,7 +44,7 @@ export default {
       >
     </div>
     <div class="mt-60 font-bold">
-      <div>
+      <div class="snap-start">
         <div class="absolute mt-[27.2rem] ml-52">
           <p class="text-white text-5xl">__</p>
         </div>
@@ -58,7 +58,7 @@ export default {
         <img src="@/assets/images/movies/Interstellar.png" alt="img" />
       </div>
 
-      <div>
+      <div class="snap-start">
         <div class="absolute mt-[27.8rem] ml-52">
           <p class="text-white text-5xl">__</p>
         </div>
@@ -76,7 +76,7 @@ export default {
         <img src="@/assets/images/movies/TheRoyalTenenbaums.png" alt="img" />
       </div>
 
-      <div>
+      <div class="snap-start">
         <div class="absolute mt-[40.8rem] ml-52">
           <p class="text-white text-5xl">__</p>
         </div>
