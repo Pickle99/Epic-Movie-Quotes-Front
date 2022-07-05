@@ -1,82 +1,103 @@
 import { createRouter, createWebHistory } from "vue-router";
-
+import HomeView from "@/views/HomeView.vue";
+import AuthView from "@/views/AuthView.vue";
+import EmailSentView from "@/views/EmailSentView.vue";
+import ForgotPasswordView from "@/views/ForgotPasswordView.vue";
+import PasswordResetView from "@/views/PasswordResetView.vue";
+import MoviesView from "@/views/MoviesView.vue";
+import UserVerifiedView from "@/views/UserVerifiedView.vue";
+import RegisterView from "@/views/RegisterView.vue";
+import PasswordResetSentView from "@/views/PasswordResetSentView.vue";
+import PasswordResetSuccess from "@/views/PasswordResetSuccess.vue";
+import RouteForbidden from "@/views/Errors/RouteForbidden.vue";
+import NotFound from "@/views/Errors/RouteNotFound.vue";
+import { isAuthenticated } from "@/router/guards.js";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: "/:pathMatch(.*)*",
+      component: NotFound,
+    },
+    {
       path: "/",
       name: "landing",
-      component: () => import("@/views/HomeView.vue"),
+      component: HomeView,
     },
     {
       path: "/register",
       name: "register",
       components: {
-        default: () => import("@/views/HomeView.vue"),
-        RegisterView: () => import("@/views/RegisterView.vue"),
+        default: HomeView,
+        RegisterView,
       },
     },
     {
       path: "/login",
       name: "login",
       components: {
-        default: () => import("@/views/HomeView.vue"),
-        AuthView: () => import("@/views/AuthView.vue"),
+        default: HomeView,
+        AuthView,
       },
     },
     {
       path: "/email-verification-sent",
       name: "email-sent",
       components: {
-        default: () => import("@/views/HomeView.vue"),
-        EmailSentView: () => import("@/views/EmailSentView.vue"),
+        default: HomeView,
+        EmailSentView,
       },
     },
     {
       path: "/forgot-password",
       name: "forgot-password",
       components: {
-        default: () => import("@/views/HomeView.vue"),
-        ForgotPasswordView: () => import("@/views/ForgotPasswordView.vue"),
+        default: HomeView,
+        ForgotPasswordView,
       },
     },
     {
       path: "/reset-password/:token/:email",
       name: "password-reset",
       components: {
-        default: () => import("@/views/HomeView.vue"),
-        PasswordResetView: () => import("@/views/PasswordResetView.vue"),
+        default: HomeView,
+        PasswordResetView,
       },
     },
     {
       path: "/movies",
       name: "movies",
-      component: () => import("@/views/MoviesView.vue"),
+      component: MoviesView,
+      beforeEnter: [isAuthenticated],
     },
     {
       path: "/successfully-verified/:token",
       name: "user-verified",
       components: {
-        default: () => import("@/views/HomeView.vue"),
-        UserVerifiedView: () => import("@/views/UserVerifiedView.vue"),
+        default: HomeView,
+        UserVerifiedView,
       },
     },
     {
       path: "/password-reset-sent",
       name: "password-reset-sent",
       components: {
-        default: () => import("@/views/HomeView.vue"),
-        PasswordResetSentView: () =>
-          import("@/views/PasswordResetSentView.vue"),
+        default: HomeView,
+        PasswordResetSentView,
       },
     },
     {
       path: "/password-reset-success",
       name: "reset-success",
       components: {
-        default: () => import("@/views/HomeView.vue"),
-        PasswordResetSuccess: () => import("@/views/PasswordResetSuccess.vue"),
+        default: HomeView,
+        PasswordResetSuccess,
       },
+    },
+    {
+      path: "/forbidden",
+      name: "403",
+      component: RouteForbidden,
     },
   ],
 });

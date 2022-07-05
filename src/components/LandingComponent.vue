@@ -10,7 +10,8 @@ export default {
 
 <template>
   <div class="h-screen overflow-scroll snap-y snap-mandatory">
-    <header class="snap-start flex justify-between mx-40 mt-5 items-center">
+    <div class="snap-start"></div>
+    <header class="flex justify-between mx-40 mt-5 items-center">
       <div>
         <h1 class="text-[#DDCCAA]">{{ $t("message.movie_quotes") }}</h1>
       </div>
@@ -94,7 +95,7 @@ export default {
         <img src="@/assets/images/movies/TheRoyalTenenbaums-2.png" alt="img" />
       </div>
     </div>
-    <footer class="text-[#DDCCAA] bg-[#0D0B14]">
+    <footer class="snap-end text-[#DDCCAA] bg-[#0D0B14]">
       <p class="ml-32 py-5">
         © 2022 {{ $t("message.movie_quotes") }}.
         {{ $t("message.all_rights_reserved") }}

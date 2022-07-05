@@ -31,6 +31,11 @@ export const messages = {
       reset_password: "Reset Password",
       forgot_password_no_problem: "Forgot your password?",
       all_rights_reserved: "ALL RIGHTS RESERVED",
+      whoops: "Whoops",
+      return_home: "Return home",
+      cant_see_the_page: `We can't see the page you are looking for`,
+      you_shall_not_pass: "You shall not pass",
+      sorry_you_dont_have_permission: `Sorry,but you don't have permission to access this page`,
     },
   },
   ka: {
@@ -66,6 +71,11 @@ export const messages = {
       reset_password: "პაროლის აღდგენა",
       forgot_password_no_problem: "დაგავიწყდა პაროლი?",
       all_rights_reserved: "ყველა უფლება დაცულია",
+      whoops: "უპს",
+      return_home: "მთავარ გვერდზე დაბრუნება",
+      cant_see_the_page: "ჩვენ ვერ ვხედავთ გვერდს რომელსაც თქვენ ეძებთ",
+      you_shall_not_pass: "აქ ვერ შეხვალთ",
+      sorry_you_dont_have_permission: `ბოდიშით, მაგრამ თქვენ არ გაქვთ უფლება ამ გვერდზე შესასვლელად`,
     },
   },
 };

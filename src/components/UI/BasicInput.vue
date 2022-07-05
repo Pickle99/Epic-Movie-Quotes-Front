@@ -31,19 +31,19 @@
         <img
           @click="resetField()"
           v-if="focused"
-          src="@/assets/images/close.png"
+          src="@/assets/images/input/close.png"
           alt="img"
         />
 
         <div v-if="meta.touched">
           <img
             v-if="meta.valid && !data.error && !focused"
-            src="@/assets/images/correct.png"
+            src="@/assets/images/input/correct.png"
             alt="img"
           />
           <img
             v-if="!meta.valid && data.error && !focused"
-            src="@/assets/images/invalid.png"
+            src="@/assets/images/input/invalid.png"
             alt="img"
           />
         </div>
