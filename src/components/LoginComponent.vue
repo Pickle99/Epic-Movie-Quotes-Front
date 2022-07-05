@@ -9,19 +9,21 @@
     <Form v-slot="{ meta }" @submit="onSubmit()">
       <div>
         <p class="text-red-500 text-center">
-          {{ data.error }}
+          {{ error }}
         </p>
         <basic-input
           name="user"
           placeholder="message.enter_your_email"
           rules="required|min:3"
           labelName="message.email"
+          :error="error"
         />
         <password-input
           name="password"
           placeholder="message.password"
           rules="required|min:3"
           labelName="message.password"
+          :error="error"
         />
       </div>
       <div class="text-sm flex justify-between">
@@ -81,6 +83,12 @@ import { mapWritableState } from "pinia";
 import { useDataStore } from "@/stores/data/data.js";
 
 export default {
+  data() {
+    return {
+      error: "",
+      timeOut: null,
+    };
+  },
   components: {
     BlurPanel,
     Form,
@@ -105,9 +113,10 @@ export default {
           this.$router.push({ name: "movies" });
         })
         .catch((error) => {
-          this.data.error = error.response.data.error;
-          setTimeout(() => {
-            this.data.error = "";
+          this.error = error.response.data.error;
+          clearTimeout(this.timeOut);
+          this.timeOut = setTimeout(() => {
+            this.error = "";
           }, 3000);
         });
     },

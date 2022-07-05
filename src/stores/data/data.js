@@ -10,7 +10,6 @@ export const useDataStore = defineStore("data", {
         password: "",
         password_confirmation: "",
         forgot_password: "",
-        error: "",
       },
       isPasswordVisible: false,
       isPasswordConfirmationVisible: false,

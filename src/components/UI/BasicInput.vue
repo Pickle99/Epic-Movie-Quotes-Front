@@ -18,7 +18,7 @@
       <input
         :class="
           meta.touched
-            ? meta.valid && !data.error
+            ? meta.valid && !error
               ? 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 w-96 border-green-500 border-2'
               : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none  focus:border-gray-400 w-96 border-red-500 border-2'
             : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 focus:border-2  w-96'
@@ -37,12 +37,12 @@
 
         <div v-if="meta.touched">
           <img
-            v-if="meta.valid && !data.error && !focused"
+            v-if="meta.valid && !error && !focused"
             src="@/assets/images/input/correct.png"
             alt="img"
           />
           <img
-            v-if="!meta.valid && data.error && !focused"
+            v-if="(!meta.valid && !focused) || (error && !focused)"
             src="@/assets/images/input/invalid.png"
             alt="img"
           />
@@ -93,6 +93,10 @@ export default {
     labelName: {
       type: String,
       required: true,
+    },
+    error: {
+      type: String,
+      required: false,
     },
   },
 };

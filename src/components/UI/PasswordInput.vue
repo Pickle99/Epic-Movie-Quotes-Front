@@ -14,7 +14,7 @@
       <input
         :class="
           meta.touched
-            ? meta.valid && !data.error
+            ? meta.valid && !error
               ? 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 w-96 border-green-500 border-2'
               : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none  focus:border-gray-400 w-96 border-red-500 border-2'
             : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 focus:border-2  w-96'
@@ -83,6 +83,10 @@ export default {
     labelName: {
       type: String,
       required: true,
+    },
+    error: {
+      type: String,
+      required: false,
     },
   },
 };
