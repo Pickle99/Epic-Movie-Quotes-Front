@@ -2,7 +2,7 @@
   <EmailVerifySentComponent />
 </template>
 <script>
-import EmailVerifySentComponent from "@/components/EmailVerifySentComponent.vue";
+import EmailVerifySentComponent from "@/components/Landing/EmailVerifySentComponent.vue";
 export default {
   components: { EmailVerifySentComponent },
 };

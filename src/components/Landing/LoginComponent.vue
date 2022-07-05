@@ -73,7 +73,7 @@
   </blur-panel>
 </template>
 <script>
-import BlurPanel from "@/components/BlurPanel.vue";
+import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import { Form } from "vee-validate";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";

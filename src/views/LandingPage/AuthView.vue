@@ -2,7 +2,7 @@
   <LoginComponent />
 </template>
 <script>
-import LoginComponent from "@/components/LoginComponent.vue";
+import LoginComponent from "@/components/Landing/LoginComponent.vue";
 export default {
   components: { LoginComponent },
 };

@@ -1,5 +1,5 @@
 <script>
-import SetLanguage from "@/components/SetLanguage.vue";
+import SetLanguage from "@/components/Landing/SetLanguage.vue";
 
 export default {
   components: {

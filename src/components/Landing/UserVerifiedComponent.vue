@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import BlurPanel from "@/components/BlurPanel.vue";
+import BlurPanel from "@/components/Landing/BlurPanel.vue";
 export default {
   components: {
     BlurPanel,

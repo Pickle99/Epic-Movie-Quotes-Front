@@ -6,7 +6,7 @@
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useDataStore } from "@/stores/data/data.js";
-import UserVerifiedComponent from "@/components/UserVerifiedComponent.vue";
+import UserVerifiedComponent from "@/components/Landing/UserVerifiedComponent.vue";
 export default {
   components: {
     UserVerifiedComponent,

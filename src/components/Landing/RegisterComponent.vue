@@ -86,7 +86,7 @@
 <script>
 import { Form } from "vee-validate";
 import { useDataStore } from "@/stores/data/data.js";
-import BlurPanel from "@/components/BlurPanel.vue";
+import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
