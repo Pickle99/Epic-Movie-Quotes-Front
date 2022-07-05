@@ -11,9 +11,13 @@
         Please check your email and follow the instructions to
         <p>activate your account.</p>
       </span>
-      <button class="px-32 rounded-md py-1.5 text-md bg-[#E31221]">
+      <a
+        href="https://gmail.com"
+        target="_blank"
+        class="px-32 rounded-md py-1.5 text-md bg-[#E31221]"
+      >
         Go to my email
-      </button>
+      </a>
     </div>
   </blur-panel>
 </template>

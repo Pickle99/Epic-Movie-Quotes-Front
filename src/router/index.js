@@ -64,12 +64,19 @@ const router = createRouter({
     {
       path: "/password-reset-sent",
       name: "password-reset-sent",
-      component: () => import("@/views/PasswordResetSentView.vue"),
+      components: {
+        default: () => import("@/views/HomeView.vue"),
+        PasswordResetSentView: () =>
+          import("@/views/PasswordResetSentView.vue"),
+      },
     },
     {
       path: "/password-reset-success",
       name: "reset-success",
-      component: () => import("@/views/PasswordResetSuccess.vue"),
+      components: {
+        default: () => import("@/views/HomeView.vue"),
+        PasswordResetSuccess: () => import("@/views/PasswordResetSuccess.vue"),
+      },
     },
   ],
 });

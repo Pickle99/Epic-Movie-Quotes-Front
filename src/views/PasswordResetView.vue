@@ -63,7 +63,7 @@ export default {
           password_confirmation: this.data.password_confirmation,
         })
         .then(() => {
-          this.$router.push({ name: "login" });
+          this.$router.push({ name: "reset-success" });
         })
         .catch(() => {
           this.data.error =

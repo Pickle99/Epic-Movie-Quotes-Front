@@ -95,7 +95,6 @@ export default {
       window.location.href = "http://localhost:8000/auth/google/redirect";
     },
     onSubmit() {
-      console.log(this.data.user, this.data.password);
       axios
         .post("login", {
           email: this.data.user,
