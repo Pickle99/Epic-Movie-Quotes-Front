@@ -1,7 +1,7 @@
 <template>
   <blur-panel>
     <div
-      class="flex flex-col justify-center items-center text-center text-white"
+      class="flex flex-col justify-center px-4 items-center text-center text-white"
     >
       <div class="mb-10">
         <img src="@/assets/images/activated.png" alt="img" />

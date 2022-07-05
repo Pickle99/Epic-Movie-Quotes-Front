@@ -30,9 +30,7 @@ export default {
         >
       </div>
     </header>
-    <div
-      class="flex justify-end items-center h-[25rem] flex-col"
-    >
+    <div class="flex justify-end items-center h-[25rem] flex-col">
       <div class="mb-10 text-[#DDCCAA] text-6xl text-center">
         <h1>
           {{ $t("message.find_any_quote") }}
@@ -46,18 +44,20 @@ export default {
         >{{ $t("message.get_started") }}</RouterLink
       >
     </div>
-    <div class="mt-60 font-bold snap-end">
-      <div class="z-20 absolute mt-[27.2rem] ml-52">
-        <p class="text-white text-5xl">__</p>
+    <div class="mt-60 font-bold">
+      <div class="snap-center">
+        <div class="z-20 absolute mt-[27.2rem] ml-52">
+          <p class="text-white text-5xl">__</p>
+        </div>
+        <div class="absolute mt-[29rem] ml-80 z-20">
+          <h1 class="text-white text-4xl">
+            “You have to leave something
+            <h1 class="text-white text-3xl">behind to go forward”</h1>
+          </h1>
+          <p class="text-white text-xl mt-4">Interstellar, 2014</p>
+        </div>
+        <img src="@/assets/images/movies/Interstellar.png" alt="img" />
       </div>
-      <div class="absolute mt-[29rem] ml-80 z-20">
-        <h1 class="text-white text-4xl">
-          “You have to leave something
-          <h1 class="text-white text-3xl">behind to go forward”</h1>
-        </h1>
-        <p class="text-white text-xl mt-4">Interstellar, 2014</p>
-      </div>
-      <img src="@/assets/images/movies/Interstellar.png" alt="img" />
 
       <div
         class="bg-gradient-to-r opacity-60 from-black h-96 absolute top-[44rem] w-full h-[75rem] h-60 z-10"
