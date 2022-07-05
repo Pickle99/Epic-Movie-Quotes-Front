@@ -30,7 +30,9 @@ export default {
         >
       </div>
     </header>
-    <div class="flex justify-end items-center h-[25rem] flex-col">
+    <div
+      class="flex justify-end items-center h-[25rem] flex-col"
+    >
       <div class="mb-10 text-[#DDCCAA] text-6xl text-center">
         <h1>
           {{ $t("message.find_any_quote") }}
@@ -44,26 +46,31 @@ export default {
         >{{ $t("message.get_started") }}</RouterLink
       >
     </div>
-    <div class="mt-60 font-bold">
-      <div class="snap-start">
-        <div class="absolute mt-[27.2rem] ml-52">
-          <p class="text-white text-5xl">__</p>
-        </div>
-        <div class="absolute mt-[29rem] ml-80">
-          <h1 class="text-white text-4xl">
-            “You have to leave something
-            <h1 class="text-white text-3xl">behind to go forward”</h1>
-          </h1>
-          <p class="text-white text-xl mt-4">Interstellar, 2014</p>
-        </div>
-        <img src="@/assets/images/movies/Interstellar.png" alt="img" />
+    <div class="mt-60 font-bold snap-end">
+      <div class="z-20 absolute mt-[27.2rem] ml-52">
+        <p class="text-white text-5xl">__</p>
       </div>
+      <div class="absolute mt-[29rem] ml-80 z-20">
+        <h1 class="text-white text-4xl">
+          “You have to leave something
+          <h1 class="text-white text-3xl">behind to go forward”</h1>
+        </h1>
+        <p class="text-white text-xl mt-4">Interstellar, 2014</p>
+      </div>
+      <img src="@/assets/images/movies/Interstellar.png" alt="img" />
 
-      <div class="snap-start">
-        <div class="absolute mt-[27.8rem] ml-52">
+      <div
+        class="bg-gradient-to-r opacity-60 from-black h-96 absolute top-[44rem] w-full h-[75rem] h-60 z-10"
+      ></div>
+      <div
+        class="bg-gradient-to-r opacity-60 from-black h-96 absolute top-[44rem] w-full h-[75rem] h-60 z-10"
+      ></div>
+
+      <div class="mb-[10rem] top-[119rem] absolute snap-end">
+        <div class="absolute mt-[27.8rem] ml-52 z-20">
           <p class="text-white text-5xl">__</p>
         </div>
-        <div class="absolute mt-[29rem] ml-80">
+        <div class="absolute mt-[29rem] ml-80 z-20">
           <h1 class="text-white text-4xl">
             I think we’re just gonna have to be secretly in love with earch
             other
@@ -77,11 +84,18 @@ export default {
         <img src="@/assets/images/movies/TheRoyalTenenbaums.png" alt="img" />
       </div>
 
-      <div class="snap-start">
-        <div class="absolute mt-[40.8rem] ml-52">
+      <div
+        class="bg-gradient-to-r opacity-80 from-black absolute h-[75rem] w-screen right-0 z-10 top-[119rem]"
+      ></div>
+      <div
+        class="bg-gradient-to-b opacity-80 from-black absolute h-[75rem] w-screen right-0 z-10 top-[119rem]"
+      ></div>
+
+      <div class="absolute top-[194rem] snap-end">
+        <div class="absolute mt-[40.8rem] ml-52 z-20">
           <p class="text-white text-5xl">__</p>
         </div>
-        <div class="absolute mt-[42rem] ml-80">
+        <div class="absolute mt-[42rem] ml-80 z-20">
           <h1 class="text-white text-4xl">
             I think we’re just gonna have to be secretly in love with earch
             other
@@ -94,8 +108,12 @@ export default {
         </div>
         <img src="@/assets/images/movies/TheRoyalTenenbaums-2.png" alt="img" />
       </div>
+
+      <div
+        class="bg-gradient-to-r opacity-90 from-black absolute w-screen top-[194rem] h-[75rem] z-10"
+      ></div>
     </div>
-    <footer class="snap-end text-[#DDCCAA] bg-[#0D0B14]">
+    <footer class="snap-end text-[#DDCCAA] bg-[#0D0B14] absolute top-[270rem]">
       <p class="ml-32 py-5">
         © 2022 {{ $t("message.movie_quotes") }}.
         {{ $t("message.all_rights_reserved") }}
