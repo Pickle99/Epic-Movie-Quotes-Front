@@ -60,7 +60,7 @@ export default {
       </div>
 
       <div
-        class="bg-gradient-to-r opacity-60 from-black h-[75rem] absolute top-[44rem] w-full h-[75rem]  z-10"
+        class="bg-gradient-to-r opacity-60 from-black h-[75rem] absolute top-[44rem] w-full h-[75rem] z-10"
       ></div>
       <div
         class="bg-gradient-to-r opacity-60 from-black h-[75rem] absolute top-[44rem] w-full h-[75rem] z-10"
@@ -113,7 +113,9 @@ export default {
         class="bg-gradient-to-r opacity-90 from-black absolute w-screen top-[194rem] h-[75rem] z-10"
       ></div>
     </div>
-    <footer class="snap-start text-[#DDCCAA] bg-[#0D0B14] absolute top-[270rem]">
+    <footer
+      class="snap-start text-[#DDCCAA] bg-[#0D0B14] absolute top-[270rem]"
+    >
       <p class="ml-32 py-5">
         © 2022 {{ $t("message.movie_quotes") }}.
         {{ $t("message.all_rights_reserved") }}
