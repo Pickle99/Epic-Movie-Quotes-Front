@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     redirect() {
-      this.$router.push({ name: "movies" });
+      this.$router.replace({ name: "feed" });
     },
   },
 };

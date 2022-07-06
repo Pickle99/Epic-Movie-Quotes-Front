@@ -24,6 +24,7 @@ setLocale(localStorage.getItem("locale") || "en");
 
 <style>
 html {
-  background: black;
+  background: #0d0b14;
+  opacity: 96%;
 }
 </style>

@@ -36,6 +36,7 @@ export const messages = {
       cant_see_the_page: `We can't see the page you are looking for`,
       you_shall_not_pass: "You shall not pass",
       sorry_you_dont_have_permission: `Sorry,but you don't have permission to access this page`,
+      log_out: "Log out",
     },
   },
   ka: {
@@ -76,6 +77,7 @@ export const messages = {
       cant_see_the_page: "ჩვენ ვერ ვხედავთ გვერდს რომელსაც თქვენ ეძებთ",
       you_shall_not_pass: "აქ ვერ შეხვალთ",
       sorry_you_dont_have_permission: `ბოდიშით, მაგრამ თქვენ არ გაქვთ უფლება ამ გვერდზე შესასვლელად`,
+      log_out: "გასვლა",
     },
   },
 };

@@ -110,7 +110,7 @@ export default {
         })
         .then((response) => {
           setJwtToken(response.data.access_token, response.data.expires_in);
-          this.$router.push({ name: "movies" });
+          this.$router.push({ name: "feed" });
         })
         .catch((error) => {
           this.error = error.response.data.error;

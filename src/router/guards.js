@@ -5,3 +5,9 @@ export function isAuthenticated() {
     return "/forbidden";
   }
 }
+
+export function Authenticated() {
+  if (getJwtToken()) {
+    return "/forbidden";
+  }
+}
