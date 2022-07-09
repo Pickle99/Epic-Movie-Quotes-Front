@@ -19,6 +19,7 @@ setLocale(localStorage.getItem("locale") || "en");
     <router-view name="UserVerifiedView"></router-view>
     <router-view name="PasswordResetSentView"></router-view>
     <router-view name="PasswordResetSuccess"></router-view>
+    <router-view name="NewMovieView"></router-view>
   </header>
 </template>
 

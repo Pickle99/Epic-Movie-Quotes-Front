@@ -14,21 +14,21 @@
       </div>
     </div>
 
-    <div class="flex items-center">
+    <RouterLink :to="{ name: 'feed' }" class="flex items-center">
       <div class="w-32 flex justify-center">
         <img src="@/assets/icons/house.svg" />
       </div>
       <div>
         <p>News feed</p>
       </div>
-    </div>
-    <div class="flex items-center">
+    </RouterLink>
+    <RouterLink :to="{ name: 'movies' }" class="flex items-center">
       <div class="w-32 flex justify-center">
         <img src="@/assets/icons/camera.svg" />
       </div>
       <div>
         <p>List of movies</p>
       </div>
-    </div>
+    </RouterLink>
   </nav>
 </template>

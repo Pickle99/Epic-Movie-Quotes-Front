@@ -11,6 +11,8 @@ import PasswordResetSentView from "@/views/LandingPage/PasswordResetSentView.vue
 import PasswordResetSuccess from "@/views/LandingPage/PasswordResetSuccess.vue";
 import RouteForbidden from "@/views/Errors/RouteForbidden.vue";
 import NotFound from "@/views/Errors/RouteNotFound.vue";
+import UserMoviesView from "@/views/MainPage/UserMoviesView.vue";
+import NewMovieView from "@/views/MainPage/NewMovieView.vue";
 import { Guest } from "@/router/guards.js";
 import { Authorized } from "@/router/guards.js";
 
@@ -34,6 +36,7 @@ const router = createRouter({
         default: HomeView,
         RegisterView,
       },
+      beforeEnter: [Authorized],
     },
     {
       path: "/login",
@@ -41,6 +44,7 @@ const router = createRouter({
       components: {
         default: HomeView,
         AuthView,
+        beforeEnter: [Authorized],
       },
     },
     {
@@ -50,6 +54,7 @@ const router = createRouter({
         default: HomeView,
         EmailSentView,
       },
+      beforeEnter: [Authorized],
     },
     {
       path: "/forgot-password",
@@ -58,6 +63,7 @@ const router = createRouter({
         default: HomeView,
         ForgotPasswordView,
       },
+      beforeEnter: [Authorized],
     },
     {
       path: "/reset-password/:token/:email",
@@ -66,6 +72,7 @@ const router = createRouter({
         default: HomeView,
         PasswordResetView,
       },
+      beforeEnter: [Authorized],
     },
     {
       path: "/feed",
@@ -80,6 +87,7 @@ const router = createRouter({
         default: HomeView,
         UserVerifiedView,
       },
+      beforeEnter: [Authorized],
     },
     {
       path: "/password-reset-sent",
@@ -88,6 +96,7 @@ const router = createRouter({
         default: HomeView,
         PasswordResetSentView,
       },
+      beforeEnter: [Authorized],
     },
     {
       path: "/password-reset-success",
@@ -96,11 +105,27 @@ const router = createRouter({
         default: HomeView,
         PasswordResetSuccess,
       },
+      beforeEnter: [Authorized],
     },
     {
       path: "/forbidden",
       name: "403",
       component: RouteForbidden,
+    },
+    {
+      path: "/movies",
+      name: "movies",
+      component: UserMoviesView,
+      beforeEnter: [Guest],
+    },
+    {
+      path: "/movies/add",
+      name: "movies-add",
+      components: {
+        default: UserMoviesView,
+        NewMovieView,
+      },
+      beforeEnter: [Guest],
     },
   ],
 });

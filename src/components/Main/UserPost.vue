@@ -14,7 +14,7 @@
           </div>
           <div class="w-full">
             <input
-              class="bg-[#0d0b14] w-96"
+              class="focus:outline-0 bg-[#0d0b14] w-96"
               placeholder="Enter @ to search movies, Enter # to search quotes"
             />
           </div>
