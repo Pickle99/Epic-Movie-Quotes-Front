@@ -7,6 +7,7 @@ import "@/config/vee-validate/messages";
 import store from "@/stores/index.js";
 import { createI18n } from "vue-i18n";
 import { messages } from "@/messages.js";
+
 const app = createApp(App);
 
 app.use(store);
