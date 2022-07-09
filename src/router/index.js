@@ -11,8 +11,8 @@ import PasswordResetSentView from "@/views/LandingPage/PasswordResetSentView.vue
 import PasswordResetSuccess from "@/views/LandingPage/PasswordResetSuccess.vue";
 import RouteForbidden from "@/views/Errors/RouteForbidden.vue";
 import NotFound from "@/views/Errors/RouteNotFound.vue";
-import { isAuthenticated } from "@/router/guards.js";
-import { Authenticated } from "@/router/guards.js";
+import { Guest } from "@/router/guards.js";
+import { Authorized } from "@/router/guards.js";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +25,7 @@ const router = createRouter({
       path: "/",
       name: "landing",
       component: HomeView,
-      beforeEnter: [Authenticated],
+      beforeEnter: [Authorized],
     },
     {
       path: "/register",
@@ -71,7 +71,7 @@ const router = createRouter({
       path: "/feed",
       name: "feed",
       component: FeedView,
-      beforeEnter: [isAuthenticated],
+      beforeEnter: [Guest],
     },
     {
       path: "/successfully-verified/:token",

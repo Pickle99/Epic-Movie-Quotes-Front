@@ -1,13 +1,13 @@
 import { getJwtToken } from "@/helpers/jwt/index.js";
 
-export function isAuthenticated() {
+export function Guest() {
   if (!getJwtToken()) {
     return "/forbidden";
   }
 }
 
-export function Authenticated() {
+export function Authorized() {
   if (getJwtToken()) {
-    return "/forbidden";
+    return "/feed";
   }
 }

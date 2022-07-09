@@ -114,7 +114,7 @@ export default {
       ></div>
     </div>
     <footer
-      class="snap-start text-[#DDCCAA] bg-[#0D0B14] absolute top-[270rem]"
+      class="snap-end text-[#DDCCAA] bg-[#0D0B14] absolute top-[269rem]"
     >
       <p class="ml-32 py-5">
         © 2022 {{ $t("message.movie_quotes") }}.

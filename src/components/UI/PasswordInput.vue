@@ -27,7 +27,7 @@
         <img
           class="hover:cursor-pointer"
           @click="setPasswordType()"
-          src="@/assets/images/input/eye.png"
+          src="@/assets/icons/eye.svg"
           alt="img"
         />
       </div>

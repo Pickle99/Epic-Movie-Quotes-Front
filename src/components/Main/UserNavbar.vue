@@ -2,7 +2,11 @@
   <nav class="text-white justify-around flex flex-col h-60 w-fit">
     <div class="flex items-center">
       <div class="w-32 flex justify-center">
-        <img src="@/assets/images/icons/user.png" />
+        <img
+          class="rounded-full"
+          :src="null || 'https://ui-avatars.com/api/?name=jackrestler'"
+          alt="img"
+        />
       </div>
       <div>
         <p>Nino Tabagari</p>
@@ -12,7 +16,7 @@
 
     <div class="flex items-center">
       <div class="w-32 flex justify-center">
-        <img src="@/assets/images/icons/house.png" />
+        <img src="@/assets/icons/house.svg" />
       </div>
       <div>
         <p>News feed</p>
@@ -20,7 +24,7 @@
     </div>
     <div class="flex items-center">
       <div class="w-32 flex justify-center">
-        <img src="@/assets/images/icons/camera.png" />
+        <img src="@/assets/icons/camera.svg" />
       </div>
       <div>
         <p>List of movies</p>
@@ -28,6 +32,3 @@
     </div>
   </nav>
 </template>
-
-
-

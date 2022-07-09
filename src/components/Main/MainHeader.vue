@@ -1,12 +1,12 @@
 <template>
-  <header class="fixed w-screen bg-[#222030]">
+  <header class="fixed w-screen bg-[#222030] z-10">
     <div class="flex justify-between mx-40 my-5 items-center">
       <div>
         <h1 class="text-[#DDCCAA]">{{ $t("message.movie_quotes") }}</h1>
       </div>
 
       <div class="flex text-white items-center">
-        <img src="@/assets/images/icons/bell.png" alt="img" />
+        <img src="@/assets/icons/bell.svg" alt="img" />
         <SetLanguage class="mx-8" />
         <RouterLink
           class="border-white border-2 px-6 py-2 rounded-md"

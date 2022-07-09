@@ -3,54 +3,49 @@
     <MainHeader />
   </div>
   <UserNavbar class="absolute" />
+<!--  <div>-->
+<!--    <div class="text-white flex justify-center items-center">-->
+<!--      <article>-->
+<!--        <div class="flex">-->
+<!--          <div class="rounded-md bg-[#24222F] px-2 pr-[6.8rem] py-2">-->
+<!--            <div class="flex">-->
+<!--              <button class="ml-4 flex">-->
+<!--                <img class="mr-3" src="@/assets/icons/pencil.svg" alt="img" />-->
+<!--                Write new quote-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </article>-->
+<!--      <main class="flex items-center">-->
+<!--        <div class="w-[20rem]">-->
+<!--          <div>-->
+<!--            <img-->
+<!--              class="ml-5"-->
+<!--              src="@/assets/icons/magnifying-glass.svg"-->
+<!--              alt="img"-->
+<!--            />-->
+<!--          </div>-->
+<!--          <div class="ml-3">-->
+<!--            <input class="bg-[#0d0b14] w-24" placeholder="Search by" />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </main>-->
+<!--    </div>-->
+<!--  </div>-->
 
-  <div class="text-white justify-center flex mt-60">
-    <div class="w-[45rem] bg-black">
-      <div class="mx-5 my-5">
-        <header class="flex items-center">
-          <img src="@/assets/images/icons/user.png" alt="img" />
-          <p class="ml-5">Maia Nakashidze</p>
-        </header>
-        <p class="mt-5">"Follow your dream. movie quote"</p>
-        <div class="my-6">
-          <img
-            src="@/assets/images/movies/Interstellar.png"
-            alt="img"
-            width="890"
-          />
-        </div>
-        <div class="flex justify-around w-32 items-center">
-          <p>3</p>
-          <img src="@/assets/images/icons/heart.png" alt="img" />
-          <p>10</p>
-          <img src="@/assets/images/icons/square.png" alt="img" />
-        </div>
-        <div class="mt-10">
-          <div class="flex items-center">
-            <div><img src="@/assets/images/icons/user.png" alt="img" /></div>
-            <div>
-              <p class="ml-5">Nina Baidadze</p>
-            </div>
-          </div>
-          <p class="ml-20">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque nunc vel massa facilisis consequat elit morbi convallis
-            convallis. Volutpat vitae et nisl et. Adipiscing enim integer mi leo
-            nisl. Arcu vitae mauris odio eget.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <UserPost />
 </template>
 
 <script>
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
+import UserPost from "@/components/Main/UserPost.vue";
 export default {
   components: {
     MainHeader,
     UserNavbar,
+    UserPost,
   },
 };
 </script>
