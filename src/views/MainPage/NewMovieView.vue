@@ -25,10 +25,10 @@
             <Field
               name="title_eng"
               placeholder="Movie name"
-              class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
+              class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
               rules="required"
             />
-            <p>Eng</p>
+            <p class="text-[#6C757D]">Eng</p>
           </div>
           <ErrorMessage name="title_eng" class="text-red-500" />
           <div
@@ -37,10 +37,10 @@
             <Field
               name="title_ka"
               placeholder="ფილმის სახელი"
-              class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
+              class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
               rules="required"
             />
-            <p>ქარ</p>
+            <p class="text-[#6C757D]">ქარ</p>
           </div>
           <ErrorMessage name="title_ka" class="text-red-500" />
           <div
@@ -60,7 +60,7 @@
             </div>
             <Field v-slot="{ resetField, field }" name="genres">
               <input
-                class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
+                class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
                 @keydown.enter="resetField()"
                 @keydown="addTag"
                 @keydown.delete="removeLastTag"
@@ -76,10 +76,10 @@
             <Field
               name="director_eng"
               placeholder="Director"
-              class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
+              class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
               rules="required"
             />
-            <p>Eng</p>
+            <p class="text-[#6C757D]">Eng</p>
           </div>
           <ErrorMessage name="director_eng" class="text-red-500" />
           <div
@@ -88,46 +88,49 @@
             <Field
               name="director_ka"
               placeholder="რეჟისორი"
-              class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
+              class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
               rules="required"
             />
-            <p>ქარ</p>
+            <p class="text-[#6C757D]">ქარ</p>
           </div>
           <ErrorMessage name="director_ka" class="text-red-500" />
           <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+            class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
             <Field
               as="textarea"
               name="description_eng"
               placeholder="Movie description"
-              class="bg-[#11101A] outline-0 w-full outline-0"
+              class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
               rules="required"
             />
-            <p>Eng</p>
+            <p class="text-[#6C757D]">Eng</p>
           </div>
           <ErrorMessage name="description_eng" class="text-red-500" />
           <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+            class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
             <Field
               as="textarea"
               name="description_ka"
               placeholder="ფილმის აღწერა"
-              class="bg-[#11101A] outline-0 w-full outline-0e"
+              class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
               rules="required"
             />
-            <p>ქარ</p>
+            <p class="text-[#6C757D]">ქარ</p>
           </div>
           <ErrorMessage name="description_ka" class="text-red-500" />
           <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+            class="p-4 my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
+            <img class="mr-4" src="@/assets/icons/photo.svg" alt="svg" />
+            <p type="file" class="w-96">Drag & drop your image here or</p>
             <Field
               type="file"
               name="image"
-              class="bg-[#11101A] outline-0 w-full outline-0"
+              class="bg-[#11101A] outline-0 w-full placeholder-white"
               rules="required"
+              placeholder="drag and drop"
             />
           </div>
           <ErrorMessage name="image" class="text-red-500" />
