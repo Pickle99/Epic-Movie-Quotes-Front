@@ -162,6 +162,7 @@ export default {
         "Thriller",
       ],
       userSelectedGenres: [],
+      userSelectedGenres2: [],
       genresError: "",
     };
   },
@@ -181,9 +182,12 @@ export default {
         event.preventDefault();
         let val = event.target.value.trim();
         if (val.length > 0) {
-          this.userSelectedGenres.push(
-            val[0].toUpperCase() + val.slice(1).split(" ")[0]
-          );
+          if (this.userSelectedGenres.includes(val)) {
+            return (this.genresError = "Duplicate entry");
+          } else
+            this.userSelectedGenres.push(
+              val[0].toUpperCase() + val.slice(1).split(" ")[0]
+            );
           event.target.value = "";
         }
       }
