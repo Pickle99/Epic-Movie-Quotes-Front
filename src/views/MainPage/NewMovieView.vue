@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-28 text-white flex justify-center">
+  <div class="text-white flex justify-center mb-32">
     <div class="bg-[#11101A]">
       <div class="flex items-center justify-center w-full p-4">
         <div class="flex justify-start w-1/4"></div>
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="flex flex-col p-4">
-        <Form>
+        <Form @submit="onSubmit()">
           <div
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
@@ -26,9 +26,11 @@
               name="title_eng"
               placeholder="Movie name"
               class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
+              rules="required"
             />
             <p>Eng</p>
           </div>
+          <ErrorMessage name="title_eng" class="text-red-500" />
           <div
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
@@ -36,9 +38,11 @@
               name="title_ka"
               placeholder="ფილმის სახელი"
               class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
+              rules="required"
             />
             <p>ქარ</p>
           </div>
+          <ErrorMessage name="title_ka" class="text-red-500" />
           <div
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
@@ -54,7 +58,7 @@
                 <button class="ml-1.5" @click="removeTag(index)">x</button>
               </div>
             </div>
-            <Field v-slot="{ resetField, field }" name="genres" rules="genres">
+            <Field v-slot="{ resetField, field }" name="genres">
               <input
                 class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
                 @keydown.enter="resetField()"
@@ -65,7 +69,7 @@
               />
             </Field>
           </div>
-          <ErrorMessage name="genres" class="text-red-500" />
+          <p class="text-red-500">{{ genresError }}</p>
           <div
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
@@ -73,9 +77,11 @@
               name="director_eng"
               placeholder="Director"
               class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
+              rules="required"
             />
             <p>Eng</p>
           </div>
+          <ErrorMessage name="director_eng" class="text-red-500" />
           <div
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
@@ -83,18 +89,24 @@
               name="director_ka"
               placeholder="რეჟისორი"
               class="bg-[#11101A] outline-0 w-full outline-0 m-1.5"
+              rules="required"
             />
             <p>ქარ</p>
           </div>
-
-          <Field
-            as="textarea"
-            name="description_eng"
-            placeholder="Movie description"
-            class="px-4 bg-[#11101A] border-gray-600 rounded-md border-2 outline-0 w-full outline-0"
-          />
-          <p class="absolute top-[43.6rem] right-[34.4rem]">Eng</p>
-
+          <ErrorMessage name="director_ka" class="text-red-500" />
+          <div
+            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+          >
+            <Field
+              as="textarea"
+              name="description_eng"
+              placeholder="Movie description"
+              class="bg-[#11101A] outline-0 w-full outline-0"
+              rules="required"
+            />
+            <p>Eng</p>
+          </div>
+          <ErrorMessage name="description_eng" class="text-red-500" />
           <div
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
@@ -103,17 +115,22 @@
               name="description_ka"
               placeholder="ფილმის აღწერა"
               class="bg-[#11101A] outline-0 w-full outline-0e"
+              rules="required"
             />
             <p>ქარ</p>
           </div>
+          <ErrorMessage name="description_ka" class="text-red-500" />
           <div
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
             <Field
-              name="image_upload"
+              type="file"
+              name="image"
               class="bg-[#11101A] outline-0 w-full outline-0"
+              rules="required"
             />
           </div>
+          <ErrorMessage name="image" class="text-red-500" />
           <div class="flex justify-center mt-5">
             <button class="px-96 py-2 rounded-md bg-[#E31221]">
               Add Movie
@@ -127,8 +144,6 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-import { mapState, mapGetters } from "pinia";
-import { useDataStore } from "@/stores/data/data.js";
 
 export default {
   components: {
@@ -136,17 +151,39 @@ export default {
     Field,
     ErrorMessage,
   },
-  computed: {
-    ...mapState(useDataStore, ["allGenres", "userSelectedGenres"]),
-    ...mapGetters(useDataStore, ["check"]),
+  data() {
+    return {
+      allGenres: [
+        "Comedy",
+        "Horror",
+        "Action",
+        "Drama",
+        "Romantic",
+        "Thriller",
+      ],
+      userSelectedGenres: [],
+      genresError: "",
+    };
   },
   methods: {
+    onSubmit() {
+      const found = this.userSelectedGenres.filter(
+        (item) => !this.allGenres.includes(item)
+      );
+      const founder = this.userSelectedGenres;
+      if (found.length > 0 || !founder.length) {
+        return (this.genresError =
+          "Invalid genre. available: Comedy, Horror, Action, Drama, Romantic, Thriller");
+      } else return (this.genresError = "");
+    },
     addTag(event) {
       if (event.code === "Comma" || event.code === "Enter") {
         event.preventDefault();
         let val = event.target.value.trim();
         if (val.length > 0) {
-          this.userSelectedGenres.push(val.split(" ")[0]);
+          this.userSelectedGenres.push(
+            val[0].toUpperCase() + val.slice(1).split(" ")[0]
+          );
           event.target.value = "";
         }
       }
@@ -158,14 +195,6 @@ export default {
       if (event.target.value.length === 0) {
         this.removeTag(this.userSelectedGenres.length - 1);
       }
-    },
-    check() {
-      const found = this.userSelectedGenres.filter(
-        (item) => !this.allGenres.includes(item)
-      );
-      if (found.length > 0) {
-        return false;
-      } else return true;
     },
   },
 };
