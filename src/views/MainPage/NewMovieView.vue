@@ -120,20 +120,8 @@
             <p class="text-[#6C757D]">ქარ</p>
           </div>
           <ErrorMessage name="description_ka" class="text-red-500" />
-          <div
-            class="p-4 my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <img class="mr-4" src="@/assets/icons/photo.svg" alt="svg" />
-            <p type="file" class="w-96">Drag & drop your image here or</p>
-            <Field
-              type="file"
-              name="image"
-              class="bg-[#11101A] outline-0 w-full placeholder-white"
-              rules="required"
-              placeholder="drag and drop"
-            />
-          </div>
-          <ErrorMessage name="image" class="text-red-500" />
+          <ImageUpload @drop.prevent="drop" @change="selectedFile" />
+          <p>{{ dropFile.name }}</p>
           <div class="flex justify-center mt-5">
             <button class="px-96 py-2 rounded-md bg-[#E31221]">
               Add Movie
@@ -147,12 +135,13 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-
+import ImageUpload from "@/components/UI/ImageUpload.vue";
 export default {
   components: {
     Form,
     Field,
     ErrorMessage,
+    ImageUpload,
   },
   data() {
     return {
@@ -167,9 +156,16 @@ export default {
       userSelectedGenres: [],
       userSelectedGenres2: [],
       genresError: "",
+      dropFile: "",
     };
   },
   methods: {
+    drop(e) {
+      this.dropFile = e.dataTransfer.files[0];
+    },
+    selectedFile() {
+      this.dropFile = document.querySelector(".image").files[0];
+    },
     onSubmit() {
       const found = this.userSelectedGenres.filter(
         (item) => !this.allGenres.includes(item)
