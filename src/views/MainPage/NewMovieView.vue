@@ -1,6 +1,6 @@
 <template>
   <div class="text-white flex justify-center mb-32">
-    <div class="bg-[#11101A]">
+    <div class="bg-[#11101A] w-[43rem]">
       <div class="flex items-center justify-center w-full p-4">
         <div class="flex justify-start w-1/4"></div>
         <div class="flex justify-center w-2/4 font-bold">
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="flex flex-col p-4">
-        <Form @submit="onSubmit()">
+        <Form @submit="onSubmit()" v-slot="{ meta }">
           <div
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
@@ -123,9 +123,7 @@
           <ImageUpload @drop.prevent="drop" @change="selectedFile" />
           <p>{{ dropFile.name }}</p>
           <div class="flex justify-center mt-5">
-            <button class="px-96 py-2 rounded-md bg-[#E31221]">
-              Add Movie
-            </button>
+            <basic-button :isDisabled="!meta.valid">Add Movie</basic-button>
           </div>
         </Form>
       </div>
@@ -136,12 +134,14 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import ImageUpload from "@/components/UI/ImageUpload.vue";
+import BasicButton from "@/components/UI/BasicButton.vue";
 export default {
   components: {
     Form,
     Field,
     ErrorMessage,
     ImageUpload,
+    BasicButton,
   },
   data() {
     return {

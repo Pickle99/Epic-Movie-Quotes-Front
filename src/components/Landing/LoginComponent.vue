@@ -39,17 +39,7 @@
         >
       </div>
       <div class="flex justify-center flex-col">
-        <button
-          type="submit"
-          :class="
-            !meta.valid
-              ? 'text-white bg-[#E31221] py-2 rounded-md opacity-50 mt-5'
-              : 'opacity-100 text-white bg-[#E31221] py-2 rounded-md mt-5'
-          "
-          :disabled="!meta.valid"
-        >
-          {{ $t("message.sign_in") }}
-        </button>
+     <basic-button class="mt-5" :isDisabled="!meta.valid">{{$t('message.sign_in')}}</basic-button>
         <button
           @click="google()"
           class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
@@ -76,6 +66,7 @@
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import { Form } from "vee-validate";
 import BasicInput from "@/components/UI/BasicInput.vue";
+import BasicButton from "@/components/UI/BasicButton.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
@@ -94,6 +85,7 @@ export default {
     Form,
     BasicInput,
     PasswordInput,
+    BasicButton,
   },
   computed: {
     ...mapWritableState(useDataStore, ["data"]),

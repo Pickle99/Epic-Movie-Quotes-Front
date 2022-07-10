@@ -13,15 +13,15 @@
     <div
       @mouseleave="this.focused = false"
       @mouseenter="this.focused = true"
-      class="bg-[#CED4DA] mb-2 flex items-center w-fit rounded-md"
+      class="bg-[#CED4DA] mb-2 flex items-center w-full rounded-md"
     >
       <input
         :class="
           meta.touched
             ? meta.valid && !error
-              ? 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 w-96 border-green-500 border-2'
-              : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none  focus:border-gray-400 w-96 border-red-500 border-2'
-            : 'px-3 py-2 rounded-md bg-[#CED4DA] appearance-none focus:outline-none focus:border-gray-400 focus:border-2  w-96'
+              ? 'px-3 py-2 rounded-md outline-none bg-[#CED4DA] appearance-none focus:border-gray-400 w-full border-green-500 border-2'
+              : 'px-3 py-2 rounded-md outline-none bg-[#CED4DA] appearance-none focus:border-gray-400 w-full border-red-500 border-2'
+            : 'px-3 py-2 rounded-md outline-none bg-[#CED4DA] appearance-none focus:border-gray-400 w-full focus:border-2'
         "
         :placeholder="$t(placeholder)"
         type="text"

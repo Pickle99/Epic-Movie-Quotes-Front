@@ -1,7 +1,9 @@
 <template>
   <LandingComponent
     :class="
-      $route.name === 'landing' ? 'blur-none ' : 'overflow-hidden blur-sm pointer-events-none'
+      $route.name === 'landing'
+        ? 'blur-none'
+        : 'overflow-x-hidden overflow-y-hidden blur-sm pointer-events-none'
     "
   />
 </template>

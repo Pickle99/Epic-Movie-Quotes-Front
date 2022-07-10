@@ -21,18 +21,10 @@
           labelName="message.confirm_password"
         />
       </div>
-      <div class="flex justify-center flex-col">
-        <button
-          :class="
-            !meta.valid
-              ? 'text-white bg-[#E31221] py-2 rounded-md opacity-50 mt-5'
-              : 'opacity-100 text-white bg-[#E31221] py-2 rounded-md mt-5'
-          "
-          :disabled="!meta.valid"
-        >
-          {{ $t("message.reset_password") }}
-        </button>
-      </div>
+
+      <basic-button :isDisabled="!meta.valid">{{
+        $t("message.reset_password")
+      }}</basic-button>
     </Form>
   </blur-panel>
 </template>
@@ -40,6 +32,7 @@
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import { Form } from "vee-validate";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
+import BasicButton from "@/components/UI/BasicButton.vue";
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useDataStore } from "@/stores/data/data.js";
@@ -49,6 +42,7 @@ export default {
     BlurPanel,
     Form,
     PasswordInput,
+    BasicButton,
   },
   computed: {
     ...mapWritableState(useDataStore, ["data"]),

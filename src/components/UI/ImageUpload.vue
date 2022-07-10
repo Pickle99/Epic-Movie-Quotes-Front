@@ -11,7 +11,7 @@
       <p>Drag & drop your image here or</p>
       <label
         for="image"
-        class="ml-5 bg-[#9747FF] outline-0 w-fit p-1.5 rounded-sm text-white"
+        class="hover:cursor-pointer ml-5 bg-[#9747FF] outline-0 w-fit p-1.5 rounded-sm text-white"
         >Choose file</label
       >
       <Field

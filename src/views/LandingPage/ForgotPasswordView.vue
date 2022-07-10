@@ -17,16 +17,9 @@
         />
       </div>
       <div class="flex justify-center flex-col">
-        <button
-          :class="
-            !meta.valid
-              ? 'text-white bg-[#E31221] py-2 rounded-md opacity-50 mt-5'
-              : 'opacity-100 text-white bg-[#E31221] py-2 rounded-md mt-5'
-          "
-          :disabled="!meta.valid"
-        >
-          {{ $t("message.reset_password") }}
-        </button>
+        <basic-button :isDisabled="!meta.valid">{{
+          $t("message.reset_password")
+        }}</basic-button>
         <div v-if="this.isLoading" class="flex justify-center">
           <svg
             class="w-8 h-8 -mt-9 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -64,6 +57,7 @@
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import { Form } from "vee-validate";
 import BasicInput from "@/components/UI/BasicInput.vue";
+import BasicButton from "@/components/UI/BasicButton.vue";
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useDataStore } from "@/stores/data/data.js";
@@ -72,6 +66,7 @@ export default {
     BlurPanel,
     Form,
     BasicInput,
+    BasicButton,
   },
   computed: {
     ...mapWritableState(useDataStore, ["data"]),
