@@ -231,9 +231,8 @@ export default {
       formData.append("budget", this.movieBudget);
       formData.append("image", this.dropFile);
       for (var i = 0; i < arr.length; i++) {
-        formData.append("genres", arr[i]);
+        formData.append("genres[" + i + "]", arr[i]);
       }
-      console.log(Array.from(formData));
       axios
         .post("http://localhost:8000/api/movies", formData, {
           headers: {
