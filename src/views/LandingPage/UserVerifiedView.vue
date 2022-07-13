@@ -23,7 +23,8 @@ export default {
         .post(`successfully-verified/${this.$route.params.token}`)
         .then((response) => {
           setJwtToken(response.data.access_token, response.data.expires_in);
-          this.user = response.data.user;
+          localStorage.setItem("username", response.user.username);
+          localStorage.setItem("avatar", response.user.avatar);
         })
         .catch((error) => {
           console.log(error);

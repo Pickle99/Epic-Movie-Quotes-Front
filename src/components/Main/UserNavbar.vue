@@ -4,13 +4,13 @@
       <div class="w-32 flex justify-center">
         <img
           class="rounded-full"
-          :src="`http://localhost:8000/${user.avatar}`"
+          :src="`http://localhost:8000/${avatar}`"
           width="48"
           alt="img"
         />
       </div>
       <div>
-        <p>{{ user.username }}</p>
+        <p>{{ username }}</p>
         <p class="text-sm text-gray-400">Edit your profile</p>
       </div>
     </div>
@@ -35,12 +35,12 @@
 </template>
 
 <script>
-import { useRequestsStore } from "@/stores/requests.js";
-import { mapState } from "pinia";
-
 export default {
-  computed: {
-    ...mapState(useRequestsStore, ["user"]),
+  data() {
+    return {
+      username: localStorage.getItem("username"),
+      avatar: localStorage.getItem("avatar"),
+    };
   },
 };
 </script>

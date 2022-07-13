@@ -7,7 +7,9 @@
           <p>Add Movie</p>
         </div>
         <div class="flex justify-end w-1/4">
-          <img src="@/assets/icons/x-icon.svg" alt="img" />
+          <RouterLink :to="{ name: 'movies' }">
+            <img src="@/assets/icons/x-icon.svg" alt="img" />
+          </RouterLink>
         </div>
       </div>
       <div class="border-gray-600 border-b-2 w-full"></div>
