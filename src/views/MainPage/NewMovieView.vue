@@ -183,14 +183,8 @@ export default {
   },
   data() {
     return {
-      allGenres: [
-        "Comedy",
-        "Horror",
-        "Action",
-        "Drama",
-        "Romantic",
-        "Thriller",
-      ],
+      allGenres: [],
+      data: [],
       userSelectedGenres: [],
       genresError: "",
       dropFile: "",
@@ -290,6 +284,14 @@ export default {
         this.removeTag(this.userSelectedGenres.length - 1);
       }
     },
+    getGenre() {
+      axios.get("genres").then((res) => {
+        this.allGenres = res.data.map((e) => e.name);
+      });
+    },
+  },
+  mounted() {
+    this.getGenre();
   },
 };
 </script>
