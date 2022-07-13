@@ -11,7 +11,7 @@
             <img class="mr-4" src="@/assets/icons/pencil.svg" />
             <p>Write new quote</p>
           </RouterLink>
-        </div>
+        </div> 
         <div class="w-full ml-10 flex items-center border-gray-700 border-b-4">
           <div class="mr-3">
             <img src="@/assets/icons/magnifying-glass.svg" />
@@ -27,13 +27,13 @@
       <PostComponent
         v-for="movie in allMovies"
         :key="movie"
-        :movieName="
-          this.$i18n.locale === 'en' ? movie.title.en : movie.title.ka
+        :movie-name="
+          $i18n.locale === 'en' ? movie.title.en : movie.title.ka
         "
-        :movieImage="movie.image"
+        :movie-image="movie.image"
         :year="movie.year"
-        :postedBy="movie.user.username"
-        :userAvatar="movie.user.avatar"
+        :posted-by="movie.user.username"
+        :user-avatar="movie.user.avatar"
       />
     </div>
   </div>
@@ -56,15 +56,15 @@ export default {
   computed: {
     ...mapWritableState(useRequestsStore, ["allMovies"]),
   },
+  mounted() {
+    this.getMovie();
+  },
   methods: {
     getMovie() {
       axios.get("feed").then((res) => {
         this.allMovies = res.data.movies;
       });
     },
-  },
-  mounted() {
-    this.getMovie();
   },
 };
 </script>

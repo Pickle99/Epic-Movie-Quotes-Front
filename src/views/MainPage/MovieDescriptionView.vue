@@ -3,7 +3,7 @@
     <MainHeader />
   </div>
   <UserNavbar class="absolute" />
-  <div class="ml-96 text-white">
+  <div v-for="movie in movies" :key="movie" class="ml-96 text-white">
     <h1 class="mt-28 font-bold">Movie description</h1>
     <div class="mt-8 flex">
       <div>
@@ -16,12 +16,12 @@
       </div>
       <div class="ml-5">
         <h1 class="text-[#DDCCAA] font-bold">
-          {{ movie.title }}
+          {{$i18n.locale === 'en' ? movie.title.en : movie.title.ka}}
           ({{ movie.year }})
         </h1>
         <div class="font-bold flex mt-5">
           <p
-            v-for="genre in movie.genres"
+            v-for="genre in movie.genres" 
             :key="genre"
             class="py-1 px-3 mr-3 rounded-md bg-gray-500 w-fit"
           >
@@ -37,7 +37,7 @@
             <div class="ml-3">
               <p class="text-sm mt-5">
                 {{
-                  this.$i18n.locale == "en"
+                  $i18n.locale == "en"
                     ? movie.director.en
                     : movie.director.ka
                 }}
@@ -47,7 +47,7 @@
           </article>
           <p class="text-[#CED4DA] w-[30rem] mt-5">
             {{
-              this.$i18n.locale === "en"
+              $i18n.locale === "en"
                 ? movie.description.en
                 : movie.description.ka
             }}
@@ -76,25 +76,25 @@ export default {
   components: { MainHeader, UserNavbar },
   data() {
     return {
-      movie: [],
+      movies: [],
     };
+  },
+  mounted() {
+    this.getMovieDescription();
   },
   methods: {
     getMovieDescription() {
       axios
         .post(`movie/${this.$route.params.id}`)
         .then((res) => {
-          this.movie = res.data;
+          this.movies = res.data;
           console.log(res);
-          console.log(this.movie, "movie");
+          console.log(this.movies, "movie");
         })
         .catch((err) => {
           console.log(err);
         });
     },
-  },
-  mounted() {
-    this.getMovieDescription();
   },
 };
 </script>

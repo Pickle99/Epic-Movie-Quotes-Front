@@ -8,9 +8,9 @@
       <div class="flex text-white items-center">
         <img src="@/assets/icons/bell.svg" alt="img" />
         <SetLanguage class="mx-8" />
-        <p
-          @click="logout()"
+        <p 
           class="hover:cursor-pointer border-white border-2 px-6 py-2 rounded-md"
+          @click="logout()"
         >
           {{ $t("message.log_out") }}
         </p>

@@ -53,7 +53,7 @@
             class="rounded-xl h-96 hover:cursor-pointer mb-4"
           />
           <p class="font-bold uppercase">
-            {{ this.$i18n.locale === "en" ? movie.title.en : movie.title.ka }}
+            {{ $i18n.locale === "en" ? movie.title.en : movie.title.ka }}
             ({{ movie.year }})
           </p>
         </RouterLink>
@@ -81,6 +81,9 @@ export default {
       userMovies: [],
     };
   },
+  mounted() {
+    this.getUserMovies();
+  },
   methods: {
     getUserMovies() {
       axios
@@ -90,13 +93,10 @@ export default {
           console.log(res.data.movies);
           console.log(this.userMovies);
         })
-        .catch((err) => {
+        .catch((err) => { 
           console.log(err);
         });
     },
-  },
-  mounted() {
-    this.getUserMovies();
   },
 };
 </script>

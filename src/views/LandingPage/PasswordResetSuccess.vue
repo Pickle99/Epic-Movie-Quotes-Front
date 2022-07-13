@@ -9,11 +9,11 @@
       <h1 class="text-3xl mb-8">Thank You!</h1>
       <p class="text-md mb-8">Your password was successfully reset.</p>
       <button
-        @click="redirect()"
         class="px-32 rounded-md py-1.5 text-md bg-[#E31221]"
+        @click="redirect()"
       >
         Let's login!
-      </button>
+      </button> 
     </div>
   </blur-panel>
 </template>

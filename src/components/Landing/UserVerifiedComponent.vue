@@ -9,8 +9,8 @@
       <h1 class="text-3xl mb-8">Thank You!</h1>
       <p class="text-md mb-8">Your account has been activated.</p>
       <button
-        @click="redirect()"
         class="px-32 rounded-md py-1.5 text-md bg-[#E31221]"
+        @click="redirect()"
       >
         Go to my news feed
       </button>
@@ -20,6 +20,8 @@
 
 <script>
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
+
+
 export default {
   components: {
     BlurPanel,
@@ -31,7 +33,7 @@ export default {
   },
   methods: {
     redirect() {
-      this.$router.replace({ name: "feed" });
+      this.$router.push({ name: "feed" });
     },
   },
 };

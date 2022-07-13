@@ -16,23 +16,24 @@ export default {
   computed: {
     ...mapWritableState(useDataStore, ["data"]),
     ...mapWritableState(useRequestsStore, ["user"]),
+  }, 
+  mounted() {
+    this.redirect();
   },
   methods: {
     redirect() {
       axios
         .post(`successfully-verified/${this.$route.params.token}`)
         .then((response) => {
+          this.user = response.data.user;
           setJwtToken(response.data.access_token, response.data.expires_in);
-          localStorage.setItem("username", response.user.username);
-          localStorage.setItem("avatar", response.user.avatar);
+          localStorage.setItem("username", this.user.username);
+          localStorage.setItem("avatar", this.user.avatar);
         })
         .catch((error) => {
           console.log(error);
         });
     },
-  },
-  mounted() {
-    this.redirect();
   },
 };
 </script>

@@ -11,7 +11,7 @@
             <img src="@/assets/icons/x-icon.svg" alt="img" />
           </RouterLink>
         </div>
-      </div>
+      </div> 
       <div class="border-gray-600 border-b-2 w-full"></div>
       <div class="flex p-4">
         <div class="flex items-center">
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="flex flex-col p-4">
-        <Form @submit="onSubmit()" v-slot="{ meta }">
+        <Form v-slot="{ meta }" @submit="onSubmit()">
           <div
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
@@ -51,9 +51,9 @@
             class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
           >
             <div
-              class="flex"
               v-for="(genres, index) in userSelectedGenres"
               :key="genres"
+              class="flex"
             >
               <div
                 class="flex bg-[#6C757D] mr-3 text-sm text-white rounded-md p-1"
@@ -65,11 +65,11 @@
             <Field v-slot="{ resetField, field }" name="genres">
               <input
                 class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
+                v-bind="field"
+                placeholder="Genres"
                 @keydown.enter="resetField()"
                 @keydown="addTag"
                 @keydown.delete="removeLastTag"
-                v-bind="field"
-                placeholder="Genres"
               />
             </Field>
           </div>
@@ -159,7 +159,7 @@
           <ImageUpload @drop.prevent="drop" @change="selectedFile" />
           <p>{{ dropFile.name }}</p>
           <div class="flex justify-center mt-5">
-            <basic-button :isDisabled="!meta.valid">Add Movie</basic-button>
+            <basic-button :is-disabled="!meta.valid">Add Movie</basic-button>
           </div>
         </Form>
       </div>
@@ -206,6 +206,9 @@ export default {
       "description_ka",
     ]),
     ...mapGetters(useMoviesStore, ["movieYear", "movieBudget"]),
+  },
+  mounted() {
+    this.getGenre();
   },
   methods: {
     drop(e) {
@@ -293,9 +296,6 @@ export default {
         this.allGenres = res.data.map((e) => e.name);
       });
     },
-  },
-  mounted() {
-    this.getGenre();
   },
 };
 </script>

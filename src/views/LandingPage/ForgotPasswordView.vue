@@ -13,14 +13,14 @@
           :name="option.name"
           :placeholder="option.placeholder"
           :rules="option.rules"
-          :labelName="option.labelName"
+          :label-name="option.labelName"
         />
       </div>
       <div class="flex justify-center flex-col">
-        <basic-button :isDisabled="!meta.valid">{{
+        <basic-button :is-disabled="!meta.valid">{{
           $t("message.reset_password")
         }}</basic-button>
-        <div v-if="this.isLoading" class="flex justify-center">
+        <div v-if="isLoading" class="flex justify-center">
           <svg
             class="w-8 h-8 -mt-9 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
             viewBox="0 0 100 101"
@@ -47,7 +47,7 @@
           class="text-[#0D6EFD] underline ml-3"
           :to="{ name: 'register' }"
         >
-          {{ $t("message.sign_up") }}</RouterLink
+          {{ $t("message.sign_up") }}</RouterLink 
         >
       </div>
     </Form>

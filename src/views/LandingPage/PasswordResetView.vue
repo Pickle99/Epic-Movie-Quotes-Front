@@ -12,17 +12,17 @@
           name="password"
           placeholder="message.password"
           rules="required|min:8|max:15"
-          labelName="message.password"
+          label-name="message.password"
         />
         <password-input
           name="password_confirmation"
           placeholder="message.confirm_password"
-          rules="required|confirmed:@password"
-          labelName="message.confirm_password"
+          rules="required|confirmed:@password" 
+          label-name="message.confirm_password"
         />
       </div>
 
-      <basic-button :isDisabled="!meta.valid">{{
+      <basic-button :is-disabled="!meta.valid">{{
         $t("message.reset_password")
       }}</basic-button>
     </Form>
