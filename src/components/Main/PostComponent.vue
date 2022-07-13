@@ -6,15 +6,20 @@
           <header class="flex items-center">
             <img
               class="rounded-full"
-              :src="'https://ui-avatars.com/api/?name=jackrestler'"
+              :src="`http://localhost:8000/${userAvatar}`"
+              width="48"
               alt="img"
             />
-            <p class="ml-5">Maia Nakashidze</p>
+            <p class="ml-5">{{ postedBy }}</p>
           </header>
-          <p class="mt-5">"Follow your dream. movie quote"</p>
+          <div class="flex mt-5">
+            <p>"Follow your dream. movie quote"</p>
+            <p class="mx-3">movie- {{ movieName }}</p>
+            <p>({{ year }})</p>
+          </div>
           <div class="my-6">
             <img
-              src="@/assets/images/movies/Interstellar.png"
+              :src="`http://localhost:8000/images/${movieImage}`"
               alt="img"
               width="890"
             />
@@ -36,7 +41,7 @@
               />
             </div>
             <div>
-              <p class="ml-5">Nina Baidadze</p>
+              <p class="ml-5">Some random guy comment</p>
             </div>
           </div>
           <div class="border-b border-gray-600 w-[37.5rem] ml-20">
@@ -84,3 +89,29 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    movieName: {
+      type: String,
+      required: true,
+    },
+    year: {
+      type: Number,
+      required: false,
+    },
+    movieImage: {
+      type: String,
+      required: true,
+    },
+    postedBy: {
+      type: String,
+      required: true,
+    },
+    userAvatar: {
+      type: String,
+      required: true,
+    },
+  },
+};
+</script>

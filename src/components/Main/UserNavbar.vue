@@ -4,12 +4,13 @@
       <div class="w-32 flex justify-center">
         <img
           class="rounded-full"
-          :src="null || 'https://ui-avatars.com/api/?name=jackrestler'"
+          :src="`http://localhost:8000/${user.avatar}`"
+          width="48"
           alt="img"
         />
       </div>
       <div>
-        <p>Nino Tabagari</p>
+        <p>{{ user.username }}</p>
         <p class="text-sm text-gray-400">Edit your profile</p>
       </div>
     </div>
@@ -32,3 +33,14 @@
     </RouterLink>
   </nav>
 </template>
+
+<script>
+import { useRequestsStore } from "@/stores/requests.js";
+import { mapState } from "pinia";
+
+export default {
+  computed: {
+    ...mapState(useRequestsStore, ["user"]),
+  },
+};
+</script>

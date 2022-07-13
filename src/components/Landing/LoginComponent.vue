@@ -39,7 +39,9 @@
         >
       </div>
       <div class="flex justify-center flex-col">
-     <basic-button class="mt-5" :isDisabled="!meta.valid">{{$t('message.sign_in')}}</basic-button>
+        <basic-button class="mt-5" :isDisabled="!meta.valid">{{
+          $t("message.sign_in")
+        }}</basic-button>
         <button
           @click="google()"
           class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
@@ -72,7 +74,7 @@ import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import { mapWritableState } from "pinia";
 import { useDataStore } from "@/stores/data/data.js";
-
+import { useRequestsStore } from "@/stores/requests.js";
 export default {
   data() {
     return {
@@ -89,6 +91,7 @@ export default {
   },
   computed: {
     ...mapWritableState(useDataStore, ["data"]),
+    ...mapWritableState(useRequestsStore, ["user"]),
   },
   methods: {
     google() {
@@ -102,6 +105,7 @@ export default {
         })
         .then((response) => {
           setJwtToken(response.data.access_token, response.data.expires_in);
+          this.user = response.data.user;
           this.$router.push({ name: "feed" });
         })
         .catch((error) => {
