@@ -72,10 +72,9 @@ export default {
         </div>
         <div class="absolute mt-[29rem] ml-80 z-20">
           <h1 class="text-white text-4xl">
-            I think we’re just gonna have to be secretly in love with earch
-            other
+            I think we’re just gonna have to be secretly in love with each other
             <h1 class="text-white text-4xl">
-              to be secretly in love with earch other
+              to be secretly in love with each other
             </h1>
             <h1 class="text-white text-4xl">and leave it that</h1>
           </h1>
@@ -113,9 +112,7 @@ export default {
         class="bg-gradient-to-r opacity-90 from-black absolute w-screen top-[194rem] h-[75rem] z-10"
       ></div>
     </div>
-    <footer
-      class="snap-end text-[#DDCCAA] bg-[#0D0B14] absolute top-[269rem]"
-    >
+    <footer class="snap-end text-[#DDCCAA] bg-[#0D0B14] absolute top-[269rem]">
       <p class="ml-32 py-5">
         © 2022 {{ $t("message.movie_quotes") }}.
         {{ $t("message.all_rights_reserved") }}

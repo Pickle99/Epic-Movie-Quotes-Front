@@ -1,6 +1,6 @@
 <template>
   <div class="text-white flex justify-center mb-32">
-    <div class="bg-[#11101A] w-[43rem]">
+    <div class="bg-[#11101A] w-[43rem] z-10">
       <div class="flex items-center justify-center w-full p-4">
         <div class="flex justify-start w-1/4"></div>
         <div class="flex justify-center w-2/4 font-bold">
@@ -174,9 +174,11 @@ import BasicButton from "@/components/UI/BasicButton.vue";
 import { useMoviesStore } from "@/stores/data/movies.js";
 import { mapWritableState, mapGetters } from "pinia";
 import axios from "@/config/axios/index.js";
+import BlurPanel from "@/components/Landing/BlurPanel.vue";
 
 export default {
   components: {
+    BlurPanel,
     Form,
     Field,
     ErrorMessage,

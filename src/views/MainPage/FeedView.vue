@@ -59,7 +59,7 @@ export default {
   methods: {
     getMovie() {
       axios.get("feed").then((res) => {
-        this.allMovies = res.data.movies.map((item) => item);
+        this.allMovies = res.data.movies;
       });
     },
   },

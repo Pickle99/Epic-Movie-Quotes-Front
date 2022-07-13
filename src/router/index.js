@@ -13,6 +13,7 @@ import RouteForbidden from "@/views/Errors/RouteForbidden.vue";
 import NotFound from "@/views/Errors/RouteNotFound.vue";
 import UserMoviesView from "@/views/MainPage/UserMoviesView.vue";
 import NewMovieView from "@/views/MainPage/NewMovieView.vue";
+import MovieDescriptionView from "@/views/MainPage/MovieDescriptionView.vue";
 import { Guest } from "@/router/guards.js";
 import { Authorized } from "@/router/guards.js";
 
@@ -126,6 +127,11 @@ const router = createRouter({
         NewMovieView,
       },
       beforeEnter: [Guest],
+    },
+    {
+      path: "/movie/:id/description",
+      name: "movie-description",
+      component: MovieDescriptionView,
     },
   ],
 });
