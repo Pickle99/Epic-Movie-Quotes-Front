@@ -14,6 +14,8 @@ import NotFound from "@/views/Errors/RouteNotFound.vue";
 import UserMoviesView from "@/views/MainPage/UserMoviesView.vue";
 import NewMovieView from "@/views/MainPage/NewMovieView.vue";
 import MovieDescriptionView from "@/views/MainPage/MovieDescriptionView.vue";
+import AddQuoteView from '@/views/MainPage/AddQuoteView.vue';
+import EditQuoteView from '@/views/MainPage/EditQuoteView.vue';
 import { Guest } from "@/router/guards.js";
 import { Authorized } from "@/router/guards.js";
 
@@ -129,9 +131,22 @@ const router = createRouter({
       beforeEnter: [Guest],
     },
     {
-      path: "/movie/:id/description",
+      path: "/movie/:movie/description",
       name: "movie-description",
       component: MovieDescriptionView,
+      beforeEnter: [Guest],
+    },
+    {
+      path: "/movie/:movie/add-quote",
+      name: "add-quote",
+      component: AddQuoteView,
+      beforeEnter: [Guest],
+    },
+    {
+      path: "/movie/:movie/quote/:quote",
+      name: "edit-quote",
+      component: EditQuoteView,
+      beforeEnter: [Guest],
     },
   ],
 });

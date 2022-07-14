@@ -11,6 +11,8 @@ export const useMoviesStore = defineStore("movies", {
       budget: "",
       description_en: "",
       description_ka: "",
+      text_en: "",
+      text_ka: "",
     };
   },
   getters: {
@@ -21,4 +23,24 @@ export const useMoviesStore = defineStore("movies", {
       return parseInt(state.budget) || null;
     },
   },
+  actions: {
+    resetFields(param) {
+      if(param === 'movies-add')
+      {
+        this.title_en = "";
+        this.title_ka = "";
+        this.director_en = "";
+        this.director_ka = "";
+        this.year = "";
+        this.budget = "";
+        this.description_en = "";
+        this.description_ka = "";
+      }
+      if(param === 'add-quote')
+      {
+        this.text_en = "";
+        this.text_ka = "";
+      }
+    }
+  }
 });

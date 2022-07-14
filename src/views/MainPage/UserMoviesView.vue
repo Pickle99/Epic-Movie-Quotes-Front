@@ -44,7 +44,7 @@
     >
       <article v-for="movie in userMovies" :key="movie">
         <RouterLink
-          :to="{ name: 'movie-description', params: { id: movie.id } }"
+          :to="{ name: 'movie-description', params: { movie: movie.id } }"
           class="hover:cursor-pointer"
         >
           <img

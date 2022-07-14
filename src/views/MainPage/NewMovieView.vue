@@ -1,170 +1,148 @@
 <template>
-  <div class="text-white flex justify-center mb-32">
-    <div class="bg-[#11101A] w-[43rem] z-10">
-      <div class="flex items-center justify-center w-full p-4">
-        <div class="flex justify-start w-1/4"></div>
-        <div class="flex justify-center w-2/4 font-bold">
-          <p>Add Movie</p>
-        </div>
-        <div class="flex justify-end w-1/4">
-          <RouterLink :to="{ name: 'movies' }">
-            <img src="@/assets/icons/x-icon.svg" alt="img" />
-          </RouterLink>
-        </div>
-      </div> 
-      <div class="border-gray-600 border-b-2 w-full"></div>
-      <div class="flex p-4">
-        <div class="flex items-center">
-          <img src="@/assets/images/user.png" alt="img" />
-          <p class="ml-4">Nino Tabagari</p>
-        </div>
-      </div>
-      <div class="flex flex-col p-4">
-        <Form v-slot="{ meta }" @submit="onSubmit()">
-          <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <Field
-              v-model="title_en"
-              name="title_en"
-              placeholder="Movie name"
-              class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
-              rules="required"
-            />
-            <p class="text-[#6C757D]">Eng</p>
-          </div>
-          <ErrorMessage name="title_en" class="text-red-500" />
-          <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <Field
-              v-model="title_ka"
-              name="title_ka"
-              placeholder="ფილმის სახელი"
-              class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
-              rules="required"
-            />
-            <p class="text-[#6C757D]">ქარ</p>
-          </div>
-          <ErrorMessage name="title_ka" class="text-red-500" />
-          <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <div
-              v-for="(genres, index) in userSelectedGenres"
-              :key="genres"
-              class="flex"
-            >
-              <div
-                class="flex bg-[#6C757D] mr-3 text-sm text-white rounded-md p-1"
-              >
-                <p>{{ genres }}</p>
-                <button class="ml-1.5" @click="removeTag(index)">x</button>
-              </div>
-            </div>
-            <Field v-slot="{ resetField, field }" name="genres">
-              <input
-                class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
-                v-bind="field"
-                placeholder="Genres"
-                @keydown.enter="resetField()"
-                @keydown="addTag"
-                @keydown.delete="removeLastTag"
-              />
-            </Field>
-          </div>
-          <p class="text-red-500">{{ genresError }}</p>
-          <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <Field
-              v-model="director_en"
-              name="director_en"
-              placeholder="Director"
-              class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
-              rules="required"
-            />
-            <p class="text-[#6C757D]">Eng</p>
-          </div>
-          <ErrorMessage name="director_en" class="text-red-500" />
-          <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <Field
-              v-model="director_ka"
-              name="director_ka"
-              placeholder="რეჟისორი"
-              class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
-              rules="required"
-            />
-            <p class="text-[#6C757D]">ქარ</p>
-          </div>
-          <ErrorMessage name="director_ka" class="text-red-500" />
-          <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <Field
-              v-model="year"
-              type="number"
-              name="year"
-              placeholder="Year"
-              class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-              rules="max:4"
-            />
-            <p class="text-[#6C757D]">Eng</p>
-          </div>
-          <ErrorMessage name="year" class="text-red-500" />
-          <div
-            class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <Field
-              v-model="budget"
-              type="number"
-              name="budget"
-              placeholder="Movie Budget ($)"
-              class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-              rules="required"
-            />
-            <p class="text-[#6C757D]">Eng</p>
-          </div>
-          <ErrorMessage name="budget" class="text-red-500" />
-          <div
-            class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <Field
-              v-model="description_en"
-              as="textarea"
-              name="description_en"
-              placeholder="Movie description"
-              class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-              rules="required"
-            />
-            <p class="text-[#6C757D]">Eng</p>
-          </div>
-          <ErrorMessage name="description_en" class="text-red-500" />
-          <div
-            class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
-          >
-            <Field
-              v-model="description_ka"
-              as="textarea"
-              name="description_ka"
-              placeholder="ფილმის აღწერა"
-              class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-              rules="required"
-            />
-            <p class="text-[#6C757D]">ქარ</p>
-          </div>
-          <ErrorMessage name="description_ka" class="text-red-500" />
-          <ImageUpload @drop.prevent="drop" @change="selectedFile" />
-          <p>{{ dropFile.name }}</p>
-          <div class="flex justify-center mt-5">
-            <basic-button :is-disabled="!meta.valid">Add Movie</basic-button>
-          </div>
-        </Form>
-      </div>
-    </div>
-  </div>
+ <form-panel form-title="Add Movie" link-to="movies">
+   <Form v-slot="{ meta }" @submit="onSubmit()">
+     <div
+       class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+     >
+       <Field
+         v-model="title_en"
+         name="title_en"
+         placeholder="Movie name"
+         class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
+         rules="required"
+       />
+       <p class="text-[#6C757D]">Eng</p>
+     </div>
+     <ErrorMessage name="title_en" class="text-red-500" />
+     <div
+       class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+     >
+       <Field
+         v-model="title_ka"
+         name="title_ka"
+         placeholder="ფილმის სახელი"
+         class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
+         rules="required"
+       />
+       <p class="text-[#6C757D]">ქარ</p>
+     </div>
+     <ErrorMessage name="title_ka" class="text-red-500" />
+     <div
+       class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+     >
+       <div
+         v-for="(genres, index) in userSelectedGenres"
+         :key="genres"
+         class="flex"
+       >
+         <div
+           class="flex bg-[#6C757D] mr-3 text-sm text-white rounded-md p-1"
+         >
+           <p>{{ genres }}</p>
+           <button class="ml-1.5" @click="removeTag(index)">x</button>
+         </div>
+       </div>
+       <Field v-slot="{ resetField, field }" name="genres">
+         <input
+           class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
+           v-bind="field"
+           placeholder="Genres"
+           @keydown.enter="resetField()"
+           @keydown="addTag"
+           @keydown.delete="removeLastTag"
+         />
+       </Field>
+     </div>
+     <p class="text-red-500">{{ genresError }}</p>
+     <div
+       class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+     >
+       <Field
+         v-model="director_en"
+         name="director_en"
+         placeholder="Director"
+         class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
+         rules="required"
+       />
+       <p class="text-[#6C757D]">Eng</p>
+     </div>
+     <ErrorMessage name="director_en" class="text-red-500" />
+     <div
+       class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+     >
+       <Field
+         v-model="director_ka"
+         name="director_ka"
+         placeholder="რეჟისორი"
+         class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
+         rules="required"
+       />
+       <p class="text-[#6C757D]">ქარ</p>
+     </div>
+     <ErrorMessage name="director_ka" class="text-red-500" />
+     <div
+       class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+     >
+       <Field
+         v-model="year"
+         type="number"
+         name="year"
+         placeholder="Year"
+         class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
+         rules="max:4"
+       />
+       <p class="text-[#6C757D]">Eng</p>
+     </div>
+     <ErrorMessage name="year" class="text-red-500" />
+     <div
+       class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+     >
+       <Field
+         v-model="budget"
+         type="number"
+         name="budget"
+         placeholder="Movie Budget ($)"
+         class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
+         rules="required"
+       />
+       <p class="text-[#6C757D]">Eng</p>
+     </div>
+     <ErrorMessage name="budget" class="text-red-500" />
+     <div
+       class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+     >
+       <Field
+         v-model="description_en"
+         as="textarea"
+         name="description_en"
+         placeholder="Movie description"
+         class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
+         rules="required"
+       />
+       <p class="text-[#6C757D]">Eng</p>
+     </div>
+     <ErrorMessage name="description_en" class="text-red-500" />
+     <div
+       class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
+     >
+       <Field
+         v-model="description_ka"
+         as="textarea"
+         name="description_ka"
+         placeholder="ფილმის აღწერა"
+         class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
+         rules="required"
+       />
+       <p class="text-[#6C757D]">ქარ</p>
+     </div>
+     <ErrorMessage name="description_ka" class="text-red-500" />
+     <ImageUpload @drop.prevent="drop" @change="selectedFile" />
+     <p>{{ currentImage.name }}</p>
+     <div class="flex justify-center mt-5">
+       <basic-button :is-disabled="!meta.valid">Add Movie</basic-button>
+     </div>
+   </Form>
+ </form-panel>
 </template>
 
 <script>
@@ -173,17 +151,17 @@ import ImageUpload from "@/components/UI/ImageUpload.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import { useMoviesStore } from "@/stores/data/movies.js";
 import { mapWritableState, mapGetters } from "pinia";
+import FormPanel from "@/components/Main/FormPanel.vue";
 import axios from "@/config/axios/index.js";
-import BlurPanel from "@/components/Landing/BlurPanel.vue";
 
 export default {
   components: {
-    BlurPanel,
     Form,
     Field,
     ErrorMessage,
     ImageUpload,
     BasicButton,
+    FormPanel,
   },
   data() {
     return {
@@ -191,7 +169,7 @@ export default {
       data: [],
       userSelectedGenres: [],
       genresError: "",
-      dropFile: "",
+      currentImage: "",
     };
   },
   computed: {
@@ -212,10 +190,10 @@ export default {
   },
   methods: {
     drop(e) {
-      this.dropFile = e.dataTransfer.files[0];
+      this.currentImage = e.dataTransfer.files[0];
     },
     selectedFile() {
-      this.dropFile = document.querySelector(".image").files[0];
+      this.currentImage = document.querySelector(".image").files[0];
     },
     onSubmit() {
       const formData = new FormData();
@@ -230,7 +208,7 @@ export default {
         formData.append("year", this.movieYear);
       }
       formData.append("budget", this.movieBudget);
-      formData.append("image", this.dropFile);
+      formData.append("image", this.currentImage);
       for (var i = 0; i < arr.length; i++) {
         formData.append("genres[" + i + "]", arr[i]);
       }
@@ -250,7 +228,7 @@ export default {
           this.budget = "";
           this.description_en = "";
           this.description_ka = "";
-          this.dropFile = "";
+          this.currentImage = "";
         })
         .catch((error) => {
           console.log(error);

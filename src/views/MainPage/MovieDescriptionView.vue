@@ -3,7 +3,10 @@
     <MainHeader />
   </div>
   <UserNavbar class="absolute" />
-  <div v-for="movie in movies" :key="movie" class="ml-96 text-white">
+  <div v-for="movie in movies" :key="movie">
+    
+  
+  <div class="ml-96 text-white">
     <h1 class="mt-28 font-bold">Movie description</h1>
     <div class="mt-8 flex">
       <div>
@@ -57,14 +60,37 @@
     </div>
   </div>
   <div class="text-white ml-96 mt-8 flex items-center">
-    <p class="border-r-2 pr-5 py-1 border-gray-800 mr-5">Quotes (total 7)</p>
+    <p class="border-r-2 pr-5 py-1 border-gray-800 mr-5">Quotes ({{movie.quotes.length}})</p>
     <RouterLink
-      :to="{ name: 'movies-add' }"
+      :to="{ name: 'add-quote' }"
       class="flex items-center bg-[#E31221] p-2 rounded-md"
     >
       <img class="mr-2" src="@/assets/icons/plus.svg" alt="img" />
       <p>Add Quote</p>
     </RouterLink>
+  </div>
+  <div v-for="quote in movie.quotes" :key="quote" class="text-white ml-96 mt-10 w-full w-[50rem] bg-[#07060b] p-4 mb-7 rounded-md">
+<div class="flex justify-between">
+  <div class="flex items-center">
+    <img width="200" :src="`http://localhost:8000/${quote.image}`" alt="img"/>
+    <p class="ml-7 italic text-[#CED4DA] font-sans">"{{$i18n.locale === 'en' ? quote.text.en : quote.text.ka}}"</p>
+  </div>
+  <div>
+     <QuoteComponent :quote-id="quote.id"/>
+  </div>
+</div>
+    <div class="my-5 border-gray-700 border-b-2"></div>
+    <div class="flex mt-3">
+      <div class="flex items-center mr-3">
+         <p class="mr-3">3</p>
+        <img src="@/assets/icons/square.svg" alt="icon"/>
+      </div>
+      <div class="flex items-center">
+        <p class="mr-2">10</p>
+        <img src="@/assets/icons/heart.svg" alt="icon"/>
+      </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -72,8 +98,9 @@
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
+import QuoteComponent from "@/components/Landing/QuoteComponent.vue";
 export default {
-  components: { MainHeader, UserNavbar },
+  components: { MainHeader, UserNavbar, QuoteComponent },
   data() {
     return {
       movies: [],
@@ -85,7 +112,7 @@ export default {
   methods: {
     getMovieDescription() {
       axios
-        .post(`movie/${this.$route.params.id}`)
+        .post(`movie/${this.$route.params.movie}`)
         .then((res) => {
           this.movies = res.data;
           console.log(res);
@@ -95,6 +122,6 @@ export default {
           console.log(err);
         });
     },
-  },
+  }
 };
 </script>

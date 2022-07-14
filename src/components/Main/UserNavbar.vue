@@ -35,12 +35,12 @@
 </template>
 
 <script>
+import { mapWritableState } from "pinia";
+import { useLocalStorageStore } from "@/stores/localStorage.js";
+
 export default {
-  data() {
-    return {
-      username: localStorage.getItem("username"),
-      avatar: localStorage.getItem("avatar"),
-    };
-  },
-};
+computed: {
+...mapWritableState(useLocalStorageStore, ["username", "avatar"])
+}
+}
 </script>
