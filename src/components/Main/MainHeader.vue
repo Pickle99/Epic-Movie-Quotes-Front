@@ -35,7 +35,7 @@ export default {
           localStorage.removeItem("username");
           localStorage.removeItem("avatar");
           setJwtToken("", "");
-          window.location.href = "http://localhost:3000/";
+          this.$router.push({name: 'landing'})
         })
         .catch((error) => {
           console.log(error);

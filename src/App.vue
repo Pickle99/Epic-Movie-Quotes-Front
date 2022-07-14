@@ -7,9 +7,7 @@ setLocale(localStorage.getItem("locale") || "en");
 <template>
   <header class="font-monsterrat">
     <router-view v-slot="{ Component }">
-      <keep-alive>
         <component :is="Component" />
-      </keep-alive>
     </router-view>
     <router-view name="RegisterView"></router-view>
     <router-view name="AuthView"></router-view>

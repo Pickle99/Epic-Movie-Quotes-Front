@@ -21,7 +21,7 @@
         </h1>
         <div class="font-bold flex mt-5">
           <p
-            v-for="genre in movie.genres" 
+            v-for="genre in movie.genres"
             :key="genre"
             class="py-1 px-3 mr-3 rounded-md bg-gray-500 w-fit"
           >
