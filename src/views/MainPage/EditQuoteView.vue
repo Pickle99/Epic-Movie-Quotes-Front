@@ -57,7 +57,7 @@ export default {
   data(){
     return {
     quotes: [],
-      currentImage: this.quotes,
+      currentImage: "",
     }
   },
   computed: {
@@ -75,7 +75,10 @@ export default {
       const formData = new FormData();
       formData.append("text_en", this.text_en);
       formData.append("text_ka", this.text_ka);
-      formData.append('image', this.currentImage)
+      if(this.currentImage)
+      {
+        formData.append('image', this.currentImage)
+      }
       console.log(Array.from(formData))
       axios
         .post("editor/"+this.$route.params.quote+"/edit", formData, {
@@ -84,10 +87,7 @@ export default {
           },
         })
         .then((res) => {
-          alert('success')
-          this.text_en = "";
-          this.text_ka = "";
-          console.log(res);
+          this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie} });
         })
         .catch((err) => {
           console.log(err)

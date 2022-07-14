@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center">
-    <img  class="rounded-xl py-2.5 w-full" :src="previewImage ||`http://localhost:8000/images/${quote.image}`">
+    <img  class="rounded-xl py-2.5 w-full" :src="previewImage ||`http://localhost:8000/${quote.image}`">
     <label for="image" class="cursor-pointer flex items-center flex-col absolute bg-[#191725] w-fit p-3 rounded-md bg-opacity-70">
       <img src="@/assets/icons/photo.svg" alt="svg"/>
       <Field id="image" type="file" name="image" class="hidden image" @change="fileChange"/>
