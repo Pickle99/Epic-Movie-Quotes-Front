@@ -241,6 +241,7 @@ export default {
       for (var i = 0; i < arr.length; i++) {
         formData.append("genres[" + i + "]", arr[i]);
       }
+      console.log(Array.from(formData), 'its me');
       axios
         .post("movie/"+this.$route.params.movie+'/update', formData, {
           headers: {
@@ -248,7 +249,7 @@ export default {
           },
         })
         .then(() => {
-          this.$router.push({ name: "feed" });
+          this.$router.push({ name: "movie-description", params: {movie: this.$route.params.movie} });
           this.title_en = "";
           this.title_ka = "";
           this.director_en = "";

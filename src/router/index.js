@@ -17,6 +17,7 @@ import MovieDescriptionView from "@/views/MainPage/MovieDescriptionView.vue";
 import AddQuoteView from '@/views/MainPage/AddQuoteView.vue';
 import EditQuoteView from '@/views/MainPage/EditQuoteView.vue';
 import EditMovieView from '@/views/MainPage/EditMovieView.vue';
+import ShowQuoteView from '@/views/MainPage/ShowQuoteView.vue';
 import { Guest } from "@/router/guards.js";
 import { Authorized } from "@/router/guards.js";
 
@@ -117,7 +118,7 @@ const router = createRouter({
       component: RouteForbidden,
     },
     {
-      path: "/movies",
+      path: "/my-list-of-movies",
       name: "movies",
       component: UserMoviesView,
       beforeEnter: [Guest],
@@ -144,7 +145,7 @@ const router = createRouter({
       beforeEnter: [Guest],
     },
     {
-      path: "/movie/:movie/quote/:quote",
+      path: "/movie/:movie/quote/:quote/edit",
       name: "edit-quote",
       component: EditQuoteView,
       beforeEnter: [Guest],
@@ -153,6 +154,12 @@ const router = createRouter({
       path: "/movie/:movie/edit",
       name: "edit-movie",
       component: EditMovieView,
+      beforeEnter: [Guest],
+    },
+    {
+      path: "/movie/:movie/quote/:quote",
+      name: 'show-quote',
+      component: ShowQuoteView,
       beforeEnter: [Guest],
     }
   ],

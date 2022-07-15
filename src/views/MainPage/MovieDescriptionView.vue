@@ -28,7 +28,7 @@
               <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
             </RouterLink>
             <div class="border-r-2 border-gray-500 mx-7"></div>
-            <img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon"/>
+            <img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon" @click="deleteMovie()"/>
           </div>
         </div>
         <div class="font-bold flex mt-5">
@@ -82,7 +82,9 @@
 <div class="flex justify-between">
   <div class="flex items-center">
     <img width="200" :src="`http://localhost:8000/${quote.image}`" alt="img"/>
-    <p class="ml-7 italic text-[#CED4DA] font-sans">"{{$i18n.locale === 'en' ? quote.text.en : quote.text.ka}}"</p>
+  <div class="w-[32rem]">
+    <p class="ml-7 break-words italic text-[#CED4DA] font-sans">"{{$i18n.locale === 'en' ? quote.text.en : quote.text.ka}}"</p>
+  </div>
   </div>
   <div>
      <QuoteComponent :quote-id="quote.id"/>
@@ -107,7 +109,7 @@
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
-import QuoteComponent from "@/components/Landing/QuoteComponent.vue";
+import QuoteComponent from "@/components/Main/QuoteComponent.vue";
 export default {
   components: { MainHeader, UserNavbar, QuoteComponent },
   data() {
@@ -119,6 +121,15 @@ export default {
     this.getMovieDescription();
   },
   methods: {
+    deleteMovie() {
+      axios.post(`movie/${this.$route.params.movie}/delete`)
+        .then(() => {
+          this.$router.push({name: 'movies'})
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+    },
     getMovieDescription() {
       axios
         .post(`movie/${this.$route.params.movie}`)

@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import axios from "@/config/axios/index.js";
 
 export const useMoviesStore = defineStore("movies", {
   state: () => {
@@ -35,6 +36,6 @@ export const useMoviesStore = defineStore("movies", {
         this.description_ka = "";
         this.text_en = "";
         this.text_ka = "";
-    }
+    },
   }
 });
