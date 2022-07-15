@@ -16,6 +16,7 @@ import NewMovieView from "@/views/MainPage/NewMovieView.vue";
 import MovieDescriptionView from "@/views/MainPage/MovieDescriptionView.vue";
 import AddQuoteView from '@/views/MainPage/AddQuoteView.vue';
 import EditQuoteView from '@/views/MainPage/EditQuoteView.vue';
+import EditMovieView from '@/views/MainPage/EditMovieView.vue';
 import { Guest } from "@/router/guards.js";
 import { Authorized } from "@/router/guards.js";
 
@@ -148,6 +149,12 @@ const router = createRouter({
       component: EditQuoteView,
       beforeEnter: [Guest],
     },
+    {
+      path: "/movie/:movie/edit",
+      name: "edit-movie",
+      component: EditMovieView,
+      beforeEnter: [Guest],
+    }
   ],
 });
 

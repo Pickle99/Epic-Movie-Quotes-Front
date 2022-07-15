@@ -7,7 +7,7 @@
           <p>{{formTitle}}</p>
         </div>
         <div class="flex justify-end w-1/4">
-          <RouterLink :to="{ name: linkTo, params: {movie: routeParam} }" @click="resetFields($route.name)">
+          <RouterLink :to="{ name: linkTo, params: {movie: routeParam} }" @click="resetFields()">
             <img src="@/assets/icons/x-icon.svg" alt="img" />
           </RouterLink>
         </div>

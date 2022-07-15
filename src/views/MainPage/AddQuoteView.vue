@@ -38,7 +38,7 @@ class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border
        <p>{{currentImage.name}}</p>
      </div>
      <div v-for="movie in movies" :key="movie" class="bg-black text-white flex items-center">
-         <img width="170" class="rounded-xl py-2.5" :src="`http://localhost:8000/images/${movie.image}`">
+         <img width="170" class="rounded-xl py-2.5" :src="`http://localhost:8000/${movie.image}`">
        <div class="ml-5">
          <div class="flex items-center">
            <img src="@/assets/icons/camera.svg" alt="icon"/>
@@ -110,7 +110,7 @@ export default {
 
     getMovie() {
       axios
-        .get(this.$route.params.movie+`/movie`)
+        .get(`movie/`+this.$route.params.movie)
         .then((res) => {
           this.movies = res.data;
           console.log(res)

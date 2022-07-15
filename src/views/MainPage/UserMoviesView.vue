@@ -48,7 +48,7 @@
           class="hover:cursor-pointer"
         >
           <img
-            :src="`http://localhost:8000/images/${movie.image}`"
+            :src="`http://localhost:8000/${movie.image}`"
             alt="img"
             class="rounded-xl h-96 hover:cursor-pointer mb-4"
           />

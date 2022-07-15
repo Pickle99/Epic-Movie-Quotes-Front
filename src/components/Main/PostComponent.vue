@@ -19,7 +19,7 @@
           </div>
           <div class="my-6">
             <img
-              :src="`http://localhost:8000/images/${movieImage}`"
+              :src="`http://localhost:8000/${movieImage}`"
               alt="img"
               width="890"
             />

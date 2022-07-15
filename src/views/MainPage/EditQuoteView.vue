@@ -81,12 +81,12 @@ export default {
       }
       console.log(Array.from(formData))
       axios
-        .post("editor/"+this.$route.params.quote+"/edit", formData, {
-          headers: {
+        .post("quote/"+this.$route.params.quote+"/update", formData, {
+          headers: { 
             "Content-Type": "multipart/form-data",
           },
         })
-        .then((res) => {
+        .then(() => {
           this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie} });
         })
         .catch((err) => {
@@ -97,7 +97,7 @@ export default {
 
     handleGetQuoteRequest(){
       axios
-        .get(`quote/`+this.$route.params.quote+`/edit`)
+        .get(`quote/`+this.$route.params.quote)
         .then((res) => {
           this.quotes = res.data;
           this.text_en = this.quotes[0].text.en;

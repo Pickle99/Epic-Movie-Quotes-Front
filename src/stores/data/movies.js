@@ -24,9 +24,7 @@ export const useMoviesStore = defineStore("movies", {
     },
   },
   actions: {
-    resetFields(param) {
-      if(param === 'movies-add')
-      {
+    resetFields() {
         this.title_en = "";
         this.title_ka = "";
         this.director_en = "";
@@ -35,12 +33,8 @@ export const useMoviesStore = defineStore("movies", {
         this.budget = "";
         this.description_en = "";
         this.description_ka = "";
-      }
-      if(param === 'add-quote')
-      {
         this.text_en = "";
         this.text_ka = "";
-      }
     }
   }
 });

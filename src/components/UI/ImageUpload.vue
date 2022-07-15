@@ -1,11 +1,11 @@
 <template>
   <div>
     <div
+      class="p-4 my-2 flex items-center border-gray-600 border-2 rounded-md px-4"
       @drag.prevent
       @dragleave.prevent
       @dragover.prevent
       @drop.prevent="true"
-      class="p-4 my-2 flex items-center border-gray-600 border-2 rounded-md px-4"
     >
       <img class="mr-4" src="@/assets/icons/photo.svg" alt="svg" />
       <p>Drag & drop your image here or</p>
@@ -15,11 +15,11 @@
         >Choose file</label
       >
       <Field
-        type="file"
         id="image"
+        type="file"
         name="image"
         class="image bg-[#11101A] outline-0 w-full placeholder-white hidden"
-        rules="required"
+        :rules="$route.name === 'movies-add' ? 'required' : null"
         placeholder="drag and drop"
       />
     </div>

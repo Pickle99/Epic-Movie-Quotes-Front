@@ -12,16 +12,25 @@
       <div>
         <img
           class="rounded-xl"
-          :src="`http://localhost:8000/images/${movie.image}`"
+          :src="`http://localhost:8000/${movie.image}`"
           alt="img"
           width="800"
         />
       </div>
       <div class="ml-5">
-        <h1 class="text-[#DDCCAA] font-bold">
-          {{$i18n.locale === 'en' ? movie.title.en : movie.title.ka}}
-          ({{ movie.year }})
-        </h1>
+        <div class="flex items-center justify-between">
+          <h1 class="text-[#DDCCAA] font-bold">
+            {{$i18n.locale === 'en' ? movie.title.en : movie.title.ka}}
+            ({{ movie.year }})
+          </h1>
+          <div class="flex px-7 py-3 rounded-md bg-[#24222F] ">
+            <RouterLink :to="{name: 'edit-movie'}">
+              <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
+            </RouterLink>
+            <div class="border-r-2 border-gray-500 mx-7"></div>
+            <img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon"/>
+          </div>
+        </div>
         <div class="font-bold flex mt-5">
           <p
             v-for="genre in movie.genres"
