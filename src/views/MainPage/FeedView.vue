@@ -27,6 +27,7 @@
       <PostComponent
         v-for="quote in allQuotes"
         :key="quote"
+        :movie-id="quote.movie.id"
         :quote-text="
           $i18n.locale === 'en' ? quote.text.en : quote.text.en
         "
@@ -64,8 +65,10 @@ export default {
     getMovie() {
       axios.get("feed").then((res) => {
         this.allQuotes = res.data;
-        console.log(res);
-        console.log(this.allQuotes)
+        this.allQuotes.sort(function (a,b){
+          return new Date(b.created_at) - new Date(a.created_at)
+        });
+        console.log(this.allQuotes);
       })
         .catch((err) => {
         console.log(err);

@@ -14,7 +14,10 @@
           </header>
           <div class="flex mt-5">
             <p>"{{quoteText}}"</p>
-            <p class="mx-3">movie- {{ movieName }}</p>
+            <div class="flex items-center mx-2">
+              <p>movie-</p>
+              <RouterLink :to="{name: 'movie-description', params: {movie: movieId}}" class="cursor-pointer ml-1.5 text-[#DDCCAA] font-bold">{{ movieName }}</RouterLink>
+            </div>
             <p>({{ year }})</p>
           </div>
           <div class="my-6">
@@ -92,6 +95,10 @@
 <script>
 export default {
   props: {
+    movieId: {
+      type: Number,
+      required: true,
+    },
     movieName: {
       type: String,
       required: true,
