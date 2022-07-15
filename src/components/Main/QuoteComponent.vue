@@ -37,9 +37,9 @@ export default {
       this.visible = !this.visible
     },
     deleteQuote() {
-      axios.post(`quote/${this.quoteId}/delete`)
+      axios.delete(`quote/${this.quoteId}/delete`)
         .then(() => {
-          this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie}})
+          this.$router.push({name: 'movies'})
         })
         .catch((err) => {
           console.log(err)

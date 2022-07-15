@@ -70,7 +70,7 @@ export default {
   methods: {
     ...mapActions(useMoviesStore, ["resetFields"]),
     deleteQuote() {
-      axios.post(`quote/${this.$route.params.quote}/delete`)
+      axios.delete(`quote/${this.$route.params.quote}/delete`)
         .then(() => {
           this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie}})
           clearTimeout(this.timeOut);

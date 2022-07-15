@@ -79,7 +79,6 @@ export default {
       {
         formData.append('image', this.currentImage)
       }
-      console.log(Array.from(formData))
       axios
         .post("quote/"+this.$route.params.quote+"/update", formData, {
           headers: { 

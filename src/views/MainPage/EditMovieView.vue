@@ -241,7 +241,6 @@ export default {
       for (var i = 0; i < arr.length; i++) {
         formData.append("genres[" + i + "]", arr[i]);
       }
-      console.log(Array.from(formData), 'its me');
       axios
         .post("movie/"+this.$route.params.movie+'/update', formData, {
           headers: {
