@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import axios from "@/config/axios/index.js";
 
 export const useMoviesStore = defineStore("movies", {
   state: () => {

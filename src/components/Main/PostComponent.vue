@@ -13,7 +13,7 @@
             <p class="ml-5">{{ postedBy }}</p>
           </header>
           <div class="flex mt-5">
-            <p>"Follow your dream. movie quote"</p>
+            <p>"{{quoteText}}"</p>
             <p class="mx-3">movie- {{ movieName }}</p>
             <p>({{ year }})</p>
           </div>
@@ -93,6 +93,10 @@
 export default {
   props: {
     movieName: {
+      type: String,
+      required: true,
+    },
+    quoteText: {
       type: String,
       required: true,
     },

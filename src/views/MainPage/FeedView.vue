@@ -25,15 +25,16 @@
         </div>
       </div>
       <PostComponent
-        v-for="movie in allMovies"
-        :key="movie"
-        :movie-name="
-          $i18n.locale === 'en' ? movie.title.en : movie.title.ka
+        v-for="quote in allQuotes"
+        :key="quote"
+        :quote-text="
+          $i18n.locale === 'en' ? quote.text.en : quote.text.en
         "
-        :movie-image="movie.image"
-        :year="movie.year"
-        :posted-by="movie.user.username"
-        :user-avatar="movie.user.avatar"
+        :movie-name="$i18n.locale === 'en' ? quote.movie.title.en : quote.movie.title.ka"
+        :movie-image="quote.image"
+        :year="quote.movie.year"
+        :posted-by="quote.user.username"
+        :user-avatar="quote.user.avatar"
       />
     </div>
   </div>
@@ -43,8 +44,6 @@
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
-import { useRequestsStore } from "@/stores/requests.js";
-import { mapWritableState } from "pinia";
 import PostComponent from "@/components/Main/PostComponent.vue";
 
 export default {
@@ -53,8 +52,10 @@ export default {
     UserNavbar,
     PostComponent,
   },
-  computed: {
-    ...mapWritableState(useRequestsStore, ["allMovies"]),
+  data() {
+    return {
+    allQuotes: [],
+    }
   },
   mounted() {
     this.getMovie();
@@ -62,7 +63,12 @@ export default {
   methods: {
     getMovie() {
       axios.get("feed").then((res) => {
-        this.allMovies = res.data.movies;
+        this.allQuotes = res.data;
+        console.log(res);
+        console.log(this.allQuotes)
+      })
+        .catch((err) => {
+        console.log(err);
       });
     },
   },
