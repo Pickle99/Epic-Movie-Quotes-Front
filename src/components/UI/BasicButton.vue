@@ -1,11 +1,11 @@
 <template>
   <button
     :class="
-      isDisabled
+      !genres || isDisabled
         ? 'text-white bg-[#E31221] w-full py-2 rounded-md opacity-50'
         : 'text-white bg-[#E31221] w-full py-2 rounded-md'
     "
-    :disabled="isDisabled"
+    :disabled="!genres || isDisabled"
   >
     <slot></slot>
   </button>
@@ -14,6 +14,10 @@
 <script>
 export default {
   props: {
+    genres: {
+      type: Array,
+      required: false,
+    },
     isDisabled: {
       type: Boolean,
       required: true,

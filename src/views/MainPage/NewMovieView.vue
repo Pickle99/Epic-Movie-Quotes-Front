@@ -139,7 +139,7 @@
      <ImageUpload @drop.prevent="drop" @change="selectedFile" />
      <p>{{ currentImage.name }}</p>
      <div class="flex justify-center mt-5">
-       <basic-button :is-disabled="!meta.valid">Add Movie</basic-button>
+       <basic-button :genres="userSelectedGenres.length" :is-disabled="!meta.valid">Add Movie</basic-button>
      </div>
    </Form>
  </form-panel>
