@@ -34,6 +34,7 @@ export default {
         .then(() => {
           localStorage.removeItem("username");
           localStorage.removeItem("avatar");
+          localStorage.removeItem('userId');
           setJwtToken("", "");
           this.$router.push({name: 'landing'})
         })

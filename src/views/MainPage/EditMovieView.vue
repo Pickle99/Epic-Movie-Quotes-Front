@@ -142,7 +142,7 @@ form-title="Edit Movie" link-to="movie-description" :route-param="$route.params.
        <ImageUpload @drop.prevent="drop" @change="selectedFile" />
        <p v-for="movie in movies" :key="movie">{{ currentImage.name || movie.image }}</p>
        <div class="flex justify-center mt-5">
-         <basic-button :is-disabled="!meta.valid">Add Movie</basic-button>
+         <movie-form-button :genres="userSelectedGenres.length" :is-disabled="!meta.valid">Add Movie</movie-form-button>
        </div>
      </Form>
    </form-panel>
@@ -152,7 +152,7 @@ form-title="Edit Movie" link-to="movie-description" :route-param="$route.params.
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import ImageUpload from "@/components/UI/ImageUpload.vue";
-import BasicButton from "@/components/UI/BasicButton.vue";
+import MovieFormButton from "@/components/UI/MovieFormButton.vue";
 import { useMoviesStore } from "@/stores/data/movies.js";
 import { mapWritableState, mapGetters } from "pinia";
 import FormPanel from "@/components/Main/FormPanel.vue";
@@ -165,7 +165,7 @@ export default {
     Field,
     ErrorMessage,
     ImageUpload,
-    BasicButton,
+    MovieFormButton,
     FormPanel,
     UserNavbar,
   },

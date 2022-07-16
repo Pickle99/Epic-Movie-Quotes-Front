@@ -5,6 +5,7 @@ export const useLocalStorageStore = defineStore("localStorage", {
     return {
       username: localStorage.getItem('username'),
       avatar: localStorage.getItem('avatar'),
+      userId: localStorage.getItem('userId'),
     };
   },
 });

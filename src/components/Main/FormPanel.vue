@@ -7,7 +7,7 @@
            <img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon" @click="deleteQuote()"/>
            <p class="ml-3 cursor-pointer" @click="deleteQuote()">Delete</p>
          </div>
-          <div v-if="$route.name === 'show-quote'" class="flex">
+          <div v-if="isEditDeleteVisible" class="flex">
             <div>
               <RouterLink :to="{name: 'edit-quote', params: {quote: $route.params.quote}}">
                 <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
@@ -31,8 +31,8 @@
       <div class="border-gray-600 border-b-2 w-full"></div>
       <div class="flex p-4">
         <div class="flex items-center">
-            <img width="48" :src="`http://localhost:8000/${avatar}`" alt="img" />
-          <p class="ml-4">{{username}}</p>
+            <img width="48" :src="`http://localhost:8000/${avatar || localAvatar}`" alt="img" />
+          <p class="ml-4">{{username || localUser}}</p>
         </div>
       </div>
       <div class="flex flex-col p-4">
@@ -50,10 +50,32 @@ import { Form, Field } from 'vee-validate'
 import axios from "@/config/axios/index.js";
 export default {
   components: { Form, Field },
-  computed: {
-    ...mapWritableState(useLocalStorageStore, ["username", "avatar"])
+  computed:{
+    ...mapWritableState(useLocalStorageStore, {
+      localUser: "username",
+      localAvatar: "avatar",
+      localUserId: "userId",
+    }),
+    isEditDeleteVisible(){
+      if((this.localUserId == this.quoteUserId) && this.$route.name === 'show-quote')
+      {
+        return true;
+      } return false;
+    },
   },
   props: {
+    quoteUserId: {
+      type: Number,
+      required: false,
+    },
+    avatar: {
+      type: String,
+      required: false,
+    },
+    username: {
+      type: String,
+      required: false,
+    },
     formTitle: {
       type: String,
       required: true,

@@ -15,14 +15,14 @@
           name="user"
           placeholder="message.enter_your_email"
           rules="required|min:3"
-          labelName="message.email"
+          label-name="message.email"
           :error="error"
         />
         <password-input
           name="password"
           placeholder="message.password"
           rules="required|min:3"
-          labelName="message.password"
+          label-name="message.password"
           :error="error"
         />
       </div>
@@ -39,12 +39,12 @@
         >
       </div>
       <div class="flex justify-center flex-col">
-        <basic-button class="mt-5" :isDisabled="!meta.valid">{{
+        <basic-button class="mt-5" :is-disabled="!meta.valid">{{
           $t("message.sign_in")
         }}</basic-button>
         <button
-          @click="google()"
           class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
+          @click="google()"
         >
           <img class="mr-2" src="@/assets/images/google.png" alt="img" />
           {{ $t("message.sign_in_google") }}
@@ -76,18 +76,18 @@ import { mapWritableState } from "pinia";
 import { useDataStore } from "@/stores/data/data.js";
 import { useRequestsStore } from "@/stores/requests.js";
 export default {
-  data() {
-    return {
-      error: "",
-      timeOut: null,
-    };
-  },
   components: {
     BlurPanel,
     Form,
     BasicInput,
     PasswordInput,
     BasicButton,
+  },
+  data() {
+    return {
+      error: "",
+      timeOut: null,
+    };
   },
   computed: {
     ...mapWritableState(useDataStore, ["data"]),
@@ -108,6 +108,7 @@ export default {
           this.user = response.data.user;
           localStorage.setItem("username", this.user.username);
           localStorage.setItem("avatar", this.user.avatar);
+          localStorage.setItem("userId", this.user.id);
           this.$router.push({ name: "feed" });
         })
         .catch((error) => {

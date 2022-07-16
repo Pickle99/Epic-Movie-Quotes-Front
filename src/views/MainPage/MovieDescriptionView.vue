@@ -23,7 +23,7 @@
             {{$i18n.locale === 'en' ? movie.title.en : movie.title.ka}}
             ({{ movie.year }})
           </h1>
-          <div class="flex px-7 py-3 rounded-md bg-[#24222F] ">
+          <div v-if="checkForUser"  class="flex px-7 py-3 rounded-md bg-[#24222F] ">
             <RouterLink :to="{name: 'edit-movie'}">
               <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
             </RouterLink>
@@ -87,7 +87,7 @@
   </div>
   </div>
   <div>
-     <QuoteComponent :quote-id="quote.id"/>
+     <QuoteComponent :quote-user-id="quote.user_id" :quote-id="quote.id"/>
   </div>
 </div>
     <div class="my-5 border-gray-700 border-b-2"></div>
@@ -117,6 +117,13 @@ export default {
       movies: [],
     };
   },
+    computed: {
+      checkForUser() {
+        if (this.movies[0].user_id == localStorage.getItem('userId')){
+          return true
+        } return false;
+      }
+    },
   mounted() {
     this.getMovieDescription();
   },
