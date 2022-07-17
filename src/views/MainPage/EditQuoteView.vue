@@ -38,7 +38,7 @@
       </div>
       <ImageUploadWithPreview v-for="quote in quotes" :key="quote" :quote="quote" @change="selectedFile"/>
       <div class="flex justify-center mt-5">
-        <basic-button :is-disabled="!meta.valid">Add Quote</basic-button>
+        <basic-button :is-disabled="!meta.valid">Edit Quote</basic-button>
       </div>
     </Form>
   </form-panel>

@@ -5,6 +5,8 @@ export const useRequestsStore = defineStore("requests", {
     return {
       allMovies: [],
       user: [],
+      movies: [],
+      allQuotes: [],
     };
   },
 });

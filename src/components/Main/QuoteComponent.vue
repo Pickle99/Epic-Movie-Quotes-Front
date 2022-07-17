@@ -9,11 +9,11 @@
     </div>
   </RouterLink>
 
-  <RouterLink  v-if="checkForUser" :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="flex items-center ml-5 my-7 w-fit">
+  <RouterLink  :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="flex items-center ml-5 my-7 w-fit">
     <img src="@/assets/icons/pen.svg" alt="icon"/>
     <p :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="text-sm ml-3">Edit</p>
   </RouterLink>
-  <div v-if="checkForUser" class="flex items-center ml-5 w-fit cursor-pointer" @click="deleteQuote()">
+  <div  class="flex items-center ml-5 w-fit cursor-pointer" @click="deleteQuote()">
     <img src="@/assets/icons/trash.svg" alt="icon"/>
     <p class="text-sm ml-3">Delete</p>
   </div>
@@ -24,6 +24,8 @@
 
 <script>
 import axios from "@/config/axios/index.js";
+import { mapWritableState } from "pinia";
+import { useRequestsStore } from "@/stores/requests.js";
 export default {
   props:{
     quoteUserId: {
@@ -35,16 +37,12 @@ export default {
       required:true,
     }
   },
+  computed: {
+    ...mapWritableState(useRequestsStore, ["movies"])
+  },
   data() {
     return {
       visible: false,
-    }
-  },
-  computed: {
-    checkForUser() {
-      if (this.quoteUserId == localStorage.getItem('userId')){
-        return true
-      } return false;
     }
   },
   methods: {
@@ -52,10 +50,11 @@ export default {
       this.visible = !this.visible
     },
     deleteQuote() {
-      axios.delete(`quote/${this.quoteId}/delete`)
-        .then(() => {
-          this.$router.push({name: 'movies'})
-        })
+      axios.delete(`quote/${this.quoteId}/delete`).then(() => {
+        this.movies[0].quotes = this.movies[0].quotes.filter((item) => {
+          return item.id !== this.quoteId;
+        });
+      })
         .catch((err) => {
           console.log(err)
         });

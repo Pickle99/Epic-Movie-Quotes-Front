@@ -7,7 +7,7 @@
            <img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon" @click="deleteQuote()"/>
            <p class="ml-3 cursor-pointer" @click="deleteQuote()">Delete</p>
          </div>
-          <div v-if="isEditDeleteVisible" class="flex">
+          <div v-if="$route.name === 'show-quote'" class="flex">
             <div>
               <RouterLink :to="{name: 'edit-quote', params: {quote: $route.params.quote}}">
                 <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
@@ -56,12 +56,6 @@ export default {
       localAvatar: "avatar",
       localUserId: "userId",
     }),
-    isEditDeleteVisible(){
-      if((this.localUserId == this.quoteUserId) && this.$route.name === 'show-quote')
-      {
-        return true;
-      } return false;
-    },
   },
   props: {
     quoteUserId: {

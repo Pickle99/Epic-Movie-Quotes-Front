@@ -28,8 +28,8 @@
             />
           </div>
           <div class="flex justify-around w-32 items-center mb-3">
-            <p>3</p>
-            <img src="@/assets/icons/heart.svg" alt="img" />
+            <p>{{likes}}</p>
+            <img src="@/assets/icons/heart.svg" alt="img" @click="addOrRemoveLike()" />
             <p>10</p>
             <img src="@/assets/icons/square.svg" alt="img" />
           </div>
@@ -93,8 +93,19 @@
   </div>
 </template>
 <script>
+import axios from "@/config/axios/index.js";
+import { mapWritableState } from "pinia";
+import { useRequestsStore } from "@/stores/requests.js";
 export default {
   props: {
+    quoteId: {
+      type: Number,
+      required: true,
+    },
+    likes: {
+      type: Number,
+      required: true,
+    },
     movieId: {
       type: Number,
       required: true,
@@ -123,6 +134,17 @@ export default {
       type: String,
       required: true,
     },
+  },
+  computed: {
+    ...mapWritableState(useRequestsStore, ["allQuotes"]),
+  },
+  methods: {
+   addOrRemoveLike()
+   {
+     axios
+       .get('quote/'+this.quoteId+'/add-like');
+     window.Echo.channel('likes')
+   },
   },
 };
 </script>

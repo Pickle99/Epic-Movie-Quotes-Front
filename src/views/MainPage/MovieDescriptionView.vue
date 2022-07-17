@@ -4,8 +4,6 @@
   </div>
   <UserNavbar class="absolute" />
   <div v-for="movie in movies" :key="movie">
-    
-  
   <div class="ml-96 text-white">
     <h1 class="mt-28 font-bold">Movie description</h1>
     <div class="mt-8 flex">
@@ -23,7 +21,7 @@
             {{$i18n.locale === 'en' ? movie.title.en : movie.title.ka}}
             ({{ movie.year }})
           </h1>
-          <div v-if="checkForUser"  class="flex px-7 py-3 rounded-md bg-[#24222F] ">
+          <div class="flex px-7 py-3 rounded-md bg-[#24222F] ">
             <RouterLink :to="{name: 'edit-movie'}">
               <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
             </RouterLink>
@@ -110,22 +108,15 @@ import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import QuoteComponent from "@/components/Main/QuoteComponent.vue";
+import {useRequestsStore} from '@/stores/requests.js'
+import { mapWritableState } from "pinia";
 export default {
   components: { MainHeader, UserNavbar, QuoteComponent },
-  data() {
-    return {
-      movies: [],
-    };
-  },
-    computed: {
-      checkForUser() {
-        if (this.movies[0].user_id == localStorage.getItem('userId')){
-          return true
-        } return false;
-      }
-    },
   mounted() {
     this.getMovieDescription();
+  },
+  computed: {
+    ...mapWritableState(useRequestsStore, ["movies"]),
   },
   methods: {
     deleteMovie() {
