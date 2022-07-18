@@ -49,7 +49,6 @@ import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import PostComponent from "@/components/Main/PostComponent.vue";
 import { useRequestsStore } from "@/stores/requests.js";
-import { useLocalStorageStore } from '@/stores/localStorage.js'
 import { mapWritableState } from "pinia";
 export default {
   components: {

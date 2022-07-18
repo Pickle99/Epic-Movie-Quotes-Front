@@ -6,7 +6,20 @@
       </div>
 
       <div class="flex text-white items-center">
-        <img src="@/assets/icons/bell.svg" alt="img" />
+        <div class="flex flex-col items-center">
+          <div>
+
+            <div class="absolute ml-3 -mt-1">
+              <div class="bg-red-500 rounded-full text-center w-7 justify-end">
+                <p class="text-[14px]">11</p>
+              </div>
+            </div>
+
+            <img src="@/assets/icons/bell.svg" class="cursor-pointer" alt="icon" @click="showHideNotification" />
+          </div>
+          <NotificationComponent v-if="showNotification"/>
+        </div>
+
         <SetLanguage class="mx-8" />
         <p 
           class="hover:cursor-pointer border-white border-2 px-6 py-2 rounded-md"
@@ -22,12 +35,22 @@
 import SetLanguage from "@/components/Landing/SetLanguage.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
+import NotificationComponent from '@/components/Main/NotificationComponent.vue'
 
 export default {
   components: {
     SetLanguage,
+    NotificationComponent
+  },
+  data(){
+    return {
+    showNotification: false,
+    }
   },
   methods: {
+    showHideNotification(){
+      this.showNotification = !this.showNotification
+    },
     logout() {
       axios
         .post("logout")
