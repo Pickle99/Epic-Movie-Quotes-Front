@@ -28,7 +28,6 @@
         v-for="quote in allQuotes"
         :key="quote"
         :movie-id="quote.movie.id"
-        :likes="quote.likes.length"
         :quote-text="
           $i18n.locale === 'en' ? quote.text.en : quote.text.en
         "
@@ -38,6 +37,7 @@
         :posted-by="quote.user.username"
         :user-avatar="quote.user.avatar"
         :quote-id="quote.id"
+        :quote="quote"
       />
     </div>
   </div>
@@ -49,6 +49,7 @@ import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import PostComponent from "@/components/Main/PostComponent.vue";
 import { useRequestsStore } from "@/stores/requests.js";
+import { useLocalStorageStore } from '@/stores/localStorage.js'
 import { mapWritableState } from "pinia";
 export default {
   components: {
@@ -57,19 +58,10 @@ export default {
     PostComponent,
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["allQuotes"])
+    ...mapWritableState(useRequestsStore, ["allQuotes"]),
   },
-  mounted() {
+  created() {
     this.getMovie();
-    window.Echo.channel('likes')
-      .listen('AddOrRemoveLike', ({like}) => {
-       this.allQuotes.forEach((ear) => {
-         if(!like)
-         {
-           ear.likes.push(like)
-         } else ear.likes.shift();
-       })
-      });
   },
   methods: {
     getMovie() {

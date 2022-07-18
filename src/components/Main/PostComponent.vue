@@ -28,8 +28,9 @@
             />
           </div>
           <div class="flex justify-around w-32 items-center mb-3">
-            <p>{{likes}}</p>
-            <img src="@/assets/icons/heart.svg" alt="img" @click="addOrRemoveLike()" />
+            <p>{{quote.likes.length}}</p>
+            <img v-if="!isLiked" src="@/assets/icons/heart.svg" alt="img" @click="addOrRemoveLike()" />
+            <img v-if="isLiked" src="@/assets/icons/heart-red.svg" alt="img" @click="addOrRemoveLike()" />
             <p>10</p>
             <img src="@/assets/icons/square.svg" alt="img" />
           </div>
@@ -96,14 +97,15 @@
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useRequestsStore } from "@/stores/requests.js";
+import { useLocalStorageStore } from "@/stores/localStorage.js";
 export default {
   props: {
     quoteId: {
       type: Number,
       required: true,
     },
-    likes: {
-      type: Number,
+    quote: {
+      type: Object,
       required: true,
     },
     movieId: {
@@ -135,15 +137,47 @@ export default {
       required: true,
     },
   },
+  data(){
+    return{
+    userLikedQuote: false,
+    }
+  },
   computed: {
     ...mapWritableState(useRequestsStore, ["allQuotes"]),
+    ...mapWritableState(useLocalStorageStore, ["userId"]),
+    isLiked(){
+      const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
+      const userLike = currentQuote.likes.find((item) => item.user_id == this.userId);
+      if(!userLike)
+      {
+        return this.userLikedQuote;
+      } else return !this.userLikedQuote;
+
+    },
+  },
+  created()
+  {
+    window.Echo.channel('addLike.' + this.quoteId)
+      .listen('AddLike', (like) => {
+        const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
+          currentQuote.likes.push(like)
+          this.userLikedQuote = true;
+      });
+    window.Echo.channel('removeLike.' + this.quoteId)
+      .listen('RemoveLike', () => {
+        const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
+        currentQuote.likes.shift();
+        this.userLikedQuote = false;
+      });
   },
   methods: {
    addOrRemoveLike()
    {
      axios
-       .get('quote/'+this.quoteId+'/add-like');
-     window.Echo.channel('likes')
+       .get('quote/'+this.quoteId+'/add-like')
+       .then((res) => {
+         console.log(res);
+       });
    },
   },
 };
