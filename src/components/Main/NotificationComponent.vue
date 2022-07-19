@@ -33,7 +33,7 @@ export default {
   created(){
     window.Echo.private('showNotification.' + this.userId)
       .listen('ShowNotification', ({notification}) => {
-        this.notifications.push(notification);
+        this.notifications.unshift(notification);
         console.log(this.notifications);
       });
   },
