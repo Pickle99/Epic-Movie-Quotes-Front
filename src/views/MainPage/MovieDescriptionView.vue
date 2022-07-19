@@ -52,7 +52,7 @@
                     : movie.director.ka
                 }}
               </p>
-              <p class="text-sm mt-5">{{ movie.budget }}</p>
+              <p class="text-sm mt-5">{{ movie.budget.toLocaleString() }}</p>
             </div>
           </article>
           <p class="text-[#CED4DA] w-[30rem] mt-5">

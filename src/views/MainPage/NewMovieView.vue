@@ -219,7 +219,7 @@ export default {
           },
         })
         .then(() => {
-          this.$router.push({ name: "feed" });
+          this.$router.push({ name: "movies" });
           this.title_en = "";
           this.title_ka = "";
           this.director_en = "";

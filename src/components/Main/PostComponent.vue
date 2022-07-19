@@ -29,10 +29,10 @@
           </div>
           <div class="flex justify-around w-32 items-center mb-3">
             <p>{{quote.likes.length}}</p>
-            <img v-if="!isLiked" src="@/assets/icons/heart.svg" alt="img" @click="addOrRemoveLike()" />
-            <img v-if="isLiked" src="@/assets/icons/heart-red.svg" alt="img" @click="addOrRemoveLike()" />
+            <img v-if="!isLiked" class="cursor-pointer" src="@/assets/icons/heart.svg" alt="img" @click="addOrRemoveLike()" />
+            <img v-if="isLiked" class="cursor-pointer" src="@/assets/icons/heart-red.svg" alt="img" @click="addOrRemoveLike()" />
             <p>10</p>
-            <img src="@/assets/icons/square.svg" alt="img" />
+            <img class="cursor-pointer" src="@/assets/icons/square.svg" alt="img" />
           </div>
         </div>
         <article class="mt-10">
@@ -160,7 +160,7 @@ export default {
     window.Echo.channel('addLike.' + this.quoteId)
       .listen('AddLike', (like) => {
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
-          currentQuote.likes.push(like)
+          currentQuote.likes.push(like);
           this.userLikedQuote = true;
       });
     window.Echo.channel('removeLike.' + this.quoteId)

@@ -7,6 +7,7 @@ export const useRequestsStore = defineStore("requests", {
       user: [],
       movies: [],
       allQuotes: [],
+      notifications: [],
     };
   },
 });

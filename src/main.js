@@ -7,17 +7,28 @@ import "@/config/vee-validate/messages";
 import store from "@/stores/index.js";
 import { createI18n } from "vue-i18n";
 import { messages } from "@/messages.js";
-
 import Echo from 'laravel-echo';
-
+import { getJwtToken } from "@/helpers/jwt/index.js";
 import Pusher from 'pusher-js';
 window.Pusher = Pusher;
 
+
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '925b3e9ebffdef5e1e1d',
-    cluster: 'eu',
+  authEndpoint: "http://localhost:8000/api/broadcasting/auth",
+  broadcaster: "pusher",
+  key: '925b3e9ebffdef5e1e1d',
+  wsHost: "localhost",
+  wsPort: 443,
+  forceTLS: true,
+  cluster: ["eu"],
+  auth: {
+    headers: {
+      Authorization: `Bearer ${getJwtToken()}`,
+    },
+  },
 });
+
+
 
 const app = createApp(App);
 

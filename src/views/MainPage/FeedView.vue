@@ -57,13 +57,22 @@ export default {
     PostComponent,
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["allQuotes"]),
+    ...mapWritableState(useRequestsStore, ["allQuotes", "notifications"]),
   },
   created() {
-    this.getMovie();
+    this.handleGetMovie();
+    this.handleGetNotifications()
   },
   methods: {
-    getMovie() {
+    handleGetNotifications(){
+      axios.get("notifications").then((res) => {
+        this.notifications = Array.from(res.data);
+      })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    handleGetMovie() {
       axios.get("feed").then((res) => {
         this.allQuotes = res.data;
         this.allQuotes.sort(function (a,b){
