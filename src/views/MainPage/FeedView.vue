@@ -50,6 +50,7 @@ import axios from "@/config/axios/index.js";
 import PostComponent from "@/components/Main/PostComponent.vue";
 import { useRequestsStore } from "@/stores/requests.js";
 import { mapWritableState } from "pinia";
+import { useNotificationsStore } from "@/stores/notifications.js";
 export default {
   components: {
     MainHeader,
@@ -57,35 +58,16 @@ export default {
     PostComponent,
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["allQuotes", "notifications"]),
+    ...mapWritableState(useRequestsStore, ["allQuotes"]),
+    ...mapWritableState(useNotificationsStore, ["page", "lastPage"]),
   },
   created() {
     this.handleGetQuote();
-    this.handleGetNotifications();
   },
   mounted(){
     this.scroll();
   },
-  data()
-  {
-    return {
-      page: 1,
-      lastPage: 1,
-    }
-  },
   methods: {
-    handleGetNotifications(){
-      axios.get("notifications").then((res) => {
-        this.notifications = Array.from(res.data);
-       this.notifications.sort(function (a,b){
-          return new Date(b.created_date) - new Date(a.created_date);
-        });
-       console.log(this.notifications);
-      })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
     handleGetQuote() {
       if(this.page > this.lastPage) { return }
       axios.get(`feed?page=${this.page}`).then((res) => {
@@ -95,6 +77,7 @@ export default {
           });
         this.lastPage = res.data.last_page;
         this.page++;
+        console.log(this.allQuotes);
       })
         .catch((err) => {
           console.log(err);

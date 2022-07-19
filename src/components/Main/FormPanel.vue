@@ -50,13 +50,6 @@ import { Form, Field } from 'vee-validate'
 import axios from "@/config/axios/index.js";
 export default {
   components: { Form, Field },
-  computed:{
-    ...mapWritableState(useLocalStorageStore, {
-      localUser: "username",
-      localAvatar: "avatar",
-      localUserId: "userId",
-    }),
-  },
   props: {
     quoteUserId: {
       type: Number,
@@ -82,6 +75,13 @@ export default {
       type: String,
       required: false,
     },
+  },
+  computed:{
+    ...mapWritableState(useLocalStorageStore, {
+      localUser: "username",
+      localAvatar: "avatar",
+      localUserId: "userId",
+    }),
   },
   methods: {
     ...mapActions(useMoviesStore, ["resetFields"]),

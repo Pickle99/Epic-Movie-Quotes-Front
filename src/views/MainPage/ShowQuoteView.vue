@@ -73,8 +73,9 @@ export default {
           this.text_ka = `"${this.quotes[0].text.ka}"`;
           this.username = this.quotes[0].user.username;
           this.avatar = this.quotes[0].user.avatar;
-          this.quoteUserId = this.quotes[0].user_id;
+          this.quoteUserId = this.quotes[0].user.id;
           console.log(this.quotes);
+          console.log(this.quoetUserId)
         })
         .catch((err)=> {
           console.log(err)

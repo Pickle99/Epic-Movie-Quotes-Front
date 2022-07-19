@@ -9,15 +9,15 @@
         <div class="flex flex-col items-center">
           <div>
 
-            <div class="absolute ml-3 -mt-1">
+            <div v-if="notifications.length" class="absolute ml-3 -mt-1">
               <div class="bg-red-500 rounded-full text-center w-7 justify-end">
-                <p class="text-[14px]">11</p>
+                <p class="text-[14px]">{{notifications.length}}</p>
               </div>
             </div>
 
             <img src="@/assets/icons/bell.svg" class="cursor-pointer" alt="icon" @click="showHideNotification" />
           </div>
-          <NotificationComponent v-if="showNotification"/>
+          <NotificationComponent :class="!showNotification ? 'hidden' : ''"/>
         </div>
 
         <SetLanguage class="mx-8" />
@@ -36,6 +36,8 @@ import SetLanguage from "@/components/Landing/SetLanguage.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import NotificationComponent from '@/components/Main/NotificationComponent.vue'
+import { mapWritableState } from "pinia";
+import { useRequestsStore } from "@/stores/requests.js";
 
 export default {
   components: {
@@ -47,7 +49,25 @@ export default {
     showNotification: false,
     }
   },
+  mounted(){
+    this.handleGetNotifications();
+  },
+  computed: {
+    ...mapWritableState(useRequestsStore, ["notifications"]),
+  },
   methods: {
+    handleGetNotifications() {
+      axios.get("notifications").then((res) => {
+        this.notifications = Array.from(res.data);
+        this.notifications.sort(function(a, b) {
+          return new Date(b.created_date) - new Date(a.created_date);
+        });
+        console.log(this.notifications);
+      })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     showHideNotification(){
       this.showNotification = !this.showNotification
     },

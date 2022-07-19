@@ -1,18 +1,23 @@
 <template>
-  <div class="absolute mt-10"><img src="@/assets/icons/triangle.svg" alt="svg"/></div>
-  <div class="max-h-[40rem] overflow-y-scroll p-7 text-white text-xl w-[60rem] bg-black absolute mt-16 -ml-96 ">
-    <div class="flex justify-between items-center mb-7">
-      <h1 class="text-2xl font-bold">Notifications</h1>
-      <p class="underline text-sm">Mark as all read</p>
+  <div>
+    <div class="absolute mt-3 -ml-5"><img src="@/assets/icons/triangle.svg" alt="svg"/></div>
+    <div class="rounded-md max-h-[40rem] overflow-y-scroll p-7 text-white text-xl w-[60rem] bg-black absolute mt-8 -ml-[37rem]">
+      <div class="flex justify-between items-center mb-7">
+        <h1 class="text-2xl font-bold">Notifications</h1>
+        <p class="underline text-sm cursor-pointer" @click="handleMarkNotificationsAsAllRead">Mark as all read</p>
+      </div>
+      <NotificationFromComponent
+        v-for="notification in notifications"
+        :key="notification"
+        :username="notification.action_from"
+        :reaction="notification.action"
+        :avatar="notification.avatar"
+        :timestamp="notification.created_at"
+        :phase="notification.notification_phase"
+        :notification-id="notification.id"
+        :quote-id="notification.quote_id"
+      />
     </div>
-    <NotificationFromComponent
-      v-for="notification in notifications"
-      :key="notification"
-      :username="notification.action_from"
-      :reaction="notification.action"
-      :avatar="notification.avatar"
-      :timestamp="notification.created_at"
-    />
   </div>
 </template>
 
@@ -21,11 +26,14 @@
 import NotificationFromComponent from '@/components/Main/NotificationFromComponent.vue'
 import {useRequestsStore} from '@/stores/requests.js';
 import { useLocalStorageStore } from "@/stores/localStorage.js";
+import { useNotificationsStore } from "@/stores/notifications.js";
 import { mapWritableState } from "pinia";
+import axios from "@/config/axios/index.js";
 export default {
   computed: {
     ...mapWritableState(useRequestsStore, ["notifications"]),
     ...mapWritableState(useLocalStorageStore, ["userId"]),
+    ...mapWritableState(useNotificationsStore, ["markedAsAllRead"]),
   },
   components: {
     NotificationFromComponent
@@ -37,6 +45,16 @@ export default {
         console.log(this.notifications);
       });
   },
+  methods: {
+    handleMarkNotificationsAsAllRead() {
+      axios.get("notifications/mark-all-as-read").then(() => {
+        this.markedAsAllRead = true;
+      })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  }
 }
 </script>
 
