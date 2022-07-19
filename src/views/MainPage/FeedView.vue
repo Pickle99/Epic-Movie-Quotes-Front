@@ -3,7 +3,7 @@
     <MainHeader />
   </div>
   <UserNavbar class="absolute" />
-  <div class="text-white justify-center flex">
+  <div class="text-white justify-center flex" @scroll="handleGetQuote">
     <div class="flex flex-col">
       <div class="flex mt-3">
         <div class="py-3 px-3 bg-[#24222F] rounded-md">
@@ -60,8 +60,18 @@ export default {
     ...mapWritableState(useRequestsStore, ["allQuotes", "notifications"]),
   },
   created() {
-    this.handleGetMovie();
-    this.handleGetNotifications()
+    this.handleGetQuote();
+    this.handleGetNotifications();
+  },
+  mounted(){
+    this.scroll();
+  },
+  data()
+  {
+    return {
+      page: 1,
+      lastPage: 1,
+    }
   },
   methods: {
     handleGetNotifications(){
@@ -72,18 +82,32 @@ export default {
           console.log(err);
         });
     },
-    handleGetMovie() {
-      axios.get("feed").then((res) => {
-        this.allQuotes = res.data;
-        this.allQuotes.sort(function (a,b){
-          return new Date(b.created_at) - new Date(a.created_at)
-        });
-        console.log(this.allQuotes);
+    handleGetQuote() {
+      if(this.page > this.lastPage) { return }
+      axios.get(`feed?page=${this.page}`).then((res) => {
+        this.allQuotes.push(...res.data.data);
+        if(this.page === 1)
+        {
+          this.allQuotes.sort(function (a,b){
+            return new Date(b.created_at) - new Date(a.created_at)
+          });
+        }
+        this.lastPage = res.data.last_page;
+        this.page++;
       })
         .catch((err) => {
-        console.log(err);
-      });
+          console.log(err);
+        });
     },
+    scroll (){
+      window.onscroll = () => {
+        let bottomOfWindow = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
+
+        if (bottomOfWindow) {
+          this.handleGetQuote();
+        }
+      }
+    }
   },
 };
 </script>
