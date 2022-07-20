@@ -38,6 +38,7 @@ import { setJwtToken } from "@/helpers/jwt/index.js";
 import NotificationComponent from '@/components/Main/NotificationComponent.vue'
 import { mapWritableState, mapGetters } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications.js";
+import {useRequestsStore} from "@/stores/requests.js";
 
 export default {
   components: {
@@ -51,10 +52,12 @@ export default {
   },
   mounted(){
     this.handleGetNotifications();
+    this.handleGetQuote();
   },
   computed: {
-    ...mapWritableState(useNotificationsStore, ["notifications"]),
+    ...mapWritableState(useNotificationsStore, ["notifications", "page", "lastPage"]),
     ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
+    ...mapWritableState(useRequestsStore, ["allQuotes"]),
   },
   methods: {
     handleGetNotifications() {
@@ -64,6 +67,21 @@ export default {
           return new Date(b.created_date) - new Date(a.created_date);
         });
         console.log(this.notifications);
+      })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    handleGetQuote() {
+      if(this.page > this.lastPage) { return }
+      axios.get(`feed?page=${this.page}`).then((res) => {
+        this.allQuotes.push(...res.data.data);
+        this.allQuotes.sort(function (a,b){
+          return new Date(b.created_at) - new Date(a.created_at)
+        });
+        this.lastPage = res.data.last_page;
+        this.page++;
+        console.log(this.allQuotes);
       })
         .catch((err) => {
           console.log(err);

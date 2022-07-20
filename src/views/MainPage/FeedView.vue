@@ -70,9 +70,6 @@ export default {
     ...mapWritableState(useNotificationsStore, ["page", "lastPage"]),
     ...mapWritableState(useQuotesStore, ["isModalOpen"]),
   },
-  created() {
-    this.handleGetQuote();
-  },
   mounted(){
     this.scroll();
   },
