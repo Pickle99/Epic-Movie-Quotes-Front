@@ -28,11 +28,11 @@
             />
           </div>
           <div class="flex justify-around w-32 items-center mb-3">
+            <p>{{quote.comments.length}}</p>
+            <img class="cursor-pointer" src="@/assets/icons/square.svg" alt="img" />
             <p>{{quote.likes.length}}</p>
             <img v-if="!isLiked" class="cursor-pointer" src="@/assets/icons/heart.svg" alt="img" @click="handleAddOrRemoveLike()" />
             <img v-if="isLiked" class="cursor-pointer" src="@/assets/icons/heart-red.svg" alt="img" @click="handleAddOrRemoveLike()" />
-            <p>10</p>
-            <img class="cursor-pointer" src="@/assets/icons/square.svg" alt="img" />
           </div>
         </div>
 
@@ -107,7 +107,7 @@ export default {
   },
   data(){
     return{
-    userLikedQuote: false,
+      userLikedQuote: false,
       text: "",
     }
   },
@@ -124,19 +124,19 @@ export default {
 
     },
   },
-  created()
+  mounted()
   {
     window.Echo.channel('addLike.' + this.quoteId)
       .listen('AddLike', (like) => {
+        this.userLikedQuote = true;
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
           currentQuote.likes.push(like);
-          this.userLikedQuote = true;
       });
     window.Echo.channel('removeLike.' + this.quoteId)
       .listen('RemoveLike', () => {
+        this.userLikedQuote = false;
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
         currentQuote.likes.shift();
-        this.userLikedQuote = false;
       });
     window.Echo.channel('addComment.' + this.quoteId)
       .listen('AddComment', ({comment}) => {

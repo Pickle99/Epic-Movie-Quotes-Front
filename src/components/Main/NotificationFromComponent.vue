@@ -1,7 +1,7 @@
 <template>
   <div class="cursor-pointer flex border-opacity-30 justify-between border-[1px] border-[#6C757D] p-5 rounded-md mb-3" @click="showCurrentQuote">
     <div class="flex items-center">
-      <div class="border-[3px] border-[#198754] rounded-full">
+      <div :class="phase ? 'border-[3px] border-[#198754] rounded-full' : ''">
         <img width="72"   :src="`http://localhost:8000/${avatar}`" alt="image"/>
       </div>
       <div class="ml-5">
