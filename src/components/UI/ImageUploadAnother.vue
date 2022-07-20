@@ -10,7 +10,7 @@
       <img class="mr-4" src="@/assets/icons/photo.svg" alt="svg" />
       <label
         for="image"
-        class="text-white"
+        class="text-white cursor-pointer"
       >Upload Photo</label
       >
       <Field

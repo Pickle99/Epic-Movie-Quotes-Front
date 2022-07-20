@@ -1,17 +1,21 @@
-<template>
+<template >
   <div class="flex mb-24">
     <MainHeader />
   </div>
   <UserNavbar class="absolute" />
+  <div v-if="isModalOpen" class="flex justify-center">
+    <WriteNewQuote  class="fixed z-10"/>
+  </div>
+<div :class="isModalOpen ? 'opacity-20 pointer-events-none' : ''">
   <div class="text-white justify-center flex" @scroll="handleGetQuote">
     <div class="flex flex-col">
       <div class="flex mt-3">
         <div class="py-3 px-3 bg-[#24222F] rounded-md">
-          <RouterLink class="flex w-[10rem]" to="'/hi'">
+          <div class="flex w-[10rem] cursor-pointer" @click="showModal">
             <img class="mr-4" src="@/assets/icons/pencil.svg" />
             <p>Write new quote</p>
-          </RouterLink>
-        </div> 
+          </div>
+        </div>
         <div class="w-full ml-10 flex items-center border-gray-700 border-b-4">
           <div class="mr-3">
             <img src="@/assets/icons/magnifying-glass.svg" />
@@ -41,6 +45,7 @@
       />
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -49,10 +54,13 @@ import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import PostComponent from "@/components/Main/PostComponent.vue";
 import { useRequestsStore } from "@/stores/requests.js";
-import { mapWritableState } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications.js";
+import { useQuotesStore } from "@/stores/data/quotes.js";
+import { mapWritableState } from "pinia";
+import WriteNewQuote from "@/views/MainPage/WriteNewQuote.vue";
 export default {
   components: {
+    WriteNewQuote,
     MainHeader,
     UserNavbar,
     PostComponent,
@@ -60,6 +68,7 @@ export default {
   computed: {
     ...mapWritableState(useRequestsStore, ["allQuotes"]),
     ...mapWritableState(useNotificationsStore, ["page", "lastPage"]),
+    ...mapWritableState(useQuotesStore, ["isModalOpen"]),
   },
   created() {
     this.handleGetQuote();
@@ -82,6 +91,9 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    showModal(){
+      this.isModalOpen = true;
     },
     scroll (){
       window.onscroll = () => {

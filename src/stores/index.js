@@ -5,6 +5,7 @@ import { useMoviesStore } from "@/stores/data/movies.js";
 import { useRequestsStore } from "@/stores/requests.js";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import { useNotificationsStore } from "@/stores/notifications.js";
+import { useQuotesStore } from "@/stores/data/quotes.js";
 const store = createPinia({
   useLocaleStore,
   useDataStore,
@@ -12,6 +13,7 @@ const store = createPinia({
   useRequestsStore,
   useLocalStorageStore,
   useNotificationsStore,
+  useQuotesStore,
 });
 
 export default store;

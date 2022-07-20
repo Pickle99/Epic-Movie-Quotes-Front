@@ -13,15 +13,30 @@ export const useMoviesStore = defineStore("movies", {
       description_ka: "",
       text_en: "",
       text_ka: "",
+      allUsersMovies: [],
+      chosenMovieId: null,
+      chosenMovie: "",
+      imageForQuote: "",
     };
   },
   getters: {
+    findMovie(state) {
+   return state.chosenMovie =  state.allUsersMovies.find((movie) => movie.id === state.chosenMovieId);
+     },
     movieYear(state) {
       return parseInt(state.year) || null;
     },
     movieBudget(state) {
       return parseInt(state.budget) || null;
     },
+    writeQuoteData() {
+      const formData = new FormData();
+      formData.append("text_en", this.text_en);
+      formData.append("text_ka", this.text_ka);
+      formData.append("image", this.imageForQuote);
+      formData.append("movieId", this.chosenMovieId);
+      return formData;
+    }
   },
   actions: {
     resetFields() {

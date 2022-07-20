@@ -46,15 +46,9 @@
 import { mapWritableState, mapActions } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import { useMoviesStore } from "@/stores/data/movies.js";
-import { Form, Field } from 'vee-validate'
 import axios from "@/config/axios/index.js";
 export default {
-  components: { Form, Field },
   props: {
-    quoteUserId: {
-      type: Number,
-      required: false,
-    },
     avatar: {
       type: String,
       required: false,

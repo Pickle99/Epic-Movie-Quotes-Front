@@ -3,7 +3,7 @@
     <UserNavbar class="absolute"/>
   </div>
 
-  <form-panel :quote-user-id="quoteUserId" :username="username" :avatar="avatar"   form-title="View Quote" link-to="movie-description" :route-param="$route.params.movie">
+  <form-panel :username="username" :avatar="avatar"   form-title="View Quote" link-to="movie-description" :route-param="$route.params.movie">
     <Form @submit="onSubmit()">
       <div
         class="py-2 my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -74,8 +74,6 @@ export default {
           this.username = this.quotes[0].user.username;
           this.avatar = this.quotes[0].user.avatar;
           this.quoteUserId = this.quotes[0].user.id;
-          console.log(this.quotes);
-          console.log(this.quoetUserId)
         })
         .catch((err)=> {
           console.log(err)

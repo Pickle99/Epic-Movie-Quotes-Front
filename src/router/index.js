@@ -161,7 +161,7 @@ const router = createRouter({
       name: 'show-quote',
       component: ShowQuoteView,
       beforeEnter: [Guest],
-    }
+    },
   ],
 });
 
