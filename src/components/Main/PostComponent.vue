@@ -29,53 +29,15 @@
           </div>
           <div class="flex justify-around w-32 items-center mb-3">
             <p>{{quote.likes.length}}</p>
-            <img v-if="!isLiked" class="cursor-pointer" src="@/assets/icons/heart.svg" alt="img" @click="addOrRemoveLike()" />
-            <img v-if="isLiked" class="cursor-pointer" src="@/assets/icons/heart-red.svg" alt="img" @click="addOrRemoveLike()" />
+            <img v-if="!isLiked" class="cursor-pointer" src="@/assets/icons/heart.svg" alt="img" @click="handleAddOrRemoveLike()" />
+            <img v-if="isLiked" class="cursor-pointer" src="@/assets/icons/heart-red.svg" alt="img" @click="handleAddOrRemoveLike()" />
             <p>10</p>
             <img class="cursor-pointer" src="@/assets/icons/square.svg" alt="img" />
           </div>
         </div>
-        <article class="mt-10">
-          <div class="flex items-center">
-            <div>
-              <img
-                class="rounded-full"
-                :src="'https://ui-avatars.com/api/?name=jackrestler'"
-                alt="img"
-              />
-            </div>
-            <div>
-              <p class="ml-5">Some random guy comment</p>
-            </div>
-          </div>
-          <div class="border-b border-gray-600 w-[37.5rem] ml-20">
-            <p class="mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Pellentesque nunc vel massa facilisis consequat elit morbi
-              convallis convallis. Volutpat vitae et nisl et. Adipiscing enim
-              integer mi leo nisl. Arcu vitae mauris odio eget.
-            </p>
-          </div>
-        </article>
-        <article class="mt-10">
-          <div class="flex items-center">
-            <div>
-              <img
-                class="rounded-full"
-                :src="'https://ui-avatars.com/api/?name=jackrestler'"
-                alt="img"
-              />
-            </div>
-            <div>
-              <p class="ml-5">Nikoloz</p>
-            </div>
-          </div>
-          <div class="border-b border-gray-600 w-[37.5rem] ml-20">
-            <p class="mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </div>
-        </article>
+
+        <UserCommentComponent v-for="comment in quote.comments" :key="comment" :text="comment.text" :user="comment.comment_from" :avatar="comment.avatar"/>
+
         <div class="flex mt-10 items-center">
           <img
             class="rounded-full"
@@ -84,8 +46,10 @@
           />
           <div class="ml-5">
             <input
+              v-model="text"
               class="bg-[#24222F] w-[37.5rem] pl-5 py-3 text-[#CED4DA] rounded-md"
               placeholder="Write a comment"
+              @keydown.enter="handleAddComment"
             />
           </div>
         </div>
@@ -98,7 +62,11 @@ import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useRequestsStore } from "@/stores/requests.js";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
+import UserCommentComponent from '@/components/Main/UserCommentComponent.vue';
 export default {
+  components:{
+    UserCommentComponent
+  },
   props: {
     quoteId: {
       type: Number,
@@ -140,10 +108,11 @@ export default {
   data(){
     return{
     userLikedQuote: false,
+      text: "",
     }
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["allQuotes"]),
+    ...mapWritableState(useRequestsStore, ["allQuotes", "comments"]),
     ...mapWritableState(useLocalStorageStore, ["userId"]),
     isLiked(){
       const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
@@ -169,16 +138,32 @@ export default {
         currentQuote.likes.shift();
         this.userLikedQuote = false;
       });
+    window.Echo.channel('addComment.' + this.quoteId)
+      .listen('AddComment', ({comment}) => {
+        const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
+        currentQuote.comments.push(comment);
+        console.log('success!');
+      });
   },
   methods: {
-   addOrRemoveLike()
-   {
+   handleAddOrRemoveLike() {
      axios
        .get('quote/'+this.quoteId+'/add-like')
        .then((res) => {
          console.log(res);
+       })
+       .catch((res) => {
+         console.log(res);
        });
    },
+    handleAddComment() {
+     axios
+       .post('quote/'+this.quoteId+'/add-comment', {text: this.text})
+       .then((res) => {
+         this.text = "";
+           console.log(res);
+       });
+    },
   },
 };
 </script>

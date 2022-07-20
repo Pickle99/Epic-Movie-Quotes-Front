@@ -6,18 +6,16 @@ export const useNotificationsStore = defineStore("notifications", {
       markedAsAllRead: false,
       page: 1,
       lastPage: 1,
+      notifications: [],
     };
   },
   getters: {
-    movieYear(state) {
-      if(state.markedAsAllRead) {
-        return true;
-      } else return false;
-    },
-  },
-  actions: {
-    resetFields() {
-      this.title_en = "";
-    },
+    newNotificationsLength(state){
+      if(!state.markedAsAllRead){
+        const object = state.notifications.filter((item) => item.notification_phase !== null);
+        return object.length;
+      }else return false;
+    }
   }
+
 });

@@ -24,16 +24,14 @@
 
 <script>
 import NotificationFromComponent from '@/components/Main/NotificationFromComponent.vue'
-import {useRequestsStore} from '@/stores/requests.js';
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import { useNotificationsStore } from "@/stores/notifications.js";
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
 export default {
   computed: {
-    ...mapWritableState(useRequestsStore, ["notifications"]),
     ...mapWritableState(useLocalStorageStore, ["userId"]),
-    ...mapWritableState(useNotificationsStore, ["markedAsAllRead"]),
+    ...mapWritableState(useNotificationsStore, ["markedAsAllRead", "notifications"]),
   },
   components: {
     NotificationFromComponent

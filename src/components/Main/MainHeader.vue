@@ -9,9 +9,9 @@
         <div class="flex flex-col items-center">
           <div>
 
-            <div v-if="notifications.length" class="absolute ml-3 -mt-1">
+            <div v-if="newNotificationsLength" class="absolute ml-3 -mt-1">
               <div class="bg-red-500 rounded-full text-center w-7 justify-end">
-                <p class="text-[14px]">{{notifications.length}}</p>
+                <p class="text-[14px]">{{newNotificationsLength}}</p>
               </div>
             </div>
 
@@ -36,8 +36,8 @@ import SetLanguage from "@/components/Landing/SetLanguage.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import NotificationComponent from '@/components/Main/NotificationComponent.vue'
-import { mapWritableState } from "pinia";
-import { useRequestsStore } from "@/stores/requests.js";
+import { mapWritableState, mapGetters } from "pinia";
+import { useNotificationsStore } from "@/stores/notifications.js";
 
 export default {
   components: {
@@ -53,7 +53,8 @@ export default {
     this.handleGetNotifications();
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["notifications"]),
+    ...mapWritableState(useNotificationsStore, ["notifications"]),
+    ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
   },
   methods: {
     handleGetNotifications() {
