@@ -45,72 +45,84 @@ export default {
       >
     </div>
     <div class="mt-60 font-bold">
-      <div class="snap-center">
-        <div class="z-20 absolute mt-[27.2rem] ml-52">
-          <p class="text-white text-5xl">__</p>
+    <article>
+      <div
+        class="snap-center w-screen h-[75rem] bg-no-repeat bg-cover bg-bottom bg-fixed bg-[url('@/assets/images/movies/Interstellar.png')]">
+        <div class="w-full flex  items-center absolute h-full text-4xl text-white">
+
+          <div class="ml-16 w-fit h-fit absolute z-10 flex items-center">
+            <div>
+              <img src="@/assets/icons/line.svg" alt="icon"/>
+            </div>
+            <div class="w-fit ml-12 w-[39rem] mt-28">
+              <h1>"You have to leave something behind to go forward"
+              </h1>
+              <p class="mt-10">Interstellar, 2014</p>
+            </div>
+          </div>
         </div>
-        <div class="absolute mt-[29rem] ml-80 z-20">
-          <h1 class="text-white text-4xl">
-            “You have to leave something
-            <h1 class="text-white text-3xl">behind to go forward”</h1>
-          </h1>
-          <p class="text-white text-xl mt-4">Interstellar, 2014</p>
+        <div class="w-screen h-[75rem]">
+          <div
+            class="bg-gradient-to-r opacity-90 from-black  h-[75rem] w-screen"
+          ></div>
+          <div
+            class="bg-gradient-to-b opacity-90 from-black  h-[75rem] w-screen"
+          ></div>
         </div>
-        <img src="@/assets/images/movies/Interstellar.png" alt="img" />
       </div>
 
       <div
-        class="bg-gradient-to-r opacity-60 from-black h-[75rem] absolute top-[44rem] w-full h-[75rem] z-10"
-      ></div>
-      <div
-        class="bg-gradient-to-r opacity-60 from-black h-[75rem] absolute top-[44rem] w-full h-[75rem] z-10"
-      ></div>
+        class="w-screen h-[75rem] snap-center bg-no-repeat bg-cover bg-bottom bg-fixed bg-[url('@/assets/images/movies/TheRoyalTenenbaums.png')]">
+        <div class="w-full flex  items-center absolute h-full text-4xl text-white">
 
-      <div class="mb-[10rem] top-[119rem] absolute snap-end">
-        <div class="absolute mt-[27.8rem] ml-52 z-20">
-          <p class="text-white text-5xl">__</p>
+          <div class="ml-16 w-fit h-fit absolute z-10 flex items-center">
+            <div>
+              <img src="@/assets/icons/line.svg" alt="icon"/>
+            </div>
+            <div class="w-fit ml-12 w-[38rem] mt-28">
+              <h1>"I think we’re just gonna have
+                to be secretly in love with earch other
+                and leave it that"
+              </h1>
+              <p class="mt-10">The Royal Tenenbaums,2001 </p>
+            </div>
+          </div>
         </div>
-        <div class="absolute mt-[29rem] ml-80 z-20">
-          <h1 class="text-white text-4xl">
-            I think we’re just gonna have to be secretly in love with each other
-            <h1 class="text-white text-4xl">
-              to be secretly in love with each other
-            </h1>
-            <h1 class="text-white text-4xl">and leave it that</h1>
-          </h1>
-          <p class="text-white text-xl mt-4">The Royal Tenenbaums,2001</p>
+        <div class="w-screen h-[75rem]">
+          <div
+            class="bg-gradient-to-r opacity-90 from-black  h-[75rem] w-screen"
+          ></div>
+          <div
+            class="bg-gradient-to-b opacity-90 from-black  h-[75rem] w-screen"
+          ></div>
         </div>
-        <img src="@/assets/images/movies/TheRoyalTenenbaums.png" alt="img" />
       </div>
 
       <div
-        class="bg-gradient-to-r opacity-80 from-black absolute h-[75rem] w-screen right-0 z-10 top-[119rem]"
-      ></div>
-      <div
-        class="bg-gradient-to-b opacity-80 from-black absolute h-[75rem] w-screen right-0 z-10 top-[119rem]"
-      ></div>
+        class="w-screen h-[75rem] snap-center bg-no-repeat bg-cover bg-bottom bg-fixed bg-[url('@/assets/images/movies/TheRoyalTenenbaums-2.png')]">
+        <div class="w-full flex  items-center absolute h-full text-4xl text-white">
 
-      <div class="absolute top-[194rem] snap-end">
-        <div class="absolute mt-[40.8rem] ml-52 z-20">
-          <p class="text-white text-5xl">__</p>
+          <div class="ml-16 w-fit h-fit absolute z-10 flex items-center">
+            <div>
+              <img src="@/assets/icons/line.svg" alt="icon"/>
+            </div>
+            <div class="w-fit ml-12 w-[38rem] mt-28">
+              <h1>"I think we’re just gonna have
+                to be secretly in love with earch other
+                and leave it that"
+              </h1>
+              <p class="mt-10">The Royal Tenenbaums,2001 </p>
+            </div>
+          </div>
         </div>
-        <div class="absolute mt-[42rem] ml-80 z-20">
-          <h1 class="text-white text-4xl">
-            I think we’re just gonna have to be secretly in love with earch
-            other
-            <h1 class="text-white text-4xl">
-              to be secretly in love with earch other
-            </h1>
-            <h1 class="text-white text-4xl">and leave it that</h1>
-          </h1>
-          <p class="text-white text-xl mt-4">The Royal Tenenbaums,2001</p>
+        <div class="w-screen h-[75rem]">
+          <div
+            class="bg-gradient-to-r opacity-90 from-black  h-[75rem] w-screen"
+          ></div>
         </div>
-        <img src="@/assets/images/movies/TheRoyalTenenbaums-2.png" alt="img" />
       </div>
+    </article>
 
-      <div
-        class="bg-gradient-to-r opacity-90 from-black absolute w-screen top-[194rem] h-[75rem] z-10"
-      ></div>
     </div>
     <footer class="snap-end text-[#DDCCAA] bg-[#0D0B14] absolute top-[269rem]">
       <p class="ml-32 py-5">
