@@ -60,7 +60,7 @@
 <script>
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
-import { useRequestsStore } from "@/stores/requests.js";
+import { useQuotesStore } from "@/stores/data/quotes.js";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import UserCommentComponent from '@/components/Main/UserCommentComponent.vue';
 export default {
@@ -112,7 +112,7 @@ export default {
     }
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["allQuotes", "comments"]),
+    ...mapWritableState(useQuotesStore, ["allQuotes", "comments"]),
     ...mapWritableState(useLocalStorageStore, ["userId"]),
     isLiked(){
       const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);

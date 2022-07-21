@@ -38,7 +38,7 @@ import { setJwtToken } from "@/helpers/jwt/index.js";
 import NotificationComponent from '@/components/Main/NotificationComponent.vue'
 import { mapWritableState, mapGetters } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications.js";
-import {useRequestsStore} from "@/stores/requests.js";
+import {useQuotesStore} from "@/stores/data/quotes.js";
 
 export default {
   components: {
@@ -55,9 +55,9 @@ export default {
     this.handleGetQuote();
   },
   computed: {
-    ...mapWritableState(useNotificationsStore, ["notifications", "page", "lastPage"]),
+    ...mapWritableState(useNotificationsStore, ["notifications"]),
     ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
-    ...mapWritableState(useRequestsStore, ["allQuotes"]),
+    ...mapWritableState(useQuotesStore, ["allQuotes"]),
   },
   methods: {
     handleGetNotifications() {
@@ -79,8 +79,6 @@ export default {
         this.allQuotes.sort(function (a,b){
           return new Date(b.created_at) - new Date(a.created_at)
         });
-        this.lastPage = res.data.last_page;
-        this.page++;
         console.log(this.allQuotes);
       })
         .catch((err) => {

@@ -4,8 +4,6 @@ export const useNotificationsStore = defineStore("notifications", {
   state: () => {
     return {
       markedAsAllRead: false,
-      page: 1,
-      lastPage: 1,
       notifications: [],
     };
   },

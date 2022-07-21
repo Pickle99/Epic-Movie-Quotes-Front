@@ -22,14 +22,17 @@
           </div>
           <div class="w-full">
             <input
+              v-model="search"
               class="focus:outline-0 bg-[#0d0b14] w-96"
               placeholder="Enter @ to search movies, Enter # to search quotes"
+              @keydown.enter="handleGetQuote()"
+              @keydown="resetPage()"
             />
           </div>
         </div>
       </div>
       <PostComponent
-        v-for="quote in allQuotes"
+        v-for="quote in (filteredFeedView || allQuotes)"
         :key="quote"
         :movie-id="quote.movie.id"
         :quote-text="
@@ -53,10 +56,8 @@ import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import PostComponent from "@/components/Main/PostComponent.vue";
-import { useRequestsStore } from "@/stores/requests.js";
-import { useNotificationsStore } from "@/stores/notifications.js";
 import { useQuotesStore } from "@/stores/data/quotes.js";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapGetters } from "pinia";
 import WriteNewQuote from "@/views/MainPage/WriteNewQuote.vue";
 export default {
   components: {
@@ -66,24 +67,40 @@ export default {
     PostComponent,
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["allQuotes"]),
-    ...mapWritableState(useNotificationsStore, ["page", "lastPage"]),
-    ...mapWritableState(useQuotesStore, ["isModalOpen"]),
+    ...mapWritableState(useQuotesStore, ["allQuotes","isModalOpen", "page", "lastPage", "search", "filteredQuotes"]),
+    ...mapGetters(useQuotesStore, ["filteredFeedView", "searchIn"]),
   },
   mounted(){
     this.scroll();
   },
   methods: {
+    resetPage(){
+      this.page = 1;
+      this.lastPage = 1;
+      this.filteredQuotes = [];
+    },
     handleGetQuote() {
-      if(this.page > this.lastPage) { return }
-      axios.get(`feed?page=${this.page}`).then((res) => {
-        this.allQuotes.push(...res.data.data);
+      if(this.page > this.lastPage || !this.search) { return }
+      axios.get(`feed?page=${this.page}&search=${this.searchIn}`).then((res) => {
+        if(this.search)
+        {
+          this.filteredQuotes.push(...res.data.data);
+          this.filteredQuotes.sort(function (a,b){
+            return new Date(b.created_at) - new Date(a.created_at)
+          });
+          this.lastPage = res.data.last_page;
+          this.page++;
+
+          console.log(res.data.data);
+        } else {
+          this.allQuotes.push(...res.data.data);
           this.allQuotes.sort(function (a,b){
             return new Date(b.created_at) - new Date(a.created_at)
           });
-        this.lastPage = res.data.last_page;
-        this.page++;
-        console.log(this.allQuotes);
+          this.lastPage = res.data.last_page;
+          this.page++;
+        }
+        console.log(res, 'resers')
       })
         .catch((err) => {
           console.log(err);

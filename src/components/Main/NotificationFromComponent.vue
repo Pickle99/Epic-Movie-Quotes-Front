@@ -25,7 +25,7 @@
 <script>
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import { useNotificationsStore } from '@/stores/notifications.js';
-import { useRequestsStore } from "@/stores/requests.js";
+import { useQuotesStore } from "@/stores/data/quotes.js";
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
 export default {
@@ -54,7 +54,7 @@ export default {
   computed: {
     ...mapWritableState(useLocalStorageStore, ["userId"]),
     ...mapWritableState(useNotificationsStore, ["markedAsAllRead"]),
-    ...mapWritableState(useRequestsStore, ["allQuotes"]),
+    ...mapWritableState(useQuotesStore, ["allQuotes"]),
     SingleOrAllRead(){
       if(this.markedAsAllRead)
       {

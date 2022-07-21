@@ -76,7 +76,7 @@ import { useMoviesStore } from "@/stores/data/movies.js";
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
-import { mapWritableState, mapGetters } from "pinia";
+import { mapWritableState } from "pinia";
 export default {
   components: { UserNavbar, MainHeader },
   mounted() {
