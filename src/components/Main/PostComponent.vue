@@ -29,14 +29,15 @@
           </div>
           <div class="flex justify-around w-32 items-center mb-3">
             <p>{{quote.comments.length}}</p>
-            <img class="cursor-pointer" src="@/assets/icons/square.svg" alt="img" />
+            <img class="cursor-pointer" src="@/assets/icons/square.svg" alt="img" @click="showHideComments()" />
             <p>{{quote.likes.length}}</p>
             <img v-if="!isLiked" class="cursor-pointer" src="@/assets/icons/heart.svg" alt="img" @click="handleAddOrRemoveLike()" />
             <img v-if="isLiked" class="cursor-pointer" src="@/assets/icons/heart-red.svg" alt="img" @click="handleAddOrRemoveLike()" />
           </div>
         </div>
-
-        <UserCommentComponent v-for="comment in quote.comments" :key="comment" :text="comment.text" :user="comment.comment_from" :avatar="comment.avatar"/>
+          <div v-if="isCommentsVisible" class="overflow-y-scroll h-[30rem] w-fit">
+            <UserCommentComponent v-for="comment in quote.comments" :key="comment" :text="comment.text" :user="comment.comment_from" :avatar="comment.avatar"/>
+          </div>
 
         <div class="flex mt-10 items-center">
           <img
@@ -105,6 +106,7 @@ export default {
     return{
       userLikedQuote: false,
       text: "",
+      isCommentsVisible:false,
     }
   },
   computed: {
@@ -142,6 +144,9 @@ export default {
       });
   },
   methods: {
+    showHideComments(){
+      this.isCommentsVisible = !this.isCommentsVisible
+    },
    handleAddOrRemoveLike() {
      axios
        .get('quote/'+this.quoteId+'/add-like')
