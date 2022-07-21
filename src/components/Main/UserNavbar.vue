@@ -1,11 +1,12 @@
 <template>
   <nav class="text-white justify-around flex flex-col h-60 w-fit">
-    <div class="flex items-center">
-      <div class="w-32 flex justify-center">
+    <RouterLink :to="{name: 'profile'}" class="flex items-center">
+      <div
+       class="w-32 flex justify-center">
         <img
-          class="rounded-full"
+          :class="$route.name === 'profile' ? 'rounded-full border-2 border-[#E31221]' : 'rounded-full'"
           :src="`http://localhost:8000/${avatar}`"
-          width="48"
+          width="54"
           alt="img"
         />
       </div>
@@ -13,11 +14,12 @@
         <p>{{ username }}</p>
         <p class="text-sm text-gray-400">Edit your profile</p>
       </div>
-    </div>
+    </RouterLink>
 
     <RouterLink :to="{ name: 'feed' }" class="flex items-center">
       <div class="w-32 flex justify-center">
-        <img src="@/assets/icons/house.svg" />
+        <img v-if="$route.name !== 'feed'" src="@/assets/icons/house.svg" />
+        <img v-if="$route.name === 'feed'" src="@/assets/icons/house-red.svg" />
       </div>
       <div>
         <p>News feed</p>
@@ -25,7 +27,8 @@
     </RouterLink>
     <RouterLink :to="{ name: 'movies' }" class="flex items-center">
       <div class="w-32 flex justify-center">
-        <img src="@/assets/icons/camera.svg" />
+        <img v-if="$route.name !== 'movies'" src="@/assets/icons/camera.svg" />
+        <img v-if="$route.name === 'movies'"  src="@/assets/icons/camera-red.svg" />
       </div>
       <div>
         <p>List of movies</p>

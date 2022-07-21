@@ -38,7 +38,7 @@ import { setJwtToken } from "@/helpers/jwt/index.js";
 import NotificationComponent from '@/components/Main/NotificationComponent.vue'
 import { mapWritableState, mapGetters } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications.js";
-import {useQuotesStore} from "@/stores/data/quotes.js";
+import {useQuotesStore} from "@/stores/formData/quotes.js";
 
 export default {
   components: {

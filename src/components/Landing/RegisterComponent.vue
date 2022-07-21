@@ -11,13 +11,18 @@
       </div>
       <form>
         {{ data.error }}
+       <div class="w-[30rem]">
+         <basic-input
+           name="username"
+           placeholder="message.at_least_3_max_15"
+           rules="required|min:3|max:15|alpha_lower"
+           label-name="message.name"
+         />
         <basic-input
-          v-for="option in options"
-          :key="option.id"
-          :name="option.name"
-          :placeholder="option.placeholder"
-          :rules="option.rules"
-          :label-name="option.labelName"
+          name="email"
+          placeholder="message.enter_your_email"
+          rules="required|email"
+          label-name="message.email"
         />
         <password-input
           name="password"
@@ -31,6 +36,7 @@
           rules="required|confirmed:@password"
           label-name="message.confirm_password"
         />
+       </div>
         <basic-button :is-disabled="!meta.valid"
           >{{ $t("message.get_started") }}
         </basic-button>
@@ -59,7 +65,7 @@ class="flex items-center justify-center text-white mt-5 border-white border-2 py
 </template>
 <script>
 import { Form } from "vee-validate";
-import { useDataStore } from "@/stores/data/data.js";
+import { useUserDataStore } from "@/stores/formData/user.js";
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
@@ -75,7 +81,7 @@ export default {
     BasicButton,
   },
   computed: {
-    ...mapWritableState(useDataStore, ["data"]),
+    ...mapWritableState(useUserDataStore, ["data"]),
   },
   methods: {
     google() {
@@ -113,22 +119,6 @@ export default {
   data() {
     return {
       isLoading: false,
-      options: [
-        {
-          id: 1,
-          name: "username",
-          placeholder: "message.at_least_3_max_15",
-          rules: "required|min:3|max:15|alpha_lower",
-          labelName: "message.name",
-        },
-        {
-          id: 2,
-          name: "email",
-          placeholder: "message.enter_your_email",
-          rules: "required|email",
-          labelName: "message.email",
-        },
-      ],
     };
   },
 };

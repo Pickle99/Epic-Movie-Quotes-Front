@@ -19,6 +19,7 @@ import EditQuoteView from '@/views/MainPage/EditQuoteView.vue';
 import EditMovieView from '@/views/MainPage/EditMovieView.vue';
 import ShowQuoteView from '@/views/MainPage/ShowQuoteView.vue';
 import GoogleCallback from '@/views/LandingPage/GoogleCallback.vue';
+import UserProfileView from '@/views/MainPage/UserProfileView.vue';
 import { Guest } from "@/router/guards.js";
 import { Authorized } from "@/router/guards.js";
 
@@ -167,7 +168,14 @@ const router = createRouter({
       path: "/google-callback",
       name: "google-callback",
       component: GoogleCallback,
-    }
+      beforeEnter: [Authorized],
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: UserProfileView,
+      beforeEnter: [Guest],
+    },
   ],
 });
 

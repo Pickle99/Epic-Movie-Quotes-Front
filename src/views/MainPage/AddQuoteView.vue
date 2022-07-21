@@ -59,7 +59,7 @@ import UserNavbar from '@/components/Main/UserNavbar.vue';
 import {Field, ErrorMessage, Form} from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import FormPanel from '@/components/Main/FormPanel.vue';
-import {useMoviesStore} from "@/stores/data/movies.js";
+import {useMoviesStore} from "@/stores/formData/movies.js";
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
 import ImageUploadAnother from "@/components/UI/ImageUploadAnother.vue";
@@ -94,7 +94,7 @@ export default {
       axios
         .post("movie/"+this.$route.params.movie+"/quote", formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "multipart/form-formData",
           },
         })
         .then(() => {

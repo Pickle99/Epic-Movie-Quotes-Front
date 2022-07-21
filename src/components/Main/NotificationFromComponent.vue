@@ -25,7 +25,7 @@
 <script>
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import { useNotificationsStore } from '@/stores/notifications.js';
-import { useQuotesStore } from "@/stores/data/quotes.js";
+import { useQuotesStore } from "@/stores/formData/quotes.js";
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
 export default {

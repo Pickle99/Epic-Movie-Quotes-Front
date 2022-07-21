@@ -73,7 +73,7 @@ import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import { mapWritableState } from "pinia";
-import { useDataStore } from "@/stores/data/data.js";
+import { useUserDataStore } from "@/stores/formData/user.js";
 import { useRequestsStore } from "@/stores/requests.js";
 export default {
   components: {
@@ -90,7 +90,7 @@ export default {
     };
   },
   computed: {
-    ...mapWritableState(useDataStore, ["data"]),
+    ...mapWritableState(useUserDataStore, ["data"]),
     ...mapWritableState(useRequestsStore, ["user"]),
   },
   methods: {

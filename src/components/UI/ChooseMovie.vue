@@ -42,7 +42,7 @@ class="p-4 cursor-pointer my-2 bg-black flex items-center px-4 justify-between"
 </template>
 <script>
 import MovieComponent from '@/components/Main/MovieComponent.vue';
-import { useMoviesStore} from "@/stores/data/movies.js";
+import { useMoviesStore} from "@/stores/formData/movies.js";
 import { mapWritableState } from "pinia";
 
 export default {

@@ -153,7 +153,7 @@ form-title="Edit Movie" link-to="movie-description" :route-param="$route.params.
 import { Form, Field, ErrorMessage } from "vee-validate";
 import ImageUpload from "@/components/UI/ImageUpload.vue";
 import MovieFormButton from "@/components/UI/MovieFormButton.vue";
-import { useMoviesStore } from "@/stores/data/movies.js";
+import { useMoviesStore } from "@/stores/formData/movies.js";
 import { mapWritableState, mapGetters } from "pinia";
 import FormPanel from "@/components/Main/FormPanel.vue";
 import axios from "@/config/axios/index.js";
@@ -244,7 +244,7 @@ export default {
       axios
         .post("movie/"+this.$route.params.movie+'/update', formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "multipart/form-formData",
           },
         })
         .then(() => {

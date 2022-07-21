@@ -4,13 +4,13 @@
     <p class="text-[#DC3545]">*</p>
   </div>
   <Field
-    @input="updateField(name, $event.target.value)"
-    :value="data.name"
-    :name="name"
     v-slot="{ meta, field }"
+    :name="name"
     :rules="rules"
+    :value="data.name"
+    @input="updateField(name, $event.target.value)"
   >
-    <div class="bg-[#CED4DA] mb-2 flex items-center w-96 rounded-md">
+    <div class="bg-[#CED4DA] mb-2 flex items-center w-full rounded-md">
       <input
         :class="
           meta.touched
@@ -26,9 +26,9 @@
       <div class="-ml-10 mr-3">
         <img
           class="hover:cursor-pointer"
-          @click="setPasswordType()"
           src="@/assets/icons/eye.svg"
           alt="img"
+          @click="setPasswordType()"
         />
       </div>
     </div>
@@ -40,20 +40,20 @@
 
 <script>
 import { Field, ErrorMessage } from "vee-validate";
-import { useDataStore } from "@/stores/data/data.js";
+import { useUserDataStore } from "@/stores/formData/user.js";
 import { mapActions, mapWritableState } from "pinia";
 export default {
+  components: {
+    Field,
+    ErrorMessage,
+  },
   data() {
     return {
       isPasswordVisible: false,
     };
   },
-  components: {
-    Field,
-    ErrorMessage,
-  },
   computed: {
-    ...mapWritableState(useDataStore, ["data"]),
+    ...mapWritableState(useUserDataStore, ["data"]),
     PasswordType() {
       if (this.isPasswordVisible) {
         return "text";
@@ -61,7 +61,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useDataStore, ["updateField"]),
+    ...mapActions(useUserDataStore, ["updateField"]),
     setPasswordType() {
       this.isPasswordVisible = !this.isPasswordVisible;
     },

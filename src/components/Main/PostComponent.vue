@@ -61,7 +61,7 @@
 <script>
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
-import { useQuotesStore } from "@/stores/data/quotes.js";
+import { useQuotesStore } from "@/stores/formData/quotes.js";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import UserCommentComponent from '@/components/Main/UserCommentComponent.vue';
 export default {

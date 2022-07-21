@@ -5,15 +5,15 @@
   </div>
   <Field
     v-slot="{ meta, field, resetField }"
-    @input="updateField(name, $event.target.value)"
     :name="name"
     :rules="rules"
     :value="data.name"
+    @input="updateField(name, $event.target.value)"
   >
     <div
-      @mouseleave="this.focused = false"
-      @mouseenter="this.focused = true"
       class="bg-[#CED4DA] mb-2 flex items-center w-full rounded-md"
+      @mouseleave="focused = false"
+      @mouseenter="focused = true"
     >
       <input
         :class="
@@ -29,10 +29,10 @@
       />
       <div class="-ml-10 mr-3">
         <img
-          @click="resetField()"
           v-if="focused"
           src="@/assets/icons/close.svg"
           alt="img"
+          @click="resetField()"
         />
 
         <div v-if="meta.touched">
@@ -57,24 +57,24 @@
 
 <script>
 import { Field, ErrorMessage } from "vee-validate";
-import { useDataStore } from "@/stores/data/data.js";
+import { useUserDataStore } from "@/stores/formData/user.js";
 import { mapActions } from "pinia";
 import { mapWritableState } from "pinia";
 export default {
+  components: {
+    Field,
+    ErrorMessage,
+  },
   data() {
     return {
       focused: false,
     };
   },
-  components: {
-    Field,
-    ErrorMessage,
-  },
   methods: {
-    ...mapActions(useDataStore, ["updateField"]),
+    ...mapActions(useUserDataStore, ["updateField"]),
   },
   computed: {
-    ...mapWritableState(useDataStore, ["data"]),
+    ...mapWritableState(useUserDataStore, ["data"]),
   },
 
   props: {

@@ -47,7 +47,7 @@
 import {Field, ErrorMessage, Form} from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import ModalFormPanel from '@/components/Main/ModalFormPanel.vue';
-import {useMoviesStore} from "@/stores/data/movies.js";
+import {useMoviesStore} from "@/stores/formData/movies.js";
 import { mapGetters, mapWritableState } from "pinia";
 import ChooseMovie from "@/components/UI/ChooseMovie.vue";
 import axios from "@/config/axios/index.js";
@@ -82,7 +82,7 @@ export default {
     onSubmit(){
       axios.post(`movie/${this.chosenMovieId}/add-quote`, this.writeQuoteData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "multipart/form-formData",
         },
       })
         .then((res) => {

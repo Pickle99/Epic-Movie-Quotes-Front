@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { useMoviesStore } from "@/stores/data/movies.js";
+import { useMoviesStore } from "@/stores/formData/movies.js";
 import { mapWritableState } from "pinia";
 export default {
   computed: {

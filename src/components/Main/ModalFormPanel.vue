@@ -29,7 +29,7 @@
 <script>
 import { mapWritableState, mapActions } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
-import { useQuotesStore } from "@/stores/data/quotes.js";
+import { useQuotesStore } from "@/stores/formData/quotes.js";
 export default {
   computed:{
     ...mapWritableState(useLocalStorageStore, {

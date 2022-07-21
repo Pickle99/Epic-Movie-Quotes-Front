@@ -16,7 +16,7 @@ export default {
   props: {
     isDisabled: {
       type: Boolean,
-      required: true,
+      required: false,
     },
   },
 };

@@ -45,7 +45,7 @@
 <script>
 import { mapWritableState, mapActions } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
-import { useMoviesStore } from "@/stores/data/movies.js";
+import { useMoviesStore } from "@/stores/formData/movies.js";
 import axios from "@/config/axios/index.js";
 export default {
   props: {

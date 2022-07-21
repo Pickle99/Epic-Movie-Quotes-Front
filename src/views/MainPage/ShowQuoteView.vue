@@ -43,7 +43,7 @@
 <script>
 import FormPanel from "@/components/Main/FormPanel.vue";
 import {Form, Field, ErrorMessage} from "vee-validate";
-import { useMoviesStore } from "@/stores/data/movies.js";
+import { useMoviesStore } from "@/stores/formData/movies.js";
 import {mapWritableState} from "pinia";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";

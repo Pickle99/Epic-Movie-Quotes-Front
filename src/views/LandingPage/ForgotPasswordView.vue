@@ -60,7 +60,7 @@ import BasicInput from "@/components/UI/BasicInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
-import { useDataStore } from "@/stores/data/data.js";
+import { useUserDataStore } from "@/stores/formData/user.js";
 export default {
   components: {
     BlurPanel,
@@ -69,7 +69,7 @@ export default {
     BasicButton,
   },
   computed: {
-    ...mapWritableState(useDataStore, ["data"]),
+    ...mapWritableState(useUserDataStore, ["data"]),
   },
   methods: {
     onSubmit() {

@@ -53,7 +53,7 @@ import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import PostComponent from "@/components/Main/PostComponent.vue";
-import { useQuotesStore } from "@/stores/data/quotes.js";
+import { useQuotesStore } from "@/stores/formData/quotes.js";
 import { mapWritableState, mapGetters } from "pinia";
 import WriteNewQuote from "@/views/MainPage/WriteNewQuote.vue";
 export default {
