@@ -17,6 +17,8 @@ export const useMoviesStore = defineStore("movies", {
       chosenMovieId: null,
       chosenMovie: "",
       imageForQuote: "",
+      userMovies: [],
+      userMoviesSearch: "",
     };
   },
   getters: {

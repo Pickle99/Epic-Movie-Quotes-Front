@@ -22,6 +22,7 @@
             alt="img"
           />
           <input
+            v-model="userMoviesSearch"
             class="focus:outline-0 bg-[#0d0b14] w-20"
             placeholder="Search"
           />
@@ -42,7 +43,7 @@
           : 'flex ml-96 mr-28 grid grid-cols-3 text-white mt-10 gap-y-5 gap-x-12'
       "
     >
-      <article v-for="movie in userMovies" :key="movie">
+      <article v-for="movie in filteredUserMovies" :key="movie">
         <RouterLink
           :to="{ name: 'movie-description', params: { movie: movie.id } }"
           class="hover:cursor-pointer"
@@ -71,18 +72,26 @@
   </div>
 </template>
 <script>
+import { useMoviesStore } from "@/stores/data/movies.js";
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
+import { mapWritableState, mapGetters } from "pinia";
 export default {
   components: { UserNavbar, MainHeader },
-  data() {
-    return {
-      userMovies: [],
-    };
-  },
   mounted() {
     this.getUserMovies();
+  },
+  computed: {
+    ...mapWritableState(useMoviesStore, ["userMovies", "userMoviesSearch"]),
+    filteredUserMovies(){
+      return this.userMovies.filter((movie) => {
+        if(this.$i18n.locale === 'en')
+        {
+          return movie.title.en.match(this.userMoviesSearch)
+        } else return movie.title.ka.match(this.userMoviesSearch)
+      });
+    },
   },
   methods: {
     getUserMovies() {
