@@ -95,7 +95,12 @@ export default {
   },
   methods: {
     google() {
-      window.location.href = "http://localhost:8000/auth/google/redirect";
+      axios
+        .get('auth/google/redirect')
+        .then((res) => {
+          window.location.href = res.data.url;
+        })
+        .catch((err) => console.log(err));
     },
     onSubmit() {
       axios

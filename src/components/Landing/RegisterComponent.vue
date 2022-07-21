@@ -1,6 +1,6 @@
 <template>
   <blur-panel>
-    <Form @submit="onSubmit" as="div" class="flex flex-col" v-slot="{ meta }">
+    <Form v-slot="{ meta }" as="div" class="flex flex-col" @submit="onSubmit">
       <div class="text-center mb-8">
         <h1 class="text-white text-4xl">
           {{ $t("message.create_an_account") }}
@@ -17,27 +17,28 @@
           :name="option.name"
           :placeholder="option.placeholder"
           :rules="option.rules"
-          :labelName="option.labelName"
+          :label-name="option.labelName"
         />
         <password-input
           name="password"
           placeholder="message.at_least_8_max_15"
           rules="required|min:8|max:15|alpha_lower"
-          labelName="message.password"
+          label-name="message.password"
         />
         <password-input
           name="password_confirmation"
           placeholder="message.confirm_password"
           rules="required|confirmed:@password"
-          labelName="message.confirm_password"
+          label-name="message.confirm_password"
         />
-        <basic-button :isDisabled="!meta.valid"
+        <basic-button :is-disabled="!meta.valid"
           >{{ $t("message.get_started") }}
         </basic-button>
       </form>
       <div class="flex flex-col">
         <button
-          class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
+class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
+          @click="google()"
         >
           <img class="mr-2" src="@/assets/images/google.png" alt="img" />
           {{ $t("message.sign_up_google") }}
@@ -77,6 +78,14 @@ export default {
     ...mapWritableState(useDataStore, ["data"]),
   },
   methods: {
+    google() {
+      axios
+        .get('auth/google/redirect')
+        .then((res) => {
+          window.location.href = res.data.url;
+        })
+        .catch((err) => console.log(err));
+    },
     onSubmit() {
       axios
         .post(
