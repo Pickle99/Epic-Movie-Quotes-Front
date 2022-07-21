@@ -13,7 +13,7 @@
         :reaction="notification.action"
         :avatar="notification.avatar"
         :timestamp="notification.created_at"
-        :phase="notification.notification_phase"
+        :phase="notification.notification_state"
         :notification-id="notification.id"
         :quote-id="notification.quote_id"
       />

@@ -10,7 +10,7 @@ export const useNotificationsStore = defineStore("notifications", {
   getters: {
     newNotificationsLength(state){
       if(!state.markedAsAllRead){
-        const object = state.notifications.filter((item) => item.notification_phase !== null);
+        const object = state.notifications.filter((item) => item.notification_state !== null);
         return object.length;
       }else return false;
     }
