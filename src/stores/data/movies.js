@@ -22,9 +22,6 @@ export const useMoviesStore = defineStore("movies", {
     };
   },
   getters: {
-    findMovie(state) {
-   return state.chosenMovie =  state.allUsersMovies.find((movie) => movie.id === state.chosenMovieId);
-     },
     movieYear(state) {
       return parseInt(state.year) || null;
     },

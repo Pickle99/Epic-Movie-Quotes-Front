@@ -20,7 +20,7 @@ import { useMoviesStore } from "@/stores/data/movies.js";
 import { mapWritableState } from "pinia";
 export default {
   computed: {
-    ...mapWritableState(useMoviesStore, ["chosenMovieId", "chosenMovie"])
+    ...mapWritableState(useMoviesStore, ["chosenMovieId", "chosenMovie", "allUsersMovies"])
   },
   props: {
     movieId: {
@@ -55,7 +55,8 @@ export default {
   methods: {
     addMovie(){
       this.chosenMovieId = this.movieId;
-    }
+      this.chosenMovie =  this.allUsersMovies.find((movie) => movie.id === this.movieId);
+    },
   }
 };
 </script>
