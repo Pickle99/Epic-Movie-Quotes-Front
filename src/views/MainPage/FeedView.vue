@@ -35,9 +35,6 @@
         v-for="quote in (filteredFeedView || allQuotes)"
         :key="quote"
         :movie-id="quote.movie.id"
-        :quote-text="
-          $i18n.locale === 'en' ? quote.text.en : quote.text.en
-        "
         :movie-name="$i18n.locale === 'en' ? quote.movie.title.en : quote.movie.title.ka"
         :movie-image="quote.image"
         :year="quote.movie.year"

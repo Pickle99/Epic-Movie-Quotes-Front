@@ -13,7 +13,7 @@
             <p class="ml-5">{{ postedBy }}</p>
           </header>
           <div class="flex mt-5">
-            <p>"{{quoteText}}"</p>
+            <p>"{{$i18n.locale === 'en' ? quote.text.en : quote.text.ka}}"</p>
             <div class="flex items-center mx-2">
               <p>movie-</p>
               <RouterLink :to="{name: 'movie-description', params: {movie: movieId}}" class="cursor-pointer ml-1.5 text-[#DDCCAA] font-bold">{{ movieName }}</RouterLink>
@@ -81,10 +81,6 @@ export default {
       required: true,
     },
     movieName: {
-      type: String,
-      required: true,
-    },
-    quoteText: {
       type: String,
       required: true,
     },
