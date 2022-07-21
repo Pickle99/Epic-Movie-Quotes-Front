@@ -53,10 +53,12 @@
             alt="img"
             class="rounded-xl h-96 hover:cursor-pointer mb-4"
           />
-          <p class="font-bold uppercase">
-            {{ $i18n.locale === "en" ? movie.title.en : movie.title.ka }}
-            ({{ movie.year }})
-          </p>
+         <div class="font-bold uppercase flex">
+           <p>
+             {{ $i18n.locale === "en" ? movie.title.en : movie.title.ka }}
+           </p>
+           <p v-if="movie.year" class="ml-3">({{movie.year}})</p>
+         </div>
         </RouterLink>
         <div class="flex items-center mt-3">
           <p>10</p>

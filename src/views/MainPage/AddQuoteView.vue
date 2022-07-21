@@ -58,8 +58,8 @@ class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border
 import UserNavbar from '@/components/Main/UserNavbar.vue';
 import {Field, ErrorMessage, Form} from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
-import FormPanel from '@/components/Main/FormPanel.vue';
-import {useMoviesStore} from "@/stores/formData/movies.js";
+import FormPanel from '@/components/Main/QuoteFormPanel.vue';
+import {useQuotesStore} from "@/stores/formData/quotes.js";
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
 import ImageUploadAnother from "@/components/UI/ImageUploadAnother.vue";
@@ -74,7 +74,7 @@ export default {
     FormPanel,
   },
   computed: {
-    ...mapWritableState(useMoviesStore, ["text_en", "text_ka"])
+    ...mapWritableState(useQuotesStore, ["text_en", "text_ka"])
   },
   data(){
     return {

@@ -12,7 +12,7 @@ import PasswordResetSuccess from "@/views/LandingPage/PasswordResetSuccess.vue";
 import RouteForbidden from "@/views/Errors/RouteForbidden.vue";
 import NotFound from "@/views/Errors/RouteNotFound.vue";
 import UserMoviesView from "@/views/MainPage/UserMoviesView.vue";
-import NewMovieView from "@/views/MainPage/NewMovieView.vue";
+import AddMovieView from "@/views/MainPage/AddMovieView.vue";
 import MovieDescriptionView from "@/views/MainPage/MovieDescriptionView.vue";
 import AddQuoteView from '@/views/MainPage/AddQuoteView.vue';
 import EditQuoteView from '@/views/MainPage/EditQuoteView.vue';
@@ -130,7 +130,7 @@ const router = createRouter({
       name: "movies-add",
       components: {
         default: UserMoviesView,
-        NewMovieView,
+        AddMovieView,
       },
       beforeEnter: [Guest],
     },

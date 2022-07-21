@@ -12,6 +12,10 @@ export const useQuotesStore = defineStore("quotes", {
       lastPage: null,
       search: "",
       comments: [],
+      chosenMovieId: null,
+      chosenMovie: "",
+      allUsersMovies: [],
+      imageForQuote: "",
     };
   },
   getters: {
@@ -27,12 +31,23 @@ export const useQuotesStore = defineStore("quotes", {
     {
       return state.filteredQuotes;
     } else return false;
-    }
+    },
+    writeQuoteData() {
+      const formData = new FormData();
+      formData.append("text_en", this.text_en);
+      formData.append("text_ka", this.text_ka);
+      formData.append("image", this.imageForQuote);
+      formData.append("movieId", this.chosenMovieId);
+      return formData;
+    },
   },
   actions: {
-    resetFields(state) {
-      state.text_en = "";
-      state.text_ka = "";
+    writeQuoteResetFields() {
+      this.text_en = "";
+      this.text_ka = "";
+      this.chosenMovieId = null;
+      this.chosenMovie = "";
+      this.imageForQuote = "";
     },
   }
 });

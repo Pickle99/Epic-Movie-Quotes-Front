@@ -40,10 +40,10 @@ export default {
     ...mapWritableState(useQuotesStore, ["isModalOpen"])
   },
   methods: {
-    ...mapActions(useQuotesStore, ["resetFields"]),
+    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     close() {
      this.isModalOpen = false;
-     this.resetFields();
+     this.writeQuoteResetFields();
     },
   },
 }

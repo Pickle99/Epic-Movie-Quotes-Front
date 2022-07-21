@@ -18,7 +18,7 @@
               <p>movie-</p>
               <RouterLink :to="{name: 'movie-description', params: {movie: movieId}}" class="cursor-pointer ml-1.5 text-[#DDCCAA] font-bold">{{ movieName }}</RouterLink>
             </div>
-            <p>({{ year }})</p>
+            <p v-if="year">({{ year }})</p>
           </div>
           <div class="my-6">
             <img
@@ -35,7 +35,7 @@
             <img v-if="isLiked" class="cursor-pointer" src="@/assets/icons/heart-red.svg" alt="img" @click="handleAddOrRemoveLike()" />
           </div>
         </div>
-          <div v-if="isCommentsVisible" class="overflow-y-scroll h-[30rem] w-fit">
+          <div v-if="isCommentsVisible" class="overflow-y-scroll  max-h-[30rem] w-fit">
             <UserCommentComponent v-for="comment in quote.comments" :key="comment" :text="comment.text" :user="comment.comment_from" :avatar="comment.avatar"/>
           </div>
 

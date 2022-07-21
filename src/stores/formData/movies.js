@@ -11,44 +11,52 @@ export const useMoviesStore = defineStore("movies", {
       budget: "",
       description_en: "",
       description_ka: "",
-      text_en: "",
-      text_ka: "",
-      allUsersMovies: [],
-      chosenMovieId: null,
-      chosenMovie: "",
-      imageForQuote: "",
       userMovies: [],
       userMoviesSearch: "",
+      userSelectedGenres: [],
+      allGenres: [],
+      imageForMovie: "",
     };
   },
   getters: {
+    addMovieData(state) {
+      const formData = new FormData();
+      const arr = state.userSelectedGenres;
+      formData.append("title_en", state.title_en);
+      formData.append("title_ka", state.title_ka);
+      formData.append("director_en", state.director_en);
+      formData.append("director_ka", state.director_ka);
+      formData.append("description_en", state.description_en);
+      formData.append("description_ka", state.description_ka);
+      if (state.year) {
+        formData.append("year", state.movieYear);
+      }
+      formData.append("budget", state.movieBudget);
+      formData.append("image", state.imageForMovie);
+      for (var i = 0; i < arr.length; i++) {
+        formData.append("genres[" + i + "]", arr[i]);
+      }
+      return formData;
+    },
     movieYear(state) {
       return parseInt(state.year) || null;
     },
     movieBudget(state) {
       return parseInt(state.budget) || null;
     },
-    writeQuoteData() {
-      const formData = new FormData();
-      formData.append("text_en", this.text_en);
-      formData.append("text_ka", this.text_ka);
-      formData.append("image", this.imageForQuote);
-      formData.append("movieId", this.chosenMovieId);
-      return formData;
-    }
   },
   actions: {
-    resetFields() {
-        this.title_en = "";
-        this.title_ka = "";
-        this.director_en = "";
-        this.director_ka = "";
-        this.year = "";
-        this.budget = "";
-        this.description_en = "";
-        this.description_ka = "";
-        this.text_en = "";
-        this.text_ka = "";
+    movieResetFields(){
+      this.title_en = "";
+      this.title_ka = "";
+      this.director_en = "";
+      this.director_ka = "";
+      this.year = "";
+      this.budget = "";
+      this.description_en = "";
+      this.description_ka = "";
+      this.userSelectedGenres = [];
+      this.imageForMovie = "";
     },
   }
 });

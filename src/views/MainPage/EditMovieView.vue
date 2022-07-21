@@ -155,7 +155,7 @@ import ImageUpload from "@/components/UI/ImageUpload.vue";
 import MovieFormButton from "@/components/UI/MovieFormButton.vue";
 import { useMoviesStore } from "@/stores/formData/movies.js";
 import { mapWritableState, mapGetters } from "pinia";
-import FormPanel from "@/components/Main/FormPanel.vue";
+import FormPanel from "@/components/Main/MovieFormPanel.vue";
 import axios from "@/config/axios/index.js";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 

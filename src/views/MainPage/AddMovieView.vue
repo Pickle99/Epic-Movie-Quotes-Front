@@ -137,7 +137,7 @@
      </div>
      <ErrorMessage name="description_ka" class="text-red-500" />
      <ImageUpload @drop.prevent="drop" @change="selectedFile" />
-     <p>{{ currentImage.name }}</p>
+     <p>{{ imageForMovie.name }}</p>
      <div class="flex justify-center mt-5">
        <movie-form-button :genres="userSelectedGenres.length" :is-disabled="!meta.valid">Add Movie</movie-form-button>
      </div>
@@ -150,8 +150,8 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import ImageUpload from "@/components/UI/ImageUpload.vue";
 import MovieFormButton from "@/components/UI/MovieFormButton.vue";
 import { useMoviesStore } from "@/stores/formData/movies.js";
-import { mapWritableState, mapGetters } from "pinia";
-import FormPanel from "@/components/Main/FormPanel.vue";
+import { mapWritableState, mapGetters, mapActions } from "pinia";
+import FormPanel from "@/components/Main/MovieFormPanel.vue";
 import axios from "@/config/axios/index.js";
 
 export default {
@@ -165,11 +165,8 @@ export default {
   },
   data() {
     return {
-      allGenres: [],
       data: [],
-      userSelectedGenres: [],
       genresError: "",
-      currentImage: "",
     };
   },
   computed: {
@@ -182,53 +179,35 @@ export default {
       "budget",
       "description_en",
       "description_ka",
+      "userMovies",
+      "allGenres",
+      "userSelectedGenres",
+      "imageForMovie"
     ]),
-    ...mapGetters(useMoviesStore, ["movieYear", "movieBudget"]),
+    ...mapGetters(useMoviesStore, ["movieYear", "movieBudget", "addMovieData"]),
+    ...mapActions(useMoviesStore, ["movieResetFields"]),
   },
   mounted() {
     this.getGenre();
   },
   methods: {
     drop(e) {
-      this.currentImage = e.dataTransfer.files[0];
+      this.imageForMovie = e.dataTransfer.files[0];
     },
     selectedFile() {
-      this.currentImage = document.querySelector(".image").files[0];
+      this.imageForMovie = document.querySelector(".image").files[0];
     },
     onSubmit() {
-      const formData = new FormData();
-      const arr = this.userSelectedGenres;
-      formData.append("title_en", this.title_en);
-      formData.append("title_ka", this.title_ka);
-      formData.append("director_en", this.director_en);
-      formData.append("director_ka", this.director_ka);
-      formData.append("description_en", this.description_en);
-      formData.append("description_ka", this.description_ka);
-      if (this.year) {
-        formData.append("year", this.movieYear);
-      }
-      formData.append("budget", this.movieBudget);
-      formData.append("image", this.currentImage);
-      for (var i = 0; i < arr.length; i++) {
-        formData.append("genres[" + i + "]", arr[i]);
-      }
       axios
-        .post("http://localhost:8000/api/movies", formData, {
+        .post("http://localhost:8000/api/movies", this.addMovieData, {
           headers: {
             "Content-Type": "multipart/form-formData",
           },
         })
-        .then(() => {
+        .then((res) => {
           this.$router.push({ name: "movies" });
-          this.title_en = "";
-          this.title_ka = "";
-          this.director_en = "";
-          this.director_ka = "";
-          this.year = "";
-          this.budget = "";
-          this.description_en = "";
-          this.description_ka = "";
-          this.currentImage = "";
+          this.userMovies.push(res.data);
+          this.movieResetFields();
         })
         .catch((error) => {
           console.log(error);

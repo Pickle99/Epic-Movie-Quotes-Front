@@ -44,10 +44,10 @@
   </form-panel>
 </template>
 <script>
-import FormPanel from "@/components/Main/FormPanel.vue";
+import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import {Form, Field, ErrorMessage} from "vee-validate";
-import { useMoviesStore } from "@/stores/formData/movies.js";
+import { useQuotesStore } from "@/stores/formData/quotes.js";
 import {mapWritableState} from "pinia";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
@@ -61,7 +61,7 @@ export default {
     }
   },
   computed: {
-    ...mapWritableState(useMoviesStore, ["text_en", "text_ka"])
+    ...mapWritableState(useQuotesStore, ["text_en", "text_ka"])
   },
   mounted(){
     this.handleGetQuoteRequest()

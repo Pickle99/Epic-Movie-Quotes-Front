@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import { useMoviesStore } from "@/stores/formData/movies.js";
+import { useQuotesStore } from "@/stores/formData/quotes.js";
 import { mapWritableState } from "pinia";
 export default {
   computed: {
-    ...mapWritableState(useMoviesStore, ["chosenMovieId", "chosenMovie", "allUsersMovies"])
+    ...mapWritableState(useQuotesStore, ["chosenMovieId", "chosenMovie", "allUsersMovies"])
   },
   props: {
     movieId: {
