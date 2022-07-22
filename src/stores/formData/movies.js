@@ -16,10 +16,11 @@ export const useMoviesStore = defineStore("movies", {
       userSelectedGenres: [],
       allGenres: [],
       imageForMovie: "",
+      genresError: "",
     };
   },
   getters: {
-    addMovieData(state) {
+    movieData(state) {
       const formData = new FormData();
       const arr = state.userSelectedGenres;
       formData.append("title_en", state.title_en);
@@ -32,7 +33,9 @@ export const useMoviesStore = defineStore("movies", {
         formData.append("year", state.movieYear);
       }
       formData.append("budget", state.movieBudget);
-      formData.append("image", state.imageForMovie);
+      if(this.imageForMovie){
+        formData.append("image", state.imageForMovie);
+      }
       for (var i = 0; i < arr.length; i++) {
         formData.append("genres[" + i + "]", arr[i]);
       }
@@ -58,5 +61,6 @@ export const useMoviesStore = defineStore("movies", {
       this.userSelectedGenres = [];
       this.imageForMovie = "";
     },
+
   }
 });

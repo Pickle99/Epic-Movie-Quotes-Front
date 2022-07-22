@@ -56,6 +56,7 @@ form-title="Edit Movie" link-to="movie-description" :route-param="$route.params.
            />
          </Field>
        </div>
+       <p class="text-gray-400 text-[10px]">Choose from : Comedy, Horror, Action, Drama, Romantic, Thriller</p>
        <p class="text-red-500">{{ genresError }}</p>
        <div
          class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -140,7 +141,7 @@ form-title="Edit Movie" link-to="movie-description" :route-param="$route.params.
        </div>
        <ErrorMessage name="description_ka" class="text-red-500" />
        <ImageUpload @drop.prevent="drop" @change="selectedFile" />
-       <p v-for="movie in movies" :key="movie">{{ currentImage.name || movie.image }}</p>
+       <p v-for="movie in movies" :key="movie">{{ imageForMovie.name || movie.image }}</p>
        <div class="flex justify-center mt-5">
          <movie-form-button :genres="userSelectedGenres.length" :is-disabled="!meta.valid">Add Movie</movie-form-button>
        </div>
@@ -154,7 +155,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import ImageUpload from "@/components/UI/ImageUpload.vue";
 import MovieFormButton from "@/components/UI/MovieFormButton.vue";
 import { useMoviesStore } from "@/stores/formData/movies.js";
-import { mapWritableState, mapGetters } from "pinia";
+import { mapWritableState, mapGetters, mapActions } from "pinia";
 import FormPanel from "@/components/Main/MovieFormPanel.vue";
 import axios from "@/config/axios/index.js";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
@@ -171,11 +172,6 @@ export default {
   },
   data() {
     return {
-      allGenres: [],
-      data: [],
-      userSelectedGenres: [],
-      genresError: "",
-      currentImage: "",
       movies: [],
     };
   },
@@ -189,8 +185,13 @@ export default {
       "budget",
       "description_en",
       "description_ka",
+      "imageForMovie",
+      "allGenres",
+      "userSelectedGenres",
+      "genresError",
     ]),
-    ...mapGetters(useMoviesStore, ["movieYear", "movieBudget"]),
+    ...mapGetters(useMoviesStore, ["movieYear", "movieBudget", "movieData",]),
+    ...mapActions(useMoviesStore, ["movieResetFields"]),
   },
   mounted() {
     this.getGenre();
@@ -198,10 +199,10 @@ export default {
   },
   methods: {
     drop(e) {
-      this.currentImage = e.dataTransfer.files[0];
+      this.imageForMovie = e.dataTransfer.files[0];
     },
     selectedFile() {
-      this.currentImage = document.querySelector(".image").files[0];
+      this.imageForMovie = document.querySelector(".image").files[0];
     },
     getMovie() {
       axios
@@ -222,42 +223,15 @@ export default {
         })
     },
     onSubmit() {
-      const formData = new FormData();
-      const arr = this.userSelectedGenres;
-      formData.append("title_en", this.title_en);
-      formData.append("title_ka", this.title_ka);
-      formData.append("director_en", this.director_en);
-      formData.append("director_ka", this.director_ka);
-      formData.append("description_en", this.description_en);
-      formData.append("description_ka", this.description_ka);
-      if (this.year) {
-        formData.append("year", this.movieYear);
-      }
-      formData.append("budget", this.movieBudget);
-      if (this.currentImage)
-      {
-        formData.append("image", this.currentImage);
-      }
-      for (var i = 0; i < arr.length; i++) {
-        formData.append("genres[" + i + "]", arr[i]);
-      }
       axios
-        .post("movie/"+this.$route.params.movie+'/update', formData, {
+        .post("movie/"+this.$route.params.movie+'/update', this.movieData, {
           headers: {
             "Content-Type": "multipart/form-formData",
           },
         })
         .then(() => {
           this.$router.push({ name: "movie-description", params: {movie: this.$route.params.movie} });
-          this.title_en = "";
-          this.title_ka = "";
-          this.director_en = "";
-          this.director_ka = "";
-          this.year = "";
-          this.budget = "";
-          this.description_en = "";
-          this.description_ka = "";
-          this.currentImage = "";
+          this.movieResetFields();
         })
         .catch((error) => {
           console.log(error);

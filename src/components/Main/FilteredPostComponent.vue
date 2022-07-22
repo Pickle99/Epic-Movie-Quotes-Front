@@ -35,9 +35,9 @@
             <img v-if="isLiked" class="cursor-pointer" src="@/assets/icons/heart-red.svg" alt="img" @click="handleAddOrRemoveLike()" />
           </div>
         </div>
-          <div v-if="isCommentsVisible" class="overflow-y-scroll  max-h-[30rem] w-fit">
-            <UserCommentComponent v-for="comment in quote.comments" :key="comment" :text="comment.text" :user="comment.comment_from" :avatar="comment.avatar"/>
-          </div>
+        <div v-if="isCommentsVisible" class="overflow-y-scroll  max-h-[30rem] w-fit">
+          <UserCommentComponent v-for="comment in quote.comments" :key="comment" :text="comment.text" :user="comment.comment_from" :avatar="comment.avatar"/>
+        </div>
 
         <div class="flex mt-10 items-center">
           <img
@@ -110,16 +110,16 @@ export default {
     }
   },
   computed: {
-    ...mapWritableState(useQuotesStore, ["allQuotes", "comments"]),
+    ...mapWritableState(useQuotesStore, [ "comments", "filteredQuotes"]),
     ...mapWritableState(useLocalStorageStore, ["userId"]),
     isLiked(){
 
-        const currentQuote = this.allQuotes.find((quote) => quote.id == this.quoteId);
-        const userLike = currentQuote.likes.find((item) => item.user_id == this.userId);
-        if(!userLike)
-        {
-          return this.userLikedQuote;
-        } else return !this.userLikedQuote;
+      const currentQuote = this.filteredQuotes.find((quote) => quote.id == this.quoteId);
+      const userLike = currentQuote.likes.find((item) => item.user_id == this.userId);
+      if(!userLike)
+      {
+        return this.userLikedQuote;
+      } else return !this.userLikedQuote;
 
     },
   },
@@ -129,7 +129,7 @@ export default {
       .listen('AddLike', (like) => {
         this.userLikedQuote = true;
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
-          currentQuote.likes.push(like);
+        currentQuote.likes.push(like);
       });
     window.Echo.channel('removeLike.' + this.quoteId)
       .listen('RemoveLike', () => {
@@ -148,23 +148,23 @@ export default {
     showHideComments(){
       this.isCommentsVisible = !this.isCommentsVisible
     },
-   handleAddOrRemoveLike() {
-     axios
-       .get('quote/'+this.quoteId+'/add-like')
-       .then((res) => {
-         console.log(res);
-       })
-       .catch((res) => {
-         console.log(res);
-       });
-   },
+    handleAddOrRemoveLike() {
+      axios
+        .get('quote/'+this.quoteId+'/add-like')
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+    },
     handleAddComment() {
-     axios
-       .post('quote/'+this.quoteId+'/add-comment', {text: this.text})
-       .then((res) => {
-         this.text = "";
-           console.log(res);
-       });
+      axios
+        .post('quote/'+this.quoteId+'/add-comment', {text: this.text})
+        .then((res) => {
+          this.text = "";
+          console.log(res);
+        });
     },
   },
 };

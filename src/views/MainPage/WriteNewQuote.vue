@@ -48,7 +48,7 @@ import {Field, ErrorMessage, Form} from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import ModalFormPanel from '@/components/Main/ModalFormPanel.vue';
 import {useQuotesStore} from "@/stores/formData/quotes.js";
-import { mapGetters, mapWritableState } from "pinia";
+import { mapGetters, mapWritableState, mapActions } from "pinia";
 import ChooseMovie from "@/components/UI/ChooseMovie.vue";
 import axios from "@/config/axios/index.js";
 import ImageUploadAnother from "@/components/UI/ImageUploadAnother.vue";
@@ -65,6 +65,7 @@ export default {
   computed: {
     ...mapWritableState(useQuotesStore, ["text_en", "text_ka", "allUsersMovies", "chosenMovieId", "imageForQuote"]),
     ...mapGetters(useQuotesStore, ["writeQuoteData"]),
+    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
   },
   mounted(){
     this.handleGetMovies();
@@ -80,16 +81,14 @@ export default {
         });
     },
     onSubmit(){
-      axios.post(`movie/${this.chosenMovieId}/add-quote`, this.writeQuoteData, {
+      axios.post(`add-quote`, this.writeQuoteData, {
         headers: {
           "Content-Type": "multipart/form-formData",
         },
       })
         .then((res) => {
           this.$router.push({ name:'show-quote', params: {movie: this.chosenMovieId, quote: res.data } })
-          this.text_en = '';
-          this.text_ka = "";
-          this.imageForQuote = "";
+          this.writeQuoteResetFields();
         })
         .catch((err) => {
           console.log(err);

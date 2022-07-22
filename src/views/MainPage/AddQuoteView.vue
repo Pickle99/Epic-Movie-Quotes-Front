@@ -35,7 +35,7 @@ class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border
      <ErrorMessage name="text_ka" class="text-red-500" />
      <div class="my-3">
        <ImageUploadAnother @drop.prevent="drop" @change="selectedFile"/>
-       <p>{{currentImage.name}}</p>
+       <p>{{imageForQuote.name}}</p>
      </div>
      <div v-for="movie in movies" :key="movie" class="bg-black text-white flex items-center">
          <img width="170" class="rounded-xl py-2.5" :src="`http://localhost:8000/${movie.image}`">
@@ -60,7 +60,7 @@ import {Field, ErrorMessage, Form} from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import FormPanel from '@/components/Main/QuoteFormPanel.vue';
 import {useQuotesStore} from "@/stores/formData/quotes.js";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapActions, mapGetters } from "pinia";
 import axios from "@/config/axios/index.js";
 import ImageUploadAnother from "@/components/UI/ImageUploadAnother.vue";
 export default {
@@ -74,12 +74,13 @@ export default {
     FormPanel,
   },
   computed: {
-    ...mapWritableState(useQuotesStore, ["text_en", "text_ka"])
+    ...mapWritableState(useQuotesStore, ["text_en", "text_ka", "imageForQuote"]),
+      ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
+        ...mapGetters(useQuotesStore, ["addQuoteData"]),
   },
   data(){
     return {
-    movies: '',
-    currentImage: "",
+    movies: [],
     }
   },
   mounted(){
@@ -87,21 +88,15 @@ export default {
   },
   methods: {
     onSubmit(){
-      const formData = new FormData();
-      formData.append("text_en", this.text_en);
-      formData.append("text_ka", this.text_ka);
-      formData.append("image", this.currentImage);
       axios
-        .post("movie/"+this.$route.params.movie+"/quote", formData, {
+        .post("movie/"+this.$route.params.movie+"/quote", this.addQuoteData, {
           headers: {
             "Content-Type": "multipart/form-formData",
           },
         })
         .then(() => {
           this.$router.push({ name: "movie-description" });
-          this.text_en = "";
-          this.text_ka = "";
-          this.currentImage = "";
+          this.writeQuoteResetFields();
         })
         .catch((error) => {
           console.log(error);
@@ -118,10 +113,10 @@ export default {
         })
     },
     drop(e) {
-      this.currentImage = e.dataTransfer.files[0];
+      this.imageForQuote = e.dataTransfer.files[0];
     },
     selectedFile() {
-      this.currentImage = document.querySelector(".image").files[0];
+      this.imageForQuote = document.querySelector(".image").files[0];
     },
   },
 }

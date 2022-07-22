@@ -48,7 +48,7 @@ import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import {Form, Field, ErrorMessage} from "vee-validate";
 import { useQuotesStore } from "@/stores/formData/quotes.js";
-import {mapWritableState} from "pinia";
+import {mapWritableState, mapActions, mapGetters} from "pinia";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import ImageUploadWithPreview from "@/components/UI/ImageUploadWithPreview.vue";
@@ -57,36 +57,32 @@ export default {
   data(){
     return {
     quotes: [],
-      currentImage: "",
     }
   },
   computed: {
-    ...mapWritableState(useQuotesStore, ["text_en", "text_ka"])
+    ...mapWritableState(useQuotesStore, ["text_en", "text_ka", "imageForQuote"]),
+    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
+    ...mapGetters(useQuotesStore, ["editQuoteData"]),
   },
   mounted(){
     this.handleGetQuoteRequest()
   },
   methods: {
     selectedFile() {
-      this.currentImage = document.querySelector(".image").files[0];
+      this.imageForQuote = document.querySelector(".image").files[0];
     },
     onSubmit()
     {
-      const formData = new FormData();
-      formData.append("text_en", this.text_en);
-      formData.append("text_ka", this.text_ka);
-      if(this.currentImage)
-      {
-        formData.append('image', this.currentImage)
-      }
+
       axios
-        .post("quote/"+this.$route.params.quote+"/update", formData, {
+        .post("quote/"+this.$route.params.quote+"/update", this.editQuoteData, {
           headers: { 
             "Content-Type": "multipart/form-formData",
           },
         })
         .then(() => {
           this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie} });
+          this.writeQuoteResetFields();
         })
         .catch((err) => {
           console.log(err)

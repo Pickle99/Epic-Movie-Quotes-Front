@@ -17,10 +17,12 @@
       </div>
       <div class="ml-5">
         <div class="flex items-center justify-between">
-          <h1 class="text-[#DDCCAA] font-bold">
-            {{$i18n.locale === 'en' ? movie.title.en : movie.title.ka}}
-            ({{ movie.year }})
-          </h1>
+          <div class="flex text-[#DDCCAA] font-bold">
+            <h1>
+              {{$i18n.locale === 'en' ? movie.title.en : movie.title.ka}}
+            </h1>
+            <p v-if="movie.year" class="ml-3">({{ movie.year }})</p>
+          </div>
           <div class="flex px-7 py-3 rounded-md bg-[#24222F] ">
             <RouterLink :to="{name: 'edit-movie'}">
               <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
@@ -133,7 +135,7 @@ export default {
         .post(`movie/${this.$route.params.movie}`)
         .then((res) => {
           this.movies = res.data;
-          console.log(res);
+          console.log(res, 'here');
           console.log(this.movies, "movie");
         })
         .catch((err) => {

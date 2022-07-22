@@ -57,7 +57,7 @@ export default {
   computed: {
     ...mapWritableState(useNotificationsStore, ["notifications"]),
     ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
-    ...mapWritableState(useQuotesStore, ["allQuotes"]),
+    ...mapWritableState(useQuotesStore, ["allQuotes", "lastPage", "page"]),
   },
   methods: {
     handleGetNotifications() {
@@ -73,12 +73,14 @@ export default {
         });
     },
     handleGetQuote() {
-      if(this.page > this.lastPage) { return }
       axios.get(`feed?page=${this.page}`).then((res) => {
         this.allQuotes.push(...res.data.data);
         this.allQuotes.sort(function (a,b){
           return new Date(b.created_at) - new Date(a.created_at)
         });
+        this.lastPage = res.data.meta.last_page;
+        this.page++;
+        console.log(res, 'resMainHeaderAllQuotes');
         console.log(this.allQuotes);
       })
         .catch((err) => {

@@ -53,6 +53,7 @@
          />
        </Field>
      </div>
+     <p class="text-gray-400 text-[10px]">Choose from : Comedy, Horror, Action, Drama, Romantic, Thriller</p>
      <p class="text-red-500">{{ genresError }}</p>
      <div
        class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -163,12 +164,6 @@ export default {
     MovieFormButton,
     FormPanel,
   },
-  data() {
-    return {
-      data: [],
-      genresError: "",
-    };
-  },
   computed: {
     ...mapWritableState(useMoviesStore, [
       "title_en",
@@ -182,9 +177,10 @@ export default {
       "userMovies",
       "allGenres",
       "userSelectedGenres",
-      "imageForMovie"
+      "imageForMovie",
+      "genresError",
     ]),
-    ...mapGetters(useMoviesStore, ["movieYear", "movieBudget", "addMovieData"]),
+    ...mapGetters(useMoviesStore, ["movieYear", "movieBudget", "movieData"]),
     ...mapActions(useMoviesStore, ["movieResetFields"]),
   },
   mounted() {
@@ -199,7 +195,7 @@ export default {
     },
     onSubmit() {
       axios
-        .post("http://localhost:8000/api/movies", this.addMovieData, {
+        .post("http://localhost:8000/api/movies", this.movieData, {
           headers: {
             "Content-Type": "multipart/form-formData",
           },

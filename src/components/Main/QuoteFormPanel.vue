@@ -23,7 +23,7 @@
         </div>
         <div class="flex justify-end w-1/4">
           <RouterLink :to="{ name: linkTo, params: {movie: routeParam} }" >
-            <img src="@/assets/icons/x-icon.svg" alt="img" @click="writeQuoteResetFields()" />
+            <img src="@/assets/icons/x-icon.svg" alt="img" @click="writeQuoteResetFields" />
           </RouterLink>
         </div>
       </div>

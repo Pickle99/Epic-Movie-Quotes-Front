@@ -8,12 +8,10 @@
     <Form v-slot="{ meta }" @submit="onSubmit()">
       <div>
         <basic-input
-          v-for="option in options"
-          :key="option.id"
-          :name="option.name"
-          :placeholder="option.placeholder"
-          :rules="option.rules"
-          :label-name="option.labelName"
+          name="forgot_password"
+          placeholder="message.enter_your_email"
+          rules="required|min:3|email"
+          label-name="message.email"
         />
       </div>
       <div class="flex justify-center flex-col">
@@ -96,15 +94,6 @@ export default {
   data() {
     return {
       isLoading: false,
-      options: [
-        {
-          id: 1,
-          name: "forgot_password",
-          placeholder: "message.enter_your_email",
-          rules: "required|min:3|email",
-          labelName: "message.email",
-        },
-      ],
     };
   },
 };

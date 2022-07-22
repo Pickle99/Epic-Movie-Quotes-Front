@@ -9,7 +9,7 @@ export const useQuotesStore = defineStore("quotes", {
       text_en: "",
       text_ka: "",
       page: 1,
-      lastPage: null,
+      lastPage: 2,
       search: "",
       comments: [],
       chosenMovieId: null,
@@ -40,6 +40,23 @@ export const useQuotesStore = defineStore("quotes", {
       formData.append("movieId", this.chosenMovieId);
       return formData;
     },
+    addQuoteData() {
+      const formData = new FormData();
+      formData.append("text_en", this.text_en);
+      formData.append("text_ka", this.text_ka);
+      formData.append("image", this.imageForQuote);
+      return formData;
+    },
+    editQuoteData(){
+      const formData = new FormData();
+      formData.append("text_en", this.text_en);
+      formData.append("text_ka", this.text_ka);
+      if(this.imageForQuote)
+      {
+        formData.append('image', this.imageForQuote)
+      }
+      return formData;
+    }
   },
   actions: {
     writeQuoteResetFields() {
