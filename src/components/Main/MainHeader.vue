@@ -62,7 +62,7 @@ export default {
   methods: {
     handleGetNotifications() {
       axios.get("notifications").then((res) => {
-        this.notifications = Array.from(res.data);
+        this.notifications = Array.from(res.data.data);
         this.notifications.sort(function(a, b) {
           return new Date(b.created_date) - new Date(a.created_date);
         });
@@ -74,13 +74,9 @@ export default {
     },
     handleGetQuote() {
       axios.get(`feed?page=${this.page}`).then((res) => {
-        this.allQuotes.push(...res.data.data);
-        this.allQuotes.sort(function (a,b){
-          return new Date(b.created_at) - new Date(a.created_at)
-        });
+        this.allQuotes = res.data.data;
         this.lastPage = res.data.meta.last_page;
         this.page++;
-        console.log(res, 'resMainHeaderAllQuotes');
         console.log(this.allQuotes);
       })
         .catch((err) => {

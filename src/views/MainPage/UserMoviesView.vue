@@ -100,7 +100,7 @@ export default {
       axios
         .get("user-movies")
         .then((res) => {
-          this.userMovies = res.data;
+          this.userMovies = res.data.data;
         })
         .catch((err) => { 
           console.log(err);

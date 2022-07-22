@@ -135,8 +135,6 @@ export default {
         .post(`movie/${this.$route.params.movie}`)
         .then((res) => {
           this.movies = res.data;
-          console.log(res, 'here');
-          console.log(this.movies, "movie");
         })
         .catch((err) => {
           console.log(err);

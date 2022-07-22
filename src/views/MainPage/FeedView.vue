@@ -90,18 +90,19 @@ export default {
   },
   methods: {
     resetPage(){
-      this.page = 0;
-      this.lastPage = 2;
+      this.page = 1;
+      this.lastPage = 1;
     },
     handleGetQuote(scroll) {
-      if(this.page >= this.lastPage) { return }
+      if(this.page > this.lastPage) { return }
       axios.get(`feed?page=${this.page}&search=${this.searchIn}`).then((res) => {
         if(this.search)
         {
           if(scroll){
-            this.filteredQuotes.push(...res.data.data);
-          }
-          this.filteredQuotes = res.data.data;
+           this.filteredQuotes.push(...res.data.data)
+          }else {
+            this.filteredQuotes = res.data.data
+          };
           this.lastPage = res.data.meta.last_page;
           this.page++;
         } else {

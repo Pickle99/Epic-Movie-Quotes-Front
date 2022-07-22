@@ -39,8 +39,11 @@ export default {
   created(){
     window.Echo.private('showNotification.' + this.userId)
       .listen('ShowNotification', ({notification}) => {
-        this.notifications.unshift(notification);
-        console.log(this.notifications);
+        const notificationExist
+          = this.notifications.some((item) => (item.user_id === notification.user_id) && (item.quote_id === notification.quote_id))
+        if(!notificationExist){
+          this.notifications.unshift(notification);
+        };
       });
   },
   methods: {

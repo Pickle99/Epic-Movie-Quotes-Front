@@ -141,7 +141,7 @@ form-title="Edit Movie" link-to="movie-description" :route-param="$route.params.
        </div>
        <ErrorMessage name="description_ka" class="text-red-500" />
        <ImageUpload @drop.prevent="drop" @change="selectedFile" />
-       <p v-for="movie in movies" :key="movie">{{ imageForMovie.name || movie.image }}</p>
+       <p >{{ imageForMovie.name || movie.image }}</p>
        <div class="flex justify-center mt-5">
          <movie-form-button :genres="userSelectedGenres.length" :is-disabled="!meta.valid">Add Movie</movie-form-button>
        </div>
@@ -172,7 +172,7 @@ export default {
   },
   data() {
     return {
-      movies: [],
+      movie: [],
     };
   },
   computed: {
@@ -208,16 +208,16 @@ export default {
       axios
         .get(`movie/`+this.$route.params.movie+`/genres`)
         .then((res) => {
-          this.movies = res.data;
-          this.title_en = this.movies[0].title.en;
-          this.title_ka = this.movies[0].title.ka;
-          this.userSelectedGenres = this.movies[0].genres.map((genre)=>genre.name);
-          this.director_en = this.movies[0].director.en;
-          this.director_ka = this.movies[0].director.ka;
-          this.year = this.movies[0].year;
-          this.budget = this.movies[0].budget;
-          this.description_en = this.movies[0].description.en;
-          this.description_ka = this.movies[0].description.ka;
+          this.movie = res.data.data;
+          this.title_en = this.movie.title.en;
+          this.title_ka = this.movie.title.ka;
+          this.userSelectedGenres = this.movie.genres.map((genre)=>genre.name);
+          this.director_en = this.movie.director.en;
+          this.director_ka = this.movie.director.ka;
+          this.year = this.movie.year;
+          this.budget = this.movie.budget;
+          this.description_en = this.movie.description.en;
+          this.description_ka = this.movie.description.ka;
           console.log(res)
           console.log(this.movies)
         })
@@ -274,7 +274,7 @@ export default {
     },
     getGenre() {
       axios.get("genres").then((res) => {
-        this.allGenres = res.data.map((e) => e.name);
+        this.allGenres = res.data.data.map((e) => e.name);
       });
     },
   },

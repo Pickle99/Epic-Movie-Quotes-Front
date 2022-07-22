@@ -12,7 +12,6 @@
           v-model="text_en"
           name="text_en"
           disabled
-          placeholder="Start create new quote"
           class="italic font-serif bg-[#11101A] outline-0 w-full placeholder-white"
           rules="required"
         />
@@ -26,7 +25,6 @@
           v-model="text_ka"
           name="text_ka"
           disabled
-          placeholder="ახალი ციტატა"
           class="italic font-serif bg-[#11101A] outline-0 w-full placeholder-white"
           rules="required"
         />
@@ -36,7 +34,7 @@
       <div class="my-3">
         <p></p>
       </div>
-      <img v-for="quote in quotes" :key="quote" class="rounded-xl py-2.5 w-full" :src="`http://localhost:8000/${quote.image}`">
+      <img class="rounded-xl py-2.5 w-full" :src="`http://localhost:8000/${quote.image}`">
     </Form>
   </form-panel>
 </template>
@@ -51,7 +49,7 @@ export default {
   components: {FormPanel, Form, Field, ErrorMessage, UserNavbar},
   data(){
     return {
-      quotes: [],
+      quote: [],
       username: '',
       avatar: '',
       quoteUserId: "",
@@ -68,12 +66,13 @@ export default {
       axios
         .get(`quote/`+this.$route.params.quote)
         .then((res) => {
-          this.quotes = res.data;
-          this.text_en = `"${this.quotes[0].text.en}"`;
-          this.text_ka = `"${this.quotes[0].text.ka}"`;
-          this.username = this.quotes[0].user.username;
-          this.avatar = this.quotes[0].user.avatar;
-          this.quoteUserId = this.quotes[0].user.id;
+          this.quote = res.data.data;
+          console.log(res);
+          this.text_en = `"${this.quote.text.en}"`;
+          this.text_ka = `"${this.quote.text.ka}"`;
+          this.username = this.quote.user.username;
+          this.avatar = this.quote.user.avatar;
+          this.quoteUserId = this.quote.user.id;
         })
         .catch((err)=> {
           console.log(err)
