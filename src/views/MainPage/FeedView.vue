@@ -100,12 +100,13 @@ export default {
         if(this.search)
         {
           if(scroll){
-           this.filteredQuotes.push(...res.data.data)
+            this.filteredQuotes.push(...res.data.data);
+            this.page++;
           }else {
             this.filteredQuotes = res.data.data
+            this.page++;
           };
           this.lastPage = res.data.meta.last_page;
-          this.page++;
         } else {
           if(scroll){
             this.allQuotes.push(...res.data.data);
@@ -114,7 +115,7 @@ export default {
           }else {
             this.allQuotes = res.data.data;
             this.lastPage = res.data.meta.last_page;
-            this.page = 1;
+            this.page++;
           }
         }
         console.log(res, 'resers')

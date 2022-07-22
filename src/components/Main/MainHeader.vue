@@ -76,7 +76,7 @@ export default {
       axios.get(`feed?page=${this.page}`).then((res) => {
         this.allQuotes = res.data.data;
         this.lastPage = res.data.meta.last_page;
-        this.page = 1;
+        this.page++;
         console.log(this.allQuotes);
       })
         .catch((err) => {

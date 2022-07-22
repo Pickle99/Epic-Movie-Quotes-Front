@@ -93,11 +93,11 @@
     <div class="my-5 border-gray-700 border-b-2"></div>
     <div class="flex mt-3">
       <div class="flex items-center mr-3">
-         <p class="mr-3">3</p>
+         <p class="mr-3">{{quote.comments.length}}</p>
         <img src="@/assets/icons/square.svg" alt="icon"/>
       </div>
       <div class="flex items-center">
-        <p class="mr-2">10</p>
+        <p class="mr-2">{{quote.likes.length}}</p>
         <img src="@/assets/icons/heart.svg" alt="icon"/>
       </div>
     </div>

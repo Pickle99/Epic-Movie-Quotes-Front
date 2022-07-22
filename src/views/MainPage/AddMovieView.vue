@@ -246,7 +246,7 @@ export default {
     },
     getGenre() {
       axios.get("genres").then((res) => {
-        this.allGenres = res.data.map((e) => e.name);
+        this.allGenres = res.data.data.map((e) => e.name);
       });
     },
   },
