@@ -9,7 +9,7 @@ export const useQuotesStore = defineStore("quotes", {
       text_en: "",
       text_ka: "",
       page: 1,
-      lastPage: null,
+      lastPage: 2,
       search: "",
       comments: [],
       chosenMovieId: null,

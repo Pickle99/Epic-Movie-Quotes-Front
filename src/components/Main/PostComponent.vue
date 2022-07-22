@@ -130,6 +130,7 @@ export default {
         this.userLikedQuote = true;
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
           currentQuote.likes.push(like);
+          console.log('lied');
       });
     window.Echo.channel('removeLike.' + this.quoteId)
       .listen('RemoveLike', () => {

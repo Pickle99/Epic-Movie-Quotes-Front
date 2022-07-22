@@ -85,17 +85,18 @@ export default {
     ...mapWritableState(useQuotesStore, ["allQuotes","isModalOpen", "page", "lastPage", "search", "filteredQuotes"]),
     ...mapGetters(useQuotesStore, ["filteredFeedView", "searchIn"]),
   },
-  mounted(){
+  created(){
     this.scroll();
   },
   methods: {
     resetPage(){
       this.page = 1;
-      this.lastPage = 1;
+      this.lastPage = 2;
     },
     handleGetQuote(scroll) {
       if(this.page > this.lastPage) { return }
       axios.get(`feed?page=${this.page}&search=${this.searchIn}`).then((res) => {
+        console.log(this.page);
         if(this.search)
         {
           if(scroll){
@@ -106,9 +107,15 @@ export default {
           this.lastPage = res.data.meta.last_page;
           this.page++;
         } else {
-          this.allQuotes.push(...res.data.data);
-          this.lastPage = res.data.meta.last_page;
-          this.page++;
+          if(scroll){
+            this.allQuotes.push(...res.data.data);
+            this.lastPage = res.data.meta.last_page;
+            this.page++;
+          }else {
+            this.allQuotes = res.data.data;
+            this.lastPage = res.data.meta.last_page;
+            this.page = 1;
+          }
         }
         console.log(res, 'resers')
       })
