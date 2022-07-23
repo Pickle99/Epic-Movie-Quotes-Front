@@ -39,6 +39,7 @@ import NotificationComponent from '@/components/Main/NotificationComponent.vue'
 import { mapWritableState, mapGetters } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications.js";
 import {useQuotesStore} from "@/stores/formData/quotes.js";
+import { useRequestsStore } from "@/stores/requests.js";
 
 export default {
   components: {
@@ -52,9 +53,11 @@ export default {
   },
   created(){
     this.handleGetNotifications();
-    this.handleGetQuote();
+    this.handleGetPaginatedQuotes();
+    this.handleGetAllQuotes();
   },
   computed: {
+    ...mapWritableState(useRequestsStore, ["quotesForNotifications"]),
     ...mapWritableState(useNotificationsStore, ["notifications"]),
     ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
     ...mapWritableState(useQuotesStore, ["allQuotes", "lastPage", "page"]),
@@ -72,7 +75,14 @@ export default {
           console.log(err);
         });
     },
-    handleGetQuote() {
+    handleGetAllQuotes(){
+      axios.get('all-quotes')
+        .then((res) => {
+          console.log(res, 'safsafsaf');
+          this.quotesForNotifications = res.data.data;
+        });
+    },
+    handleGetPaginatedQuotes() {
       axios.get(`feed?page=${this.page}`).then((res) => {
         this.allQuotes = res.data.data;
         this.lastPage = res.data.meta.last_page;

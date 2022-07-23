@@ -25,9 +25,9 @@
 <script>
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import { useNotificationsStore } from '@/stores/notifications.js';
-import { useQuotesStore } from "@/stores/formData/quotes.js";
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
+import { useRequestsStore } from "@/stores/requests.js";
 export default {
   data()
   {
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     showCurrentQuote() {
-      const currentQuoteOfNotification = this.allQuotes.find((quote) => quote.id == this.quoteId);
+      const currentQuoteOfNotification = this.quotesForNotifications.find((quote) => quote.id == this.quoteId);
       this.movieId = currentQuoteOfNotification.movie.id;
       this.$router.push({name: 'show-quote', params: {movie: this.movieId, quote: this.quoteId}});
       axios.get(`notification/${this.notificationId}/mark-single-as-read`).then(() => {
@@ -54,7 +54,7 @@ export default {
   computed: {
     ...mapWritableState(useLocalStorageStore, ["userId"]),
     ...mapWritableState(useNotificationsStore, ["markedAsAllRead"]),
-    ...mapWritableState(useQuotesStore, ["allQuotes"]),
+    ...mapWritableState(useRequestsStore, ["quotesForNotifications"]),
     SingleOrAllRead(){
       if(this.markedAsAllRead)
       {

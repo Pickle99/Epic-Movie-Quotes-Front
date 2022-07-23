@@ -130,7 +130,6 @@ export default {
         this.userLikedQuote = true;
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
           currentQuote.likes.push(like);
-          console.log('lied');
       });
     window.Echo.channel('removeLike.' + this.quoteId)
       .listen('RemoveLike', () => {
@@ -141,8 +140,8 @@ export default {
     window.Echo.channel('addComment.' + this.quoteId)
       .listen('AddComment', ({comment}) => {
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
+        console.log(currentQuote);
         currentQuote.comments.push(comment);
-        console.log('success!');
       });
   },
   methods: {

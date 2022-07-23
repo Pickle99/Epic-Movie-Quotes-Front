@@ -40,9 +40,10 @@ export default {
     window.Echo.private('showNotification.' + this.userId)
       .listen('ShowNotification', ({notification}) => {
         const notificationExist
-          = this.notifications.some((item) => (item.user_id === notification.user_id) && (item.quote_id === notification.quote_id))
-        if(!notificationExist){
+          = this.notifications.some((item) => (item.user_id === notification.user_id) && (item.quote_id === notification.quote_id) && !notification.comment_id)
+        if(!notificationExist) {
           this.notifications.unshift(notification);
+          console.log(notification, 'noti');
         };
       });
   },
