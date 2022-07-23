@@ -203,7 +203,7 @@ export default {
         .then((res) => {
           this.$router.push({ name: "movies" });
           this.userMovies.push(res.data);
-          this.movieResetFields();
+          this.movieResetFields;
         })
         .catch((error) => {
           console.log(error);

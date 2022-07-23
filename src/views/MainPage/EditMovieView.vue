@@ -218,8 +218,6 @@ export default {
           this.budget = this.movie.budget;
           this.description_en = this.movie.description.en;
           this.description_ka = this.movie.description.ka;
-          console.log(res)
-          console.log(this.movies)
         })
     },
     onSubmit() {
@@ -231,7 +229,7 @@ export default {
         })
         .then(() => {
           this.$router.push({ name: "movie-description", params: {movie: this.$route.params.movie} });
-          this.movieResetFields();
+          this.movieResetFields;
         })
         .catch((error) => {
           console.log(error);

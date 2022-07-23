@@ -60,7 +60,6 @@ export default {
     },
     addMovie(){
       this.isMovieSelectorOpen = false;
-      console.log(this.chosenMovieId);
     },
     
   },

@@ -16,6 +16,7 @@ export const useQuotesStore = defineStore("quotes", {
       chosenMovie: "",
       allUsersMovies: [],
       imageForQuote: "",
+      commentText: "",
     };
   },
   getters: {

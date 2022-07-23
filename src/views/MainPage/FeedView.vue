@@ -96,7 +96,6 @@ export default {
     handleGetQuote(scroll) {
       if(this.page > this.lastPage) { return }
       axios.get(`feed?page=${this.page}&search=${this.searchIn}`).then((res) => {
-        console.log(this.page);
         if(this.search)
         {
           if(scroll){
@@ -118,7 +117,6 @@ export default {
             this.page++;
           }
         }
-        console.log(res, 'resers')
       })
         .catch((err) => {
           console.log(err);

@@ -96,7 +96,7 @@ export default {
         })
         .then(() => {
           this.$router.push({ name: "movie-description" });
-          this.writeQuoteResetFields();
+          this.writeQuoteResetFields;
         })
         .catch((error) => {
           console.log(error);
@@ -109,7 +109,6 @@ export default {
         .then((res) => {
           this.movies = res.data;
           console.log(res)
-          console.log(this.movies)
         })
     },
     drop(e) {

@@ -82,7 +82,7 @@ export default {
       axios.delete(`quote/${this.$route.params.quote}/delete`)
         .then(() => {
           this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie}})
-          this.movieResetFields();
+          this.movieResetFields;
         })
         .catch((err) => {
           console.log(err)

@@ -82,7 +82,7 @@ export default {
         })
         .then(() => {
           this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie} });
-          this.writeQuoteResetFields();
+          this.writeQuoteResetFields;
         })
         .catch((err) => {
           console.log(err)
@@ -95,10 +95,8 @@ export default {
         .get(`quote/`+this.$route.params.quote)
         .then((res) => {
           this.quotes = res.data;
-          this.text_en = this.quotes[0].text.en;
-          this.text_ka = this.quotes[0].text.ka;
-          console.log(res.data);
-          console.log(this.quotes[0].image)
+          this.text_en = this.quotes.data.text.en;
+          this.text_ka = this.quotes.data.text.ka;
         })
         .catch((err)=> {
           console.log(err)

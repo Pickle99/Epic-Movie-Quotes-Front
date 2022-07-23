@@ -88,7 +88,7 @@ export default {
       })
         .then((res) => {
           this.$router.push({ name:'show-quote', params: {movie: this.chosenMovieId, quote: res.data } })
-          this.writeQuoteResetFields();
+          this.writeQuoteResetFields;
         })
         .catch((err) => {
           console.log(err);

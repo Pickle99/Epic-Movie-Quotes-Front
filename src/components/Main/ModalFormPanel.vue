@@ -43,7 +43,7 @@ export default {
     ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     close() {
      this.isModalOpen = false;
-     this.writeQuoteResetFields();
+     this.writeQuoteResetFields;
     },
   },
 }

@@ -42,12 +42,13 @@
         <div class="flex mt-10 items-center">
           <img
             class="rounded-full"
-            :src="null || 'https://ui-avatars.com/api/?name=jackrestler'"
+            width="64"
+            :src="'http://localhost:8000/'+avatar"
             alt="img"
           />
           <div class="ml-5">
             <input
-              v-model="text"
+              v-model="commentText"
               class="bg-[#24222F] w-[37.5rem] pl-5 py-3 text-[#CED4DA] rounded-md"
               placeholder="Write a comment"
               @keydown.enter="handleAddComment"
@@ -105,13 +106,12 @@ export default {
   data(){
     return{
       userLikedQuote: false,
-      text: "",
       isCommentsVisible:false,
     }
   },
   computed: {
-    ...mapWritableState(useQuotesStore, ["allQuotes", "comments"]),
-    ...mapWritableState(useLocalStorageStore, ["userId"]),
+    ...mapWritableState(useQuotesStore, ["allQuotes", "comments", "commentText"]),
+    ...mapWritableState(useLocalStorageStore, ["userId", "avatar"]),
     isLiked(){
 
         const currentQuote = this.allQuotes.find((quote) => quote.id == this.quoteId);
@@ -140,7 +140,6 @@ export default {
     window.Echo.channel('addComment.' + this.quoteId)
       .listen('AddComment', ({comment}) => {
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
-        console.log(currentQuote);
         currentQuote.comments.push(comment);
       });
   },
@@ -151,19 +150,15 @@ export default {
    handleAddOrRemoveLike() {
      axios
        .get('quote/'+this.quoteId+'/add-like')
-       .then((res) => {
-         console.log(res);
-       })
-       .catch((res) => {
-         console.log(res);
+       .catch((err) => {
+         console.log(err);
        });
    },
     handleAddComment() {
      axios
-       .post('quote/'+this.quoteId+'/add-comment', {text: this.text})
-       .then((res) => {
-         this.text = "";
-           console.log(res);
+       .post('quote/'+this.quoteId+'/add-comment', {text: this.commentText})
+       .then(() => {
+         this.commentText = "";
        });
     },
   },

@@ -9,13 +9,15 @@
     </div>
   </RouterLink>
 
-  <RouterLink  :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="flex items-center ml-5 my-7 w-fit">
-    <img src="@/assets/icons/pen.svg" alt="icon"/>
-    <p :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="text-sm ml-3">Edit</p>
-  </RouterLink>
-  <div  class="flex items-center ml-5 w-fit cursor-pointer" @click="deleteQuote()">
-    <img src="@/assets/icons/trash.svg" alt="icon"/>
-    <p class="text-sm ml-3">Delete</p>
+  <div v-if="quoteUserId == userId">
+    <RouterLink  :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="flex items-center ml-5 my-7 w-fit">
+      <img src="@/assets/icons/pen.svg" alt="icon"/>
+      <p :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="text-sm ml-3">Edit</p>
+    </RouterLink>
+    <div  class="flex items-center ml-5 w-fit cursor-pointer" @click="deleteQuote()">
+      <img src="@/assets/icons/trash.svg" alt="icon"/>
+      <p class="text-sm ml-3">Delete</p>
+    </div>
   </div>
 </div>
 </div>
@@ -26,6 +28,7 @@
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useRequestsStore } from "@/stores/requests.js";
+import { useLocalStorageStore } from "@/stores/localStorage.js";
 export default {
   props:{
     quoteUserId: {
@@ -35,10 +38,11 @@ export default {
     quoteId: {
       type: Number,
       required:true,
-    }
+    },
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["movies"])
+    ...mapWritableState(useRequestsStore, ["movies"]),
+      ...mapWritableState(useLocalStorageStore, ["userId"]),
   },
   data() {
     return {
@@ -51,7 +55,7 @@ export default {
     },
     deleteQuote() {
       axios.delete(`quote/${this.quoteId}/delete`).then(() => {
-        this.movies[0].quotes = this.movies[0].quotes.filter((item) => {
+        this.movies.data.quotes = this.movies.data.quotes.filter((item) => {
           return item.id !== this.quoteId;
         });
       })

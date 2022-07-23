@@ -69,7 +69,6 @@ export default {
         this.notifications.sort(function(a, b) {
           return new Date(b.created_date) - new Date(a.created_date);
         });
-        console.log(this.notifications);
       })
         .catch((err) => {
           console.log(err);
@@ -78,7 +77,6 @@ export default {
     handleGetAllQuotes(){
       axios.get('all-quotes')
         .then((res) => {
-          console.log(res, 'safsafsaf');
           this.quotesForNotifications = res.data.data;
         });
     },
@@ -87,7 +85,6 @@ export default {
         this.allQuotes = res.data.data;
         this.lastPage = res.data.meta.last_page;
         this.page++;
-        console.log(this.allQuotes);
       })
         .catch((err) => {
           console.log(err);

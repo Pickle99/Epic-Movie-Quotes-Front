@@ -23,7 +23,7 @@
             </h1>
             <p v-if="movie.year" class="ml-3">({{ movie.year }})</p>
           </div>
-          <div class="flex px-7 py-3 rounded-md bg-[#24222F] ">
+          <div v-if="movie.user_id == userId" class="flex px-7 py-3 rounded-md bg-[#24222F] ">
             <RouterLink :to="{name: 'edit-movie'}">
               <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
             </RouterLink>
@@ -112,6 +112,7 @@ import axios from "@/config/axios/index.js";
 import QuoteComponent from "@/components/Main/QuoteComponent.vue";
 import {useRequestsStore} from '@/stores/requests.js'
 import { mapWritableState } from "pinia";
+import { useLocalStorageStore } from "@/stores/localStorage.js";
 export default {
   components: { MainHeader, UserNavbar, QuoteComponent },
   mounted() {
@@ -119,6 +120,7 @@ export default {
   },
   computed: {
     ...mapWritableState(useRequestsStore, ["movies"]),
+    ...mapWritableState(useLocalStorageStore, ["userId"]),
   },
   methods: {
     deleteMovie() {
