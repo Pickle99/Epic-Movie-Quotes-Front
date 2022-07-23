@@ -39,7 +39,18 @@ export default {
   created(){
     window.Echo.private('showNotification.' + this.userId)
       .listen('ShowNotification', ({notification}) => {
-          this.notifications.unshift(notification);
+        console.log(notification);
+          if(!notification.comment_id){
+            const isQuoteLiked = this.notifications.find((item) => item.user_id === notification.user_id && item.quote_id === notification.quote_id && item.like_id !== null);
+
+            console.log(isQuoteLiked, '123');
+            if(!isQuoteLiked){
+              this.notifications.unshift(notification);
+            }
+          } else {
+            this.notifications.unshift(notification);
+            console.log('here')
+          }
       });
   },
   methods: {
