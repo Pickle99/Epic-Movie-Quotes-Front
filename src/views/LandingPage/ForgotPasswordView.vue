@@ -4,6 +4,9 @@
       <h1 class="text-white text-4xl mb-5">
         {{ $t("message.forgot_password_no_problem") }}
       </h1>
+      <p class="text-[#6C757D] w-[24rem]">
+        {{ $t('message.enter_the_email_and_we_will_send_instructions')}}
+      </p>
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
       <div>
@@ -16,7 +19,7 @@
       </div>
       <div class="flex justify-center flex-col">
         <basic-button :is-disabled="!meta.valid">{{
-          $t("message.reset_password")
+          $t("message.send_instructions")
         }}</basic-button>
         <div v-if="isLoading" class="flex justify-center">
           <svg
@@ -36,18 +39,10 @@
           </svg>
         </div>
       </div>
-
-      <div class="flex justify-center mt-6">
-        <p class="text-[#6C757D]">
-          {{ $t("message.dont_have_an_account_yet") }}?
-        </p>
-        <RouterLink
-          class="text-[#0D6EFD] underline ml-3"
-          :to="{ name: 'register' }"
-        >
-          {{ $t("message.sign_up") }}</RouterLink 
-        >
-      </div>
+     <back-to-login-button>
+       <img class="mr-2" src="@/assets/icons/arrow-left.svg" alt="icon"/>
+       <p class="text-[#6C757D]">{{$t('message.back_to_log_in')}}</p>
+     </back-to-login-button>
     </Form>
   </blur-panel>
 </template>
@@ -56,6 +51,7 @@ import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import { Form } from "vee-validate";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
+import BackToLoginButton from '@/components/UI/BackToLoginButton.vue';
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useUserDataStore } from "@/stores/formData/user.js";
@@ -65,6 +61,7 @@ export default {
     Form,
     BasicInput,
     BasicButton,
+    BackToLoginButton
   },
   computed: {
     ...mapWritableState(useUserDataStore, ["data"]),
