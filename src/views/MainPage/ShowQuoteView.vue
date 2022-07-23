@@ -3,7 +3,7 @@
     <UserNavbar class="absolute"/>
   </div>
 
-  <form-panel :username="username" :avatar="avatar"   form-title="View Quote" link-to="movie-description" :route-param="$route.params.movie">
+  <form-panel :quote-user-id="quoteUserId" :author-username="authorUsername" :author-avatar="authorAvatar" form-title="View Quote" link-to="movie-description" :route-param="$route.params.movie">
     <Form @submit="onSubmit()">
       <div
         class="py-2 my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -34,7 +34,7 @@
       <div class="my-3">
         <p></p>
       </div>
-      <img class="rounded-xl py-2.5 w-full" :src="`http://localhost:8000/${quote.image}`">
+      <img class="rounded-xl py-2.5 w-full" :src="`http://localhost:8000/${quoteImage}`">
     </Form>
     <div class="mt-4">
       <div class="flex justify-around w-32 items-center">
@@ -54,7 +54,7 @@
       <img
         class="rounded-full"
         width="64"
-        :src="'http://localhost:8000/'+avatar"
+        :src="`http://localhost:8000/${currentUserAvatar}`"
         alt="img"
       />
       <div class="ml-5">
@@ -83,8 +83,8 @@ export default {
   data(){
     return {
       quote: [],
-      username: '',
-      avatar: '',
+      authorUsername: '',
+      authorAvatar: '',
       quoteUserId: "",
       userLikedQuote: false,
       likes: [],
@@ -95,7 +95,13 @@ export default {
   computed: {
     ...mapWritableState(useMoviesStore, ["text_en", "text_ka"]),
     ...mapWritableState(useQuotesStore, ["commentText"]),
-    ...mapWritableState(useLocalStorageStore, ["userId"]),
+    ...mapWritableState(useLocalStorageStore, ["userId", "avatar"]),
+    currentUserAvatar() {
+      return localStorage.getItem('avatar')
+    },
+    quoteImage() {
+      return this.quote.image;
+    },
     isLiked(){
       const userLike = this.likes.find((item) => item.user_id == this.userId);
       if(!userLike)
@@ -131,8 +137,8 @@ export default {
           this.comments = res.data.data.comments;
           this.text_en = `"${this.quote.text.en}"`;
           this.text_ka = `"${this.quote.text.ka}"`;
-          this.username = this.quote.user.username;
-          this.avatar = this.quote.user.avatar;
+          this.authorUsername = this.quote.user.username;
+          this.authorAvatar = this.quote.user.avatar;
           this.quoteUserId = this.quote.user.id;
         })
         .catch((err)=> {

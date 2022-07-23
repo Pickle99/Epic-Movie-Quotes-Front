@@ -2,7 +2,7 @@
   <div class="text-white flex justify-center mb-32">
     <div class="bg-[#11101A] w-[43rem] z-10">
       <div class="flex items-center justify-center w-full p-4">
-        <div class="flex justify-start w-1/4">
+        <div v-if="quoteUserId == localUserId"  class="flex justify-start w-1/4 ">
          <div v-if="$route.name === 'edit-quote'" class="flex">
            <img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon" @click="deleteQuote()"/>
            <p class="ml-3 cursor-pointer" @click="deleteQuote()">Delete</p>
@@ -18,6 +18,7 @@
             </div>
           </div>
         </div>
+        <div v-if="quoteUserId != localUserId" class="w-1/4"></div>
         <div class="flex justify-center w-2/4 font-bold">
           <p>{{formTitle}}</p>
         </div>
@@ -30,8 +31,8 @@
       <div class="border-gray-600 border-b-2 w-full"></div>
       <div class="flex p-4">
         <div class="flex items-center">
-            <img width="48" :src="`http://localhost:8000/${avatar || localAvatar}`" alt="img" />
-          <p class="ml-4">{{username || localUser}}</p>
+            <img width="48" :src="`http://localhost:8000/${correctAuthorAvatar}`" alt="img" />
+          <p class="ml-4">{{correctAuthorUsername}}</p>
         </div>
       </div>
       <div class="flex flex-col p-4">
@@ -48,13 +49,15 @@ import axios from "@/config/axios/index.js";
 import { useQuotesStore } from "@/stores/formData/quotes.js";
 export default {
   props: {
-    avatar: {
+    authorAvatar: {
       type: String,
       required: false,
+      default: null,
     },
-    username: {
+    authorUsername: {
       type: String,
       required: false,
+      default: null,
     },
     formTitle: {
       type: String,
@@ -67,7 +70,12 @@ export default {
     routeParam: {
       type: String,
       required: false,
+      default: null,
     },
+    quoteUserId: {
+      type: Number,
+      required: false,
+    }
   },
   computed:{
     ...mapWritableState(useLocalStorageStore, {
@@ -76,6 +84,14 @@ export default {
       localUserId: "userId",
     }),
     ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
+   correctAuthorUsername() {
+      if(this.authorUsername){ return this.authorUsername }
+      else return this.localUser;
+   },
+    correctAuthorAvatar() {
+      if(this.authorAvatar) { return this.authorAvatar }
+      else return this.localAvatar;
+    }
   },
   methods: {
     deleteQuote() {

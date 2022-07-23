@@ -3,7 +3,7 @@
     <UserNavbar class="absolute"/>
   </div>
 
-  <form-panel form-title="Edit Quote" link-to="movie-description" :route-param="$route.params.movie">
+  <form-panel :quote-user-id="quoteUserId" form-title="Edit Quote" link-to="movie-description" :route-param="$route.params.movie">
     <Form v-slot="{ meta }"  @submit="onSubmit()">
       <div
         class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -57,6 +57,7 @@ export default {
   data(){
     return {
     quotes: [],
+      quoteUserId: "",
     }
   },
   computed: {
@@ -97,6 +98,7 @@ export default {
           this.quotes = res.data;
           this.text_en = this.quotes.data.text.en;
           this.text_ka = this.quotes.data.text.ka;
+          this.quoteUserId = this.quotes.data.user.id;
         })
         .catch((err)=> {
           console.log(err)
