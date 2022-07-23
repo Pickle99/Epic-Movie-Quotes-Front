@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <div class="h-screen overflow-scroll snap-y snap-mandatory">
+  <div class="h-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory">
     <div class="snap-start"></div>
     <header class="flex justify-between mx-40 mt-5 items-center">
       <div>
