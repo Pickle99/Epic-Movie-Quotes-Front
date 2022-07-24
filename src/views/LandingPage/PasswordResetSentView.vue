@@ -8,7 +8,7 @@
       </div>
       <h1 class="text-3xl mb-8 font-bold">{{$t('message.check_your_email')}}</h1>
       <span class="text-md mb-8 w-[21rem]">
-       {{$t('message.we_have_sent_you_instructions')}}
+       {{$t('message.we_have_sent_you_instructions')}}.
       </span>
       <a
         href="https://gmail.com"

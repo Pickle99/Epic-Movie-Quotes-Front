@@ -17,6 +17,8 @@ export const useMoviesStore = defineStore("movies", {
       allGenres: [],
       imageForMovie: "",
       genresError: "",
+      movieDescriptionData: "",
+      movieDescriptionQuoteData: "",
     };
   },
   getters: {

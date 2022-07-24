@@ -101,6 +101,9 @@ export default {
         .get("user-movies")
         .then((res) => {
           this.userMovies = res.data.data;
+          this.userMovies.sort((a,b) => {
+            return new Date(b.created_at) - new Date(a.created_at)
+          });
         })
         .catch((err) => { 
           console.log(err);

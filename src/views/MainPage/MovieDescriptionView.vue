@@ -3,7 +3,7 @@
     <MainHeader />
   </div>
   <UserNavbar class="absolute" />
-  <div v-for="movie in movies" :key="movie">
+  <div v-for="movie in movieDescriptionData" :key="movie">
   <div class="ml-96 text-white">
     <h1 class="mt-28 font-bold">Movie description</h1>
     <div class="mt-8 flex">
@@ -78,7 +78,7 @@
       <p>Add Quote</p>
     </RouterLink>
   </div>
-  <div v-for="quote in movie.quotes" :key="quote" class="text-white ml-96 mt-10 w-full w-[50rem] bg-[#07060b] p-4 mb-7 rounded-md">
+  <div v-for="quote in movieDescriptionQuoteData" :key="quote" class="text-white ml-96 mt-10 w-full w-[50rem] bg-[#07060b] p-4 mb-7 rounded-md">
 <div class="flex justify-between">
   <div class="flex items-center">
     <img width="200" :src="`http://localhost:8000/${quote.image}`" alt="img"/>
@@ -110,7 +110,7 @@ import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import QuoteComponent from "@/components/Main/QuoteComponent.vue";
-import {useRequestsStore} from '@/stores/requests.js'
+import {useMoviesStore} from '@/stores/formData/movies.js'
 import { mapWritableState } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 export default {
@@ -119,7 +119,7 @@ export default {
     this.getMovieDescription();
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["movies"]),
+    ...mapWritableState(useMoviesStore, ["movieDescriptionData", "movieDescriptionQuoteData"]),
     ...mapWritableState(useLocalStorageStore, ["userId"]),
   },
   methods: {
@@ -136,7 +136,11 @@ export default {
       axios
         .post(`movie/${this.$route.params.movie}`)
         .then((res) => {
-          this.movies = res.data;
+          this.movieDescriptionData = res.data;
+          this.movieDescriptionQuoteData = this.movieDescriptionData.data.quotes;
+          this.movieDescriptionQuoteData.sort((a,b) => {
+            return new Date(b.created_at) - new Date(a.created_at);
+          });
         })
         .catch((err) => {
           console.log(err);

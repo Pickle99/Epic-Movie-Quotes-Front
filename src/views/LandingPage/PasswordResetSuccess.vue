@@ -6,13 +6,13 @@
       <div class="mb-10">
         <img src="@/assets/images/activated.png" alt="img" />
       </div>
-      <h1 class="text-3xl mb-8">Thank You!</h1>
-      <p class="text-md mb-8">Your password was successfully reset.</p>
+      <h1 class="text-3xl mb-8">{{$t('message.success')}}!</h1>
+      <p class="text-md mb-8">{{$t('message.your_password_reset_success')}}.</p>
       <button
         class="px-32 rounded-md py-1.5 text-md bg-[#E31221]"
         @click="redirect()"
       >
-        Let's login!
+        {{$t('message.lets_login')}}!
       </button> 
     </div>
   </blur-panel>

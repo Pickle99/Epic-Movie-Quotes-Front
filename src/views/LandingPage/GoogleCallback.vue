@@ -1,6 +1,6 @@
 <template>
  <div class="flex h-screen w-screen items-center justify-center">
-   <p class="text-white text-3xl">Please wait . . .</p>
+   <p class="text-white text-3xl">{{ $t('message.redirecting') }}</p>
  </div>
 </template>
 

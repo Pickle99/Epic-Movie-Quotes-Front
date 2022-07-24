@@ -6,13 +6,13 @@
       <div class="mb-10">
         <img src="@/assets/images/activated.png" alt="img" />
       </div>
-      <h1 class="text-3xl mb-8">Thank You!</h1>
-      <p class="text-md mb-8">Your account has been activated.</p>
+      <h1 class="text-3xl mb-8">{{$t('message.thank_you')}}!</h1>
+      <p class="text-md mb-8">{{$t('message.your_account_has_been_activated')}}.</p>
       <button
         class="px-32 rounded-md py-1.5 text-md bg-[#E31221]"
         @click="redirect()"
       >
-        Go to my news feed
+        {{$t('message.go_to_my_news_feed')}}
       </button>
     </div>
   </blur-panel>
