@@ -5,7 +5,7 @@
   <UserNavbar class="absolute" />
  <div v-if="created_at">
    <div class="mt-10 text-white flex justify-center">
-     <Form v-slot="{ meta }" as="div" class="flex flex-col">
+     <Form v-slot="{ meta }" class="flex flex-col" @submit="onSubmit()">
        <div class="w-[50rem] mt-5">
          <h1 class="text-2xl font-bold">My profile</h1>
        </div>
@@ -15,7 +15,6 @@
           <ProfileImageUpload @change="selectedFile"/>
          </div>
          <div class="mt-36">
-           <Form>
              <div class="w-[30rem] text-black">
                <basic-input
                  name="username"
@@ -36,13 +35,12 @@
                  label-name="message.password"
                />
              </div>
-           </Form>
          </div>
        </div>
 
        <div class="flex justify-end w-full mt-7">
          <div>
-           <basic-button :is-disabled="!meta.valid" class="p-5" @click="handleUpdateUser()">Save changes</basic-button>
+           <basic-button :is-disabled="!meta.valid" class="p-5">Save changes</basic-button>
          </div>
        </div>
      </Form>
@@ -100,14 +98,13 @@ export default {
           })
           .catch((err) => console.log(err))
       },
-    handleUpdateUser(){
+    onSubmit(){
       axios
         .post('user/'+this.localUserId+'/update', this.profileUpdateData)
         .then((res) => {
           this.user = res.data.data;
           localStorage.setItem("username", this.user.username);
           localStorage.setItem("avatar", this.user.avatar);
-          this.data.password = "";
           window.location.href = 'http://localhost:3000/profile';
         })
         .catch((err) => console.log(err));
