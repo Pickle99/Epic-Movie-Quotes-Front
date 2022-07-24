@@ -4,11 +4,10 @@
     <p class="text-[#DC3545]">*</p>
   </div>
   <Field
-    v-slot="{ meta, field, resetField }"
+    v-slot="{ meta, field}"
+    v-model="data[name]"
     :name="name"
     :rules="rules"
-    :value="data.name"
-    @input="updateField(name, $event.target.value)"
   >
     <div
       class="bg-[#CED4DA] mb-2 flex items-center w-full rounded-md"
@@ -58,7 +57,6 @@
 <script>
 import { Field, ErrorMessage } from "vee-validate";
 import { useUserDataStore } from "@/stores/formData/user.js";
-import { mapActions } from "pinia";
 import { mapWritableState } from "pinia";
 export default {
   components: {
@@ -70,11 +68,13 @@ export default {
       focused: false,
     };
   },
-  methods: {
-    ...mapActions(useUserDataStore, ["updateField"]),
-  },
   computed: {
-    ...mapWritableState(useUserDataStore, ["data"]),
+    ...mapWritableState(useUserDataStore, ["data", "username"]),
+  },
+  methods: {
+    resetField(){
+      this.data[this.name] = "";
+    },
   },
 
   props: {

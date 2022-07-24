@@ -5,10 +5,9 @@
   </div>
   <Field
     v-slot="{ meta, field }"
+    v-model="data[name]"
     :name="name"
     :rules="rules"
-    :value="data.name"
-    @input="updateField(name, $event.target.value)"
   >
     <div class="bg-[#CED4DA] mb-2 flex items-center w-full rounded-md">
       <input

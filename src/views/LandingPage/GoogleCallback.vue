@@ -11,7 +11,7 @@ import { useRequestsStore } from "@/stores/requests.js";
 import { mapWritableState } from "pinia";
 export default {
   computed: {
-    ...mapWritableState(useRequestsStore, ["user"])
+    ...mapWritableState(useRequestsStore, ["user", "currentUser"])
   },
   mounted(){
     this.handleCallback()

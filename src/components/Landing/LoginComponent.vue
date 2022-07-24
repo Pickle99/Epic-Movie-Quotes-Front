@@ -96,7 +96,7 @@ export default {
     };
   },
   computed: {
-    ...mapWritableState(useUserDataStore, ["data"]),
+    ...mapWritableState(useUserDataStore, ["data", "currentUser"]),
     ...mapWritableState(useRequestsStore, ["user"]),
   },
   methods: {
