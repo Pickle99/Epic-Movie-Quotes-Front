@@ -127,13 +127,11 @@ export default {
   {
     window.Echo.channel('addLike.' + this.quoteId)
       .listen('AddLike', (like) => {
-        this.userLikedQuote = true;
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
           currentQuote.likes.push(like);
       });
     window.Echo.channel('removeLike.' + this.quoteId)
       .listen('RemoveLike', () => {
-        this.userLikedQuote = false;
         const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
         currentQuote.likes.shift();
       });
@@ -148,7 +146,8 @@ export default {
       this.isCommentsVisible = !this.isCommentsVisible
     },
    handleAddOrRemoveLike() {
-     axios
+     this.userLikedQuote = !this.userLikedQuote;
+      axios
        .get('quote/'+this.quoteId+'/add-like')
        .catch((err) => {
          console.log(err);
