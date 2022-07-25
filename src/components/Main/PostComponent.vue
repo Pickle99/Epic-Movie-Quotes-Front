@@ -146,7 +146,9 @@ export default {
       this.isCommentsVisible = !this.isCommentsVisible
     },
    handleAddOrRemoveLike() {
-     this.userLikedQuote = !this.userLikedQuote;
+     if(!this.isLiked){
+        this.userLikedQuote = true;
+     } else  this.userLikedQuote = false;
       axios
        .get('quote/'+this.quoteId+'/add-like')
        .catch((err) => {
