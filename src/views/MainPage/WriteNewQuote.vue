@@ -10,7 +10,7 @@
           name="text_en"
           placeholder="Start create new quote"
           class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-          rules="required"
+          rules="required|eng"
         />
         <p class="text-[#6C757D]">Eng</p>
       </div>
@@ -25,7 +25,7 @@
           name="text_ka"
           placeholder="ახალი ციტატა"
           class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-          rules="required"
+          rules="required|geo"
         />
         <p class="text-[#6C757D]">ქარ</p>
       </div>
@@ -72,9 +72,9 @@ export default {
   },
   methods: {
     handleGetMovies(){
-      axios.get('all-movies')
+      axios.get('user-movies')
         .then((res) => {
-          this.allUsersMovies = res.data;
+          this.allUsersMovies = res.data.data;
         })
         .catch((err) => {
           console.log(err)

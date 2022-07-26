@@ -69,8 +69,9 @@
     </div>
   </div>
   <div class="text-white ml-96 mt-8 flex items-center">
-    <p class="border-r-2 pr-5 py-1 border-gray-800 mr-5">Quotes ({{movie.quotes.length}})</p>
+    <p :class="movie.user_id == userId ? 'border-r-2 pr-5 py-1 border-gray-800 mr-5' : 'pr-5 py-1 mr-5'">Quotes ({{movie.quotes.length}})</p>
     <RouterLink
+v-if="movie.user_id == userId"
       :to="{ name: 'add-quote' }"
       class="flex items-center bg-[#E31221] p-2 rounded-md"
     >

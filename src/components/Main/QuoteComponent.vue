@@ -27,8 +27,8 @@
 <script>
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
-import { useRequestsStore } from "@/stores/requests.js";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
+import { useMoviesStore } from "@/stores/formData/movies.js";
 export default {
   props:{
     quoteUserId: {
@@ -41,7 +41,7 @@ export default {
     },
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["movies"]),
+    ...mapWritableState(useMoviesStore, ["movieDescriptionQuoteData"]),
       ...mapWritableState(useLocalStorageStore, ["userId"]),
   },
   data() {
@@ -55,7 +55,7 @@ export default {
     },
     deleteQuote() {
       axios.delete(`quote/${this.quoteId}/delete`).then(() => {
-        this.movies.data.quotes = this.movies.data.quotes.filter((item) => {
+        this.movieDescriptionQuoteData = this.movieDescriptionQuoteData.filter((item) => {
           return item.id !== this.quoteId;
         });
       })
