@@ -118,6 +118,8 @@ export default {
           password: this.data.password,
         })
         .then((response) => {
+          this.data.user = "";
+          this.data.password = "";
           setJwtToken(response.data.access_token, response.data.expires_in);
           this.user = response.data.user;
           localStorage.setItem("username", this.user.username);
@@ -126,6 +128,7 @@ export default {
           this.$router.push({ name: "feed" });
         })
         .catch((error) => {
+          this.data.password = "";
           this.error = error.response.data.error;
           clearTimeout(this.timeOut);
           this.timeOut = setTimeout(() => {

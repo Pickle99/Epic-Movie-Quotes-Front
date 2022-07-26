@@ -15,6 +15,7 @@
       @mouseenter="focused = true"
     >
       <input
+        :disabled="!isDisabled"
         :class="
           meta.touched
             ? meta.valid && !error
@@ -28,7 +29,7 @@
       />
       <div class="-ml-10 mr-3">
         <img
-          v-if="focused"
+          v-if="focused && isDisabled"
           src="@/assets/icons/close.svg"
           alt="img"
           @click="resetField()"
@@ -98,6 +99,11 @@ export default {
       type: String,
       required: false,
     },
+    isDisabled: {
+      type: Boolean,
+      required: false,
+      default: true,
+    }
   },
 };
 </script>

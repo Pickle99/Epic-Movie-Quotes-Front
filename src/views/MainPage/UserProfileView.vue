@@ -5,7 +5,7 @@
   <UserNavbar class="absolute" />
  <div v-if="created_at">
    <div class="mt-10 text-white flex justify-center">
-     <Form v-slot="{ meta }" class="flex flex-col" @submit="onSubmit()">
+     <Form class="flex flex-col" @submit="onSubmit()">
        <div class="w-[50rem] mt-5">
          <h1 class="text-2xl font-bold">My profile</h1>
        </div>
@@ -19,28 +19,40 @@
                <basic-input
                  name="username"
                  placeholder="message.at_least_3_max_15"
-                 rules="required|min:3|max:15|alpha_lower"
+                 rules="min:3|max:15|alpha_lower"
                  label-name="message.username"
                />
                <basic-input
+                 :is-disabled="provider === null ? true : false"
                  name="email"
                  placeholder="message.enter_your_email"
-                 rules="required|email"
+                 rules="email"
                  label-name="message.email"
                />
-               <password-input
-                 name="password"
-                 placeholder="message.password"
-                 rules="required|min:8|max:15"
-                 label-name="message.password"
-               />
+
+               <p class="mb-4 text-[#0D6EFD] underline cursor-pointer w-fit" @click="showHidePasswordChange">Change password</p>
+
+               <div v-if="provider === null && isChangePasswordVisible">
+                 <password-input
+                   name="password"
+                   placeholder="message.password"
+                   rules="min:8|max:15"
+                   label-name="message.password"
+                 />
+                 <password-input
+                   name="password_confirmation"
+                   placeholder="message.confirm_password"
+                   rules="confirmed:@password"
+                   label-name="message.confirm_password"
+                 />
+               </div>
              </div>
          </div>
        </div>
 
        <div class="flex justify-end w-full mt-7">
          <div>
-           <basic-button :is-disabled="!meta.valid" class="p-5">Save changes</basic-button>
+           <basic-button class="p-5 mb-16">Save changes</basic-button>
          </div>
        </div>
      </Form>
@@ -70,6 +82,11 @@ export default {
     BasicButton,
     BasicInput,
   },
+  data(){
+    return {
+    isChangePasswordVisible: false,  
+    }
+  },
   created() {
     this.handleGetUserData()
   },
@@ -98,6 +115,9 @@ export default {
           })
           .catch((err) => console.log(err))
       },
+    showHidePasswordChange(){
+      this.isChangePasswordVisible = !this.isChangePasswordVisible
+    },
     onSubmit(){
       axios
         .post('user/'+this.localUserId+'/update', this.profileUpdateData)

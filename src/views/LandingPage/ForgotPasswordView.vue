@@ -81,6 +81,7 @@ export default {
           this.$router.push({ name: "password-reset-sent" });
         })
         .catch((error) => {
+          this.isLoading = false;
           this.data.error = error.response.data.error;
           setTimeout(() => {
             this.data.error = "";

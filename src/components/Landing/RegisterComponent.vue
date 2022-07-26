@@ -116,8 +116,13 @@ export default {
         .then(() => {
           this.isLoading = false;
           this.$router.push({ name: "email-sent" });
+          this.data.email = "";
+          this.data.username = "";
+          this.data.password = "";
+          this.data.password_confirmation = "";
         })
         .catch((error) => {
+          this.isLoading = false;
           this.data.error = error.response.data.error;
           setTimeout(() => {
             this.data.error = "";
