@@ -13,7 +13,9 @@ export default {
 </script>
 
 <template>
-  <div class="h-screen overflow-y-scroll overflow-x-hidden md:snap-mandatory md:snap-y">
+  <div
+:class="$route.name === 'landing' ? 'h-screen overflow-y-scroll overflow-x-hidden md:snap-mandatory md:snap-y' : 
+'hidden md:block h-screen overflow-y-scroll overflow-x-hidden md:snap-mandatory md:snap-y'">
     <div class="snap-start"></div>
     <header class="flex justify-between mx-3 md:mx-40 mt-5 items-center">
       <div>

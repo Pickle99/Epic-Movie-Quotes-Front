@@ -5,6 +5,10 @@ module.exports = {
       fontFamily: {
         monsterrat: "'Monsterrat', sans-serif",
       },
+      screens: {
+        'xss': '300px',
+        'xs' : '500px',
+      }
     },
   },
   plugins: [],

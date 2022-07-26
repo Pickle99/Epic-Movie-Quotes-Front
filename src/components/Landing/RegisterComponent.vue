@@ -1,10 +1,10 @@
 <template>
-<div class="flex justify-center">
+<div class="flex justify-center overflow-hidden md:overflow-visible">
   <OnClickOutside class="w-fit" @trigger="close">
-    <blur-panel>
+    <blur-panel class="h-screen md:h-fit">
       <Form v-slot="{ meta }" as="div" class="flex flex-col" @submit="onSubmit">
         <div class="text-center mb-8">
-          <h1 class="text-white text-4xl">
+          <h1 class="text-white text-xl md:text-4xl">
             {{ $t("message.create_an_account") }}
           </h1>
           <p class="text-[#6C757D] mt-3">
@@ -13,7 +13,7 @@
         </div>
         <form>
           {{ data.error }}
-          <div class="w-[30rem]">
+          <div class="w-screen px-5 md:w-[30rem]">
             <basic-input
               name="username"
               placeholder="message.at_least_3_max_15"
@@ -39,11 +39,13 @@
               label-name="message.confirm_password"
             />
           </div>
-          <basic-button :is-disabled="!meta.valid"
-          >{{ $t("message.get_started") }}
-          </basic-button>
+         <div class="mx-5">
+           <basic-button class="w-full" :is-disabled="!meta.valid"
+           >{{ $t("message.get_started") }}
+           </basic-button>
+         </div>
         </form>
-        <div class="flex flex-col">
+        <div class="flex flex-col mx-5">
           <button
             class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
             @click="google()"

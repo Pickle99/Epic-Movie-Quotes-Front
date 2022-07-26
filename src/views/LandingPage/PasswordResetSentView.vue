@@ -1,5 +1,5 @@
 <template>
-  <blur-panel>
+  <blur-panel class="h-fit mt-24">
     <div
       class="flex flex-col justify-center items-center text-center text-white"
     >
@@ -13,7 +13,7 @@
       <a
         href="https://gmail.com"
         target="_blank"
-        class="px-32 rounded-md py-1.5 text-md bg-[#E31221]"
+        class="md:px-32 px-24 rounded-md py-1.5 text-md bg-[#E31221]"
       >
         {{$t('message.go_to_my_email')}}
       </a>

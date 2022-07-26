@@ -1,7 +1,7 @@
 <template>
-  <blur-panel>
+  <blur-panel class="h-screen overflow-hidden md:h-fit ">
     <div class="text-center mb-7">
-      <h1 class="text-white text-4xl mb-5">
+      <h1 class="text-white mt-24 md:mt-0 text-4xl mb-5">
         {{ $t("message.create_new_password") }}
       </h1>
       <p class="text-[#6C757D] w-[22rem]">
@@ -10,7 +10,7 @@
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
       <p class="text-red-500 mb-3">{{ data.error }}</p>
-      <div class="w-[23rem]">
+      <div class="md:w-[23rem]">
         <password-input
           name="password"
           placeholder="message.at_least_8_max_15"
@@ -25,7 +25,7 @@
         />
       </div>
 
-      <basic-button :is-disabled="!meta.valid">{{
+      <basic-button class="w-full" :is-disabled="!meta.valid">{{
         $t("message.reset_password")
       }}</basic-button>
     </Form>

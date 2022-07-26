@@ -1,15 +1,15 @@
 <template>
-  <blur-panel>
+  <blur-panel class="h-screen overflow-hidden md:h-fit">
     <div class="text-center mb-7">
-      <h1 class="text-white text-4xl mb-5">
+      <h1 class="text-white mt-24 md:mt-0 text-xl md:text-4xl mb-5">
         {{ $t("message.forgot_password_no_problem") }}
       </h1>
-      <p class="text-[#6C757D] w-[24rem]">
+      <p class="text-[#6C757D] text-sm md:text-xl px-5 md:px-0 w-[24rem]">
         {{ $t('message.enter_the_email_and_we_will_send_instructions')}}
       </p>
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
-      <div>
+      <div class="mx-5 md:mx-0">
         <basic-input
           name="forgot_password"
           placeholder="message.enter_your_email"
@@ -18,7 +18,7 @@
         />
       </div>
       <div class="flex justify-center flex-col">
-        <basic-button :is-disabled="!meta.valid">{{
+        <basic-button class="mx-5 md:mx-0" :is-disabled="!meta.valid">{{
           $t("message.send_instructions")
         }}</basic-button>
         <div v-if="isLoading" class="flex justify-center">

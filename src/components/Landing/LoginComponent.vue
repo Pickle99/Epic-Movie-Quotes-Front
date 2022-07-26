@@ -1,15 +1,15 @@
 <template>
-  <div class="flex justify-center">
+  <div class="flex justify-center overflow-hidden md:overflow-visible">
   <OnClickOutside class="w-fit" @trigger="close()">
-    <blur-panel>
+    <blur-panel class="h-screen md:h-fit">
       <div class="text-center mb-7">
-        <h1 class="text-white text-4xl mb-5">
+        <h1 class="text-white text-xl md:text-3xl mt-10 md:mt-0 md:text-4xl mb-5">
           {{ $t("message.log_in_to_acc") }}
         </h1>
-        <p class="w-96 text-[#6C757D]">{{ $t("message.welcome_back") }}</p>
+        <p class="w-96 text-sm md:text-xl text-[#6C757D]">{{ $t("message.welcome_back") }}</p>
       </div>
       <Form v-slot="{ meta }" @submit="onSubmit()">
-        <div>
+        <div class="mx-4">
           <p class="text-red-500 text-center">
             {{ error }}
           </p>
@@ -28,7 +28,7 @@
             :error="error"
           />
         </div>
-        <div class="text-sm flex justify-between">
+        <div class="text-sm flex justify-between mx-4">
           <div class="flex items-center">
             <input v-model="data.remember_token" type="checkbox" />
             <p class="text-white ml-2">{{ $t("message.remember_me") }}</p>
@@ -40,7 +40,7 @@
             {{ $t("message.forgot_password") }}</RouterLink
           >
         </div>
-        <div class="flex justify-center flex-col">
+        <div class="flex justify-center flex-col mx-4">
           <basic-button class="mt-5" :is-disabled="!meta.valid">{{
               $t("message.sign_in")
             }}</basic-button>

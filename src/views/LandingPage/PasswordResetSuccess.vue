@@ -1,5 +1,5 @@
 <template>
-  <blur-panel>
+  <blur-panel class="mt-24">
     <div
       class="flex flex-col justify-center px-4 items-center text-center text-white"
     >
@@ -9,7 +9,7 @@
       <h1 class="text-3xl mb-8">{{$t('message.success')}}!</h1>
       <p class="text-md mb-8">{{$t('message.your_password_reset_success')}}.</p>
       <button
-        class="px-32 rounded-md py-1.5 text-md bg-[#E31221]"
+        class="md:px-32 px-24 rounded-md py-1.5 text-md bg-[#E31221]"
         @click="redirect()"
       >
         {{$t('message.lets_login')}}!
