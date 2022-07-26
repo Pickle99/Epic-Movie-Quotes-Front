@@ -14,7 +14,7 @@ class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border
          name="text_en"
          placeholder="Start create new quote"
          class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-         rules="required"
+         rules="required|eng"
        />
        <p class="text-[#6C757D]">Eng</p>
      </div>
@@ -28,7 +28,7 @@ class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border
          name="text_ka"
          placeholder="ახალი ციტატა"
          class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-         rules="required"
+         rules="required|geo"
        />
        <p class="text-[#6C757D]">ქარ</p>
      </div>

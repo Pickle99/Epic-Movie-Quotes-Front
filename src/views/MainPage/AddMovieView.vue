@@ -9,7 +9,7 @@
          name="title_en"
          placeholder="Movie name"
          class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
-         rules="required"
+         rules="required|eng"
        />
        <p class="text-[#6C757D]">Eng</p>
      </div>
@@ -22,7 +22,7 @@
          name="title_ka"
          placeholder="ფილმის სახელი"
          class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
-         rules="required"
+         rules="required|geo"
        />
        <p class="text-[#6C757D]">ქარ</p>
      </div>
@@ -63,7 +63,7 @@
          name="director_en"
          placeholder="Director"
          class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
-         rules="required"
+         rules="required|eng"
        />
        <p class="text-[#6C757D]">Eng</p>
      </div>
@@ -76,7 +76,7 @@
          name="director_ka"
          placeholder="რეჟისორი"
          class="bg-[#11101A] outline-0 w-full m-1.5 placeholder-white"
-         rules="required"
+         rules="required|geo"
        />
        <p class="text-[#6C757D]">ქარ</p>
      </div>
@@ -118,7 +118,7 @@
          name="description_en"
          placeholder="Movie description"
          class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-         rules="required"
+         rules="required|eng"
        />
        <p class="text-[#6C757D]">Eng</p>
      </div>
@@ -132,7 +132,7 @@
          name="description_ka"
          placeholder="ფილმის აღწერა"
          class="resize-none bg-[#11101A] outline-0 w-full placeholder-white"
-         rules="required"
+         rules="required|geo"
        />
        <p class="text-[#6C757D]">ქარ</p>
      </div>
