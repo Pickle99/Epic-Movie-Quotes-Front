@@ -15,14 +15,14 @@ defineRule("alpha_lower", (value, _, name) => {
 });
 
 defineRule("geo", (value) => {
-  if (!(/^[ა-ჰ]+$/.test(value))) {
+  if (!(/^[ა-ჰ ]+$/.test(value))) {
     return `This field must contain only Georgian letters`;
   }
   return true;
 });
 
 defineRule("eng", (value) => {
-  if (!(/^[A-Za-z]+$/.test(value))) {
+  if (!(/^[A-Za-z ]+$/.test(value))) {
     return `This field must contain only English letters`;
   }
   return true;

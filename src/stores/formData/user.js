@@ -11,6 +11,7 @@ export const useUserDataStore = defineStore("user", {
         password_confirmation: "",
         forgot_password: "",
         avatar: "",
+        remember_token: false,
       },
       provider: "",
       created_at: "",

@@ -77,13 +77,13 @@ export default {
 
       axios
         .post("quote/"+this.$route.params.quote+"/update", this.editQuoteData, {
-          headers: { 
+          headers: {
             "Content-Type": "multipart/form-formData",
           },
         })
         .then(() => {
           this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie} });
-          this.writeQuoteResetFields;
+          this.writeQuoteResetFields();
         })
         .catch((err) => {
           console.log(err)

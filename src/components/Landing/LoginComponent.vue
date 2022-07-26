@@ -30,7 +30,7 @@
         </div>
         <div class="text-sm flex justify-between">
           <div class="flex items-center">
-            <input type="checkbox" />
+            <input v-model="data.remember_token" type="checkbox" />
             <p class="text-white ml-2">{{ $t("message.remember_me") }}</p>
           </div>
           <RouterLink
@@ -78,7 +78,6 @@ import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import { mapWritableState } from "pinia";
 import { useUserDataStore } from "@/stores/formData/user.js";
-import { useRequestsStore } from "@/stores/requests.js";
 import { OnClickOutside } from '@vueuse/components'
 export default {
   components: {
@@ -97,7 +96,6 @@ export default {
   },
   computed: {
     ...mapWritableState(useUserDataStore, ["data", "currentUser"]),
-    ...mapWritableState(useRequestsStore, ["user"]),
   },
   methods: {
     close(){
@@ -114,17 +112,18 @@ export default {
     onSubmit() {
       axios
         .post("login", {
-          email: this.data.user,
+          user: this.data.user,
           password: this.data.password,
+          remember_token: this.data.remember_token,
         })
         .then((response) => {
+          setJwtToken(response.data.access_token, response.data.expires_in);
+          localStorage.setItem("username", response.data.user.username);
+          localStorage.setItem("avatar", response.data.user.avatar);
+          localStorage.setItem("userId", response.data.user.id);
           this.data.user = "";
           this.data.password = "";
-          setJwtToken(response.data.access_token, response.data.expires_in);
-          this.user = response.data.user;
-          localStorage.setItem("username", this.user.username);
-          localStorage.setItem("avatar", this.user.avatar);
-          localStorage.setItem("userId", this.user.id);
+          this.data.remember_token = false;
           this.$router.push({ name: "feed" });
         })
         .catch((error) => {
