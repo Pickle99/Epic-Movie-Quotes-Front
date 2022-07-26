@@ -5,18 +5,18 @@
   <RouterLink :to="{name: 'show-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="flex items-center ml-5">
     <img class="hover:cursor-pointer" src="@/assets/icons/eye.svg" alt="icon"/>
     <div>
-      <p class="text-sm ml-3 hover:cursor-pointer">View Post</p>
+      <p class="text-sm ml-3 hover:cursor-pointer">{{$t('message.view_post')}}</p>
     </div>
   </RouterLink>
 
   <div v-if="quoteUserId == userId">
     <RouterLink  :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="flex items-center ml-5 my-7 w-fit">
       <img src="@/assets/icons/pen.svg" alt="icon"/>
-      <p :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="text-sm ml-3">Edit</p>
+      <p :to="{name: 'edit-quote', params: {movie: $route.params.movie, quote:quoteId }}" class="text-sm ml-3">{{$t('message.edit')}}</p>
     </RouterLink>
     <div  class="flex items-center ml-5 w-fit cursor-pointer" @click="deleteQuote()">
       <img src="@/assets/icons/trash.svg" alt="icon"/>
-      <p class="text-sm ml-3">Delete</p>
+      <p class="text-sm ml-3">{{$t('message.delete')}}</p>
     </div>
   </div>
 </div>

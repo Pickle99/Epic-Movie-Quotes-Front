@@ -12,7 +12,7 @@
       </div>
       <div>
         <p>{{ username }}</p>
-        <p class="text-sm text-gray-400">Edit your profile</p>
+        <p class="text-sm text-gray-400">{{$t('message.edit_your_profile')}}</p>
       </div>
     </RouterLink>
 
@@ -22,7 +22,7 @@
         <img v-if="$route.name === 'feed'" src="@/assets/icons/house-red.svg" />
       </div>
       <div>
-        <p>News feed</p>
+        <p>{{$t('message.news_feed')}}</p>
       </div>
     </RouterLink>
     <RouterLink :to="{ name: 'movies' }" class="flex items-center">
@@ -31,7 +31,7 @@
         <img v-if="$route.name === 'movies'"  src="@/assets/icons/camera-red.svg" />
       </div>
       <div>
-        <p>List of movies</p>
+        <p>{{$t('message.list_of_movies')}}</p>
       </div>
     </RouterLink>
   </nav>

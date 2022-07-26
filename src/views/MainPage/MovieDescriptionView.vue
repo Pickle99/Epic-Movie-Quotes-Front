@@ -5,7 +5,7 @@
   <UserNavbar class="absolute" />
   <div v-for="movie in movieDescriptionData" :key="movie">
   <div class="ml-96 text-white">
-    <h1 class="mt-28 font-bold">Movie description</h1>
+    <h1 class="mt-28 font-bold">{{$t('message.movie_description')}}</h1>
     <div class="mt-8 flex">
       <div>
         <img
@@ -43,8 +43,8 @@
         <div class="ml-3">
           <article class="flex font-bold">
             <div>
-              <p class="text-sm mt-5">Director:</p>
-              <p class="text-sm mt-5">Budget:</p>
+              <p class="text-sm mt-5">{{$t('message.director')}}:</p>
+              <p class="text-sm mt-5">{{$t('message.budget')}}:</p>
             </div>
             <div class="ml-3">
               <p class="text-sm mt-5">
@@ -69,14 +69,14 @@
     </div>
   </div>
   <div class="text-white ml-96 mt-8 flex items-center">
-    <p :class="movie.user_id == userId ? 'border-r-2 pr-5 py-1 border-gray-800 mr-5' : 'pr-5 py-1 mr-5'">Quotes ({{movie.quotes.length}})</p>
+    <p :class="movie.user_id == userId ? 'border-r-2 pr-5 py-1 border-gray-800 mr-5' : 'pr-5 py-1 mr-5'">{{$t('message.quotes')}} ({{movie.quotes.length}})</p>
     <RouterLink
 v-if="movie.user_id == userId"
       :to="{ name: 'add-quote' }"
       class="flex items-center bg-[#E31221] p-2 rounded-md"
     >
       <img class="mr-2" src="@/assets/icons/plus.svg" alt="img" />
-      <p>Add Quote</p>
+      <p>{{$t('message.add_quote')}}</p>
     </RouterLink>
   </div>
   <div v-for="quote in movieDescriptionQuoteData" :key="quote" class="text-white ml-96 mt-10 w-full w-[50rem] bg-[#07060b] p-4 mb-7 rounded-md">

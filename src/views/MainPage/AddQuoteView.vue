@@ -3,7 +3,7 @@
     <UserNavbar class="absolute"/>
   </div>
 
- <form-panel form-title="Add Quote" link-to="movie-description" :route-param="$route.params.movie">
+ <form-panel :form-title="$t('message.add_quote')" link-to="movie-description" :route-param="$route.params.movie">
    <Form v-slot="{ meta }"  @submit="onSubmit()">
      <div
 class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -48,7 +48,7 @@ class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border
        </div>
      </div>
      <div class="flex justify-center mt-5">
-       <basic-button :is-disabled="!meta.valid">Add Quote</basic-button>
+       <basic-button :is-disabled="!meta.valid">{{$t('message.add_quote')}}</basic-button>
      </div>
    </Form>
  </form-panel>

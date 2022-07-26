@@ -5,12 +5,12 @@
   </div>
   <div class="ml-3 flex flex-col h-32 justify-around">
     <div class="flex">
-      <p>Movie name: {{$i18n.locale === 'en' ? name.en : name.ka}} </p>
+      <p>{{$t('message.movie_name')}}: {{$i18n.locale === 'en' ? name.en : name.ka}} </p>
       <p v-if="year" class="ml-3">({{year}})</p>
     </div>
     <p>Director: {{$i18n.locale === 'en' ? director.en : director.ka}}</p>
     <p class="text-xs">Posted By: {{userName}}</p>
-    <p v-if="chosenMovie" class="text-green-500 text-xs">Selected :) (click again here to change)</p>
+    <p v-if="chosenMovie" class="text-green-500 text-xs">{{$t('message.selected')}}</p>
   </div>
 </div>
 </template>

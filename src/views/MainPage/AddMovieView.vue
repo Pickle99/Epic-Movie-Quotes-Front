@@ -1,5 +1,5 @@
 <template>
- <form-panel form-title="Add Movie" link-to="movies">
+ <form-panel :form-title="$t('message.add_movie')" link-to="movies">
    <Form v-slot="{ meta }" @submit="onSubmit()">
      <div
        class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -140,7 +140,7 @@
      <ImageUpload @drop.prevent="drop" @change="selectedFile" />
      <p>{{ imageForMovie.name }}</p>
      <div class="flex justify-center mt-5">
-       <movie-form-button :genres="userSelectedGenres.length" :is-disabled="!meta.valid">Add Movie</movie-form-button>
+       <movie-form-button :genres="userSelectedGenres.length" :is-disabled="!meta.valid">{{$t('message.add_movie')}}</movie-form-button>
      </div>
    </Form>
  </form-panel>

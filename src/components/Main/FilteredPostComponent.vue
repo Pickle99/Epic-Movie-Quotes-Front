@@ -49,7 +49,7 @@
             <input
               v-model="commentText"
               class="bg-[#24222F] w-[37.5rem] pl-5 py-3 text-[#CED4DA] rounded-md"
-              placeholder="Write a comment"
+              :placeholder="$t('message.write_a_comment')"
               @keydown.enter="handleAddComment"
             />
           </div>

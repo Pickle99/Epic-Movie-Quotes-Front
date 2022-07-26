@@ -11,7 +11,7 @@
       <label
         for="image"
         class="text-white cursor-pointer"
-      >Upload Photo</label
+      >{{$t('message.upload_photo')}}</label
       >
       <Field
         id="image"
@@ -19,7 +19,7 @@
         name="image"
         class="image bg-[#11101A] outline-0 w-full placeholder-white hidden"
         rules="required"
-        placeholder="drag and drop"
+        :placeholder="$t('message.drag_and_drop')"
       />
     </div>
     <ErrorMessage name="image" class="text-red-500" />

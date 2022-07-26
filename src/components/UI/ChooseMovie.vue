@@ -9,7 +9,7 @@ class="p-4 cursor-pointer my-2 bg-black flex items-center px-4 justify-between"
     <p
       for="image"
       class="text-white"
-    >Choose Movie</p>
+    >{{$t('message.choose_movie')}}</p>
   </div>
       <div>
         <img src="@/assets/icons/arrow-down.svg" alt="icon"/>

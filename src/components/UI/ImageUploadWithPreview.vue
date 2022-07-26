@@ -4,7 +4,7 @@
     <label for="image" class="cursor-pointer flex items-center flex-col absolute bg-[#191725] w-fit p-3 rounded-md bg-opacity-70">
       <img src="@/assets/icons/photo.svg" alt="svg"/>
       <Field id="image" type="file" name="image" class="hidden image" @change="fileChange"/>
-      <p>Change Photo</p>
+      <p>{{$t('message.change_photo')}}</p>
     </label>
   </div>
 </template>

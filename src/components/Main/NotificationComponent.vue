@@ -3,8 +3,8 @@
     <div class="absolute mt-3 -ml-5"><img src="@/assets/icons/triangle.svg" alt="svg"/></div>
     <div class="rounded-md max-h-[40rem] overflow-y-scroll p-7 text-white text-xl w-[60rem] bg-black absolute mt-8 -ml-[37rem]">
       <div class="flex justify-between items-center mb-7">
-        <h1 class="text-2xl font-bold">Notifications</h1>
-        <p class="underline text-sm cursor-pointer" @click="handleMarkNotificationsAsAllRead">Mark as all read</p>
+        <h1 class="text-2xl font-bold">{{$t('message.notifications')}}</h1>
+        <p class="underline text-sm cursor-pointer" @click="handleMarkNotificationsAsAllRead">{{$t('message.mark_as_all_read')}}</p>
       </div>
       <NotificationFromComponent
         v-for="notification in notifications"

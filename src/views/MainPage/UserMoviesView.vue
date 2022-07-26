@@ -12,7 +12,7 @@
   >
     <div class="text-white flex justify-between ml-96 mr-28">
       <div>
-        <p>My list of Movies (Total {{ userMovies.length }})</p>
+        <p>{{$t('message.my_list_of_movies')}} ({{$t('message.total')}} {{ userMovies.length }})</p>
       </div>
       <div class="flex">
         <div class="flex items-center">
@@ -24,7 +24,7 @@
           <input
             v-model="userMoviesSearch"
             class="focus:outline-0 bg-[#0d0b14] w-20"
-            placeholder="Search"
+            :placeholder="$t('message.search')"
           />
         </div>
         <RouterLink
@@ -32,7 +32,7 @@
           class="flex items-center bg-[#E31221] p-3 rounded-md"
         >
           <img class="mr-2" src="@/assets/icons/plus.svg" alt="img" />
-          <p>Add movie</p>
+          <p>{{$t('message.add_movie')}}</p>
         </RouterLink>
       </div>
     </div>

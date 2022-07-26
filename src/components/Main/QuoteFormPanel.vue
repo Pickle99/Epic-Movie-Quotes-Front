@@ -5,7 +5,7 @@
         <div v-if="quoteUserId == localUserId"  class="flex justify-start w-1/4 ">
          <div v-if="$route.name === 'edit-quote'" class="flex">
            <img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon" @click="deleteQuote()"/>
-           <p class="ml-3 cursor-pointer" @click="deleteQuote()">Delete</p>
+           <p class="ml-3 cursor-pointer" @click="deleteQuote()">{{$t('message.delete')}}</p>
          </div>
           <div v-if="$route.name === 'show-quote'" class="flex">
             <div>

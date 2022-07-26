@@ -2,7 +2,7 @@
  <div class="mt-24">
    <UserNavbar class="absolute"/>
    <form-panel
-form-title="Edit Movie" link-to="movie-description" :route-param="$route.params.movie">
+:form-title="$t('message.edit_movie')" link-to="movie-description" :route-param="$route.params.movie">
      <Form v-slot="{ meta }" @submit="onSubmit()">
        <div
          class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -143,7 +143,7 @@ form-title="Edit Movie" link-to="movie-description" :route-param="$route.params.
        <ImageUpload @drop.prevent="drop" @change="selectedFile" />
        <p >{{ imageForMovie.name || movie.image }}</p>
        <div class="flex justify-center mt-5">
-         <movie-form-button :genres="userSelectedGenres.length" :is-disabled="!meta.valid">Add Movie</movie-form-button>
+         <movie-form-button :genres="userSelectedGenres.length" :is-disabled="!meta.valid">{{$t('message.edit_movie')}}</movie-form-button>
        </div>
      </Form>
    </form-panel>

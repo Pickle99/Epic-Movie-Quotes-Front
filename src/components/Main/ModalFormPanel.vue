@@ -4,7 +4,7 @@
       <div class="flex items-center justify-center w-full p-4">
         <div class="flex justify-start w-1/4"></div>
         <div class="flex justify-center w-2/4 font-bold">
-          <p>Write New Quote</p>
+          <p>{{$t('message.write_new_quote')}}</p>
         </div>
         <div class="flex justify-end w-1/4">
           <div class="cursor-pointer" @click="close()">

@@ -7,7 +7,7 @@
    <div class="mt-10 text-white flex justify-center">
      <Form class="flex flex-col" @submit="onSubmit()">
        <div class="w-[50rem] mt-5">
-         <h1 class="text-2xl font-bold">My profile</h1>
+         <h1 class="text-2xl font-bold">{{$t('message.my_profile')}}</h1>
        </div>
 
        <div class="bg-[#11101A] rounded-md mt-36 w-full pb-24 h-full flex flex-col justify-center items-center">
@@ -30,7 +30,7 @@
                  label-name="message.email"
                />
 
-               <p class="mb-4 text-[#0D6EFD] underline cursor-pointer w-fit" @click="showHidePasswordChange">Change password</p>
+               <p class="mb-4 text-[#0D6EFD] underline cursor-pointer w-fit" @click="showHidePasswordChange">{{$t('message.change_password')}}</p>
 
                <div v-if="provider === null && isChangePasswordVisible">
                  <password-input
@@ -52,7 +52,7 @@
 
        <div class="flex justify-end w-full mt-7">
          <div>
-           <basic-button class="p-5 mb-16">Save changes</basic-button>
+           <basic-button class="p-5 mb-16">{{$t('message.save_changes')}}</basic-button>
          </div>
        </div>
      </Form>

@@ -3,9 +3,11 @@
       <img  class="rounded-full" width="128" :src="avatar">
       <label for="image" class="cursor-pointer flex items-center absolute mt-52 flex-col bg-[#191725] w-fit p-3 rounded-md bg-opacity-70">
         <Field id="image" type="file" name="image" class="hidden image" @change="fileChange"/>
-        <div>
-          <p class="text-sm">Change Photo</p>
-        </div>
+
+          <div>
+            <p class="text-smt">{{$t('message.change_photo')}}</p>
+          </div>
+
       </label>
     </div>
 </template>

@@ -3,7 +3,7 @@
     <UserNavbar class="absolute"/>
   </div>
 
-  <form-panel v-if="quoteUserId" :quote-user-id="quoteUserId" form-title="Edit Quote" link-to="movie-description" :route-param="$route.params.movie">
+  <form-panel  v-if="quoteUserId" :quote-user-id="quoteUserId" :form-title="$t('message.edit_quote')" link-to="movie-description" :route-param="$route.params.movie">
     <Form v-slot="{ meta }"  @submit="onSubmit()">
       <div
         class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -38,7 +38,7 @@
       </div>
       <ImageUploadWithPreview v-for="quote in quotes" :key="quote" :quote="quote" @change="selectedFile"/>
       <div class="flex justify-center mt-5">
-        <basic-button :is-disabled="!meta.valid">Edit Quote</basic-button>
+        <basic-button :is-disabled="!meta.valid">{{$t('message.edit_quote')}}</basic-button>
       </div>
     </Form>
   </form-panel>

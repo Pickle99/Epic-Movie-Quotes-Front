@@ -8,11 +8,11 @@
       @drop.prevent="true"
     >
       <img class="mr-4" src="@/assets/icons/photo.svg" alt="svg" />
-      <p>Drag & drop your image here or</p>
+      <p>{{$t('message.drag_and_drop_or')}}</p>
       <label
         for="image"
         class="hover:cursor-pointer ml-5 bg-[#9747FF] outline-0 w-fit p-1.5 rounded-sm text-white"
-        >Choose file</label
+        >{{$t('message.choose_file')}}</label
       >
       <Field
         id="image"
@@ -20,7 +20,7 @@
         name="image"
         class="image bg-[#11101A] outline-0 w-full placeholder-white hidden"
         :rules="$route.name === 'movies-add' ? 'required' : null"
-        placeholder="drag and drop"
+        :placeholder="$t('message.drag_and_drop')"
       />
     </div>
     <ErrorMessage name="image" class="text-red-500" />

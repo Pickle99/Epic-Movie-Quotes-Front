@@ -13,7 +13,7 @@
         <div class="py-3 px-3 bg-[#24222F] rounded-md">
           <div class="flex w-[10rem] cursor-pointer" @click="showModal">
             <img class="mr-4" src="@/assets/icons/pencil.svg" />
-            <p>Write new quote</p>
+            <p>{{$t('message.write_new_quote')}}</p>
           </div>
         </div>
         <div class="w-full ml-10 flex items-center border-gray-700 border-b-4">
@@ -24,7 +24,7 @@
             <input
               v-model="search"
               class="focus:outline-0 bg-[#0d0b14] w-96"
-              placeholder="Enter @ to search movies, Enter # to search quotes"
+              :placeholder="$t('message.enter_to_search_in')"
               @keydown.enter="handleGetQuote(false)"
               @keydown="resetPage()"
             />
