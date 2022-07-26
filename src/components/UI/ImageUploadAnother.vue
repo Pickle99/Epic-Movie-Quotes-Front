@@ -7,7 +7,7 @@
       @dragover.prevent
       @drop.prevent="true"
     >
-      <img class="mr-4" src="@/assets/icons/photo.svg" alt="svg" />
+      <IconPhoto class="mr-4"/>
       <label
         for="image"
         class="text-white cursor-pointer"
@@ -27,8 +27,10 @@
 </template>
 <script>
 import { Field, ErrorMessage } from "vee-validate";
+import IconPhoto from "@/components/icons/IconPhoto.vue";
 export default {
   components: {
+    IconPhoto,
     Field,
     ErrorMessage,
   },

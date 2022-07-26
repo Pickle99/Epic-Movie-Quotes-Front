@@ -25,10 +25,10 @@
           </div>
           <div v-if="movie.user_id == userId" class="flex px-7 py-3 rounded-md bg-[#24222F] ">
             <RouterLink :to="{name: 'edit-movie'}">
-              <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
+              <IconPen class="cursor-pointer"/>
             </RouterLink>
             <div class="border-r-2 border-gray-500 mx-7"></div>
-            <img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon" @click="deleteMovie()"/>
+            <IconTrash class="cursor-pointer" @click="deleteMovie()"/>
           </div>
         </div>
         <div class="font-bold flex mt-5">
@@ -75,7 +75,7 @@ v-if="movie.user_id == userId"
       :to="{ name: 'add-quote' }"
       class="flex items-center bg-[#E31221] p-2 rounded-md"
     >
-      <img class="mr-2" src="@/assets/icons/plus.svg" alt="img" />
+      <IconPlus class="mr-2"/>
       <p>{{$t('message.add_quote')}}</p>
     </RouterLink>
   </div>
@@ -95,11 +95,11 @@ v-if="movie.user_id == userId"
     <div class="flex mt-3">
       <div class="flex items-center mr-3">
          <p class="mr-3">{{quote.comments.length}}</p>
-        <img src="@/assets/icons/square.svg" alt="icon"/>
+        <IconSquare/>
       </div>
       <div class="flex items-center">
         <p class="mr-2">{{quote.likes.length}}</p>
-        <img src="@/assets/icons/heart.svg" alt="icon"/>
+        <IconHeart/>
       </div>
     </div>
   </div>
@@ -114,8 +114,13 @@ import QuoteComponent from "@/components/Main/QuoteComponent.vue";
 import {useMoviesStore} from '@/stores/formData/movies.js'
 import { mapWritableState } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
+import IconSquare from "@/components/icons/IconSquare.vue";
+import IconHeart from "@/components/icons/IconHeart.vue";
+import IconPen from "@/components/icons/IconPen.vue";
+import IconTrash from "@/components/icons/IconTrash.vue";
+import IconPlus from "@/components/icons/IconPlus.vue";
 export default {
-  components: { MainHeader, UserNavbar, QuoteComponent },
+  components: { IconPlus, IconTrash, IconPen, IconHeart, IconSquare, MainHeader, UserNavbar, QuoteComponent },
   mounted() {
     this.getMovieDescription();
   },

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="absolute mt-3 -ml-5"><img src="@/assets/icons/triangle.svg" alt="svg"/></div>
+    <div class="absolute mt-3 -ml-5">
+      <IconTriangle/>
+    </div>
     <div class="rounded-md max-h-[40rem] overflow-y-scroll p-7 text-white text-xl w-[60rem] bg-black absolute mt-8 -ml-[37rem]">
       <div class="flex justify-between items-center mb-7">
         <h1 class="text-2xl font-bold">{{$t('message.notifications')}}</h1>
@@ -28,12 +30,14 @@ import { useLocalStorageStore } from "@/stores/localStorage.js";
 import { useNotificationsStore } from "@/stores/notifications.js";
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
+import IconTriangle from "@/components/icons/IconTriangle.vue";
 export default {
   computed: {
     ...mapWritableState(useLocalStorageStore, ["userId"]),
     ...mapWritableState(useNotificationsStore, ["markedAsAllRead", "notifications"]),
   },
   components: {
+    IconTriangle,
     NotificationFromComponent
   },
   created(){

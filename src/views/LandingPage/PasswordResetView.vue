@@ -30,7 +30,7 @@
       }}</basic-button>
     </Form>
     <back-to-login-button>
-      <img class="mr-2" src="@/assets/icons/arrow-left.svg" alt="icon"/>
+      <IconArrowLeft/>
       <p class="text-[#6C757D]">{{$t('message.back_to_log_in')}}</p>
     </back-to-login-button>
   </blur-panel>
@@ -44,9 +44,11 @@ import BackToLoginButton from '@/components/UI/BackToLoginButton.vue';
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useUserDataStore } from "@/stores/formData/user.js";
+import IconArrowLeft from "@/components/icons/IconArrowLeft.vue";
 
 export default {
   components: {
+    IconArrowLeft,
     BlurPanel,
     Form,
     PasswordInput,

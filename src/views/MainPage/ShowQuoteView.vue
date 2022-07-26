@@ -40,10 +40,10 @@
      <div class="mt-4">
        <div class="flex justify-around w-32 items-center">
          <p>{{comments.length}}</p>
-         <img class="cursor-pointer" src="@/assets/icons/square.svg" alt="img" @click="showHideComments()" />
+         <IconSquare class="cursor-pointer" @click="showHideComments()"/>
          <p>{{likes.length}}</p>
-         <img v-if="!isLiked" class="cursor-pointer" src="@/assets/icons/heart.svg" alt="img" @click="handleAddOrRemoveLike()" />
-         <img v-if="isLiked" class="cursor-pointer" src="@/assets/icons/heart-red.svg" alt="img" @click="handleAddOrRemoveLike()" />
+         <IconHeart v-if="!isLiked" class="cursor-pointer" @click="handleAddOrRemoveLike()" />
+         <IconHeartRed v-if="isLiked" class="cursor-pointer"  @click="handleAddOrRemoveLike()"/>
        </div>
      </div>
 
@@ -80,8 +80,11 @@ import axios from "@/config/axios/index.js";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import UserCommentComponent from "@/components/Main/UserCommentComponent.vue";
 import { useQuotesStore } from "@/stores/formData/quotes.js";
+import IconHeart from "@/components/icons/IconHeart.vue";
+import IconHeartRed from "@/components/icons/IconHeartRed.vue";
+import IconSquare from "@/components/icons/IconSquare.vue";
 export default {
-  components: {FormPanel, Form, Field, ErrorMessage, UserNavbar, UserCommentComponent},
+  components: { IconSquare, IconHeartRed, IconHeart, FormPanel, Form, Field, ErrorMessage, UserNavbar, UserCommentComponent},
   data(){
     return {
       quote: [],

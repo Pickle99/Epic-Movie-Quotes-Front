@@ -16,11 +16,7 @@
       </div>
       <div class="flex">
         <div class="flex items-center">
-          <img
-            class="mr-3"
-            src="@/assets/icons/magnifying-glass.svg"
-            alt="img"
-          />
+          <IconMagnifyingGlass class="mr-3"/>
           <input
             v-model="userMoviesSearch"
             class="focus:outline-0 bg-[#0d0b14] w-20"
@@ -31,7 +27,7 @@
           :to="{ name: 'movies-add' }"
           class="flex items-center bg-[#E31221] p-3 rounded-md"
         >
-          <img class="mr-2" src="@/assets/icons/plus.svg" alt="img" />
+          <IconPlus class="mr-2"/>
           <p>{{$t('message.add_movie')}}</p>
         </RouterLink>
       </div>
@@ -62,12 +58,9 @@
         </RouterLink>
         <div class="flex items-center mt-3">
           <p>10</p>
-          <img
-            class="ml-3"
-            width="20"
-            src="@/assets/icons/chat-quote.svg"
-            alt="img"
-          />
+          <IconChatQuote
+                            class="ml-3"
+                            width="20"/>
         </div>
       </article>
     </div>
@@ -79,8 +72,11 @@ import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
+import IconChatQuote from "@/components/icons/IconChatQuote.vue";
+import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
+import IconPlus from "@/components/icons/IconPlus.vue";
 export default {
-  components: { UserNavbar, MainHeader },
+  components: { IconPlus, IconMagnifyingGlass, IconChatQuote, UserNavbar, MainHeader },
   mounted() {
     this.getUserMovies();
   },

@@ -8,8 +8,8 @@
         <p class="mb-3 text-[18px]">{{ username }}</p>
         <div class="flex items-center">
           <div>
-            <img v-if="commentOrLike === Liked" src="@/assets/icons/heart-red.svg" alt="icon"/>
-            <img v-if="commentOrLike === Commented" src="@/assets/icons/chat-quote.svg" alt="icon"/>
+            <IconHeartRed v-if="commentOrLike === Liked"/>
+            <IconChatQuote v-if="commentOrLike === Commented"/>
           </div>
           <p class="ml-3 text-[16px]">{{commentOrLike}}</p>
         </div>
@@ -28,7 +28,10 @@ import { useNotificationsStore } from '@/stores/notifications.js';
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
 import { useRequestsStore } from "@/stores/requests.js";
+import IconHeartRed from "@/components/icons/IconHeartRed.vue";
+import IconChatQuote from "@/components/icons/IconChatQuote.vue";
 export default {
+  components: { IconChatQuote, IconHeartRed },
   data()
   {
     return {

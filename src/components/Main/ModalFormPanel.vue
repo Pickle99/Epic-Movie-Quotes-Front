@@ -8,7 +8,7 @@
         </div>
         <div class="flex justify-end w-1/4">
           <div class="cursor-pointer" @click="close()">
-            <img src="@/assets/icons/x-icon.svg" alt="img" />
+            <IconX/>
           </div>
         </div>
       </div>
@@ -30,7 +30,9 @@
 import { mapWritableState, mapActions } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import { useQuotesStore } from "@/stores/formData/quotes.js";
+import IconX from "@/components/icons/IconX.vue";
 export default {
+  components: { IconX },
   computed:{
     ...mapWritableState(useLocalStorageStore, {
       localUser: "username",

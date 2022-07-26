@@ -18,8 +18,8 @@
 
     <RouterLink :to="{ name: 'feed' }" class="flex items-center" @click="resetPages">
       <div class="w-32 flex justify-center">
-        <img v-if="$route.name !== 'feed'" src="@/assets/icons/house.svg" />
-        <img v-if="$route.name === 'feed'" src="@/assets/icons/house-red.svg" />
+        <IconHouse v-if="$route.name !== 'feed'"/>
+        <IconHouseRed v-if="$route.name === 'feed'"/>
       </div>
       <div>
         <p>{{$t('message.news_feed')}}</p>
@@ -27,8 +27,8 @@
     </RouterLink>
     <RouterLink :to="{ name: 'movies' }" class="flex items-center">
       <div class="w-32 flex justify-center">
-        <img v-if="$route.name !== 'movies'" src="@/assets/icons/camera.svg" />
-        <img v-if="$route.name === 'movies'"  src="@/assets/icons/camera-red.svg" />
+        <IconCamera v-if="$route.name !== 'movies'"/>
+        <IconCameraRed v-if="$route.name === 'movies'" />
       </div>
       <div>
         <p>{{$t('message.list_of_movies')}}</p>
@@ -41,9 +41,14 @@
 import { mapWritableState } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import {useQuotesStore} from "@/stores/formData/quotes.js";
+import IconCamera from "@/components/icons/IconCamera.vue";
+import IconCameraRed from "@/components/icons/IconCameraRed.vue";
+import IconHouse from "@/components/icons/IconHouse.vue";
+import IconHouseRed from "@/components/icons/IconHouseRed.vue";
 
 export default {
-computed: {
+  components: { IconHouseRed, IconHouse, IconCameraRed, IconCamera },
+  computed: {
   ...mapWritableState(useQuotesStore, ["page", "lastPage"]),
 ...mapWritableState(useLocalStorageStore, ["username", "avatar"]),
 },

@@ -5,14 +5,14 @@ class="p-4 cursor-pointer my-2 bg-black flex items-center px-4 justify-between"
       @click="showHideMovieSelector"
     >
   <div class="flex items-center">
-    <img class="mr-4" src="@/assets/icons/camera.svg" alt="icon" />
+    <IconCamera class="mr-4"/>
     <p
       for="image"
       class="text-white"
     >{{$t('message.choose_movie')}}</p>
   </div>
       <div>
-        <img src="@/assets/icons/arrow-down.svg" alt="icon"/>
+        <IconArrowDown/>
       </div>
     </div>
     <div v-if="isMovieSelectorOpen && !chosenMovie" class="flex flex-col overflow-y-scroll h-56">
@@ -44,10 +44,13 @@ class="p-4 cursor-pointer my-2 bg-black flex items-center px-4 justify-between"
 import MovieComponent from '@/components/Main/MovieComponent.vue';
 import { useQuotesStore} from "@/stores/formData/quotes.js";
 import { mapWritableState } from "pinia";
-
+import IconArrowDown from '@/components/icons/IconArrowDown.vue';
+import IconCamera from "@/components/icons/IconCamera.vue";
 export default {
   components:{
-    MovieComponent
+    IconCamera,
+    MovieComponent,
+    IconArrowDown
   },
   data(){
     return {

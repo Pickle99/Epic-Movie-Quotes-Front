@@ -23,12 +23,7 @@
         v-bind="field"
       />
       <div class="-ml-10 mr-3">
-        <img
-          class="hover:cursor-pointer"
-          src="@/assets/icons/eye.svg"
-          alt="img"
-          @click="setPasswordType()"
-        />
+        <IconEye class="hover:cursor-pointer"  @click="setPasswordType()"/>
       </div>
     </div>
   </Field>
@@ -41,8 +36,10 @@
 import { Field, ErrorMessage } from "vee-validate";
 import { useUserDataStore } from "@/stores/formData/user.js";
 import { mapActions, mapWritableState } from "pinia";
+import IconEye from "@/components/icons/IconEye.vue";
 export default {
   components: {
+    IconEye,
     Field,
     ErrorMessage,
   },

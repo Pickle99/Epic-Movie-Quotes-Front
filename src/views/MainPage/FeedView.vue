@@ -12,13 +12,13 @@
       <div class="flex mt-3">
         <div class="py-3 px-3 bg-[#24222F] rounded-md">
           <div class="flex w-[10rem] cursor-pointer" @click="showModal">
-            <img class="mr-4" src="@/assets/icons/pencil.svg" />
+            <IconPencil class="mr-4"/>
             <p>{{$t('message.write_new_quote')}}</p>
           </div>
         </div>
         <div class="w-full ml-10 flex items-center border-gray-700 border-b-4">
           <div class="mr-3">
-            <img src="@/assets/icons/magnifying-glass.svg" />
+            <IconMagnifyingGlass/>
           </div>
           <div class="w-full">
             <input
@@ -73,8 +73,12 @@ import FilteredPostComponent from "@/components/Main/FilteredPostComponent.vue";
 import { useQuotesStore } from "@/stores/formData/quotes.js";
 import { mapWritableState, mapGetters } from "pinia";
 import WriteNewQuote from "@/views/MainPage/WriteNewQuote.vue";
+import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
+import IconPencil from "@/components/icons/IconPencil.vue";
 export default {
   components: {
+    IconPencil,
+    IconMagnifyingGlass,
     WriteNewQuote,
     MainHeader,
     UserNavbar,

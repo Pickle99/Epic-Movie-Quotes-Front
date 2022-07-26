@@ -14,8 +14,7 @@
                 <p class="text-[14px]">{{newNotificationsLength}}</p>
               </div>
             </div>
-
-            <img src="@/assets/icons/bell.svg" class="cursor-pointer" alt="icon" @click="showHideNotification" />
+            <IconBell class="cursor-pointer" @click="showHideNotification"/>
           </div>
           <NotificationComponent :class="!showNotification ? 'hidden' : ''"/>
         </div>
@@ -40,9 +39,11 @@ import { mapWritableState, mapGetters } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications.js";
 import {useQuotesStore} from "@/stores/formData/quotes.js";
 import { useRequestsStore } from "@/stores/requests.js";
+import IconBell from "@/components/icons/IconBell.vue";
 
 export default {
   components: {
+    IconBell,
     SetLanguage,
     NotificationComponent
   },

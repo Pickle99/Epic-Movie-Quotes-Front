@@ -41,7 +41,7 @@ class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border
          <img width="170" class="rounded-xl py-2.5" :src="`http://localhost:8000/${movie.image}`">
        <div class="ml-5">
          <div class="flex items-center">
-           <img src="@/assets/icons/camera.svg" alt="icon"/>
+           <IconCamera/>
            <h1 class="ml-3">{{$i18n.locale === 'en' ? movie.title.en : movie.title.ka}} ({{movie.year}})</h1>
          </div>
          <p class="mt-7">Director: {{$i18n.locale === 'en' ? movie.director.en : movie.director.ka}}</p>
@@ -63,8 +63,10 @@ import {useQuotesStore} from "@/stores/formData/quotes.js";
 import { mapWritableState, mapActions, mapGetters } from "pinia";
 import axios from "@/config/axios/index.js";
 import ImageUploadAnother from "@/components/UI/ImageUploadAnother.vue";
+import IconCamera from "@/components/icons/IconCamera.vue";
 export default {
   components: {
+    IconCamera,
     ImageUploadAnother,
     UserNavbar,
     Field,

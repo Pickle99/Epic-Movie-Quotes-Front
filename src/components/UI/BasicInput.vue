@@ -28,24 +28,11 @@
         v-bind="field"
       />
       <div class="-ml-10 mr-3">
-        <img
-          v-if="focused && isDisabled"
-          src="@/assets/icons/close.svg"
-          alt="img"
-          @click="resetField()"
-        />
+        <IconClose v-if="focused && isDisabled" @click="resetField()"/>
 
         <div v-if="meta.touched">
-          <img
-            v-if="meta.valid && !error && !focused"
-            src="@/assets/icons/valid.svg"
-            alt="img"
-          />
-          <img
-            v-if="(!meta.valid && !focused) || (error && !focused)"
-            src="@/assets/icons/invalid.svg"
-            alt="img"
-          />
+          <IconValid v-if="meta.valid && !error && !focused"/>
+          <IconInvalid  v-if="(!meta.valid && !focused) || (error && !focused)"/>
         </div>
       </div>
     </div>
@@ -59,8 +46,14 @@
 import { Field, ErrorMessage } from "vee-validate";
 import { useUserDataStore } from "@/stores/formData/user.js";
 import { mapWritableState } from "pinia";
+import IconClose from "@/components/icons/IconClose.vue";
+import IconInvalid from "@/components/icons/IconInvalid.vue";
+import IconValid from "@/components/icons/IconValid.vue";
 export default {
   components: {
+    IconValid,
+    IconInvalid,
+    IconClose,
     Field,
     ErrorMessage,
   },

@@ -7,7 +7,7 @@
       @dragover.prevent
       @drop.prevent="true"
     >
-      <img class="mr-4" src="@/assets/icons/photo.svg" alt="svg" />
+      <IconPhoto class="mr-4"/>
       <p>{{$t('message.drag_and_drop_or')}}</p>
       <label
         for="image"
@@ -28,8 +28,10 @@
 </template>
 <script>
 import { Field, ErrorMessage } from "vee-validate";
+import IconPhoto from "@/components/icons/IconPhoto.vue";
 export default {
   components: {
+    IconPhoto,
     Field,
     ErrorMessage,
   },

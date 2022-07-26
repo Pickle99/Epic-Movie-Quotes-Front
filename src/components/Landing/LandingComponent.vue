@@ -1,8 +1,10 @@
 <script>
 import SetLanguage from "@/components/Landing/SetLanguage.vue";
+import IconLine from "@/components/icons/IconLine.vue";
 
 export default {
   components: {
+    IconLine,
     SetLanguage,
   },
 };
@@ -52,7 +54,7 @@ export default {
 
           <div class="ml-16 w-fit h-fit absolute z-10 flex items-center">
             <div>
-              <img src="@/assets/icons/line.svg" alt="icon"/>
+              <IconLine/>
             </div>
             <div class="w-fit ml-12 w-[39rem] mt-28">
               <h1>"You have to leave something behind to go forward"
@@ -77,7 +79,7 @@ export default {
 
           <div class="ml-16 w-fit h-fit absolute z-10 flex items-center">
             <div>
-              <img src="@/assets/icons/line.svg" alt="icon"/>
+              <IconLine/>
             </div>
             <div class="w-fit ml-12 w-[38rem] mt-28">
               <h1>"I think we’re just gonna have
@@ -104,7 +106,7 @@ export default {
 
           <div class="ml-16 w-fit h-fit absolute z-10 flex items-center">
             <div>
-              <img src="@/assets/icons/line.svg" alt="icon"/>
+              <IconLine/>
             </div>
             <div class="w-fit ml-12 w-[38rem] mt-28">
               <h1>"I think we’re just gonna have

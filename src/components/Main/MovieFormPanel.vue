@@ -4,17 +4,18 @@
       <div class="flex items-center justify-center w-full p-4">
         <div class="flex justify-start w-1/4">
           <div v-if="$route.name === 'edit-quote'" class="flex">
-            <img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon" @click="deleteQuote()"/>
+            <IconTrash class="cursor-pointer" @click="deleteQuote()"/>
             <p class="ml-3 cursor-pointer" @click="deleteQuote()">{{$t('message.delete')}}</p>
           </div>
           <div v-if="$route.name === 'show-quote'" class="flex">
             <div>
               <RouterLink :to="{name: 'edit-quote', params: {quote: $route.params.quote}}">
-                <img class="cursor-pointer" src="@/assets/icons/pen.svg" alt="icon"/>
+                <IconPen class="cursor-pointer"/>
               </RouterLink>
             </div>
             <div class="border-gray-500 border-r-2 mx-5 my-0.5"></div>
-            <div><img class="cursor-pointer" src="@/assets/icons/trash.svg" alt="icon" @click="deleteQuote()"/>
+            <div>
+              <IconTrash class="cursor-pointer"  @click="deleteQuote()"/>
             </div>
           </div>
         </div>
@@ -22,8 +23,8 @@
           <p>{{formTitle}}</p>
         </div>
         <div class="flex justify-end w-1/4">
-          <RouterLink :to="{ name: linkTo, params: {movie: routeParam} }" >
-            <img src="@/assets/icons/x-icon.svg" alt="img" @click="movieResetFields" />
+          <RouterLink :to="{ name: linkTo, params: {movie: routeParam} }">
+            <IconX @click="movieResetFields"/>
           </RouterLink>
         </div>
       </div>
@@ -46,7 +47,11 @@ import { mapWritableState, mapActions } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import axios from "@/config/axios/index.js";
 import { useMoviesStore } from "@/stores/formData/movies.js";
+import IconPen from "@/components/icons/IconPen.vue";
+import IconTrash from "@/components/icons/IconTrash.vue";
+import IconX from "@/components/icons/IconX.vue";
 export default {
+  components: { IconX, IconTrash, IconPen },
   props: {
     avatar: {
       type: String,
