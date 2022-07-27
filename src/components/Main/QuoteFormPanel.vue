@@ -46,14 +46,13 @@
 <script>
 import { mapWritableState, mapActions } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
-import axios from "@/config/axios/index.js";
 import { useQuotesStore } from "@/stores/formData/quotes.js";
+import axios from "@/config/axios/index.js";
 import IconPen from "@/components/icons/IconPen.vue";
 import IconTrash from "@/components/icons/IconTrash.vue";
-import IconTriangle from "@/components/icons/IconTriangle.vue";
 import IconX from "@/components/icons/IconX.vue";
 export default {
-  components: { IconX, IconTriangle, IconTrash, IconPen },
+  components: { IconX, IconTrash, IconPen },
   props: {
     authorAvatar: {
       type: String,
@@ -89,7 +88,6 @@ export default {
       localAvatar: "avatar",
       localUserId: "userId",
     }),
-    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
    correctAuthorUsername() {
       if(this.authorUsername){ return this.authorUsername }
       else return this.localUser;
@@ -100,11 +98,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     deleteQuote() {
       axios.delete(`quote/${this.$route.params.quote}/delete`)
         .then(() => {
           this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie}})
-          this.writeQuoteResetFields;
+          this.writeQuoteResetFields();
         })
         .catch((err) => {
           console.log(err)

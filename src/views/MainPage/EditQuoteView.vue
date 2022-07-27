@@ -53,7 +53,13 @@ import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import ImageUploadWithPreview from "@/components/UI/ImageUploadWithPreview.vue";
 export default {
-  components: {FormPanel, BasicButton, Form, Field, ErrorMessage, UserNavbar, ImageUploadWithPreview},
+  components: {FormPanel,
+    BasicButton,
+    Form,
+    Field,
+    ErrorMessage,
+    UserNavbar,
+    ImageUploadWithPreview},
   data(){
     return {
     quotes: [],
@@ -62,13 +68,13 @@ export default {
   },
   computed: {
     ...mapWritableState(useQuotesStore, ["text_en", "text_ka", "imageForQuote"]),
-    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     ...mapGetters(useQuotesStore, ["editQuoteData"]),
   },
   mounted(){
     this.handleGetQuoteRequest()
   },
   methods: {
+    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     selectedFile() {
       this.imageForQuote = document.querySelector(".image").files[0];
     },
@@ -98,6 +104,7 @@ export default {
           this.quotes = res.data;
           this.text_en = this.quotes.data.text.en;
           this.text_ka = this.quotes.data.text.ka;
+          console.log(this.text_en);
           this.quoteUserId = this.quotes.data.user.id;
         })
         .catch((err)=> {

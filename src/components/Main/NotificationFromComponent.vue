@@ -46,7 +46,7 @@ export default {
       const currentQuoteOfNotification = this.quotesForNotifications.find((quote) => quote.id == this.quoteId);
       this.movieId = currentQuoteOfNotification.movie.id;
       this.$router.push({name: 'show-quote', params: {movie: this.movieId, quote: this.quoteId}});
-      axios.get(`notification/${this.notificationId}/mark-single-as-read`).then(() => {
+      axios.post(`notification/${this.notificationId}/mark-single-as-read`).then(() => {
         this.visited = true;
       })
         .catch((err) => {

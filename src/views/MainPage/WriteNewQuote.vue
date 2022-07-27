@@ -65,12 +65,12 @@ export default {
   computed: {
     ...mapWritableState(useQuotesStore, ["text_en", "text_ka", "allUsersMovies", "chosenMovieId", "imageForQuote"]),
     ...mapGetters(useQuotesStore, ["writeQuoteData"]),
-    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
   },
   mounted(){
     this.handleGetMovies();
   },
   methods: {
+    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     handleGetMovies(){
       axios.get('user-movies')
         .then((res) => {
@@ -88,7 +88,7 @@ export default {
       })
         .then((res) => {
           this.$router.push({ name:'show-quote', params: {movie: this.chosenMovieId, quote: res.data } })
-          this.writeQuoteResetFields;
+          this.writeQuoteResetFields();
         })
         .catch((err) => {
           console.log(err);

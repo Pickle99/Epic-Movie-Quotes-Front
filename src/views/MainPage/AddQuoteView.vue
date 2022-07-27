@@ -77,7 +77,6 @@ export default {
   },
   computed: {
     ...mapWritableState(useQuotesStore, ["text_en", "text_ka", "imageForQuote"]),
-      ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
         ...mapGetters(useQuotesStore, ["addQuoteData"]),
   },
   data(){
@@ -89,6 +88,7 @@ export default {
     this.getMovie()
   },
   methods: {
+    ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     onSubmit(){
       axios
         .post("movie/"+this.$route.params.movie+"/quote", this.addQuoteData, {

@@ -140,7 +140,7 @@ export default {
     },
     getMovieDescription() {
       axios
-        .post(`movie/${this.$route.params.movie}`)
+        .get(`movie-description/${this.$route.params.movie}`)
         .then((res) => {
           this.movieDescriptionData = res.data;
           this.movieDescriptionQuoteData = this.movieDescriptionData.data.quotes;
