@@ -51,8 +51,8 @@ const router = createRouter({
       components: {
         default: HomeView,
         AuthView,
-        beforeEnter: [Authorized],
       },
+      beforeEnter: [Authorized],
     },
     {
       path: "/email-verification-sent",

@@ -19,7 +19,7 @@
          <p>{{$t('message.my_list_of_movies')}} ({{$t('message.total')}} {{ userMovies.length }})</p>
        </div>
        <div class="flex">
-         <div class="md:flex items-center hidden">
+         <div class="flex items-center">
            <IconMagnifyingGlass class="mr-3"/>
            <input
              v-model="userMoviesSearch"

@@ -48,7 +48,7 @@ class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border
        </div>
      </div>
      <div class="flex justify-center mt-5">
-       <basic-button :is-disabled="!meta.valid">{{$t('message.add_quote')}}</basic-button>
+       <basic-button class="w-full" :is-disabled="!meta.valid">{{$t('message.add_quote')}}</basic-button>
      </div>
    </Form>
  </form-panel>

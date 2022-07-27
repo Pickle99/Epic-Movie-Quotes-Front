@@ -35,7 +35,7 @@
        <div class="my-3">
          <p></p>
        </div>
-       <img class="rounded-xl py-2.5 w-full" :src="`http://localhost:8000/${quoteImage}`">
+       <img class="rounded-xl py-2.5 w-[25rem] md:w-full" :src="`http://localhost:8000/${quoteImage}`">
      </Form>
      <div class="mt-4">
        <div class="flex justify-around w-32 items-center">
@@ -61,7 +61,7 @@
        <div class="ml-5">
          <input
            v-model="commentText"
-           class="bg-[#24222F] w-[37.5rem] pl-5 py-3 text-[#CED4DA] rounded-md"
+           class="bg-[#24222F] md:w-[37.5rem] pl-5 py-3 text-[#CED4DA] rounded-md"
            placeholder="Write a comment"
            @keydown.enter="handleAddComment"
          />

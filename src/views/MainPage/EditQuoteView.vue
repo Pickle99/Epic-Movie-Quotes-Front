@@ -38,7 +38,7 @@
       </div>
       <ImageUploadWithPreview v-for="quote in quotes" :key="quote" :quote="quote" @change="selectedFile"/>
       <div class="flex justify-center mt-5">
-        <basic-button :is-disabled="!meta.valid">{{$t('message.edit_quote')}}</basic-button>
+        <basic-button class="w-full" :is-disabled="!meta.valid">{{$t('message.edit_quote')}}</basic-button>
       </div>
     </Form>
   </form-panel>

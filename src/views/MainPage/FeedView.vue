@@ -13,9 +13,9 @@
 <div :class="isModalOpen ? 'opacity-20 pointer-events-none' : ''">
   <div class="text-white justify-center flex" @scroll="handleGetQuote">
     <div class="flex flex-col">
-      <div class="flex mt-3 mb-16">
+      <div class="flex mt-3">
         <div class="ml-10  md:ml-0 md:py-3 md:px-3 md:bg-[#24222F] rounded-md">
-          <div class="flex w-[10rem] cursor-pointer" @click="showModal">
+          <div v-if="!isNotificationVisible" class="flex w-[10rem] cursor-pointer" @click="showModal">
             <IconPencil class="mr-4"/>
             <p>{{$t('message.write_new_quote')}}</p>
           </div>
@@ -35,8 +35,8 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-center -mt-16">
-        <NotificationComponent :class="!isNotificationVisible ? 'hidden' : 'fixed md:hidden'"/>
+      <div class="flex justify-center">
+        <NotificationComponent :class="!isNotificationVisible ? 'hidden' : '-mt-12 fixed md:hidden'"/>
       </div>
       <div  v-if="!filteredFeedView">
         <PostComponent
