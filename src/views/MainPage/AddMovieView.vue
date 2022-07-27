@@ -1,5 +1,5 @@
 <template>
- <form-panel class="h-screen absolute w-screen md:-mt-16 md:mt-0 md:h-fit md:flex md:w-full" :form-title="$t('message.add_movie')" link-to="movies">
+ <form-panel class="h-screen absolute z-0 w-screen md:-mt-16 md:mt-0 md:h-fit md:flex md:w-full" :form-title="$t('message.add_movie')" link-to="movies">
    <Form v-slot="{ meta }" @submit="onSubmit()">
      <div
        class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -181,12 +181,12 @@ export default {
       "genresError",
     ]),
     ...mapGetters(useMoviesStore, ["movieYear", "movieBudget", "movieData"]),
-    ...mapActions(useMoviesStore, ["movieResetFields"]),
   },
   mounted() {
     this.getGenre();
   },
   methods: {
+    ...mapActions(useMoviesStore, ["movieResetFields"]),
     drop(e) {
       this.imageForMovie = e.dataTransfer.files[0];
     },
@@ -201,9 +201,9 @@ export default {
           },
         })
         .then((res) => {
-          this.movieResetFields();
           this.$router.push({ name: "movies" });
           this.userMovies.unshift(res.data);
+          this.movieResetFields();
         })
         .catch((error) => {
           console.log(error);
@@ -224,7 +224,7 @@ export default {
     addTag(event) {
       if (event.code === "Comma" || event.code === "Enter") {
         event.preventDefault();
-        let val = event.target.value.trim();
+        let val = event.target.value.trim().toLowerCase();
         if (val.length > 0) {
           if (this.userSelectedGenres.includes(val)) {
             return (this.genresError = "Duplicate entry");

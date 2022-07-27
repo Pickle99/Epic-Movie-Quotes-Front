@@ -229,7 +229,7 @@ export default {
         })
         .then(() => {
           this.$router.push({ name: "movie-description", params: {movie: this.$route.params.movie} });
-          this.movieResetFields;
+          this.movieResetFields();
         })
         .catch((error) => {
           console.log(error);
