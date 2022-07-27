@@ -1,8 +1,12 @@
 <template >
-  <div class="flex mb-24">
-    <MainHeader />
+  <div class="flex md:mb-24 z-0 mb-24">
+    <MainHeader/>
+    <UserNavbarMobile class="absolute z-10"/>
+    <div class="fixed z-20">
+      <SearchComponentMobile v-if="isSearchVisible"/>
+    </div>
   </div>
-  <UserNavbar class="absolute" />
+  <UserNavbar class="fixed" />
   <div v-if="isModalOpen" class="flex justify-center">
     <WriteNewQuote  class="fixed z-10"/>
   </div>
@@ -10,17 +14,17 @@
   <div class="text-white justify-center flex" @scroll="handleGetQuote">
     <div class="flex flex-col">
       <div class="flex mt-3">
-        <div class="py-3 px-3 bg-[#24222F] rounded-md">
+        <div class="ml-10 md:ml-0 md:py-3 md:px-3 md:bg-[#24222F] rounded-md">
           <div class="flex w-[10rem] cursor-pointer" @click="showModal">
             <IconPencil class="mr-4"/>
             <p>{{$t('message.write_new_quote')}}</p>
           </div>
         </div>
-        <div class="w-full ml-10 flex items-center border-gray-700 border-b-4">
+        <div class="hidden md:flex w-full ml-10 items-center border-gray-700 border-b-4">
           <div class="mr-3">
-            <IconMagnifyingGlass/>
+              <IconMagnifyingGlass/>
           </div>
-          <div class="w-full">
+          <div class="w-full ">
             <input
               v-model="search"
               class="focus:outline-0 bg-[#0d0b14] w-96"
@@ -30,6 +34,9 @@
             />
           </div>
         </div>
+      </div>
+      <div class="flex justify-center -mt-16">
+        <NotificationComponent :class="!isNotificationVisible ? 'hidden' : 'fixed md:hidden'"/>
       </div>
       <div  v-if="!filteredFeedView">
         <PostComponent
@@ -71,12 +78,19 @@ import axios from "@/config/axios/index.js";
 import PostComponent from "@/components/Main/PostComponent.vue";
 import FilteredPostComponent from "@/components/Main/FilteredPostComponent.vue";
 import { useQuotesStore } from "@/stores/formData/quotes.js";
-import { mapWritableState, mapGetters } from "pinia";
+import { mapWritableState, mapGetters, mapActions } from "pinia";
 import WriteNewQuote from "@/views/MainPage/WriteNewQuote.vue";
 import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
 import IconPencil from "@/components/icons/IconPencil.vue";
+import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
+import SearchComponentMobile from '@/components/Main/SearchComponentMobile.vue';
+import { useUserDataStore } from "@/stores/formData/user.js";
+import NotificationComponent from "@/components/Main/NotificationComponent.vue";
+import { useNotificationsStore } from "@/stores/notifications.js";
 export default {
   components: {
+    SearchComponentMobile,
+    UserNavbarMobile,
     IconPencil,
     IconMagnifyingGlass,
     WriteNewQuote,
@@ -84,8 +98,11 @@ export default {
     UserNavbar,
     PostComponent,
     FilteredPostComponent,
+    NotificationComponent,
   },
   computed: {
+    ...mapWritableState(useNotificationsStore, ["isNotificationVisible"]),
+    ...mapWritableState(useUserDataStore, ["isSearchVisible"]),
     ...mapWritableState(useQuotesStore, ["allQuotes","isModalOpen", "page", "lastPage", "search", "filteredQuotes"]),
     ...mapGetters(useQuotesStore, ["filteredFeedView", "searchIn"]),
   },
@@ -93,10 +110,7 @@ export default {
     this.scroll();
   },
   methods: {
-    resetPage(){
-      this.page = 1;
-      this.lastPage = 2;
-    },
+    ...mapActions(useQuotesStore, ["resetPage"]),
     handleGetQuote(scroll) {
       if(this.page > this.lastPage) { return }
       axios.get(`feed?page=${this.page}&search=${this.searchIn}`).then((res) => {

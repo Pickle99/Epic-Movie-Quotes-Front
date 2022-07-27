@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5 mb-5">
-    <div class="w-[45rem] bg-[#11111A]">
+    <div class="md:w-[45rem] bg-[#11111A]">
       <div class="px-5 py-5">
         <div class="border-b border-gray-600">
           <header class="flex items-center">
@@ -24,7 +24,7 @@
             <img
               :src="`http://localhost:8000/${movieImage}`"
               alt="img"
-              width="890"
+              class="md:w-[50rem] w-[30rem]"
             />
           </div>
           <div class="flex justify-around w-32 items-center mb-3">
@@ -35,20 +35,20 @@
             <IconHeartRed v-if="isLiked" class="cursor-pointer" @click="handleAddOrRemoveLike()"/>
           </div>
         </div>
-        <div v-if="isCommentsVisible" class="overflow-y-scroll  max-h-[30rem] w-fit">
+        <div v-if="isCommentsVisible" class="overflow-y-scroll  md:max-h-[30rem] w-fit">
           <UserCommentComponent v-for="comment in quote.comments" :key="comment" :text="comment.text" :user="comment.comment_from" :avatar="comment.avatar"/>
         </div>
 
         <div class="flex mt-10 items-center">
           <img
-            class="rounded-full"
-            :src="null || 'https://ui-avatars.com/api/?name=jackrestler'"
+            class="rounded-full w-16"
+            :src="'http://localhost:8000/'+avatar"
             alt="img"
           />
           <div class="ml-5">
             <input
               v-model="commentText"
-              class="bg-[#24222F] w-[37.5rem] pl-5 py-3 text-[#CED4DA] rounded-md"
+              class="bg-[#24222F] md:w-[37.5rem] pl-5 py-3 text-[#CED4DA] rounded-md"
               :placeholder="$t('message.write_a_comment')"
               @keydown.enter="handleAddComment"
             />
@@ -116,7 +116,7 @@ export default {
   },
   computed: {
     ...mapWritableState(useQuotesStore, ["comments", "filteredQuotes", "commentText"]),
-    ...mapWritableState(useLocalStorageStore, ["userId"]),
+    ...mapWritableState(useLocalStorageStore, ["userId", "avatar"]),
     isLiked(){
 
       const currentQuote = this.filteredQuotes.find((quote) => quote.id == this.quoteId);

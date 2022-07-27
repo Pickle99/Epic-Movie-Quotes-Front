@@ -1,27 +1,30 @@
 <template>
   <header class="fixed w-screen bg-[#222030] z-10">
-    <div class="flex justify-between mx-40 my-5 items-center">
+    <div class=" flex justify-between mx-10 md:mx-40 my-5 items-center">
       <div>
-        <h1 class="text-[#DDCCAA]">{{ $t("message.movie_quotes") }}</h1>
+        <h1 class="text-[#DDCCAA] hidden md:block">{{ $t("message.movie_quotes") }}</h1>
+        <IconThreeLines class="md:hidden" @click="showDropdown"/>
       </div>
 
       <div class="flex text-white items-center">
+        <IconMagnifyingGlass class="mr-4 md:hidden" @click="showSearch"/>
         <div class="flex flex-col items-center">
           <div>
-
             <div v-if="newNotificationsLength" class="absolute ml-3 -mt-1">
               <div class="bg-red-500 rounded-full text-center w-7 justify-end">
                 <p class="text-[14px]">{{newNotificationsLength}}</p>
               </div>
             </div>
-            <IconBell class="cursor-pointer" @click="showHideNotification"/>
+            <div class="flex flex-col items-center">
+              <IconBell class="cursor-pointer" @click="showHideNotification"/>
+                <IconTriangle v-if="isNotificationVisible" class="absolute mt-12"/>
+            </div>
           </div>
-          <NotificationComponent :class="!showNotification ? 'hidden' : ''"/>
+          <NotificationComponent :class="!isNotificationVisible ? 'hidden' : 'hidden md:block'"/>
         </div>
-
-        <SetLanguage class="mx-8" />
+        <SetLanguage class="mx-8 hidden md:block" />
         <p 
-          class="hover:cursor-pointer border-white border-2 px-6 py-2 rounded-md"
+          class="hidden md:block hover:cursor-pointer border-white border-2 px-6 py-2 rounded-md"
           @click="logout()"
         >
           {{ $t("message.log_out") }}
@@ -35,22 +38,23 @@ import SetLanguage from "@/components/Landing/SetLanguage.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import NotificationComponent from '@/components/Main/NotificationComponent.vue'
-import { mapWritableState, mapGetters } from "pinia";
+import { mapWritableState, mapGetters, mapActions } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications.js";
 import {useQuotesStore} from "@/stores/formData/quotes.js";
 import { useRequestsStore } from "@/stores/requests.js";
 import IconBell from "@/components/icons/IconBell.vue";
-
+import IconThreeLines from "@/components/icons/IconThreeLines.vue";
+import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
+import { useUserDataStore } from "@/stores/formData/user.js";
+import IconTriangle from "@/components/icons/IconTriangle.vue";
 export default {
   components: {
+    IconTriangle,
+    IconMagnifyingGlass,
+    IconThreeLines,
     IconBell,
     SetLanguage,
     NotificationComponent
-  },
-  data(){
-    return {
-    showNotification: false,
-    }
   },
   created(){
     this.handleGetNotifications();
@@ -58,12 +62,15 @@ export default {
     this.handleGetAllQuotes();
   },
   computed: {
-    ...mapWritableState(useRequestsStore, ["quotesForNotifications"]),
-    ...mapWritableState(useNotificationsStore, ["notifications"]),
-    ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
     ...mapWritableState(useQuotesStore, ["allQuotes", "lastPage", "page"]),
+    ...mapWritableState(useRequestsStore, ["quotesForNotifications"]),
+    ...mapWritableState(useNotificationsStore, ["notifications", "isNotificationVisible"]),
+    ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
+
   },
   methods: {
+    ...mapActions(useNotificationsStore, ["showHideNotification", "hideNotification"]),
+    ...mapActions(useUserDataStore, ["showSearch", "showDropdown"]),
     handleGetNotifications() {
       axios.get("notifications").then((res) => {
         this.notifications = Array.from(res.data.data);
@@ -90,9 +97,6 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-    },
-    showHideNotification(){
-      this.showNotification = !this.showNotification
     },
     logout() {
       axios

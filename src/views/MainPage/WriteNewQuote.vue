@@ -37,7 +37,7 @@
         <ErrorMessage class="text-red-500 text-xs" name="movieId"/>
       </div>
       <div class="flex justify-center mt-5">
-        <basic-button :is-disabled="!meta.valid">Post</basic-button>
+        <basic-button class="w-full" :is-disabled="!meta.valid">Post</basic-button>
       </div>
     </Form>
   </modal-form-panel>

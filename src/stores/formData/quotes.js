@@ -60,6 +60,10 @@ export const useQuotesStore = defineStore("quotes", {
     }
   },
   actions: {
+    resetPage(){
+      this.page = 1;
+      this.lastPage = 2;
+    },
     writeQuoteResetFields() {
       this.text_en = "";
       this.text_ka = "";

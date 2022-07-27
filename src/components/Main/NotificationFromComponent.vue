@@ -1,9 +1,12 @@
 <template>
   <div class="cursor-pointer flex border-opacity-30 justify-between border-[1px] border-[#6C757D] p-5 rounded-md mb-3" @click="showCurrentQuote">
     <div class="flex items-center">
-      <div :class="phase ? 'border-[3px] border-[#198754] rounded-full' : ''">
-        <img width="72"   :src="`http://localhost:8000/${avatar}`" alt="image"/>
-      </div>
+     <div class="flex flex-col items-center">
+       <div :class="phase ? 'border-[3px] border-[#198754] rounded-full' : ''">
+         <img width="72"   :src="`http://localhost:8000/${avatar}`" alt="image"/>
+       </div>
+       <div v-if="SingleOrAllRead" class="md:hidden mt-2 flex justify-end"><p class="text-sm text-[#198754]">{{phase}}</p></div>
+     </div>
       <div class="ml-5">
         <p class="mb-3 text-[18px]">{{ username }}</p>
         <div class="flex items-center">
@@ -11,13 +14,14 @@
             <IconHeartRed v-if="commentOrLike === Liked"/>
             <IconChatQuote v-if="commentOrLike === Commented"/>
           </div>
-          <p class="ml-3 text-[16px]">{{commentOrLike}}</p>
+          <p class="ml-3 text-[16px] truncate md:w-full w-32">{{commentOrLike}}</p>
         </div>
+        <p class="mt-5 md:hidden">{{reactionTimestamp}}</p>
       </div>
     </div>
     <div class="flex flex-col  justify-between">
-      <p>{{reactionTimestamp}}</p>
-      <div v-if="SingleOrAllRead" class="flex justify-end"><p class="text-sm text-[#198754]">{{phase}}</p></div>
+      <p class="hidden md:block">{{reactionTimestamp}}</p>
+      <div v-if="SingleOrAllRead" class="hidden md:flex justify-end"><p class="text-sm text-[#198754]">{{phase}}</p></div>
     </div>
   </div>
 </template>

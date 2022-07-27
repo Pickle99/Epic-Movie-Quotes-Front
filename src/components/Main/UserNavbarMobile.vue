@@ -1,5 +1,6 @@
 <template>
-    <nav class="text-white md:justify-around hidden flex-col w-[20.3rem] md:h-60 w-fit md:flex bg-[#0d0b14] bg-black md:flex">
+  <OnClickOutside class="w-fit md:hidden" @trigger="hideDropdown()">
+    <nav v-if="isDropdownVisible" class="text-white md:justify-around h-[30rem] flex-col w-[20.3rem] md:h-60 w-fit flex bg-[#0d0b14] bg-black md:flex">
       <RouterLink :to="{name: 'profile'}" class="flex items-center mt-10 md:mt-0">
         <div
           class="w-32 flex justify-center">
@@ -35,27 +36,32 @@
         </div>
       </RouterLink>
     </nav>
+  </OnClickOutside>
 </template>
 
 <script>
-import { mapWritableState } from "pinia";
+import { mapActions, mapWritableState } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import {useQuotesStore} from "@/stores/formData/quotes.js";
 import IconCamera from "@/components/icons/IconCamera.vue";
 import IconCameraRed from "@/components/icons/IconCameraRed.vue";
 import IconHouse from "@/components/icons/IconHouse.vue";
 import IconHouseRed from "@/components/icons/IconHouseRed.vue";
+import { useUserDataStore } from "@/stores/formData/user.js";
+import { OnClickOutside } from '@vueuse/components'
 export default {
-  components: { IconHouseRed, IconHouse, IconCameraRed, IconCamera,},
+  components: { IconHouseRed, IconHouse, IconCameraRed, IconCamera, OnClickOutside },
   computed: {
-  ...mapWritableState(useQuotesStore, ["page", "lastPage"]),
-...mapWritableState(useLocalStorageStore, ["username", "avatar"]),
-},
+    ...mapWritableState(useQuotesStore, ["page", "lastPage"]),
+    ...mapWritableState(useLocalStorageStore, ["username", "avatar"]),
+    ...mapWritableState(useUserDataStore, ["isDropdownVisible"]),
+  },
   methods: {
-  resetPages(){
-    this.page = 1;
-    this.lastPage = 2;
-   },
+    ...mapActions(useUserDataStore, ["hideDropdown"]),
+    resetPages(){
+      this.page = 1;
+      this.lastPage = 2;
+    },
   }
 }
 </script>

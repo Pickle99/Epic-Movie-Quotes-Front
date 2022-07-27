@@ -3,20 +3,19 @@
     <div class="flex items-center">
       <div>
         <img
-          class="rounded-full"
+          class="rounded-full w-12 md:w-16"
           :src="`http://localhost:8000/${avatar}`"
           alt="img"
-          width="64"
         />
       </div>
       <div>
         <p class="ml-5">{{user}}</p>
       </div>
     </div>
-    <div class="border-b border-gray-600 w-[37.5rem] ml-20">
-      <p class="mb-5">
-      {{text}}
-      </p>
+    <div class="border-b border-gray-600 w-[16rem] md:w-[35.5rem] ml-20">
+        <p class="mb-5 break-words">
+          {{text}}
+        </p>
     </div>
   </article>
 </template>

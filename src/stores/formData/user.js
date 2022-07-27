@@ -16,6 +16,8 @@ export const useUserDataStore = defineStore("user", {
       provider: "",
       created_at: "",
       selectedAvatar: "",
+      isDropdownVisible: false,
+      isSearchVisible: false,
     };
   },
   getters: {
@@ -39,6 +41,20 @@ export const useUserDataStore = defineStore("user", {
         formData.append('avatar', this.selectedAvatar)
       }
       return formData;
+    }
+  },
+  actions: {
+    showDropdown(){
+      this.isDropdownVisible = true;
+    },
+    hideDropdown(){
+      this.isDropdownVisible = false;
+    },
+    showSearch(){
+      this.isSearchVisible = true;
+    },
+    hideSearch(){
+      this.isSearchVisible = false;
     }
   }
 });

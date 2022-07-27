@@ -5,7 +5,16 @@ export const useNotificationsStore = defineStore("notifications", {
     return {
       markedAsAllRead: false,
       notifications: [],
+      isNotificationVisible:false,
     };
+  },
+ actions: {
+    showHideNotification(){
+      this.isNotificationVisible = !this.isNotificationVisible;
+    },
+    hideNotification(){
+      this.isNotificationVisible = false;
+    },
   },
   getters: {
     newNotificationsLength(state){

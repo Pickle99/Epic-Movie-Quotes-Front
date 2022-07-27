@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <div class="absolute mt-3 -ml-5">
-      <IconTriangle/>
-    </div>
-    <div class="rounded-md max-h-[40rem] overflow-y-scroll p-7 text-white text-xl w-[60rem] bg-black absolute mt-8 -ml-[37rem]">
+  <div class="flex justify-center">
+    <div class="rounded-md w-screen max-h-[28rem]  md:max-h-[40rem] overflow-y-scroll p-7 text-white text-xl md:w-[60rem] bg-black absolute mt-8 md:-ml-[37rem]">
       <div class="flex justify-between items-center mb-7">
         <h1 class="text-2xl font-bold">{{$t('message.notifications')}}</h1>
         <p class="underline text-sm cursor-pointer" @click="handleMarkNotificationsAsAllRead">{{$t('message.mark_as_all_read')}}</p>
