@@ -88,6 +88,7 @@ export const messages = {
       edit_movie: "Edit movie",
       edit_quote: "Edit quote",
       my_profile: "My profile",
+      all_quotes: "All quotes",
     },
   },
   ka: {
@@ -180,6 +181,7 @@ export const messages = {
       edit_movie: "ფილმის შეცვლა",
       edit_quote: "ციტატის შეცვლა",
       my_profile: "ჩემი პროფილი",
+      all_quotes: "ყველა ციტატა",
     },
   },
 };

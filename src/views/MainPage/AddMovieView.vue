@@ -1,5 +1,5 @@
 <template>
- <form-panel :form-title="$t('message.add_movie')" link-to="movies">
+ <form-panel class="h-screen absolute w-screen -mt-16 md:mt-0 md:h-fit md:flex md:w-full" :form-title="$t('message.add_movie')" link-to="movies">
    <Form v-slot="{ meta }" @submit="onSubmit()">
      <div
        class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
@@ -201,9 +201,9 @@ export default {
           },
         })
         .then((res) => {
+          this.movieResetFields();
           this.$router.push({ name: "movies" });
           this.userMovies.unshift(res.data);
-          this.movieResetFields();
         })
         .catch((error) => {
           console.log(error);

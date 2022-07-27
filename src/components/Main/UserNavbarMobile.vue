@@ -1,7 +1,7 @@
 <template>
   <OnClickOutside class="w-fit md:hidden" @trigger="hideDropdown()">
-    <nav v-if="isDropdownVisible" class="text-white md:justify-around h-[30rem] flex-col w-[20.3rem] md:h-60 w-fit flex bg-[#0d0b14] bg-black md:flex">
-      <RouterLink :to="{name: 'profile'}" class="flex items-center mt-10 md:mt-0">
+    <nav v-if="isDropdownVisible" class="fixed text-white md:justify-around h-[30rem] flex-col w-[20.3rem] md:h-60 w-fit flex bg-[#0d0b14] bg-black md:flex">
+      <RouterLink :to="{name: 'profile'}" class="flex items-center mt-10 md:mt-0" @click="resetPages">
         <div
           class="w-32 flex justify-center">
           <img
@@ -26,7 +26,7 @@
           <p>{{$t('message.news_feed')}}</p>
         </div>
       </RouterLink>
-      <RouterLink :to="{ name: 'movies' }" class="flex items-center">
+      <RouterLink :to="{ name: 'movies' }" class="flex items-center" @click="resetPages">
         <div class="w-32 flex justify-center">
           <IconCamera v-if="$route.name !== 'movies'"/>
           <IconCameraRed v-if="$route.name === 'movies'" />

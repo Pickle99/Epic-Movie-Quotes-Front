@@ -1,21 +1,27 @@
 <template>
-  <div class="flex mb-24">
-    <MainHeader />
+  <div class="flex md:mb-24 z-0 mb-24">
+    <MainHeader/>
+    <UserNavbarMobile class="absolute z-10"/>
   </div>
-  <UserNavbar class="absolute" />
+  <UserNavbar class="fixed" />
+    <div  class="flex justify-center  -mt-12">
+      <NotificationComponent :class="!isNotificationVisible ? 'hidden' : 'fixed md:hidden'"/>
+    </div>
+
+
  <div v-if="created_at">
    <div class="mt-10 text-white flex justify-center">
      <Form class="flex flex-col" @submit="onSubmit()">
-       <div class="w-[50rem] mt-5">
+       <div class="w-[50rem] mt-5 hidden md:block">
          <h1 class="text-2xl font-bold">{{$t('message.my_profile')}}</h1>
        </div>
 
        <div class="bg-[#11101A] rounded-md mt-36 w-full pb-24 h-full flex flex-col justify-center items-center">
          <div class="absolute top-52 flex flex-col items-center">
-          <ProfileImageUpload @change="selectedFile"/>
+          <ProfileImageUpload v-if="!isNotificationVisible" @change="selectedFile"/>
          </div>
-         <div class="mt-36">
-             <div class="w-[30rem] text-black">
+         <div class="md:mt-36 mt-56">
+             <div class="md:w-[30rem] mx-12 md:mx-0 text-black">
                <basic-input
                  name="username"
                  placeholder="message.at_least_3_max_15"
@@ -50,7 +56,7 @@
          </div>
        </div>
 
-       <div class="flex justify-end w-full mt-7">
+       <div class="flex justify-center md:justify-end w-full mt-7">
          <div>
            <basic-button class="p-5 mb-16">{{$t('message.save_changes')}}</basic-button>
          </div>
@@ -72,6 +78,9 @@ import PasswordInput from "@/components/UI/PasswordInput.vue";
 import { useUserDataStore } from "@/stores/formData/user.js";
 import axios from "@/config/axios/index.js";
 import ProfileImageUpload from "@/components/UI/ProfileImageUpload.vue";
+import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
+import NotificationComponent from "@/components/Main/NotificationComponent.vue";
+import { useNotificationsStore } from "@/stores/notifications.js";
 export default {
   components: {
     ProfileImageUpload,
@@ -81,6 +90,8 @@ export default {
     UserNavbar,
     BasicButton,
     BasicInput,
+    UserNavbarMobile,
+    NotificationComponent,
   },
   data(){
     return {
@@ -91,6 +102,7 @@ export default {
     this.handleGetUserData()
   },
   computed: {
+    ...mapWritableState(useNotificationsStore, ["isNotificationVisible"]),
     ...mapWritableState(useLocalStorageStore, {
       localAvatar: "avatar",
       localUserId: "userId"
