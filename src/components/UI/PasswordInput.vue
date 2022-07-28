@@ -34,7 +34,7 @@
 
 <script>
 import { Field, ErrorMessage } from "vee-validate";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import { mapActions, mapWritableState } from "pinia";
 import IconEye from "@/components/icons/IconEye.vue";
 export default {
@@ -49,7 +49,7 @@ export default {
     };
   },
   computed: {
-    ...mapWritableState(useUserDataStore, ["data"]),
+    ...mapWritableState(useUserStore, ["data"]),
     PasswordType() {
       if (this.isPasswordVisible) {
         return "text";
@@ -57,7 +57,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useUserDataStore, ["updateField"]),
+    ...mapActions(useUserStore, ["updateField"]),
     setPasswordType() {
       this.isPasswordVisible = !this.isPasswordVisible;
     },

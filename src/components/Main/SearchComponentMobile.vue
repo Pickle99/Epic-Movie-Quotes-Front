@@ -26,11 +26,11 @@
 <script>
 import IconArrowLeft from "@/components/icons/IconArrowLeft.vue";
 import { mapActions } from "pinia/dist/pinia";
-import { useQuotesStore } from "@/stores/formData/quotes.js";
+import { useQuotesStore } from "@/stores/quotes.js";
 import axios from "@/config/axios/index.js";
 import { mapGetters, mapWritableState } from "pinia";
 import { OnClickOutside } from "@vueuse/components";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 export default {
   components: {
     IconArrowLeft,
@@ -41,7 +41,7 @@ export default {
     ...mapGetters(useQuotesStore, ["searchIn"]),
   },
   methods: {
-    ...mapActions(useUserDataStore, ["hideSearch"]),
+    ...mapActions(useUserStore, ["hideSearch"]),
     ...mapActions(useQuotesStore, ["resetPage"]),
     handleGetQuote(scroll) {
       if(this.page > this.lastPage) { return }

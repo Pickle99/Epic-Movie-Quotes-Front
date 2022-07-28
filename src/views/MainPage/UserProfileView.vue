@@ -75,7 +75,7 @@ import { mapWritableState, mapGetters } from "pinia";
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import axios from "@/config/axios/index.js";
 import ProfileImageUpload from "@/components/UI/ProfileImageUpload.vue";
 import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
@@ -107,8 +107,8 @@ export default {
       localAvatar: "avatar",
       localUserId: "userId"
     }),
-    ...mapWritableState(useUserDataStore, ["data", "provider", "created_at", "selectedAvatar"]),
-    ...mapGetters(useUserDataStore, ["profileUpdateData"]),
+    ...mapWritableState(useUserStore, ["data", "provider", "created_at", "selectedAvatar"]),
+    ...mapGetters(useUserStore, ["profileUpdateData"]),
   },
   methods: {
     selectedFile() {

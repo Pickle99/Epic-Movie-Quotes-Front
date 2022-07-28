@@ -61,7 +61,7 @@
 <script>
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
-import { useQuotesStore } from "@/stores/formData/quotes.js";
+import { useQuotesStore } from "@/stores/quotes.js";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import UserCommentComponent from '@/components/Main/UserCommentComponent.vue';
 import IconHeart from "@/components/icons/IconHeart.vue";

@@ -47,7 +47,7 @@
 import {Field, ErrorMessage, Form} from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import ModalFormPanel from '@/components/Main/ModalFormPanel.vue';
-import {useQuotesStore} from "@/stores/formData/quotes.js";
+import {useQuotesStore} from "@/stores/quotes.js";
 import { mapGetters, mapWritableState, mapActions } from "pinia";
 import ChooseMovie from "@/components/UI/ChooseMovie.vue";
 import axios from "@/config/axios/index.js";

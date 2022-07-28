@@ -71,7 +71,7 @@
 </template>
 <script>
 import { Form } from "vee-validate";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
@@ -89,7 +89,7 @@ export default {
     OnClickOutside,
   },
   computed: {
-    ...mapWritableState(useUserDataStore, ["data"]),
+    ...mapWritableState(useUserStore, ["data"]),
   },
   methods: {
     close() {

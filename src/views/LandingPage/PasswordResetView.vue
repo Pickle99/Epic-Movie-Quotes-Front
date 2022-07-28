@@ -43,7 +43,7 @@ import BasicButton from "@/components/UI/BasicButton.vue";
 import BackToLoginButton from '@/components/UI/BackToLoginButton.vue';
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import IconArrowLeft from "@/components/icons/IconArrowLeft.vue";
 
 export default {
@@ -56,7 +56,7 @@ export default {
     BackToLoginButton,
   },
   computed: {
-    ...mapWritableState(useUserDataStore, ["data"]),
+    ...mapWritableState(useUserStore, ["data"]),
   },
   methods: {
     onSubmit() {

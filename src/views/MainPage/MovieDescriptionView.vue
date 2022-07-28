@@ -129,7 +129,7 @@ import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import QuoteComponent from "@/components/Main/QuoteComponent.vue";
-import {useMoviesStore} from '@/stores/formData/movies.js'
+import {useMoviesStore} from '@/stores/movies.js'
 import { mapWritableState } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import IconSquare from "@/components/icons/IconSquare.vue";

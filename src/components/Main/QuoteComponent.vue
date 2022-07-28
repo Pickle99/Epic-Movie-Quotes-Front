@@ -32,7 +32,7 @@
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
-import { useMoviesStore } from "@/stores/formData/movies.js";
+import { useMoviesStore } from "@/stores/movies.js";
 import IconDots from "@/components/icons/IconDots.vue";
 import IconEyeOpen from "@/components/icons/IconEyeOpen.vue";
 import IconPen from "@/components/icons/IconPen.vue";

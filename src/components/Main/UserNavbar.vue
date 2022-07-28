@@ -40,7 +40,7 @@
 <script>
 import { mapWritableState } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
-import {useQuotesStore} from "@/stores/formData/quotes.js";
+import {useQuotesStore} from "@/stores/quotes.js";
 import IconCamera from "@/components/icons/IconCamera.vue";
 import IconCameraRed from "@/components/icons/IconCameraRed.vue";
 import IconHouse from "@/components/icons/IconHouse.vue";

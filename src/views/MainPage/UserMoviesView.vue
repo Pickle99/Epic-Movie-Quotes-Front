@@ -72,7 +72,7 @@
      </div>
 </template>
 <script>
-import { useMoviesStore } from "@/stores/formData/movies.js";
+import { useMoviesStore } from "@/stores/movies.js";
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";

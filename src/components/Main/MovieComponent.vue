@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { useQuotesStore } from "@/stores/formData/quotes.js";
+import { useQuotesStore } from "@/stores/quotes.js";
 import { mapWritableState } from "pinia";
 export default {
   computed: {

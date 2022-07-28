@@ -44,7 +44,7 @@
 
 <script>
 import { Field, ErrorMessage } from "vee-validate";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import { mapWritableState } from "pinia";
 import IconClose from "@/components/icons/IconClose.vue";
 import IconInvalid from "@/components/icons/IconInvalid.vue";
@@ -63,7 +63,7 @@ export default {
     };
   },
   computed: {
-    ...mapWritableState(useUserDataStore, ["data", "username"]),
+    ...mapWritableState(useUserStore, ["data", "username"]),
   },
   methods: {
     resetField(){

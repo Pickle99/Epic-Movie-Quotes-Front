@@ -42,7 +42,7 @@ class="p-4 cursor-pointer my-2 bg-black flex items-center px-4 justify-between"
 </template>
 <script>
 import MovieComponent from '@/components/Main/MovieComponent.vue';
-import { useQuotesStore} from "@/stores/formData/quotes.js";
+import { useQuotesStore} from "@/stores/quotes.js";
 import { mapWritableState } from "pinia";
 import IconArrowDown from '@/components/icons/IconArrowDown.vue';
 import IconCamera from "@/components/icons/IconCamera.vue";

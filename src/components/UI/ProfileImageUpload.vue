@@ -15,7 +15,7 @@
 <script>
 import {Field} from "vee-validate";
 import { mapWritableState } from "pinia";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 export default {
   components: {Field},
   data(){
@@ -24,7 +24,7 @@ export default {
     }
   },
   computed: {
-    ...mapWritableState(useUserDataStore, ["data"]),
+    ...mapWritableState(useUserStore, ["data"]),
     avatar(){
       if(this.previewAvatar){
         return this.previewAvatar;

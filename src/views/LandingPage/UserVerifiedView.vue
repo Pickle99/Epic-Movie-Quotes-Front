@@ -5,7 +5,7 @@
 <script>
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import UserVerifiedComponent from "@/components/Landing/UserVerifiedComponent.vue";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import { useRequestsStore } from "@/stores/requests.js";
@@ -14,7 +14,7 @@ export default {
     UserVerifiedComponent,
   },
   computed: {
-    ...mapWritableState(useUserDataStore, ["data"]),
+    ...mapWritableState(useUserStore, ["data"]),
     ...mapWritableState(useRequestsStore, ["user"]),
   }, 
   mounted() {

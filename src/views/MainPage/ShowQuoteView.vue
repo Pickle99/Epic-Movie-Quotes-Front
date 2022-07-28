@@ -73,13 +73,13 @@
 <script>
 import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import {Form, Field, ErrorMessage} from "vee-validate";
-import { useMoviesStore } from "@/stores/formData/movies.js";
+import { useMoviesStore } from "@/stores/movies.js";
 import {mapWritableState} from "pinia";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
 import UserCommentComponent from "@/components/Main/UserCommentComponent.vue";
-import { useQuotesStore } from "@/stores/formData/quotes.js";
+import { useQuotesStore } from "@/stores/quotes.js";
 import IconHeart from "@/components/icons/IconHeart.vue";
 import IconHeartRed from "@/components/icons/IconHeartRed.vue";
 import IconSquare from "@/components/icons/IconSquare.vue";

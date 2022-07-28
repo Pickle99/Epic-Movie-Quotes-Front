@@ -40,12 +40,12 @@ import { setJwtToken } from "@/helpers/jwt/index.js";
 import NotificationComponent from '@/components/Main/NotificationComponent.vue'
 import { mapWritableState, mapGetters, mapActions } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications.js";
-import {useQuotesStore} from "@/stores/formData/quotes.js";
+import {useQuotesStore} from "@/stores/quotes.js";
 import { useRequestsStore } from "@/stores/requests.js";
 import IconBell from "@/components/icons/IconBell.vue";
 import IconThreeLines from "@/components/icons/IconThreeLines.vue";
 import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import IconTriangle from "@/components/icons/IconTriangle.vue";
 export default {
   components: {
@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     ...mapActions(useNotificationsStore, ["showHideNotification", "hideNotification"]),
-    ...mapActions(useUserDataStore, ["showSearch", "showDropdown"]),
+    ...mapActions(useUserStore, ["showSearch", "showDropdown"]),
     handleGetNotifications() {
       axios.get("notifications").then((res) => {
         this.notifications = Array.from(res.data.data);

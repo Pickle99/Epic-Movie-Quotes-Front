@@ -77,7 +77,7 @@ import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import { mapWritableState } from "pinia";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import { OnClickOutside } from '@vueuse/components'
 export default {
   components: {
@@ -95,7 +95,7 @@ export default {
     };
   },
   computed: {
-    ...mapWritableState(useUserDataStore, ["data", "currentUser"]),
+    ...mapWritableState(useUserStore, ["data", "currentUser"]),
   },
   methods: {
     close(){

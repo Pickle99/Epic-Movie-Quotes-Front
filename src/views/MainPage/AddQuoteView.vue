@@ -59,7 +59,7 @@ import UserNavbar from '@/components/Main/UserNavbar.vue';
 import {Field, ErrorMessage, Form} from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import FormPanel from '@/components/Main/QuoteFormPanel.vue';
-import {useQuotesStore} from "@/stores/formData/quotes.js";
+import {useQuotesStore} from "@/stores/quotes.js";
 import { mapWritableState, mapActions, mapGetters } from "pinia";
 import axios from "@/config/axios/index.js";
 import ImageUploadAnother from "@/components/UI/ImageUploadAnother.vue";
@@ -110,7 +110,6 @@ export default {
         .get(`movie/`+this.$route.params.movie)
         .then((res) => {
           this.movies = res.data;
-          console.log(res)
         })
     },
     drop(e) {

@@ -77,14 +77,14 @@ import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import PostComponent from "@/components/Main/PostComponent.vue";
 import FilteredPostComponent from "@/components/Main/FilteredPostComponent.vue";
-import { useQuotesStore } from "@/stores/formData/quotes.js";
+import { useQuotesStore } from "@/stores/quotes.js";
 import { mapWritableState, mapGetters, mapActions } from "pinia";
 import WriteNewQuote from "@/views/MainPage/WriteNewQuote.vue";
 import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
 import IconPencil from "@/components/icons/IconPencil.vue";
 import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
 import SearchComponentMobile from '@/components/Main/SearchComponentMobile.vue';
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import NotificationComponent from "@/components/Main/NotificationComponent.vue";
 import { useNotificationsStore } from "@/stores/notifications.js";
 export default {
@@ -102,7 +102,7 @@ export default {
   },
   computed: {
     ...mapWritableState(useNotificationsStore, ["isNotificationVisible"]),
-    ...mapWritableState(useUserDataStore, ["isSearchVisible"]),
+    ...mapWritableState(useUserStore, ["isSearchVisible"]),
     ...mapWritableState(useQuotesStore, ["allQuotes","isModalOpen", "page", "lastPage", "search", "filteredQuotes"]),
     ...mapGetters(useQuotesStore, ["filteredFeedView", "searchIn"]),
   },

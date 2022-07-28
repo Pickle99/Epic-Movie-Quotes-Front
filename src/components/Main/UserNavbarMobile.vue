@@ -42,22 +42,22 @@
 <script>
 import { mapActions, mapWritableState } from "pinia";
 import { useLocalStorageStore } from "@/stores/localStorage.js";
-import {useQuotesStore} from "@/stores/formData/quotes.js";
+import {useQuotesStore} from "@/stores/quotes.js";
 import IconCamera from "@/components/icons/IconCamera.vue";
 import IconCameraRed from "@/components/icons/IconCameraRed.vue";
 import IconHouse from "@/components/icons/IconHouse.vue";
 import IconHouseRed from "@/components/icons/IconHouseRed.vue";
-import { useUserDataStore } from "@/stores/formData/user.js";
+import { useUserStore } from "@/stores/user.js";
 import { OnClickOutside } from '@vueuse/components'
 export default {
   components: { IconHouseRed, IconHouse, IconCameraRed, IconCamera, OnClickOutside },
   computed: {
     ...mapWritableState(useQuotesStore, ["page", "lastPage"]),
     ...mapWritableState(useLocalStorageStore, ["username", "avatar"]),
-    ...mapWritableState(useUserDataStore, ["isDropdownVisible"]),
+    ...mapWritableState(useUserStore, ["isDropdownVisible"]),
   },
   methods: {
-    ...mapActions(useUserDataStore, ["hideDropdown"]),
+    ...mapActions(useUserStore, ["hideDropdown"]),
     resetPages(){
       this.page = 1;
       this.lastPage = 2;
