@@ -1,7 +1,7 @@
 <template>
 <div     class="flex mb-7 border-2 border-black p-3 mr-6 rounded-md" @click="addMovie()">
   <div>
-    <img :src="`http://localhost:8000/${image}`" width="230" alt="image"/>
+    <img :src="`http://localhost:8000/${image}`" width="230" alt="movie-image"/>
   </div>
   <div class="ml-3 flex flex-col h-32 justify-around">
     <div class="flex">

@@ -5,7 +5,7 @@
         <img
           class="rounded-full w-12 md:w-16"
           :src="`http://localhost:8000/${avatar}`"
-          alt="img"
+          alt="user-avatar"
         />
       </div>
       <div>

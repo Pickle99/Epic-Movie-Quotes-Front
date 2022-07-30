@@ -16,7 +16,7 @@
         <img
           class="rounded-xl md:w-[60rem]"
           :src="`http://localhost:8000/${movie.image}`"
-          alt="img"
+          alt="movie-image"
         />
       </div>
       <div class="ml-5">
@@ -95,7 +95,7 @@ v-if="movie.user_id == userId"
   <div v-for="quote in movieDescriptionQuoteData" :key="quote" class="text-white mx-5 md:mx-0 md:ml-96 mt-10 md:w-[60rem] bg-[#07060b] p-4 mb-7 rounded-md">
 <div class="flex justify-between">
   <div class="flex flex-col md:flex-row w-full items-center">
-    <img class="md:w-[15rem] md:h-auto h-[8rem] w-[19rem] object-center" :src="`http://localhost:8000/${quote.image}`" alt="img"/>
+    <img class="md:w-[15rem] md:h-auto h-[8rem] w-[19rem] object-center" :src="`http://localhost:8000/${quote.image}`" alt="quote-image"/>
   <div class="md:w-[32rem]">
     <p class="md:ml-7 mt-2 md:mt-0 break-words italic text-[#CED4DA] font-sans">"{{$i18n.locale === 'en' ? quote.text.en : quote.text.ka}}"</p>
   </div>

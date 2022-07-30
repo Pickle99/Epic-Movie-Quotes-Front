@@ -103,7 +103,7 @@ export default {
 
           <div class="text-white flex items-center mt-64 md:mt-[74rem]">
             <div class="absolute snap-end" >
-              <img src="@/assets/images/movies/TheRoyalTenenbaums-2.png" alt="img"/>
+              <img src="@/assets/images/movies/TheLordOfTheRings.png" alt="lord-of-the-rings"/>
             </div>
             <div class="absolute z-10 ml-3 md:ml-16">
               <div class="flex snap-center">

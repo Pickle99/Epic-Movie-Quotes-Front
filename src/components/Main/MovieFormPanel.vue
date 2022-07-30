@@ -31,7 +31,7 @@
       <div class="border-gray-600 border-b-2 w-full"></div>
       <div class="flex p-4">
         <div class="flex items-center">
-          <img width="48" :src="`http://localhost:8000/${avatar || localAvatar}`" alt="img" />
+          <img width="48" :src="`http://localhost:8000/${avatar || localAvatar}`" alt="user-avatar" />
           <p class="ml-4">{{username || localUser}}</p>
         </div>
       </div>

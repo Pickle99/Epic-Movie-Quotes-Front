@@ -8,7 +8,7 @@
               class="rounded-full"
               :src="`http://localhost:8000/${userAvatar}`"
               width="48"
-              alt="img"
+              alt="user-avatar"
             />
             <p class="ml-5">{{ postedBy }}</p>
           </header>
@@ -23,7 +23,7 @@
           <div class="my-6">
             <img
               :src="`http://localhost:8000/${movieImage}`"
-              alt="img"
+              alt="movie-image"
               class="md:w-[50rem] w-[30rem]"
             />
           </div>
@@ -44,7 +44,7 @@
             class="rounded-full"
             width="64"
             :src="'http://localhost:8000/'+avatar"
-            alt="img"
+            alt="user-avatar"
           />
           <div class="ml-5">
             <input

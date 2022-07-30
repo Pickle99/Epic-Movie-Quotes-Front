@@ -3,7 +3,7 @@
     <div class="flex items-center">
      <div class="flex flex-col items-center">
        <div :class="phase ? 'border-[3px] border-[#198754] rounded-full' : ''">
-         <img width="72"   :src="`http://localhost:8000/${avatar}`" alt="image"/>
+         <img width="72"   :src="`http://localhost:8000/${avatar}`" alt="user-avatar"/>
        </div>
        <div v-if="SingleOrAllRead" class="md:hidden mt-2 flex justify-end"><p class="text-sm text-[#198754]">{{phase}}</p></div>
      </div>

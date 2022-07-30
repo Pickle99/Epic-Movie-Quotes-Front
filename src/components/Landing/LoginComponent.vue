@@ -48,7 +48,7 @@
             class="flex items-center justify-center text-white mt-5 border-white border-2 py-2 rounded-sm"
             @click="google()"
           >
-            <img class="mr-2" src="@/assets/images/google.png" alt="img" />
+            <img class="mr-2" src="@/assets/images/google.png" alt="google" />
             {{ $t("message.sign_in_google") }}
           </button>
         </div>

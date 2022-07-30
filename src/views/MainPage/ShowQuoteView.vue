@@ -56,7 +56,7 @@
          class="rounded-full"
          width="64"
          :src="`http://localhost:8000/${currentUserAvatar}`"
-         alt="img"
+         alt="user-avatar"
        />
        <div class="ml-5">
          <input

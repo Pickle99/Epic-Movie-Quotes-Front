@@ -4,7 +4,7 @@
       class="flex flex-col justify-center items-center text-center text-white"
     >
       <div class="mb-10">
-        <img src="@/assets/images/telegram.png" alt="img" />
+        <img src="@/assets/images/telegram.png" alt="telegram" />
       </div>
       <h1 class="text-3xl mb-8 font-bold">{{$t('message.check_your_email')}}</h1>
       <span class="text-md mb-8 w-[21rem]">

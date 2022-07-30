@@ -50,7 +50,7 @@
            >
              <img
                :src="`http://localhost:8000/${movie.image}`"
-               alt="img"
+               alt="movie-image"
                class="rounded-xl h-96 w-[30rem] hover:cursor-pointer mb-4"
              />
              <div class="font-bold uppercase flex">

@@ -8,7 +8,7 @@
             :class="$route.name === 'profile' ? 'rounded-full border-2 border-[#E31221]' : 'rounded-full'"
             :src="`http://localhost:8000/${avatar}`"
             width="54"
-            alt="img"
+            alt="user-avatar"
           />
         </div>
         <div>
