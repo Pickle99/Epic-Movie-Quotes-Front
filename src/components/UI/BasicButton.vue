@@ -17,6 +17,7 @@ export default {
     isDisabled: {
       type: Boolean,
       required: false,
+      default: true,
     },
   },
 };

@@ -91,6 +91,7 @@ export default {
     error: {
       type: String,
       required: false,
+      default: "",
     },
     isDisabled: {
       type: Boolean,

@@ -17,6 +17,7 @@ export default {
     genres: {
       type: [Array, Number],
       required: false,
+      default: null,
     },
     isDisabled: {
       type: Boolean,

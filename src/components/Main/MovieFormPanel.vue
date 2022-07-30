@@ -56,10 +56,12 @@ export default {
     avatar: {
       type: String,
       required: false,
+      default: ""
     },
     username: {
       type: String,
       required: false,
+      default: "",
     },
     formTitle: {
       type: String,
@@ -72,6 +74,7 @@ export default {
     routeParam: {
       type: String,
       required: false,
+      default: "",
     },
   },
   computed:{

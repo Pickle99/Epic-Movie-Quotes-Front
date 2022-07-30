@@ -94,6 +94,7 @@ export default {
     year: {
       type: Number,
       required: false,
+      default: null,
     },
     movieImage: {
       type: String,

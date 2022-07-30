@@ -80,6 +80,7 @@ export default {
     quoteUserId: {
       type: Number,
       required: false,
+      default: null,
     }
   },
   computed:{

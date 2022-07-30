@@ -26,6 +26,7 @@ export default {
     movieId: {
       type: Number,
       required: false,
+      default: null,
     },
     name: {
       type: Object,
@@ -38,6 +39,7 @@ export default {
     year: {
       type: Number,
       required: false,
+      default: null,
     },
     userName: {
       type: String,

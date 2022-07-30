@@ -1,4 +1,4 @@
-import { defineRule } from "vee-validate"; // npm install vee-validate --save
+import { defineRule } from "vee-validate";
 import { required, email, min, max, confirmed } from "@vee-validate/rules";
 
 defineRule("required", required);
