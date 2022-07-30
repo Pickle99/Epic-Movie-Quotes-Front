@@ -55,7 +55,7 @@ export default {
 
         <div class="">
           <div class="text-white flex items-center mt-64 md:mt-[45rem]">
-            <div class="w-full md:h-[74rem] h-full absolute bg-no-repeat md:bg-cover bg-contain bg-center md:bg-fixed bg-[url('@/assets/images/movies/Interstellar.png')]" >
+            <div class="w-full md:h-[74rem] h-full absolute bg-no-repeat md:bg-cover bg-contain bg-center md:bg-fixed bg-[url('@/assets/images/Interstellar.png')]" >
 
             </div>
             <div>
@@ -78,7 +78,7 @@ export default {
           </div>
 
           <div class="text-white flex items-center mt-64 md:mt-[74rem] ">
-            <div class="absolute w-full md:h-[74rem] h-full absolute bg-no-repeat md:bg-cover bg-contain bg-center md:bg-fixed bg-[url('@/assets/images/movies/TheRoyalTenenbaums.png')]" >
+            <div class="absolute w-full md:h-[74rem] h-full absolute bg-no-repeat md:bg-cover bg-contain bg-center md:bg-fixed bg-[url('@/assets/images/TheRoyalTenenbaums.png')]" >
 
             </div>
             <div class="absolute z-10 ml-3 md:ml-16">
@@ -103,7 +103,7 @@ export default {
 
           <div class="text-white flex items-center mt-64 md:mt-[74rem]">
             <div class="absolute snap-end" >
-              <img src="@/assets/images/movies/TheLordOfTheRings.png" alt="lord-of-the-rings"/>
+              <img src="@/assets/images/TheLordOfTheRings.png" alt="lord-of-the-rings"/>
             </div>
             <div class="absolute z-10 ml-3 md:ml-16">
               <div class="flex snap-center">

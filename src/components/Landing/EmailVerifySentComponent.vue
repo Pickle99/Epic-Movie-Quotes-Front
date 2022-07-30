@@ -4,7 +4,7 @@
       class="flex flex-col justify-center items-center text-center text-white"
     >
       <div class="mb-10">
-        <img src="@/assets/images/telegram.png" alt="telegram" />
+        <IconTelegram/>
       </div>
       <h1 class="text-3xl mb-8">{{$t('message.thank_you')}}!</h1>
       <span class="text-md mb-8 w-[26rem]">
@@ -23,8 +23,10 @@
 
 <script>
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
+import IconTelegram from "@/components/icons/IconTelegram.vue";
 export default {
   components: {
+    IconTelegram,
     BlurPanel,
   },
 };
