@@ -1,13 +1,11 @@
 import { createPinia } from "pinia/dist/pinia";
-import { useLocaleStore } from "@/stores/locale.js";
-import { useUserStore } from "@/stores/user.js";
-import { useMoviesStore } from "@/stores/movies.js";
-import { useRequestsStore } from "@/stores/requests.js";
-import { useLocalStorageStore } from "@/stores/localStorage.js";
-import { useNotificationsStore } from "@/stores/notifications.js";
-import { useQuotesStore } from "@/stores/quotes.js";
+import { useUserStore } from "@/stores/useUserStore.js";
+import { useMoviesStore } from "@/stores/useMoviesStore.js";
+import { useRequestsStore } from "@/stores/useRequestsStore.js";
+import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
+import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
+import { useQuotesStore } from "@/stores/useQuotesStore.js";
 const store = createPinia({
-  useLocaleStore,
   useUserStore,
   useMoviesStore,
   useRequestsStore,

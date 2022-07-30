@@ -28,8 +28,8 @@
 
 <script>
 import { mapWritableState, mapActions } from "pinia";
-import { useLocalStorageStore } from "@/stores/localStorage.js";
-import { useQuotesStore } from "@/stores/quotes.js";
+import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
+import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import IconX from "@/components/icons/IconX.vue";
 export default {
   components: { IconX },

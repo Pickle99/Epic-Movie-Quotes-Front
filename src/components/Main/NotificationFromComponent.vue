@@ -27,11 +27,11 @@
 </template>
 
 <script>
-import { useLocalStorageStore } from "@/stores/localStorage.js";
-import { useNotificationsStore } from '@/stores/notifications.js';
+import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
+import { useNotificationsStore } from '@/stores/useNotificationsStore.js';
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
-import { useRequestsStore } from "@/stores/requests.js";
+import { useRequestsStore } from "@/stores/useRequestsStore.js";
 import IconHeartRed from "@/components/icons/IconHeartRed.vue";
 import IconChatQuote from "@/components/icons/IconChatQuote.vue";
 export default {

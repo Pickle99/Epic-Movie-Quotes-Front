@@ -47,7 +47,7 @@
 import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import {Form, Field, ErrorMessage} from "vee-validate";
-import { useQuotesStore } from "@/stores/quotes.js";
+import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import {mapWritableState, mapActions, mapGetters} from "pinia";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";

@@ -23,8 +23,8 @@
 
 <script>
 import NotificationFromComponent from '@/components/Main/NotificationFromComponent.vue'
-import { useLocalStorageStore } from "@/stores/localStorage.js";
-import { useNotificationsStore } from "@/stores/notifications.js";
+import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
+import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
 import IconTriangle from "@/components/icons/IconTriangle.vue";

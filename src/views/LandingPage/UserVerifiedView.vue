@@ -5,10 +5,10 @@
 <script>
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 import UserVerifiedComponent from "@/components/Landing/UserVerifiedComponent.vue";
 import { setJwtToken } from "@/helpers/jwt/index.js";
-import { useRequestsStore } from "@/stores/requests.js";
+import { useRequestsStore } from "@/stores/useRequestsStore.js";
 export default {
   components: {
     UserVerifiedComponent,

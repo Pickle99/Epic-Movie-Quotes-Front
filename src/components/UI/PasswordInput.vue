@@ -34,7 +34,7 @@
 
 <script>
 import { Field, ErrorMessage } from "vee-validate";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 import { mapActions, mapWritableState } from "pinia";
 import IconEye from "@/components/icons/IconEye.vue";
 export default {

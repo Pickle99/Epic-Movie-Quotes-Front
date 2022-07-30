@@ -77,7 +77,7 @@ import PasswordInput from "@/components/UI/PasswordInput.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import { mapWritableState } from "pinia";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 import { OnClickOutside } from '@vueuse/components';
 import IconGoogle from "@/components/icons/IconGoogle.vue";
 export default {

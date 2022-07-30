@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import { useLocalStorageStore } from "@/stores/localStorage.js";
+import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import {Form} from "vee-validate";
@@ -75,12 +75,12 @@ import { mapWritableState, mapGetters } from "pinia";
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 import axios from "@/config/axios/index.js";
 import ProfileImageUpload from "@/components/UI/ProfileImageUpload.vue";
 import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
 import NotificationComponent from "@/components/Main/NotificationComponent.vue";
-import { useNotificationsStore } from "@/stores/notifications.js";
+import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
 export default {
   components: {
     ProfileImageUpload,

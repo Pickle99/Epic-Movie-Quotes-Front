@@ -39,13 +39,13 @@ import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import NotificationComponent from '@/components/Main/NotificationComponent.vue'
 import { mapWritableState, mapGetters, mapActions } from "pinia";
-import { useNotificationsStore } from "@/stores/notifications.js";
-import {useQuotesStore} from "@/stores/quotes.js";
-import { useRequestsStore } from "@/stores/requests.js";
+import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
+import {useQuotesStore} from "@/stores/useQuotesStore.js";
+import { useRequestsStore } from "@/stores/useRequestsStore.js";
 import IconBell from "@/components/icons/IconBell.vue";
 import IconThreeLines from "@/components/icons/IconThreeLines.vue";
 import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 import IconTriangle from "@/components/icons/IconTriangle.vue";
 export default {
   components: {

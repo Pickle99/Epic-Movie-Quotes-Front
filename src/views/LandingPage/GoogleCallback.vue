@@ -7,7 +7,7 @@
 <script>
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
-import { useRequestsStore } from "@/stores/requests.js";
+import { useRequestsStore } from "@/stores/useRequestsStore.js";
 import { mapWritableState } from "pinia";
 export default {
   computed: {

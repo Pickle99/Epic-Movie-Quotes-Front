@@ -44,7 +44,7 @@
 
 <script>
 import { Field, ErrorMessage } from "vee-validate";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 import { mapWritableState } from "pinia";
 import IconClose from "@/components/icons/IconClose.vue";
 import IconInvalid from "@/components/icons/IconInvalid.vue";

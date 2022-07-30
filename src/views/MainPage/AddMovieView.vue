@@ -150,7 +150,7 @@
 import { Form, Field, ErrorMessage } from "vee-validate";
 import ImageUpload from "@/components/UI/ImageUpload.vue";
 import MovieFormButton from "@/components/UI/MovieFormButton.vue";
-import { useMoviesStore } from "@/stores/movies.js";
+import { useMoviesStore } from "@/stores/useMoviesStore.js";
 import { mapWritableState, mapGetters, mapActions } from "pinia";
 import FormPanel from "@/components/Main/MovieFormPanel.vue";
 import axios from "@/config/axios/index.js";

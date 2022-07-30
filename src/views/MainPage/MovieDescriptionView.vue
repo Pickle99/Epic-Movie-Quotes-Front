@@ -129,16 +129,16 @@ import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import QuoteComponent from "@/components/Main/QuoteComponent.vue";
-import {useMoviesStore} from '@/stores/movies.js'
+import {useMoviesStore} from '@/stores/useMoviesStore.js'
 import { mapWritableState } from "pinia";
-import { useLocalStorageStore } from "@/stores/localStorage.js";
+import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import IconSquare from "@/components/icons/IconSquare.vue";
 import IconHeart from "@/components/icons/IconHeart.vue";
 import IconPen from "@/components/icons/IconPen.vue";
 import IconTrash from "@/components/icons/IconTrash.vue";
 import IconPlus from "@/components/icons/IconPlus.vue";
 import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
-import { useNotificationsStore } from "@/stores/notifications.js";
+import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
 import NotificationComponent from "@/components/Main/NotificationComponent.vue";
 export default {
   components: { IconPlus, NotificationComponent, IconTrash, IconPen, IconHeart, IconSquare,UserNavbarMobile, MainHeader, UserNavbar, QuoteComponent },

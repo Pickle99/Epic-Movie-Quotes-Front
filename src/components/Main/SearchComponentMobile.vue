@@ -26,11 +26,11 @@
 <script>
 import IconArrowLeft from "@/components/icons/IconArrowLeft.vue";
 import { mapActions } from "pinia/dist/pinia";
-import { useQuotesStore } from "@/stores/quotes.js";
+import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import axios from "@/config/axios/index.js";
 import { mapGetters, mapWritableState } from "pinia";
 import { OnClickOutside } from "@vueuse/components";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 export default {
   components: {
     IconArrowLeft,

@@ -24,22 +24,24 @@
 
 <script>
 import { setLocale } from "@vee-validate/i18n";
-import { useLocaleStore } from "@/stores/locale.js";
-import { mapActions, mapState } from "pinia/dist/pinia";
 import IconArrowDownSlim from '@/components/icons/IconArrowDownSlim.vue';
 export default {
   components: {
     IconArrowDownSlim
+  },
+  data(){
+    return {
+    isDisabled: false,
+    }
   },
   methods: {
     change(lang) {
       localStorage.setItem("locale", lang);
       setLocale((this.$i18n.locale = localStorage.getItem("locale")));
     },
-    ...mapActions(useLocaleStore, ["currentLanguage", "setDisabled"]),
-  },
-  computed: {
-    ...mapState(useLocaleStore, ["isDisabled"]),
+    setDisabled(){
+      this.isDisabled = !this.isDisabled;
+    }
   },
 };
 </script>

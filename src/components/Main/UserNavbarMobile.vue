@@ -41,13 +41,13 @@
 
 <script>
 import { mapActions, mapWritableState } from "pinia";
-import { useLocalStorageStore } from "@/stores/localStorage.js";
-import {useQuotesStore} from "@/stores/quotes.js";
+import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
+import {useQuotesStore} from "@/stores/useQuotesStore.js";
 import IconCamera from "@/components/icons/IconCamera.vue";
 import IconCameraRed from "@/components/icons/IconCameraRed.vue";
 import IconHouse from "@/components/icons/IconHouse.vue";
 import IconHouseRed from "@/components/icons/IconHouseRed.vue";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 import { OnClickOutside } from '@vueuse/components'
 export default {
   components: { IconHouseRed, IconHouse, IconCameraRed, IconCamera, OnClickOutside },

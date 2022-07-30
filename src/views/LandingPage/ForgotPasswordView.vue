@@ -54,7 +54,7 @@ import BasicButton from "@/components/UI/BasicButton.vue";
 import BackToLoginButton from '@/components/UI/BackToLoginButton.vue';
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 import IconArrowLeft from "@/components/icons/IconArrowLeft.vue";
 export default {
   components: {

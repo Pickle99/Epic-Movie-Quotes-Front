@@ -44,9 +44,9 @@
 
 <script>
 import { mapWritableState, mapActions } from "pinia";
-import { useLocalStorageStore } from "@/stores/localStorage.js";
+import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import axios from "@/config/axios/index.js";
-import { useMoviesStore } from "@/stores/movies.js";
+import { useMoviesStore } from "@/stores/useMoviesStore.js";
 import IconPen from "@/components/icons/IconPen.vue";
 import IconTrash from "@/components/icons/IconTrash.vue";
 import IconX from "@/components/icons/IconX.vue";

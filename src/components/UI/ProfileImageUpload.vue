@@ -15,7 +15,7 @@
 <script>
 import {Field} from "vee-validate";
 import { mapWritableState } from "pinia";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 export default {
   components: {Field},
   data(){

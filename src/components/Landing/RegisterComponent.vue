@@ -71,7 +71,7 @@
 </template>
 <script>
 import { Form } from "vee-validate";
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/useUserStore.js";
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";

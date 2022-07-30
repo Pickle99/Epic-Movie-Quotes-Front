@@ -72,7 +72,7 @@
      </div>
 </template>
 <script>
-import { useMoviesStore } from "@/stores/movies.js";
+import { useMoviesStore } from "@/stores/useMoviesStore.js";
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
@@ -82,7 +82,7 @@ import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
 import IconPlus from "@/components/icons/IconPlus.vue";
 import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
 import NotificationComponent from "@/components/Main/NotificationComponent.vue";
-import { useNotificationsStore } from "@/stores/notifications.js";
+import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
 export default {
   components: { IconPlus, IconMagnifyingGlass, IconChatQuote, UserNavbar, NotificationComponent, MainHeader, UserNavbarMobile },
   mounted() {
