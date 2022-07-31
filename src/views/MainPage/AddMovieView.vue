@@ -4,7 +4,7 @@
     :form-title="$t('message.add_movie')"
     link-to="movies"
   >
-    <Form v-slot="{ meta }" @submit="onSubmit()">
+    <ValidationForm v-slot="{ meta }" @submit="onSubmit()">
       <div
         class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
       >
@@ -150,12 +150,12 @@
           >{{ $t("message.add_movie") }}</movie-form-button
         >
       </div>
-    </Form>
+    </ValidationForm>
   </form-panel>
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import ImageUpload from "@/components/UI/ImageUpload.vue";
 import MovieFormButton from "@/components/UI/MovieFormButton.vue";
 import { useMoviesStore } from "@/stores/useMoviesStore.js";
@@ -165,7 +165,7 @@ import axios from "@/config/axios/index.js";
 
 export default {
   components: {
-    Form,
+    ValidationForm,
     Field,
     ErrorMessage,
     ImageUpload,

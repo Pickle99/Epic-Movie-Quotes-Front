@@ -63,11 +63,6 @@ export default {
     SetLanguage,
     NotificationComponent,
   },
-  created() {
-    this.handleGetNotifications();
-    this.handleGetPaginatedQuotes();
-    this.handleGetAllQuotes();
-  },
   computed: {
     ...mapWritableState(useQuotesStore, ["allQuotes", "lastPage", "page"]),
     ...mapWritableState(useRequestsStore, ["quotesForNotifications"]),
@@ -76,6 +71,11 @@ export default {
       "isNotificationVisible",
     ]),
     ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
+  },
+  created() {
+    this.handleGetNotifications();
+    this.handleGetPaginatedQuotes();
+    this.handleGetAllQuotes();
   },
   methods: {
     ...mapActions(useNotificationsStore, [

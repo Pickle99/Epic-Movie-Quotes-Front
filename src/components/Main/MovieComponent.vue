@@ -4,11 +4,7 @@
     @click="addMovie()"
   >
     <div>
-      <img
-        :src="back_url+image"
-        width="230"
-        alt="movie-image"
-      />
+      <img :src="back_url + image" width="230" alt="movie-image" />
     </div>
     <div class="ml-3 flex flex-col h-32 justify-around">
       <div class="flex">
@@ -32,14 +28,6 @@ import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import { mapWritableState, mapState } from "pinia";
 import { useEnvStore } from "@/stores/useEnvStore";
 export default {
-  computed: {
-    ...mapState(useEnvStore, ["back_url"]),
-    ...mapWritableState(useQuotesStore, [
-      "chosenMovieId",
-      "chosenMovie",
-      "allUsersMovies",
-    ]),
-  },
   props: {
     movieId: {
       type: Number,
@@ -71,6 +59,14 @@ export default {
       type: String,
       required: true,
     },
+  },
+  computed: {
+    ...mapState(useEnvStore, ["back_url"]),
+    ...mapWritableState(useQuotesStore, [
+      "chosenMovieId",
+      "chosenMovie",
+      "allUsersMovies",
+    ]),
   },
   methods: {
     addMovie() {

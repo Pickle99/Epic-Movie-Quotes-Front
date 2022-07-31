@@ -6,7 +6,7 @@
           <header class="flex items-center">
             <img
               class="rounded-full"
-              :src="back_url+userAvatar"
+              :src="back_url + userAvatar"
               width="48"
               alt="user-avatar"
             />
@@ -26,7 +26,7 @@
           </div>
           <div class="my-6">
             <img
-              :src="back_url+movieImage"
+              :src="back_url + movieImage"
               alt="movie-image"
               class="md:w-[50rem] w-[30rem]"
             />

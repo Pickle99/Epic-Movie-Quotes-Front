@@ -8,7 +8,7 @@
     link-to="movie-description"
     :route-param="$route.params.movie"
   >
-    <Form v-slot="{ meta }" @submit="onSubmit()">
+    <ValidationForm v-slot="{ meta }" @submit="onSubmit()">
       <div
         class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
       >
@@ -50,6 +50,7 @@
           width="170"
           class="rounded-xl py-2.5"
           :src="back_url + movie.image"
+          alt="movie-image"
         />
         <div class="ml-5">
           <div class="flex items-center">
@@ -71,13 +72,13 @@
           $t("message.add_quote")
         }}</basic-button>
       </div>
-    </Form>
+    </ValidationForm>
   </form-panel>
 </template>
 
 <script>
 import UserNavbar from "@/components/Main/UserNavbar.vue";
-import { Field, ErrorMessage, Form } from "vee-validate";
+import { Field, ErrorMessage, Form as ValidationForm } from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
@@ -93,9 +94,14 @@ export default {
     UserNavbar,
     Field,
     ErrorMessage,
-    Form,
+    ValidationForm,
     BasicButton,
     FormPanel,
+  },
+  data() {
+    return {
+      movies: [],
+    };
   },
   computed: {
     ...mapState(useEnvStore, ["back_url"]),
@@ -105,11 +111,6 @@ export default {
       "imageForQuote",
     ]),
     ...mapGetters(useQuotesStore, ["addQuoteData"]),
-  },
-  data() {
-    return {
-      movies: [],
-    };
   },
   mounted() {
     this.getMovie();

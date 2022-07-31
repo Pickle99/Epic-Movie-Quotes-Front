@@ -1,6 +1,6 @@
 <template>
   <modal-form-panel>
-    <Form v-slot="{ meta }" @submit="onSubmit()">
+    <ValidationForm v-slot="{ meta }" @submit="onSubmit()">
       <div
         class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
       >
@@ -50,12 +50,12 @@
           >Post</basic-button
         >
       </div>
-    </Form>
+    </ValidationForm>
   </modal-form-panel>
 </template>
 
 <script>
-import { Field, ErrorMessage, Form } from "vee-validate";
+import { Field, ErrorMessage, Form as ValidationForm } from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import ModalFormPanel from "@/components/Main/ModalFormPanel.vue";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
@@ -68,7 +68,7 @@ export default {
     ImageUploadAnother,
     Field,
     ErrorMessage,
-    Form,
+    ValidationForm,
     BasicButton,
     ModalFormPanel,
     ChooseMovie,

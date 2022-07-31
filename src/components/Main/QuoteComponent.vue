@@ -77,14 +77,14 @@ export default {
       required: true,
     },
   },
-  computed: {
-    ...mapWritableState(useMoviesStore, ["movieDescriptionQuoteData"]),
-    ...mapWritableState(useLocalStorageStore, ["userId"]),
-  },
   data() {
     return {
       isQuoteMenuVisible: false,
     };
+  },
+  computed: {
+    ...mapWritableState(useMoviesStore, ["movieDescriptionQuoteData"]),
+    ...mapWritableState(useLocalStorageStore, ["userId"]),
   },
   methods: {
     hideMenu() {

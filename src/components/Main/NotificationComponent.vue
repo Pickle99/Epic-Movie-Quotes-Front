@@ -33,18 +33,16 @@ import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
 import { mapWritableState } from "pinia";
 import axios from "@/config/axios/index.js";
-import IconTriangle from "@/components/icons/IconTriangle.vue";
 export default {
+  components: {
+    NotificationFromComponent,
+  },
   computed: {
     ...mapWritableState(useLocalStorageStore, ["userId"]),
     ...mapWritableState(useNotificationsStore, [
       "markedAsAllRead",
       "notifications",
     ]),
-  },
-  components: {
-    IconTriangle,
-    NotificationFromComponent,
   },
   created() {
     window.Echo.private("showNotification." + this.userId).listen(

@@ -2,7 +2,7 @@
   <div class="flex justify-center overflow-hidden md:overflow-visible">
     <OnClickOutside class="w-fit" @trigger="close">
       <blur-panel class="h-screen md:h-fit">
-        <Form
+        <ValidationForm
           v-slot="{ meta }"
           as="div"
           class="flex flex-col"
@@ -69,13 +69,13 @@
               >{{ $t("message.login") }}</RouterLink
             >
           </div>
-        </Form>
+        </ValidationForm>
       </blur-panel>
     </OnClickOutside>
   </div>
 </template>
 <script>
-import { Form } from "vee-validate";
+import { Form as ValidationForm } from "vee-validate";
 import { useUserStore } from "@/stores/useUserStore.js";
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
@@ -88,12 +88,17 @@ import IconGoogle from "@/components/icons/IconGoogle.vue";
 export default {
   components: {
     IconGoogle,
-    Form,
+    ValidationForm,
     BlurPanel,
     BasicInput,
     PasswordInput,
     BasicButton,
     OnClickOutside,
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
   },
   computed: {
     ...mapWritableState(useUserStore, ["data"]),
@@ -138,11 +143,6 @@ export default {
           }, 3000);
         });
     },
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
   },
 };
 </script>

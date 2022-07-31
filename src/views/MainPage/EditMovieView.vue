@@ -6,7 +6,7 @@
       link-to="movie-description"
       :route-param="$route.params.movie"
     >
-      <Form v-slot="{ meta }" @submit="onSubmit()">
+      <ValidationForm v-slot="{ meta }" @submit="onSubmit()">
         <div
           class="my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
         >
@@ -154,13 +154,13 @@
             >{{ $t("message.edit_movie") }}</movie-form-button
           >
         </div>
-      </Form>
+      </ValidationForm>
     </form-panel>
   </div>
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import ImageUpload from "@/components/UI/ImageUpload.vue";
 import MovieFormButton from "@/components/UI/MovieFormButton.vue";
 import { useMoviesStore } from "@/stores/useMoviesStore.js";
@@ -171,7 +171,7 @@ import UserNavbar from "@/components/Main/UserNavbar.vue";
 
 export default {
   components: {
-    Form,
+    ValidationForm,
     Field,
     ErrorMessage,
     ImageUpload,

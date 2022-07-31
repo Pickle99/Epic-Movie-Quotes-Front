@@ -8,7 +8,7 @@
         {{ $t("message.your_new_password_must_be_different") }}
       </p>
     </div>
-    <Form v-slot="{ meta }" @submit="onSubmit()">
+    <ValidationForm v-slot="{ meta }" @submit="onSubmit()">
       <p class="text-red-500 mb-3">{{ data.error }}</p>
       <div class="md:w-[23rem]">
         <password-input
@@ -28,7 +28,7 @@
       <basic-button class="w-full" :is-disabled="!meta.valid">{{
         $t("message.reset_password")
       }}</basic-button>
-    </Form>
+    </ValidationForm>
     <back-to-login-button>
       <IconArrowLeft />
       <p class="text-[#6C757D]">{{ $t("message.back_to_log_in") }}</p>
@@ -37,7 +37,7 @@
 </template>
 <script>
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
-import { Form } from "vee-validate";
+import { Form as ValidationForm } from "vee-validate";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import BackToLoginButton from "@/components/UI/BackToLoginButton.vue";
@@ -50,7 +50,7 @@ export default {
   components: {
     IconArrowLeft,
     BlurPanel,
-    Form,
+    ValidationForm,
     PasswordInput,
     BasicButton,
     BackToLoginButton,

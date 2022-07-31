@@ -101,9 +101,6 @@ export default {
     MainHeader,
     UserNavbarMobile,
   },
-  mounted() {
-    this.getUserMovies();
-  },
   computed: {
     ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useNotificationsStore, ["isNotificationVisible"]),
@@ -120,6 +117,9 @@ export default {
             .match(this.userMoviesSearch.toLowerCase());
       });
     },
+  },
+  mounted() {
+    this.getUserMovies();
   },
   methods: {
     getUserMovies() {

@@ -12,7 +12,7 @@
 
   <div v-if="created_at">
     <div class="mt-10 text-white flex justify-center">
-      <Form class="flex flex-col" @submit="onSubmit()">
+      <ValidationForm class="flex flex-col" @submit="onSubmit()">
         <div class="w-[50rem] mt-5 hidden md:block">
           <h1 class="text-2xl font-bold">{{ $t("message.my_profile") }}</h1>
         </div>
@@ -35,7 +35,7 @@
                 label-name="message.username"
               />
               <basic-input
-                :is-disabled="provider === null ? true : false"
+                :is-disabled="provider === null"
                 name="email"
                 placeholder="message.enter_your_email"
                 rules="email"
@@ -74,7 +74,7 @@
             }}</basic-button>
           </div>
         </div>
-      </Form>
+      </ValidationForm>
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
-import { Form } from "vee-validate";
+import { Form as ValidationForm } from "vee-validate";
 import { mapWritableState, mapGetters } from "pinia";
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
@@ -97,7 +97,7 @@ import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
 export default {
   components: {
     ProfileImageUpload,
-    Form,
+    ValidationForm,
     PasswordInput,
     MainHeader,
     UserNavbar,
@@ -106,13 +106,11 @@ export default {
     UserNavbarMobile,
     NotificationComponent,
   },
+
   data() {
     return {
       isChangePasswordVisible: false,
     };
-  },
-  created() {
-    this.handleGetUserData();
   },
   computed: {
     ...mapWritableState(useNotificationsStore, ["isNotificationVisible"]),
@@ -127,6 +125,9 @@ export default {
       "selectedAvatar",
     ]),
     ...mapGetters(useUserStore, ["profileUpdateData"]),
+  },
+  created() {
+    this.handleGetUserData();
   },
   methods: {
     selectedFile() {

@@ -12,7 +12,7 @@
             {{ $t("message.welcome_back") }}
           </p>
         </div>
-        <Form v-slot="{ meta }" @submit="onSubmit()">
+        <ValidationForm v-slot="{ meta }" @submit="onSubmit()">
           <div class="mx-4">
             <p class="text-red-500 text-center">
               {{ error }}
@@ -67,14 +67,14 @@
               {{ $t("message.sign_up") }}</RouterLink
             >
           </div>
-        </Form>
+        </ValidationForm>
       </blur-panel>
     </OnClickOutside>
   </div>
 </template>
 <script>
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
-import { Form } from "vee-validate";
+import { Form as ValidationForm } from "vee-validate";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
@@ -88,7 +88,7 @@ export default {
   components: {
     IconGoogle,
     BlurPanel,
-    Form,
+    ValidationForm,
     BasicInput,
     PasswordInput,
     BasicButton,

@@ -179,9 +179,6 @@ export default {
     UserNavbar,
     QuoteComponent,
   },
-  mounted() {
-    this.getMovieDescription();
-  },
   computed: {
     ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useNotificationsStore, ["isNotificationVisible"]),
@@ -190,6 +187,9 @@ export default {
       "movieDescriptionQuoteData",
     ]),
     ...mapWritableState(useLocalStorageStore, ["userId"]),
+  },
+  mounted() {
+    this.getMovieDescription();
   },
   methods: {
     deleteMovie() {

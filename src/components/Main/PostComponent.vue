@@ -178,8 +178,12 @@ export default {
   },
   unmounted() {
     window.Echo.channel("addLike." + this.quoteId).stopListening("AddLike");
-    window.Echo.channel("removeLike." + this.quoteId).stopListening("RemoveLike",);
-    window.Echo.channel("addComment." + this.quoteId).stopListening("AddComment");
+    window.Echo.channel("removeLike." + this.quoteId).stopListening(
+      "RemoveLike"
+    );
+    window.Echo.channel("addComment." + this.quoteId).stopListening(
+      "AddComment"
+    );
   },
   methods: {
     showHideComments() {

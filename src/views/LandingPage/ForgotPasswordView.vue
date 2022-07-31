@@ -8,7 +8,7 @@
         {{ $t("message.enter_the_email_and_we_will_send_instructions") }}
       </p>
     </div>
-    <Form v-slot="{ meta }" @submit="onSubmit()">
+    <ValidationForm v-slot="{ meta }" @submit="onSubmit()">
       <div class="mx-5 md:mx-0">
         <basic-input
           name="forgot_password"
@@ -43,12 +43,12 @@
         <IconArrowLeft />
         <p class="text-[#6C757D]">{{ $t("message.back_to_log_in") }}</p>
       </back-to-login-button>
-    </Form>
+    </ValidationForm>
   </blur-panel>
 </template>
 <script>
 import BlurPanel from "@/components/Landing/BlurPanel.vue";
-import { Form } from "vee-validate";
+import { Form as ValidationForm } from "vee-validate";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import BackToLoginButton from "@/components/UI/BackToLoginButton.vue";
@@ -60,10 +60,15 @@ export default {
   components: {
     IconArrowLeft,
     BlurPanel,
-    Form,
+    ValidationForm,
     BasicInput,
     BasicButton,
     BackToLoginButton,
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
   },
   computed: {
     ...mapWritableState(useUserStore, ["data"]),
@@ -90,11 +95,6 @@ export default {
           }, 3000);
         });
     },
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
   },
 };
 </script>

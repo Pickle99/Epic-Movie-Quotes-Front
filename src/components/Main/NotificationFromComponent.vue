@@ -6,11 +6,7 @@
     <div class="flex items-center">
       <div class="flex flex-col items-center">
         <div :class="phase ? 'border-[3px] border-[#198754] rounded-full' : ''">
-          <img
-            width="72"
-            :src="back_url + avatar"
-            alt="user-avatar"
-          />
+          <img width="72" :src="back_url + avatar" alt="user-avatar" />
         </div>
         <div v-if="SingleOrAllRead" class="md:hidden mt-2 flex justify-end">
           <p class="text-sm text-[#198754]">{{ phase }}</p>
@@ -50,59 +46,6 @@ import IconChatQuote from "@/components/icons/IconChatQuote.vue";
 import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: { IconChatQuote, IconHeartRed },
-  data() {
-    return {
-      Liked: "Reacted to your quote",
-      Commented: "Commented to your movie quote",
-      visited: true,
-      movieId: "",
-    };
-  },
-  methods: {
-    showCurrentQuote() {
-      const currentQuoteOfNotification = this.quotesForNotifications.find(
-        (quote) => quote.id == this.quoteId
-      );
-      this.movieId = currentQuoteOfNotification.movie.id;
-      this.$router.push({
-        name: "show-quote",
-        params: { movie: this.movieId, quote: this.quoteId },
-      });
-      axios
-        .post(`notification/${this.notificationId}/mark-single-as-read`)
-        .then(() => {
-          this.visited = true;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  },
-  computed: {
-    ...mapState(useEnvStore, ["back_url"]),
-    ...mapWritableState(useLocalStorageStore, ["userId"]),
-    ...mapWritableState(useNotificationsStore, ["markedAsAllRead"]),
-    ...mapWritableState(useRequestsStore, ["quotesForNotifications"]),
-    SingleOrAllRead() {
-      if (this.markedAsAllRead) {
-        return false;
-      } else {
-        if (this.visited) {
-          return true;
-        } else return false;
-      }
-    },
-    reactionTimestamp() {
-      if (this.timestamp.endsWith("000000Z")) {
-        return "now";
-      } else return this.timestamp;
-    },
-    commentOrLike() {
-      if (this.reaction === "like") {
-        return this.Liked;
-      } else return this.Commented;
-    },
-  },
   props: {
     notificationId: {
       type: Number,
@@ -131,6 +74,59 @@ export default {
     avatar: {
       type: String,
       required: true,
+    },
+  },
+  data() {
+    return {
+      Liked: "Reacted to your quote",
+      Commented: "Commented to your movie quote",
+      visited: true,
+      movieId: "",
+    };
+  },
+  computed: {
+    ...mapState(useEnvStore, ["back_url"]),
+    ...mapWritableState(useLocalStorageStore, ["userId"]),
+    ...mapWritableState(useNotificationsStore, ["markedAsAllRead"]),
+    ...mapWritableState(useRequestsStore, ["quotesForNotifications"]),
+    SingleOrAllRead() {
+      if (this.markedAsAllRead) {
+        return false;
+      } else {
+        if (this.visited) {
+          return true;
+        } else return false;
+      }
+    },
+    reactionTimestamp() {
+      if (this.timestamp.endsWith("000000Z")) {
+        return "now";
+      } else return this.timestamp;
+    },
+    commentOrLike() {
+      if (this.reaction === "like") {
+        return this.Liked;
+      } else return this.Commented;
+    },
+  },
+  methods: {
+    showCurrentQuote() {
+      const currentQuoteOfNotification = this.quotesForNotifications.find(
+        (quote) => quote.id == this.quoteId
+      );
+      this.movieId = currentQuoteOfNotification.movie.id;
+      this.$router.push({
+        name: "show-quote",
+        params: { movie: this.movieId, quote: this.quoteId },
+      });
+      axios
+        .post(`notification/${this.notificationId}/mark-single-as-read`)
+        .then(() => {
+          this.visited = true;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

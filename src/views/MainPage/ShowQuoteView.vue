@@ -12,7 +12,7 @@
       link-to="movie-description"
       :route-param="$route.params.movie"
     >
-      <Form>
+      <ValidationForm>
         <div
           class="py-2 my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
         >
@@ -47,7 +47,7 @@
           :src="back_url + quoteImage"
           alt="quote-image"
         />
-      </Form>
+      </ValidationForm>
       <div class="mt-4">
         <div class="flex justify-around w-32 items-center">
           <p>{{ comments.length }}</p>
@@ -100,7 +100,7 @@
 </template>
 <script>
 import FormPanel from "@/components/Main/QuoteFormPanel.vue";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import { useMoviesStore } from "@/stores/useMoviesStore.js";
 import { mapWritableState, mapState } from "pinia";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
@@ -118,7 +118,7 @@ export default {
     IconHeartRed,
     IconHeart,
     FormPanel,
-    Form,
+    ValidationForm,
     Field,
     ErrorMessage,
     UserNavbar,
