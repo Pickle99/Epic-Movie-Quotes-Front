@@ -168,8 +168,7 @@ export default {
     ValidationForm,
     Field,
     ErrorMessage,
-    ImageUpload,
-    MovieFormButton,
+    ImageUpload, MovieFormButton,
     FormPanel,
   },
   computed: {
@@ -189,9 +188,6 @@ export default {
       "genresError",
     ]),
     ...mapGetters(useMoviesStore, ["movieYear", "movieBudget", "movieData"]),
-  },
-  mounted() {
-    this.getGenre();
   },
   methods: {
     ...mapActions(useMoviesStore, ["movieResetFields"]),
@@ -257,6 +253,9 @@ export default {
         this.allGenres = res.data.data.map((e) => e.name);
       });
     },
+  },
+  mounted() {
+    this.getGenre();
   },
 };
 </script>
