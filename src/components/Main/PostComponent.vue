@@ -6,7 +6,7 @@
           <header class="flex items-center">
             <img
               class="rounded-full"
-              :src="`http://localhost:8000/${userAvatar}`"
+              :src="back_url + userAvatar"
               width="48"
               alt="user-avatar"
             />
@@ -26,7 +26,7 @@
           </div>
           <div class="my-6">
             <img
-              :src="`http://localhost:8000/${movieImage}`"
+              :src="back_url + movieImage"
               alt="movie-image"
               class="md:w-[50rem] w-[30rem]"
             />
@@ -61,7 +61,7 @@
           <img
             class="rounded-full"
             width="64"
-            :src="'http://localhost:8000/' + avatar"
+            :src="back_url + avatar"
             alt="user-avatar"
           />
           <div class="ml-5">
@@ -79,13 +79,14 @@
 </template>
 <script>
 import axios from "@/config/axios/index.js";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapState } from "pinia";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import UserCommentComponent from "@/components/Main/UserCommentComponent.vue";
 import IconHeart from "@/components/icons/IconHeart.vue";
 import IconHeartRed from "@/components/icons/IconHeartRed.vue";
 import IconSquare from "@/components/icons/IconSquare.vue";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: { IconSquare, IconHeartRed, IconHeart, UserCommentComponent },
   props: {
@@ -130,6 +131,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useQuotesStore, [
       "allQuotes",
       "comments",

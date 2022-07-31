@@ -203,14 +203,14 @@ export default {
     },
     onSubmit() {
       axios
-        .post("http://localhost:8000/api/movies", this.movieData, {
+        .post("movies", this.movieData, {
           headers: {
             "Content-Type": "multipart/form-formData",
           },
         })
         .then((res) => {
           this.$router.push({ name: "movies" });
-          this.userMovies.unshift(res.data);
+          this.userMovies.unshift(res.data.data);
           this.movieResetFields();
         })
         .catch((error) => {

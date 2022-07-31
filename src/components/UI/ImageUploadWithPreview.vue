@@ -2,7 +2,7 @@
   <div class="flex justify-center items-center">
     <img
       class="rounded-xl py-2.5 w-full"
-      :src="previewImage || `http://localhost:8000/${quote.image}`"
+      :src="previewImage || back_url + quote.image"
     />
     <label
       for="image"
@@ -22,11 +22,16 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
 import { Field } from "vee-validate";
 import IconPhoto from "@/components/icons/IconPhoto.vue";
+import { useEnvStore } from "@/stores/useEnvStore";
 
 export default {
   components: { IconPhoto, Field },
+  computed: {
+    ...mapState(useEnvStore, ["back_url"]),
+  },
   props: {
     quote: {
       type: Object,

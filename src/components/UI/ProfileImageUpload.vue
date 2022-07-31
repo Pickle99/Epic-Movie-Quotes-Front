@@ -36,7 +36,7 @@ export default {
     avatar() {
       if (this.previewAvatar) {
         return this.previewAvatar;
-      } else return "http://localhost:8000/" + this.data.avatar;
+      } else return import.meta.env.VITE_IMAGES_URL + this.data.avatar;
     },
   },
   methods: {

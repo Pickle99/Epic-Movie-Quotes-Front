@@ -44,7 +44,7 @@
         </div>
         <img
           class="rounded-xl py-2.5 w-[25rem] md:w-full"
-          :src="`http://localhost:8000/${quoteImage}`"
+          :src="back_url + quoteImage"
           alt="quote-image"
         />
       </Form>
@@ -83,7 +83,7 @@
         <img
           class="rounded-full"
           width="64"
-          :src="`http://localhost:8000/${currentUserAvatar}`"
+          :src="back_url + currentUserAvatar"
           alt="user-avatar"
         />
         <div class="ml-5">
@@ -102,7 +102,7 @@
 import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { useMoviesStore } from "@/stores/useMoviesStore.js";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapState } from "pinia";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
@@ -111,6 +111,7 @@ import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import IconHeart from "@/components/icons/IconHeart.vue";
 import IconHeartRed from "@/components/icons/IconHeartRed.vue";
 import IconSquare from "@/components/icons/IconSquare.vue";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: {
     IconSquare,
@@ -136,6 +137,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useMoviesStore, ["text_en", "text_ka"]),
     ...mapWritableState(useQuotesStore, ["commentText"]),
     ...mapWritableState(useLocalStorageStore, ["userId", "avatar"]),

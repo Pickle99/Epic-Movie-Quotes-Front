@@ -49,7 +49,7 @@
         <img
           width="170"
           class="rounded-xl py-2.5"
-          :src="`http://localhost:8000/${movie.image}`"
+          :src="back_url + movie.image"
         />
         <div class="ml-5">
           <div class="flex items-center">
@@ -81,10 +81,11 @@ import { Field, ErrorMessage, Form } from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
-import { mapWritableState, mapActions, mapGetters } from "pinia";
+import { mapWritableState, mapActions, mapGetters, mapState } from "pinia";
 import axios from "@/config/axios/index.js";
 import ImageUploadAnother from "@/components/UI/ImageUploadAnother.vue";
 import IconCamera from "@/components/icons/IconCamera.vue";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: {
     IconCamera,
@@ -97,6 +98,7 @@ export default {
     FormPanel,
   },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useQuotesStore, [
       "text_en",
       "text_ka",

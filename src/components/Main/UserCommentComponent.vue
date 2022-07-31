@@ -4,7 +4,7 @@
       <div>
         <img
           class="rounded-full w-12 md:w-16"
-          :src="`http://localhost:8000/${avatar}`"
+          :src="back_url + avatar"
           alt="user-avatar"
         />
       </div>
@@ -21,7 +21,13 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
+import { useEnvStore } from "@/stores/useEnvStore";
+
 export default {
+  computed: {
+    ...mapState(useEnvStore, ["back_url"]),
+  },
   props: {
     text: {
       type: String,

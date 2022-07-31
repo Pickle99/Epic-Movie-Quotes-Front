@@ -58,7 +58,7 @@
           class="hover:cursor-pointer"
         >
           <img
-            :src="`http://localhost:8000/${movie.image}`"
+            :src="back_url + movie.image"
             alt="movie-image"
             class="rounded-xl h-96 w-[30rem] hover:cursor-pointer mb-4"
           />
@@ -83,13 +83,14 @@ import { useMoviesStore } from "@/stores/useMoviesStore.js";
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapState } from "pinia";
 import IconChatQuote from "@/components/icons/IconChatQuote.vue";
 import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
 import IconPlus from "@/components/icons/IconPlus.vue";
 import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
 import NotificationComponent from "@/components/Main/NotificationComponent.vue";
 import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: {
     IconPlus,
@@ -104,6 +105,7 @@ export default {
     this.getUserMovies();
   },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useNotificationsStore, ["isNotificationVisible"]),
     ...mapWritableState(useMoviesStore, ["userMovies", "userMoviesSearch"]),
     filteredUserMovies() {

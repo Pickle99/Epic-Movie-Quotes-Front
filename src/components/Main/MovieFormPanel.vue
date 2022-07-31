@@ -40,7 +40,7 @@
         <div class="flex items-center">
           <img
             width="48"
-            :src="`http://localhost:8000/${avatar || localAvatar}`"
+            :src="back_url + (avatar || localAvatar)"
             alt="user-avatar"
           />
           <p class="ml-4">{{ username || localUser }}</p>
@@ -54,13 +54,14 @@
 </template>
 
 <script>
-import { mapWritableState, mapActions } from "pinia";
+import { mapWritableState, mapActions, mapState } from "pinia";
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import axios from "@/config/axios/index.js";
 import { useMoviesStore } from "@/stores/useMoviesStore.js";
 import IconPen from "@/components/icons/IconPen.vue";
 import IconTrash from "@/components/icons/IconTrash.vue";
 import IconX from "@/components/icons/IconX.vue";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: { IconX, IconTrash, IconPen },
   props: {
@@ -89,6 +90,7 @@ export default {
     },
   },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useLocalStorageStore, {
       localUser: "username",
       localAvatar: "avatar",

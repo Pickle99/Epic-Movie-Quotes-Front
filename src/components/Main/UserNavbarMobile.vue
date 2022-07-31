@@ -16,7 +16,7 @@
                 ? 'rounded-full border-2 border-[#E31221]'
                 : 'rounded-full'
             "
-            :src="`http://localhost:8000/${avatar}`"
+            :src="back_url + avatar"
             width="54"
             alt="user-avatar"
           />
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapActions, mapWritableState } from "pinia";
+import { mapActions, mapWritableState, mapState } from "pinia";
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import IconCamera from "@/components/icons/IconCamera.vue";
@@ -65,6 +65,7 @@ import IconHouse from "@/components/icons/IconHouse.vue";
 import IconHouseRed from "@/components/icons/IconHouseRed.vue";
 import { useUserStore } from "@/stores/useUserStore.js";
 import { OnClickOutside } from "@vueuse/components";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: {
     IconHouseRed,
@@ -74,6 +75,7 @@ export default {
     OnClickOutside,
   },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useQuotesStore, ["page", "lastPage"]),
     ...mapWritableState(useLocalStorageStore, ["username", "avatar"]),
     ...mapWritableState(useUserStore, ["isDropdownVisible"]),

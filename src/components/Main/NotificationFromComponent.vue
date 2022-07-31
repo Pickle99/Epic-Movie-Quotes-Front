@@ -8,7 +8,7 @@
         <div :class="phase ? 'border-[3px] border-[#198754] rounded-full' : ''">
           <img
             width="72"
-            :src="`http://localhost:8000/${avatar}`"
+            :src="back_url + avatar"
             alt="user-avatar"
           />
         </div>
@@ -42,11 +42,12 @@
 <script>
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapState } from "pinia";
 import axios from "@/config/axios/index.js";
 import { useRequestsStore } from "@/stores/useRequestsStore.js";
 import IconHeartRed from "@/components/icons/IconHeartRed.vue";
 import IconChatQuote from "@/components/icons/IconChatQuote.vue";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: { IconChatQuote, IconHeartRed },
   data() {
@@ -78,6 +79,7 @@ export default {
     },
   },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useLocalStorageStore, ["userId"]),
     ...mapWritableState(useNotificationsStore, ["markedAsAllRead"]),
     ...mapWritableState(useRequestsStore, ["quotesForNotifications"]),

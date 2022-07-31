@@ -17,7 +17,7 @@
         <div class="flex items-center">
           <img
             width="48"
-            :src="`http://localhost:8000/${localAvatar}`"
+            :src="back_url+localAvatar"
             alt="user-avatar"
           />
           <p class="ml-4">{{ localUser }}</p>
@@ -31,13 +31,15 @@
 </template>
 
 <script>
-import { mapWritableState, mapActions } from "pinia";
+import { mapWritableState, mapActions, mapState } from "pinia";
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import IconX from "@/components/icons/IconX.vue";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: { IconX },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useLocalStorageStore, {
       localUser: "username",
       localAvatar: "avatar",

@@ -19,7 +19,7 @@
         <div>
           <img
             class="rounded-xl md:w-[60rem]"
-            :src="`http://localhost:8000/${movie.image}`"
+            :src="back_url + movie.image"
             alt="movie-image"
           />
         </div>
@@ -114,7 +114,7 @@
         <div class="flex flex-col md:flex-row w-full items-center">
           <img
             class="md:w-[15rem] md:h-auto h-[8rem] w-[19rem] object-center"
-            :src="`http://localhost:8000/${quote.image}`"
+            :src="back_url + quote.image"
             alt="quote-image"
           />
           <div class="md:w-[32rem]">
@@ -155,7 +155,7 @@ import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import QuoteComponent from "@/components/Main/QuoteComponent.vue";
 import { useMoviesStore } from "@/stores/useMoviesStore.js";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapState } from "pinia";
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import IconSquare from "@/components/icons/IconSquare.vue";
 import IconHeart from "@/components/icons/IconHeart.vue";
@@ -165,6 +165,7 @@ import IconPlus from "@/components/icons/IconPlus.vue";
 import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
 import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
 import NotificationComponent from "@/components/Main/NotificationComponent.vue";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: {
     IconPlus,
@@ -182,6 +183,7 @@ export default {
     this.getMovieDescription();
   },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useNotificationsStore, ["isNotificationVisible"]),
     ...mapWritableState(useMoviesStore, [
       "movieDescriptionData",

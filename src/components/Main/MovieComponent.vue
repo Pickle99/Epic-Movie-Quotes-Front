@@ -5,7 +5,7 @@
   >
     <div>
       <img
-        :src="`http://localhost:8000/${image}`"
+        :src="back_url+image"
         width="230"
         alt="movie-image"
       />
@@ -29,9 +29,11 @@
 
 <script>
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapState } from "pinia";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useQuotesStore, [
       "chosenMovieId",
       "chosenMovie",

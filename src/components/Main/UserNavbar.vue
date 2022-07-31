@@ -13,7 +13,7 @@
               ? 'rounded-full border-2 border-[#E31221]'
               : 'rounded-full'
           "
-          :src="`http://localhost:8000/${avatar}`"
+          :src="back_url + avatar"
           width="54"
           alt="user-avatar"
         />
@@ -48,16 +48,18 @@
 </template>
 
 <script>
-import { mapWritableState } from "pinia";
+import { mapWritableState, mapState } from "pinia";
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import IconCamera from "@/components/icons/IconCamera.vue";
 import IconCameraRed from "@/components/icons/IconCameraRed.vue";
 import IconHouse from "@/components/icons/IconHouse.vue";
 import IconHouseRed from "@/components/icons/IconHouseRed.vue";
+import { useEnvStore } from "@/stores/useEnvStore";
 export default {
   components: { IconHouseRed, IconHouse, IconCameraRed, IconCamera },
   computed: {
+    ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useQuotesStore, ["page", "lastPage"]),
     ...mapWritableState(useLocalStorageStore, ["username", "avatar"]),
   },
