@@ -13,10 +13,14 @@
             <p class="ml-5">{{ postedBy }}</p>
           </header>
           <div class="flex mt-5">
-            <p>"{{$i18n.locale === 'en' ? quote.text.en : quote.text.ka}}"</p>
+            <p>"{{ $i18n.locale === "en" ? quote.text.en : quote.text.ka }}"</p>
             <div class="flex items-center mx-2">
               <p>movie-</p>
-              <RouterLink :to="{name: 'movie-description', params: {movie: movieId}}" class="cursor-pointer ml-1.5 text-[#DDCCAA] font-bold">{{ movieName }}</RouterLink>
+              <RouterLink
+                :to="{ name: 'movie-description', params: { movie: movieId } }"
+                class="cursor-pointer ml-1.5 text-[#DDCCAA] font-bold"
+                >{{ movieName }}</RouterLink
+              >
             </div>
             <p v-if="year">({{ year }})</p>
           </div>
@@ -28,22 +32,36 @@
             />
           </div>
           <div class="flex justify-around w-32 items-center mb-3">
-            <p>{{quote.comments.length}}</p>
-            <IconSquare class="cursor-pointer" @click="showHideComments()"/>
-            <p>{{quote.likes.length}}</p>
-            <IconHeart v-if="!isLiked" class="cursor-pointer" @click="handleAddOrRemoveLike()" />
-            <IconHeartRed v-if="isLiked" class="cursor-pointer" @click="handleAddOrRemoveLike()"/>
+            <p>{{ quote.comments.length }}</p>
+            <IconSquare class="cursor-pointer" @click="showHideComments()" />
+            <p>{{ quote.likes.length }}</p>
+            <IconHeart
+              v-if="!isLiked"
+              class="cursor-pointer"
+              @click="handleAddOrRemoveLike()"
+            />
+            <IconHeartRed
+              v-if="isLiked"
+              class="cursor-pointer"
+              @click="handleAddOrRemoveLike()"
+            />
           </div>
         </div>
-          <div v-if="isCommentsVisible" class="overflow-y-scroll  max-h-[30rem]">
-            <UserCommentComponent v-for="comment in quote.comments" :key="comment" :text="comment.text" :user="comment.comment_from" :avatar="comment.avatar"/>
-          </div>
+        <div v-if="isCommentsVisible" class="overflow-y-scroll max-h-[30rem]">
+          <UserCommentComponent
+            v-for="comment in quote.comments"
+            :key="comment"
+            :text="comment.text"
+            :user="comment.comment_from"
+            :avatar="comment.avatar"
+          />
+        </div>
 
         <div class="flex mt-10 items-center">
           <img
             class="rounded-full"
             width="64"
-            :src="'http://localhost:8000/'+avatar"
+            :src="'http://localhost:8000/' + avatar"
             alt="user-avatar"
           />
           <div class="ml-5">
@@ -64,17 +82,12 @@ import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
-import UserCommentComponent from '@/components/Main/UserCommentComponent.vue';
+import UserCommentComponent from "@/components/Main/UserCommentComponent.vue";
 import IconHeart from "@/components/icons/IconHeart.vue";
 import IconHeartRed from "@/components/icons/IconHeartRed.vue";
 import IconSquare from "@/components/icons/IconSquare.vue";
 export default {
-  components:{
-    IconSquare,
-    IconHeartRed,
-    IconHeart,
-    UserCommentComponent
-  },
+  components: { IconSquare, IconHeartRed, IconHeart, UserCommentComponent },
   props: {
     quoteId: {
       type: Number,
@@ -110,64 +123,82 @@ export default {
       required: true,
     },
   },
-  data(){
-    return{
+  data() {
+    return {
       userLikedQuote: false,
-      isCommentsVisible:false,
-    }
+      isCommentsVisible: false,
+    };
   },
   computed: {
-    ...mapWritableState(useQuotesStore, ["allQuotes", "comments", "commentText"]),
+    ...mapWritableState(useQuotesStore, [
+      "allQuotes",
+      "comments",
+      "commentText",
+    ]),
     ...mapWritableState(useLocalStorageStore, ["userId", "avatar"]),
-    isLiked(){
-
-        const currentQuote = this.allQuotes.find((quote) => quote.id == this.quoteId);
-        const userLike = currentQuote.likes.find((item) => item.user_id == this.userId);
-        if(!userLike)
-        {
-          return this.userLikedQuote;
-        } else return !this.userLikedQuote;
-
+    isLiked() {
+      const currentQuote = this.allQuotes.find(
+        (quote) => quote.id == this.quoteId
+      );
+      const userLike = currentQuote.likes.find(
+        (item) => item.user_id == this.userId
+      );
+      if (!userLike) {
+        return this.userLikedQuote;
+      } else return !this.userLikedQuote;
     },
   },
-  mounted()
-  {
-    window.Echo.channel('addLike.' + this.quoteId)
-      .listen('AddLike', (like) => {
-        const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
-          currentQuote.likes.push(like);
-      });
-    window.Echo.channel('removeLike.' + this.quoteId)
-      .listen('RemoveLike', () => {
-        const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
+  mounted() {
+    window.Echo.channel("addLike." + this.quoteId).listen("AddLike", (like) => {
+      const currentQuote = this.allQuotes.find(
+        (quote) => quote.id == this.quoteId
+      );
+      currentQuote.likes.push(like);
+    });
+    window.Echo.channel("removeLike." + this.quoteId).listen(
+      "RemoveLike",
+      () => {
+        const currentQuote = this.allQuotes.find(
+          (quote) => quote.id == this.quoteId
+        );
         currentQuote.likes.shift();
-      });
-    window.Echo.channel('addComment.' + this.quoteId)
-      .listen('AddComment', ({comment}) => {
-        const currentQuote =  this.allQuotes.find((quote) => quote.id == this.quoteId);
+      }
+    );
+    window.Echo.channel("addComment." + this.quoteId).listen(
+      "AddComment",
+      ({ comment }) => {
+        const currentQuote = this.allQuotes.find(
+          (quote) => quote.id == this.quoteId
+        );
         currentQuote.comments.push(comment);
-      });
+      }
+    );
+  },
+  unmounted() {
+    window.Echo.channel("addLike." + this.quoteId).stopListening("AddLike");
+    window.Echo.channel("removeLike." + this.quoteId).stopListening("RemoveLike",);
+    window.Echo.channel("addComment." + this.quoteId).stopListening("AddComment");
   },
   methods: {
-    showHideComments(){
-      this.isCommentsVisible = !this.isCommentsVisible
+    showHideComments() {
+      this.isCommentsVisible = !this.isCommentsVisible;
     },
-   handleAddOrRemoveLike() {
-     if(!this.isLiked){
+    handleAddOrRemoveLike() {
+      if (!this.isLiked) {
         this.userLikedQuote = true;
-     } else  this.userLikedQuote = false;
-      axios
-       .get('quote/'+this.quoteId+'/add-like')
-       .catch((err) => {
-         console.log(err);
-       });
-   },
+      } else this.userLikedQuote = false;
+      axios.get("quote/" + this.quoteId + "/add-like").catch((err) => {
+        console.log(err);
+      });
+    },
     handleAddComment() {
-     axios
-       .post('quote/'+this.quoteId+'/add-comment', {text: this.commentText})
-       .then(() => {
-         this.commentText = "";
-       });
+      axios
+        .post("quote/" + this.quoteId + "/add-comment", {
+          text: this.commentText,
+        })
+        .then(() => {
+          this.commentText = "";
+        });
     },
   },
 };

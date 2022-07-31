@@ -1,29 +1,36 @@
 <template>
   <header class="fixed w-screen bg-[#222030] z-10">
-    <div class=" flex justify-between mx-10 md:mx-40 my-5 items-center">
+    <div class="flex justify-between mx-10 md:mx-40 my-5 items-center">
       <div>
-        <h1 class="text-[#DDCCAA] hidden md:block">{{ $t("message.movie_quotes") }}</h1>
-        <IconThreeLines class="md:hidden" @click="showDropdown"/>
+        <h1 class="text-[#DDCCAA] hidden md:block">
+          {{ $t("message.movie_quotes") }}
+        </h1>
+        <IconThreeLines class="md:hidden" @click="showDropdown" />
       </div>
 
       <div class="flex text-white items-center">
-        <IconMagnifyingGlass class="mr-4 md:hidden" @click="showSearch"/>
+        <IconMagnifyingGlass class="mr-4 md:hidden" @click="showSearch" />
         <div class="flex flex-col items-center">
           <div>
             <div v-if="newNotificationsLength" class="absolute ml-3 -mt-1">
               <div class="bg-red-500 rounded-full text-center w-7 justify-end">
-                <p class="text-[14px]">{{newNotificationsLength}}</p>
+                <p class="text-[14px]">{{ newNotificationsLength }}</p>
               </div>
             </div>
             <div class="flex flex-col items-center">
-              <IconBell class="cursor-pointer" @click="showHideNotification"/>
-                <IconTriangle v-if="isNotificationVisible" class="absolute mt-12"/>
+              <IconBell class="cursor-pointer" @click="showHideNotification" />
+              <IconTriangle
+                v-if="isNotificationVisible"
+                class="absolute mt-12"
+              />
             </div>
           </div>
-          <NotificationComponent :class="!isNotificationVisible ? 'hidden' : 'hidden md:block'"/>
+          <NotificationComponent
+            :class="!isNotificationVisible ? 'hidden' : 'hidden md:block'"
+          />
         </div>
         <SetLanguage class="mx-8 hidden md:block" />
-        <p 
+        <p
           class="hidden md:block hover:cursor-pointer border-white border-2 px-6 py-2 rounded-md"
           @click="logout()"
         >
@@ -37,10 +44,10 @@
 import SetLanguage from "@/components/Landing/SetLanguage.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
-import NotificationComponent from '@/components/Main/NotificationComponent.vue'
+import NotificationComponent from "@/components/Main/NotificationComponent.vue";
 import { mapWritableState, mapGetters, mapActions } from "pinia";
 import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
-import {useQuotesStore} from "@/stores/useQuotesStore.js";
+import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import { useRequestsStore } from "@/stores/useRequestsStore.js";
 import IconBell from "@/components/icons/IconBell.vue";
 import IconThreeLines from "@/components/icons/IconThreeLines.vue";
@@ -54,9 +61,9 @@ export default {
     IconThreeLines,
     IconBell,
     SetLanguage,
-    NotificationComponent
+    NotificationComponent,
   },
-  created(){
+  created() {
     this.handleGetNotifications();
     this.handleGetPaginatedQuotes();
     this.handleGetAllQuotes();
@@ -64,36 +71,44 @@ export default {
   computed: {
     ...mapWritableState(useQuotesStore, ["allQuotes", "lastPage", "page"]),
     ...mapWritableState(useRequestsStore, ["quotesForNotifications"]),
-    ...mapWritableState(useNotificationsStore, ["notifications", "isNotificationVisible"]),
+    ...mapWritableState(useNotificationsStore, [
+      "notifications",
+      "isNotificationVisible",
+    ]),
     ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
-
   },
   methods: {
-    ...mapActions(useNotificationsStore, ["showHideNotification", "hideNotification"]),
+    ...mapActions(useNotificationsStore, [
+      "showHideNotification",
+      "hideNotification",
+    ]),
     ...mapActions(useUserStore, ["showSearch", "showDropdown"]),
     handleGetNotifications() {
-      axios.get("notifications").then((res) => {
-        this.notifications = Array.from(res.data.data);
-        this.notifications.sort(function(a, b) {
-          return new Date(b.created_date) - new Date(a.created_date);
-        });
-      })
+      axios
+        .get("notifications")
+        .then((res) => {
+          this.notifications = Array.from(res.data.data);
+          this.notifications.sort(function (a, b) {
+            return new Date(b.created_date) - new Date(a.created_date);
+          });
+        })
         .catch((err) => {
           console.log(err);
         });
     },
-    handleGetAllQuotes(){
-      axios.get('all-quotes')
-        .then((res) => {
-          this.quotesForNotifications = res.data.data;
-        });
+    handleGetAllQuotes() {
+      axios.get("all-quotes").then((res) => {
+        this.quotesForNotifications = res.data.data;
+      });
     },
     handleGetPaginatedQuotes() {
       this.page = 1;
-      axios.get(`feed?page=${this.page}`).then((res) => {
-        this.allQuotes = res.data.data;
-        this.lastPage = res.data.meta.last_page;
-      })
+      axios
+        .get(`feed?page=${this.page}`)
+        .then((res) => {
+          this.allQuotes = res.data.data;
+          this.lastPage = res.data.meta.last_page;
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -104,9 +119,9 @@ export default {
         .then(() => {
           localStorage.removeItem("username");
           localStorage.removeItem("avatar");
-          localStorage.removeItem('userId');
+          localStorage.removeItem("userId");
           setJwtToken("", "");
-          this.$router.push({name: 'landing'})
+          this.$router.push({ name: "landing" });
         })
         .catch((error) => {
           console.log(error);

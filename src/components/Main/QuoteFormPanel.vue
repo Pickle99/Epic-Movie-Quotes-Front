@@ -2,38 +2,49 @@
   <div class="text-white flex justify-center mb-32">
     <div class="bg-[#11101A] w-[43rem] z-10">
       <div class="flex items-center justify-center w-full p-4">
-        <div v-if="quoteUserId == localUserId"  class="flex justify-start w-1/4 ">
-         <div v-if="$route.name === 'edit-quote'" class="flex">
-           <IconTrash class="cursor-pointer" @click="deleteQuote()"/>
-           <p class="ml-3 cursor-pointer" @click="deleteQuote()">{{$t('message.delete')}}</p>
-         </div>
+        <div v-if="quoteUserId == localUserId" class="flex justify-start w-1/4">
+          <div v-if="$route.name === 'edit-quote'" class="flex">
+            <IconTrash class="cursor-pointer" @click="deleteQuote()" />
+            <p class="ml-3 cursor-pointer" @click="deleteQuote()">
+              {{ $t("message.delete") }}
+            </p>
+          </div>
           <div v-if="$route.name === 'show-quote'" class="flex">
             <div>
-              <RouterLink :to="{name: 'edit-quote', params: {quote: $route.params.quote}}">
-                <IconPen class="cursor-pointer"/>
+              <RouterLink
+                :to="{
+                  name: 'edit-quote',
+                  params: { quote: $route.params.quote },
+                }"
+              >
+                <IconPen class="cursor-pointer" />
               </RouterLink>
             </div>
             <div class="border-gray-500 border-r-2 mx-5 my-0.5"></div>
             <div>
-              <IconTrash class="cursor-pointer" @click="deleteQuote()"/>
+              <IconTrash class="cursor-pointer" @click="deleteQuote()" />
             </div>
           </div>
         </div>
         <div v-if="quoteUserId != localUserId" class="w-1/4"></div>
         <div class="flex justify-center w-2/4 font-bold">
-          <p>{{formTitle}}</p>
+          <p>{{ formTitle }}</p>
         </div>
         <div class="flex justify-end w-1/4">
-          <RouterLink :to="{ name: linkTo, params: {movie: routeParam} }" >
-            <IconX @click="writeQuoteResetFields"/>
+          <RouterLink :to="{ name: linkTo, params: { movie: routeParam } }">
+            <IconX @click="writeQuoteResetFields" />
           </RouterLink>
         </div>
       </div>
       <div class="border-gray-600 border-b-2 w-full"></div>
       <div class="flex p-4">
         <div class="flex items-center">
-            <img width="48" :src="`http://localhost:8000/${correctAuthorAvatar}`" alt="user-avatar" />
-          <p class="ml-4">{{correctAuthorUsername}}</p>
+          <img
+            width="48"
+            :src="`http://localhost:8000/${correctAuthorAvatar}`"
+            alt="user-avatar"
+          />
+          <p class="ml-4">{{ correctAuthorUsername }}</p>
         </div>
       </div>
       <div class="flex flex-col p-4">
@@ -81,36 +92,41 @@ export default {
       type: Number,
       required: false,
       default: null,
-    }
+    },
   },
-  computed:{
+  computed: {
     ...mapWritableState(useLocalStorageStore, {
       localUser: "username",
       localAvatar: "avatar",
       localUserId: "userId",
     }),
-   correctAuthorUsername() {
-      if(this.authorUsername){ return this.authorUsername }
-      else return this.localUser;
-   },
+    correctAuthorUsername() {
+      if (this.authorUsername) {
+        return this.authorUsername;
+      } else return this.localUser;
+    },
     correctAuthorAvatar() {
-      if(this.authorAvatar) { return this.authorAvatar }
-      else return this.localAvatar;
-    }
+      if (this.authorAvatar) {
+        return this.authorAvatar;
+      } else return this.localAvatar;
+    },
   },
   methods: {
     ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     deleteQuote() {
-      axios.delete(`quote/${this.$route.params.quote}/delete`)
+      axios
+        .delete(`quote/${this.$route.params.quote}/delete`)
         .then(() => {
-          this.$router.push({name: 'movie-description', params: {movie: this.$route.params.movie}})
+          this.$router.push({
+            name: "movie-description",
+            params: { movie: this.$route.params.movie },
+          });
           this.writeQuoteResetFields();
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err);
         });
     },
   },
-}
-
+};
 </script>

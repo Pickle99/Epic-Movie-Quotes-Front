@@ -9,7 +9,7 @@
       <p v-if="$i18n.locale === 'ka'">
         {{ $t("message.geo") }}
       </p>
-     <IconArrowDownSlim/>
+      <IconArrowDownSlim />
     </div>
     <div v-if="isDisabled" class="absolute ml-4">
       <p class="mt-2" @click="change('en')">
@@ -24,24 +24,24 @@
 
 <script>
 import { setLocale } from "@vee-validate/i18n";
-import IconArrowDownSlim from '@/components/icons/IconArrowDownSlim.vue';
+import IconArrowDownSlim from "@/components/icons/IconArrowDownSlim.vue";
 export default {
   components: {
-    IconArrowDownSlim
+    IconArrowDownSlim,
   },
-  data(){
+  data() {
     return {
-    isDisabled: false,
-    }
+      isDisabled: false,
+    };
   },
   methods: {
     change(lang) {
       localStorage.setItem("locale", lang);
       setLocale((this.$i18n.locale = localStorage.getItem("locale")));
     },
-    setDisabled(){
+    setDisabled() {
       this.isDisabled = !this.isDisabled;
-    }
+    },
   },
 };
 </script>

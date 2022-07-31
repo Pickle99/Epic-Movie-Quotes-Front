@@ -4,7 +4,7 @@
     <p class="text-[#DC3545]">*</p>
   </div>
   <Field
-    v-slot="{ meta, field}"
+    v-slot="{ meta, field }"
     v-model="data[name]"
     :name="name"
     :rules="rules"
@@ -28,11 +28,13 @@
         v-bind="field"
       />
       <div class="-ml-10 mr-3">
-        <IconClose v-if="focused && isDisabled" @click="resetField()"/>
+        <IconClose v-if="focused && isDisabled" @click="resetField()" />
 
         <div v-if="meta.touched">
-          <IconValid v-if="meta.valid && !error && !focused"/>
-          <IconInvalid  v-if="(!meta.valid && !focused) || (error && !focused)"/>
+          <IconValid v-if="meta.valid && !error && !focused" />
+          <IconInvalid
+            v-if="(!meta.valid && !focused) || (error && !focused)"
+          />
         </div>
       </div>
     </div>
@@ -66,7 +68,7 @@ export default {
     ...mapWritableState(useUserStore, ["data", "username"]),
   },
   methods: {
-    resetField(){
+    resetField() {
       this.data[this.name] = "";
     },
   },
@@ -97,7 +99,7 @@ export default {
       type: Boolean,
       required: false,
       default: true,
-    }
+    },
   },
 };
 </script>

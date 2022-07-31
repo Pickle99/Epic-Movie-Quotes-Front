@@ -23,7 +23,7 @@
         v-bind="field"
       />
       <div class="-ml-10 mr-3">
-        <IconEye class="hover:cursor-pointer"  @click="setPasswordType()"/>
+        <IconEye class="hover:cursor-pointer" @click="setPasswordType()" />
       </div>
     </div>
   </Field>

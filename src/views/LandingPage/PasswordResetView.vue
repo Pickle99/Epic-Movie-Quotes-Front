@@ -1,11 +1,11 @@
 <template>
-  <blur-panel class="h-screen overflow-hidden md:h-fit ">
+  <blur-panel class="h-screen overflow-hidden md:h-fit">
     <div class="text-center mb-7">
       <h1 class="text-white mt-24 md:mt-0 text-4xl mb-5">
         {{ $t("message.create_new_password") }}
       </h1>
       <p class="text-[#6C757D] w-[22rem]">
-        {{$t('message.your_new_password_must_be_different')}}
+        {{ $t("message.your_new_password_must_be_different") }}
       </p>
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
@@ -20,7 +20,7 @@
         <password-input
           name="password_confirmation"
           placeholder="message.confirm_password"
-          rules="required|confirmed:@password" 
+          rules="required|confirmed:@password"
           label-name="message.confirm_password"
         />
       </div>
@@ -30,8 +30,8 @@
       }}</basic-button>
     </Form>
     <back-to-login-button>
-      <IconArrowLeft/>
-      <p class="text-[#6C757D]">{{$t('message.back_to_log_in')}}</p>
+      <IconArrowLeft />
+      <p class="text-[#6C757D]">{{ $t("message.back_to_log_in") }}</p>
     </back-to-login-button>
   </blur-panel>
 </template>
@@ -40,7 +40,7 @@ import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import { Form } from "vee-validate";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
-import BackToLoginButton from '@/components/UI/BackToLoginButton.vue';
+import BackToLoginButton from "@/components/UI/BackToLoginButton.vue";
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useUserStore } from "@/stores/useUserStore.js";

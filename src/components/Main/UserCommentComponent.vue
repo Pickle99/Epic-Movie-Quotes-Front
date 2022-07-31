@@ -9,13 +9,13 @@
         />
       </div>
       <div>
-        <p class="ml-5">{{user}}</p>
+        <p class="ml-5">{{ user }}</p>
       </div>
     </div>
     <div class="border-b border-gray-600 w-[16rem] md:w-[35.5rem] ml-20">
-        <p class="mb-5 break-words">
-          {{text}}
-        </p>
+      <p class="mb-5 break-words">
+        {{ text }}
+      </p>
     </div>
   </article>
 </template>
@@ -35,6 +35,6 @@ export default {
       type: String,
       required: true,
     },
-  }
-}
+  },
+};
 </script>

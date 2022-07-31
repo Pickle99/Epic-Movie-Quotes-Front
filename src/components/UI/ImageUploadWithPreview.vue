@@ -1,44 +1,56 @@
 <template>
   <div class="flex justify-center items-center">
-    <img  class="rounded-xl py-2.5 w-full" :src="previewImage ||`http://localhost:8000/${quote.image}`">
-    <label for="image" class="cursor-pointer flex items-center flex-col absolute bg-[#191725] w-fit p-3 rounded-md bg-opacity-70">
-      <IconPhoto/>
-      <Field id="image" type="file" name="image" class="hidden image" @change="fileChange"/>
-      <p>{{$t('message.change_photo')}}</p>
+    <img
+      class="rounded-xl py-2.5 w-full"
+      :src="previewImage || `http://localhost:8000/${quote.image}`"
+    />
+    <label
+      for="image"
+      class="cursor-pointer flex items-center flex-col absolute bg-[#191725] w-fit p-3 rounded-md bg-opacity-70"
+    >
+      <IconPhoto />
+      <Field
+        id="image"
+        type="file"
+        name="image"
+        class="hidden image"
+        @change="fileChange"
+      />
+      <p>{{ $t("message.change_photo") }}</p>
     </label>
   </div>
 </template>
 
 <script>
-import {Field} from "vee-validate";
+import { Field } from "vee-validate";
 import IconPhoto from "@/components/icons/IconPhoto.vue";
 
 export default {
-  components: { IconPhoto, Field},
+  components: { IconPhoto, Field },
   props: {
     quote: {
       type: Object,
-      required:true,
-    }
+      required: true,
+    },
   },
-  data(){
+  data() {
     return {
       previewImage: null,
-    }
+    };
   },
   methods: {
-
     fileChange(e) {
-      let reader, files = e.target.files
+      let reader,
+        files = e.target.files;
 
-      reader = new FileReader()
+      reader = new FileReader();
 
       reader.onload = (e) => {
-        this.previewImage = e.target.result
-      }
+        this.previewImage = e.target.result;
+      };
 
-      reader.readAsDataURL(files[0])
-    }
-  }
-}
+      reader.readAsDataURL(files[0]);
+    },
+  },
+};
 </script>

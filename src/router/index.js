@@ -14,12 +14,12 @@ import NotFound from "@/views/Errors/RouteNotFound.vue";
 import UserMoviesView from "@/views/MainPage/UserMoviesView.vue";
 import AddMovieView from "@/views/MainPage/AddMovieView.vue";
 import MovieDescriptionView from "@/views/MainPage/MovieDescriptionView.vue";
-import AddQuoteView from '@/views/MainPage/AddQuoteView.vue';
-import EditQuoteView from '@/views/MainPage/EditQuoteView.vue';
-import EditMovieView from '@/views/MainPage/EditMovieView.vue';
-import ShowQuoteView from '@/views/MainPage/ShowQuoteView.vue';
-import GoogleCallback from '@/views/LandingPage/GoogleCallback.vue';
-import UserProfileView from '@/views/MainPage/UserProfileView.vue';
+import AddQuoteView from "@/views/MainPage/AddQuoteView.vue";
+import EditQuoteView from "@/views/MainPage/EditQuoteView.vue";
+import EditMovieView from "@/views/MainPage/EditMovieView.vue";
+import ShowQuoteView from "@/views/MainPage/ShowQuoteView.vue";
+import GoogleCallback from "@/views/LandingPage/GoogleCallback.vue";
+import UserProfileView from "@/views/MainPage/UserProfileView.vue";
 import { Guest } from "@/router/guards.js";
 import { Authorized } from "@/router/guards.js";
 
@@ -160,7 +160,7 @@ const router = createRouter({
     },
     {
       path: "/movie/:movie/quote/:quote",
-      name: 'show-quote',
+      name: "show-quote",
       component: ShowQuoteView,
       beforeEnter: [Guest],
     },

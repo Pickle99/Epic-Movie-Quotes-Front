@@ -5,7 +5,7 @@
         {{ $t("message.forgot_password_no_problem") }}
       </h1>
       <p class="text-[#6C757D] text-sm md:text-xl px-5 md:px-0 w-[24rem]">
-        {{ $t('message.enter_the_email_and_we_will_send_instructions')}}
+        {{ $t("message.enter_the_email_and_we_will_send_instructions") }}
       </p>
     </div>
     <Form v-slot="{ meta }" @submit="onSubmit()">
@@ -39,10 +39,10 @@
           </svg>
         </div>
       </div>
-     <back-to-login-button>
-       <IconArrowLeft/>
-       <p class="text-[#6C757D]">{{$t('message.back_to_log_in')}}</p>
-     </back-to-login-button>
+      <back-to-login-button>
+        <IconArrowLeft />
+        <p class="text-[#6C757D]">{{ $t("message.back_to_log_in") }}</p>
+      </back-to-login-button>
     </Form>
   </blur-panel>
 </template>
@@ -51,7 +51,7 @@ import BlurPanel from "@/components/Landing/BlurPanel.vue";
 import { Form } from "vee-validate";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
-import BackToLoginButton from '@/components/UI/BackToLoginButton.vue';
+import BackToLoginButton from "@/components/UI/BackToLoginButton.vue";
 import axios from "@/config/axios/index.js";
 import { mapWritableState } from "pinia";
 import { useUserStore } from "@/stores/useUserStore.js";
@@ -63,7 +63,7 @@ export default {
     Form,
     BasicInput,
     BasicButton,
-    BackToLoginButton
+    BackToLoginButton,
   },
   computed: {
     ...mapWritableState(useUserStore, ["data"]),

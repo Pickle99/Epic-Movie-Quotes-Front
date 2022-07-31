@@ -18,8 +18,8 @@ configure({
         title_ka: "Movie name",
         director_ka: "Director",
         description_ka: "Movie description",
-        text_en : 'Quote text',
-        text_ka : 'Quote text',
+        text_en: "Quote text",
+        text_ka: "Quote text",
       },
       messages: {
         required: "{field} field is required",
@@ -44,8 +44,8 @@ configure({
         title_en: "ფილმის სახელი",
         director_en: "რეჟისორი",
         description_en: "ფილმის აღწერი",
-        text_en: 'ციტატა',
-        text_ka: 'ციტატა',
+        text_en: "ციტატა",
+        text_ka: "ციტატა",
       },
       messages: {
         required: "{field}ს ველი სავალდებულოა",

@@ -5,24 +5,25 @@ export const useNotificationsStore = defineStore("notifications", {
     return {
       markedAsAllRead: false,
       notifications: [],
-      isNotificationVisible:false,
+      isNotificationVisible: false,
     };
   },
- actions: {
-    showHideNotification(){
+  actions: {
+    showHideNotification() {
       this.isNotificationVisible = !this.isNotificationVisible;
     },
-    hideNotification(){
+    hideNotification() {
       this.isNotificationVisible = false;
     },
   },
   getters: {
-    newNotificationsLength(state){
-      if(!state.markedAsAllRead){
-        const object = state.notifications.filter((item) => item.notification_state !== null);
+    newNotificationsLength(state) {
+      if (!state.markedAsAllRead) {
+        const object = state.notifications.filter(
+          (item) => item.notification_state !== null
+        );
         return object.length;
-      }else return false;
-    }
-  }
-
+      } else return false;
+    },
+  },
 });

@@ -6,9 +6,9 @@ module.exports = {
         monsterrat: "'Monsterrat', sans-serif",
       },
       screens: {
-        'xss': '300px',
-        'xs' : '500px',
-      }
+        xss: "300px",
+        xs: "500px",
+      },
     },
   },
   plugins: [],

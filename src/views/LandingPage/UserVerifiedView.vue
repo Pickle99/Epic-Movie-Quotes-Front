@@ -16,7 +16,7 @@ export default {
   computed: {
     ...mapWritableState(useUserStore, ["data"]),
     ...mapWritableState(useRequestsStore, ["user"]),
-  }, 
+  },
   mounted() {
     this.redirect();
   },
@@ -29,7 +29,7 @@ export default {
           setJwtToken(response.data.access_token, response.data.expires_in);
           localStorage.setItem("username", this.user.username);
           localStorage.setItem("avatar", this.user.avatar);
-          localStorage.setItem('userId', this.user.id);
+          localStorage.setItem("userId", this.user.id);
         })
         .catch((error) => {
           console.log(error);

@@ -21,40 +21,36 @@ export const useUserStore = defineStore("user", {
     };
   },
   getters: {
-    profileUpdateData(){
+    profileUpdateData() {
       const formData = new FormData();
       formData.append("username", this.data.username);
-      if(this.data.email)
-      {
+      if (this.data.email) {
         formData.append("email", this.data.email);
       }
-      if(this.data.password)
-      {
+      if (this.data.password) {
         formData.append("password", this.data.password);
       }
-      if(this.data.password_confirmation)
-      {
+      if (this.data.password_confirmation) {
         formData.append("password", this.data.password_confirmation);
       }
-      if(this.selectedAvatar)
-      {
-        formData.append('avatar', this.selectedAvatar)
+      if (this.selectedAvatar) {
+        formData.append("avatar", this.selectedAvatar);
       }
       return formData;
-    }
+    },
   },
   actions: {
-    showDropdown(){
+    showDropdown() {
       this.isDropdownVisible = true;
     },
-    hideDropdown(){
+    hideDropdown() {
       this.isDropdownVisible = false;
     },
-    showSearch(){
+    showSearch() {
       this.isSearchVisible = true;
     },
-    hideSearch(){
+    hideSearch() {
       this.isSearchVisible = false;
-    }
-  }
+    },
+  },
 });

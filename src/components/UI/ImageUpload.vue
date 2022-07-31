@@ -7,12 +7,12 @@
       @dragover.prevent
       @drop.prevent="true"
     >
-      <IconPhoto class="mr-4"/>
-      <p>{{$t('message.drag_and_drop_or')}}</p>
+      <IconPhoto class="mr-4" />
+      <p>{{ $t("message.drag_and_drop_or") }}</p>
       <label
         for="image"
         class="hover:cursor-pointer ml-5 bg-[#9747FF] outline-0 w-fit p-1.5 rounded-sm text-white"
-        >{{$t('message.choose_file')}}</label
+        >{{ $t("message.choose_file") }}</label
       >
       <Field
         id="image"

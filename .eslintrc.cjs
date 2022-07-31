@@ -3,13 +3,11 @@ module.exports = {
     node: true,
   },
   extends: [
-    'eslint:recommended',
-    'plugin:vue/vue3-recommended',
-    'eslint:recommended',
+    "eslint:recommended",
     "plugin:vue/vue3-recommended",
-    "prettier"
-
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "prettier",
   ],
-  rules: {
-  }
-}
+  rules: {},
+};

@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const useQuotesStore = defineStore("quotes", {
   state: () => {
     return {
-      isModalOpen:false,
+      isModalOpen: false,
       allQuotes: [],
       filteredQuotes: [],
       text_en: "",
@@ -20,18 +20,17 @@ export const useQuotesStore = defineStore("quotes", {
     };
   },
   getters: {
-    searchIn(state){
-      if(state.search.startsWith('@')){
-        return 'm'+state.search.substring(1)
-      } else if(state.search.startsWith('#')){
-        return 'q'+state.search.substring(1)
+    searchIn(state) {
+      if (state.search.startsWith("@")) {
+        return "m" + state.search.substring(1);
+      } else if (state.search.startsWith("#")) {
+        return "q" + state.search.substring(1);
       }
     },
-    filteredFeedView(state){
-    if(state.search)
-    {
-      return state.filteredQuotes;
-    } else return false;
+    filteredFeedView(state) {
+      if (state.search) {
+        return state.filteredQuotes;
+      } else return false;
     },
     writeQuoteData() {
       const formData = new FormData();
@@ -48,19 +47,18 @@ export const useQuotesStore = defineStore("quotes", {
       formData.append("image", this.imageForQuote);
       return formData;
     },
-    editQuoteData(){
+    editQuoteData() {
       const formData = new FormData();
       formData.append("text_en", this.text_en);
       formData.append("text_ka", this.text_ka);
-      if(this.imageForQuote)
-      {
-        formData.append('image', this.imageForQuote)
+      if (this.imageForQuote) {
+        formData.append("image", this.imageForQuote);
       }
       return formData;
-    }
+    },
   },
   actions: {
-    resetPage(){
+    resetPage() {
       this.page = 0;
       this.lastPage = 1;
     },
@@ -71,5 +69,5 @@ export const useQuotesStore = defineStore("quotes", {
       this.chosenMovie = "";
       this.imageForQuote = "";
     },
-  }
+  },
 });

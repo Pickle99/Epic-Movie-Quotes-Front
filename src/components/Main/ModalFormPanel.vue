@@ -4,19 +4,23 @@
       <div class="flex items-center justify-center w-full p-4">
         <div class="flex justify-start w-1/4"></div>
         <div class="flex justify-center w-2/4 font-bold">
-          <p>{{$t('message.write_new_quote')}}</p>
+          <p>{{ $t("message.write_new_quote") }}</p>
         </div>
         <div class="flex justify-end w-1/4">
           <div class="cursor-pointer" @click="close()">
-            <IconX/>
+            <IconX />
           </div>
         </div>
       </div>
       <div class="border-gray-600 border-b-2 w-full"></div>
       <div class="flex p-4">
         <div class="flex items-center">
-          <img width="48" :src="`http://localhost:8000/${localAvatar}`" alt="user-avatar" />
-          <p class="ml-4">{{localUser}}</p>
+          <img
+            width="48"
+            :src="`http://localhost:8000/${localAvatar}`"
+            alt="user-avatar"
+          />
+          <p class="ml-4">{{ localUser }}</p>
         </div>
       </div>
       <div class="flex flex-col p-4">
@@ -33,21 +37,20 @@ import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import IconX from "@/components/icons/IconX.vue";
 export default {
   components: { IconX },
-  computed:{
+  computed: {
     ...mapWritableState(useLocalStorageStore, {
       localUser: "username",
       localAvatar: "avatar",
       localUserId: "userId",
     }),
-    ...mapWritableState(useQuotesStore, ["isModalOpen"])
+    ...mapWritableState(useQuotesStore, ["isModalOpen"]),
   },
   methods: {
     ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     close() {
-     this.isModalOpen = false;
+      this.isModalOpen = false;
       this.writeQuoteResetFields();
     },
   },
-}
-
+};
 </script>

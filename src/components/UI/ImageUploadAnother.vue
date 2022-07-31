@@ -1,18 +1,16 @@
 <template>
   <div>
     <div
-      class="p-4 my-2 bg-black flex items-center  px-4"
+      class="p-4 my-2 bg-black flex items-center px-4"
       @drag.prevent
       @dragleave.prevent
       @dragover.prevent
       @drop.prevent="true"
     >
-      <IconPhoto class="mr-4"/>
-      <label
-        for="image"
-        class="text-white cursor-pointer"
-      >{{$t('message.upload_photo')}}</label
-      >
+      <IconPhoto class="mr-4" />
+      <label for="image" class="text-white cursor-pointer">{{
+        $t("message.upload_photo")
+      }}</label>
       <Field
         id="image"
         type="file"

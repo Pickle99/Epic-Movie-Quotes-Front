@@ -35,7 +35,7 @@ export const useMoviesStore = defineStore("movies", {
         formData.append("year", state.movieYear);
       }
       formData.append("budget", state.movieBudget);
-      if(this.imageForMovie){
+      if (this.imageForMovie) {
         formData.append("image", state.imageForMovie);
       }
       for (var i = 0; i < arr.length; i++) {
@@ -51,7 +51,7 @@ export const useMoviesStore = defineStore("movies", {
     },
   },
   actions: {
-    movieResetFields(){
+    movieResetFields() {
       this.title_en = "";
       this.title_ka = "";
       this.director_en = "";
@@ -63,6 +63,5 @@ export const useMoviesStore = defineStore("movies", {
       this.userSelectedGenres = [];
       this.imageForMovie = "";
     },
-
-  }
+  },
 });

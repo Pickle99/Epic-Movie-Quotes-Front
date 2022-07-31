@@ -4,16 +4,18 @@
       class="flex flex-col justify-center px-4 items-center text-center text-white"
     >
       <div class="mb-10">
-        <IconActivated/>
+        <IconActivated />
       </div>
-      <h1 class="text-3xl mb-8">{{$t('message.success')}}!</h1>
-      <p class="text-md mb-8">{{$t('message.your_password_reset_success')}}.</p>
+      <h1 class="text-3xl mb-8">{{ $t("message.success") }}!</h1>
+      <p class="text-md mb-8">
+        {{ $t("message.your_password_reset_success") }}.
+      </p>
       <button
         class="md:px-32 px-24 rounded-md py-1.5 text-md bg-[#E31221]"
         @click="redirect()"
       >
-        {{$t('message.lets_login')}}!
-      </button> 
+        {{ $t("message.lets_login") }}!
+      </button>
     </div>
   </blur-panel>
 </template>
