@@ -44,10 +44,12 @@ export default {
       <div
         class="mb-10 text-[#DDCCAA] text-3xl md:text-6xl font-bold text-center"
       >
-        <h1>
-          {{ $t("message.find_any_quote") }}
-          <h1 class="mt-3">{{ $t("message.millions_of_movie_lines") }}</h1>
-        </h1>
+        <div class="flex-col">
+          <h1>
+            {{ $t("message.find_any_quote") }}
+          </h1>
+          <p class="mt-3">{{ $t("message.millions_of_movie_lines") }}</p>
+        </div>
       </div>
 
       <RouterLink

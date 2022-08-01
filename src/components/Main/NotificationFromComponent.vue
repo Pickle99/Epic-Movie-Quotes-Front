@@ -92,11 +92,11 @@ export default {
     SingleOrAllRead() {
       if (this.markedAsAllRead) {
         return false;
-      } else {
-        if (this.visited) {
+      }
+        else if (this.visited) {
           return true;
         } else return false;
-      }
+
     },
     reactionTimestamp() {
       if (this.timestamp.endsWith("000000Z")) {

@@ -137,7 +137,6 @@ export default {
       axios
         .get("user/" + this.localUserId)
         .then((res) => {
-          console.log(res);
           this.data.username = res.data.data.username;
           this.data.email = res.data.data.email;
           this.data.avatar = res.data.data.avatar;

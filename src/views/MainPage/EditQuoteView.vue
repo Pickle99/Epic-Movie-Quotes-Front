@@ -10,7 +10,7 @@
     link-to="movie-description"
     :route-param="$route.params.movie"
   >
-    <Form v-slot="{ meta }" @submit="onSubmit()">
+    <ValidationForm v-slot="{ meta }" @submit="onSubmit()">
       <div
         class="py-2 overflow-auto resize-y my-2 flex items-center border-gray-600 border-2 rounded-md justify-between px-4"
       >
@@ -53,13 +53,13 @@
           $t("message.edit_quote")
         }}</basic-button>
       </div>
-    </Form>
+    </ValidationForm>
   </form-panel>
 </template>
 <script>
 import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import { mapWritableState, mapActions, mapGetters } from "pinia";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
@@ -69,7 +69,7 @@ export default {
   components: {
     FormPanel,
     BasicButton,
-    Form,
+    ValidationForm,
     Field,
     ErrorMessage,
     UserNavbar,

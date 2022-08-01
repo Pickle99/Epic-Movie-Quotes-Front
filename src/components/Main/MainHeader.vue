@@ -58,8 +58,10 @@ export default {
   components: {
     IconTriangle,
     IconMagnifyingGlass,
-    IconThreeLines, 
-    IconBell, SetLanguage, NotificationComponent,
+    IconThreeLines,
+    IconBell,
+    SetLanguage,
+    NotificationComponent,
   },
   computed: {
     ...mapWritableState(useQuotesStore, ["allQuotes", "lastPage", "page"]),

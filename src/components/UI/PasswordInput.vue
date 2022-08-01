@@ -43,26 +43,6 @@ export default {
     Field,
     ErrorMessage,
   },
-  data() {
-    return {
-      isPasswordVisible: false,
-    };
-  },
-  computed: {
-    ...mapWritableState(useUserStore, ["data"]),
-    PasswordType() {
-      if (this.isPasswordVisible) {
-        return "text";
-      } else return "password";
-    },
-  },
-  methods: {
-    ...mapActions(useUserStore, ["updateField"]),
-    setPasswordType() {
-      this.isPasswordVisible = !this.isPasswordVisible;
-    },
-  },
-
   props: {
     name: {
       type: String,
@@ -84,6 +64,25 @@ export default {
       type: String,
       required: false,
       default: "",
+    },
+  },
+  data() {
+    return {
+      isPasswordVisible: false,
+    };
+  },
+  computed: {
+    ...mapWritableState(useUserStore, ["data"]),
+    PasswordType() {
+      if (this.isPasswordVisible) {
+        return "text";
+      } else return "password";
+    },
+  },
+  methods: {
+    ...mapActions(useUserStore, ["updateField"]),
+    setPasswordType() {
+      this.isPasswordVisible = !this.isPasswordVisible;
     },
   },
 };

@@ -59,20 +59,6 @@ export default {
     Field,
     ErrorMessage,
   },
-  data() {
-    return {
-      focused: false,
-    };
-  },
-  computed: {
-    ...mapWritableState(useUserStore, ["data", "username"]),
-  },
-  methods: {
-    resetField() {
-      this.data[this.name] = "";
-    },
-  },
-
   props: {
     name: {
       type: String,
@@ -99,6 +85,19 @@ export default {
       type: Boolean,
       required: false,
       default: true,
+    },
+  },
+  data() {
+    return {
+      focused: false,
+    };
+  },
+  computed: {
+    ...mapWritableState(useUserStore, ["data", "username"]),
+  },
+  methods: {
+    resetField() {
+      this.data[this.name] = "";
     },
   },
 };

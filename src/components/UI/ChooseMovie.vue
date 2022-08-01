@@ -6,7 +6,7 @@
     >
       <div class="flex items-center">
         <IconCamera class="mr-4" />
-        <p for="image" class="text-white">{{ $t("message.choose_movie") }}</p>
+        <p class="text-white">{{ $t("message.choose_movie") }}</p>
       </div>
       <div>
         <IconArrowDown />
@@ -58,6 +58,13 @@ export default {
       isMovieSelectorOpen: false,
     };
   },
+  computed: {
+    ...mapWritableState(useQuotesStore, [
+      "allUsersMovies",
+      "chosenMovieId",
+      "chosenMovie",
+    ]),
+  },
   methods: {
     showHideMovieSelector() {
       this.isMovieSelectorOpen = true;
@@ -65,13 +72,6 @@ export default {
     addMovie() {
       this.isMovieSelectorOpen = false;
     },
-  },
-  computed: {
-    ...mapWritableState(useQuotesStore, [
-      "allUsersMovies",
-      "chosenMovieId",
-      "chosenMovie",
-    ]),
   },
 };
 </script>

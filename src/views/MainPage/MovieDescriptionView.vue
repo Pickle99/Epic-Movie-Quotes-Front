@@ -32,7 +32,7 @@
               <p v-if="movie.year" class="ml-3">({{ movie.year }})</p>
             </div>
             <div
-              v-if="movie.user_id == userId"
+              v-if="movie.user_id === parseInt(userId)"
               class="mt-5 md:mt-0 flex px-7 py-3 rounded-md bg-[#24222F]"
             >
               <RouterLink :to="{ name: 'edit-movie' }">
@@ -60,7 +60,7 @@
               <div class="ml-3">
                 <p class="text-sm mt-5">
                   {{
-                    $i18n.locale == "en" ? movie.director.en : movie.director.ka
+                    $i18n.locale === "en" ? movie.director.en : movie.director.ka
                   }}
                 </p>
                 <p class="text-sm mt-5">{{ movie.budget.toLocaleString() }}</p>
@@ -80,7 +80,7 @@
     <div class="text-white md:ml-96 mt-8 flex items-center">
       <p
         :class="
-          movie.user_id == userId
+          movie.user_id === parseInt(userId)
             ? 'md:block hidden border-r-2 pr-5 py-1 border-gray-800 mr-5'
             : 'md:block hidden pr-5 py-1 mr-5'
         "
@@ -88,7 +88,7 @@
         {{ $t("message.quotes") }} ({{ movie.quotes.length }})
       </p>
       <RouterLink
-        v-if="movie.user_id == userId"
+        v-if="movie.user_id === parseInt(userId)"
         :to="{ name: 'add-quote' }"
         class="flex ml-7 md:ml-0 items-center bg-[#E31221] p-2 rounded-md"
       >

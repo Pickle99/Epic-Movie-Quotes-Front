@@ -2,7 +2,7 @@
   <div class="text-white flex justify-center mb-32">
     <div class="bg-[#11101A] w-[43rem] z-10">
       <div class="flex items-center justify-center w-full p-4">
-        <div v-if="quoteUserId == localUserId" class="flex justify-start w-1/4">
+        <div v-if="quoteUserId === parseInt(localUserId)" class="flex justify-start w-1/4">
           <div v-if="$route.name === 'edit-quote'" class="flex">
             <IconTrash class="cursor-pointer" @click="deleteQuote()" />
             <p class="ml-3 cursor-pointer" @click="deleteQuote()">
@@ -26,7 +26,7 @@
             </div>
           </div>
         </div>
-        <div v-if="quoteUserId != localUserId" class="w-1/4"></div>
+        <div v-if="quoteUserId !== parseInt(localUserId)" class="w-1/4"></div>
         <div class="flex justify-center w-2/4 font-bold">
           <p>{{ formTitle }}</p>
         </div>

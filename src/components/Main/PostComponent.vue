@@ -140,10 +140,10 @@ export default {
     ...mapWritableState(useLocalStorageStore, ["userId", "avatar"]),
     isLiked() {
       const currentQuote = this.allQuotes.find(
-        (quote) => quote.id == this.quoteId
+        (quote) => quote.id === this.quoteId
       );
       const userLike = currentQuote.likes.find(
-        (item) => item.user_id == this.userId
+        (item) => item.user_id === parseInt(this.userId)
       );
       if (!userLike) {
         return this.userLikedQuote;
@@ -153,7 +153,7 @@ export default {
   mounted() {
     window.Echo.channel("addLike." + this.quoteId).listen("AddLike", (like) => {
       const currentQuote = this.allQuotes.find(
-        (quote) => quote.id == this.quoteId
+        (quote) => quote.id === this.quoteId
       );
       currentQuote.likes.push(like);
     });
@@ -161,7 +161,7 @@ export default {
       "RemoveLike",
       () => {
         const currentQuote = this.allQuotes.find(
-          (quote) => quote.id == this.quoteId
+          (quote) => quote.id === this.quoteId
         );
         currentQuote.likes.shift();
       }
@@ -170,7 +170,7 @@ export default {
       "AddComment",
       ({ comment }) => {
         const currentQuote = this.allQuotes.find(
-          (quote) => quote.id == this.quoteId
+          (quote) => quote.id === this.quoteId
         );
         currentQuote.comments.push(comment);
       }

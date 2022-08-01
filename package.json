@@ -9,7 +9,7 @@
     "test:e2e": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress open --e2e'",
     "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress run --e2e'",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
-    "format": "prettier .  --write"
+    "format": "prettier . --write"
   },
   "dependencies": {
     "@vee-validate/i18n": "^4.5.11",
@@ -33,10 +33,10 @@
     "@vue/test-utils": "^2.0.0",
     "autoprefixer": "^10.4.7",
     "cypress": "^10.1.0",
-    "eslint": "^8.19.0",
+    "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-vue": "^9.2.0",
+    "eslint-plugin-vue": "^9.3.0",
     "jsdom": "^20.0.0",
     "postcss": "^8.4.14",
     "prettier": "2.7.1",

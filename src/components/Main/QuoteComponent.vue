@@ -23,7 +23,7 @@
           </div>
         </RouterLink>
 
-        <div v-if="quoteUserId == userId">
+        <div v-if="quoteUserId === parseInt(userId)">
           <RouterLink
             :to="{
               name: 'edit-quote',
@@ -33,10 +33,6 @@
           >
             <IconPen />
             <p
-              :to="{
-                name: 'edit-quote',
-                params: { movie: $route.params.movie, quote: quoteId },
-              }"
               class="text-sm ml-3"
             >
               {{ $t("message.edit") }}

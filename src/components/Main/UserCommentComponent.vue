@@ -25,9 +25,6 @@ import { mapState } from "pinia";
 import { useEnvStore } from "@/stores/useEnvStore";
 
 export default {
-  computed: {
-    ...mapState(useEnvStore, ["back_url"]),
-  },
   props: {
     text: {
       type: String,
@@ -41,6 +38,9 @@ export default {
       type: String,
       required: true,
     },
+  },
+  computed: {
+    ...mapState(useEnvStore, ["back_url"]),
   },
 };
 </script>

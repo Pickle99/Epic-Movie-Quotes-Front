@@ -3,6 +3,7 @@
     <img
       class="rounded-xl py-2.5 w-full"
       :src="previewImage || back_url + quote.image"
+      alt="quote-image"
     />
     <label
       for="image"
@@ -22,16 +23,13 @@
 </template>
 
 <script>
-import { mapState } from "pinia";
+import { mapState} from "pinia";
 import { Field } from "vee-validate";
 import IconPhoto from "@/components/icons/IconPhoto.vue";
 import { useEnvStore } from "@/stores/useEnvStore";
 
 export default {
   components: { IconPhoto, Field },
-  computed: {
-    ...mapState(useEnvStore, ["back_url"]),
-  },
   props: {
     quote: {
       type: Object,
@@ -42,6 +40,9 @@ export default {
     return {
       previewImage: null,
     };
+  },
+  computed: {
+    ...mapState(useEnvStore, ["back_url"]),
   },
   methods: {
     fileChange(e) {
