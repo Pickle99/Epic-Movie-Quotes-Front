@@ -45,7 +45,7 @@ import SetLanguage from "@/components/Landing/SetLanguage.vue";
 import axios from "@/config/axios/index.js";
 import { setJwtToken } from "@/helpers/jwt/index.js";
 import NotificationComponent from "@/components/Main/NotificationComponent.vue";
-import { mapWritableState, mapGetters, mapActions } from "pinia";
+import { mapWritableState, mapState, mapActions } from "pinia";
 import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
 import { useRequestsStore } from "@/stores/useRequestsStore.js";
@@ -70,7 +70,7 @@ export default {
       "notifications",
       "isNotificationVisible",
     ]),
-    ...mapGetters(useNotificationsStore, ["newNotificationsLength"]),
+    ...mapState(useNotificationsStore, ["newNotificationsLength"]),
   },
   created() {
     this.handleGetNotifications();

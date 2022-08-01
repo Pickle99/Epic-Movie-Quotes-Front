@@ -84,7 +84,7 @@ import { useLocalStorageStore } from "@/stores/useLocalStorage.js";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import BasicInput from "@/components/UI/BasicInput.vue";
 import { Form as ValidationForm } from "vee-validate";
-import { mapWritableState, mapGetters } from "pinia";
+import { mapWritableState, mapState } from "pinia";
 import MainHeader from "@/components/Main/MainHeader.vue";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import PasswordInput from "@/components/UI/PasswordInput.vue";
@@ -124,7 +124,7 @@ export default {
       "created_at",
       "selectedAvatar",
     ]),
-    ...mapGetters(useUserStore, ["profileUpdateData"]),
+    ...mapState(useUserStore, ["profileUpdateData"]),
   },
   created() {
     this.handleGetUserData();

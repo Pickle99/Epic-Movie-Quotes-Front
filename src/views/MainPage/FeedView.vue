@@ -96,7 +96,7 @@ import axios from "@/config/axios/index.js";
 import PostComponent from "@/components/Main/PostComponent.vue";
 import FilteredPostComponent from "@/components/Main/FilteredPostComponent.vue";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
-import { mapWritableState, mapGetters, mapActions } from "pinia";
+import { mapWritableState, mapState, mapActions } from "pinia";
 import WriteNewQuote from "@/views/MainPage/WriteNewQuote.vue";
 import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
 import IconPencil from "@/components/icons/IconPencil.vue";
@@ -129,7 +129,7 @@ export default {
       "search",
       "filteredQuotes",
     ]),
-    ...mapGetters(useQuotesStore, ["filteredFeedView", "searchIn"]),
+    ...mapState(useQuotesStore, ["filteredFeedView", "searchIn"]),
   },
   created() {
     this.scroll();

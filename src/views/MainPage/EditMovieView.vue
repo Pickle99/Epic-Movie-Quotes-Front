@@ -164,7 +164,7 @@ import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import ImageUpload from "@/components/UI/ImageUpload.vue";
 import MovieFormButton from "@/components/UI/MovieFormButton.vue";
 import { useMoviesStore } from "@/stores/useMoviesStore.js";
-import { mapWritableState, mapGetters, mapActions } from "pinia";
+import { mapWritableState, mapState, mapActions } from "pinia";
 import FormPanel from "@/components/Main/MovieFormPanel.vue";
 import axios from "@/config/axios/index.js";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
@@ -199,7 +199,7 @@ export default {
       "userSelectedGenres",
       "genresError",
     ]),
-    ...mapGetters(useMoviesStore, ["movieYear", "movieBudget", "movieData"]),
+    ...mapState(useMoviesStore, ["movieYear", "movieBudget", "movieData"]),
   },
   mounted() {
     this.getGenre();

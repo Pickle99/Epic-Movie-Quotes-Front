@@ -61,7 +61,7 @@ import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
-import { mapWritableState, mapActions, mapGetters } from "pinia";
+import { mapWritableState, mapActions, mapState } from "pinia";
 import UserNavbar from "@/components/Main/UserNavbar.vue";
 import axios from "@/config/axios/index.js";
 import ImageUploadWithPreview from "@/components/UI/ImageUploadWithPreview.vue";
@@ -87,7 +87,7 @@ export default {
       "text_ka",
       "imageForQuote",
     ]),
-    ...mapGetters(useQuotesStore, ["editQuoteData"]),
+    ...mapState(useQuotesStore, ["editQuoteData"]),
   },
   mounted() {
     this.handleGetQuoteRequest();

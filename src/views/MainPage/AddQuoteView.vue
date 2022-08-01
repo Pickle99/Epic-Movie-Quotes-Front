@@ -82,7 +82,7 @@ import { Field, ErrorMessage, Form as ValidationForm } from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import FormPanel from "@/components/Main/QuoteFormPanel.vue";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
-import { mapWritableState, mapActions, mapGetters, mapState } from "pinia";
+import { mapWritableState, mapActions, mapState } from "pinia";
 import axios from "@/config/axios/index.js";
 import ImageUploadAnother from "@/components/UI/ImageUploadAnother.vue";
 import IconCamera from "@/components/icons/IconCamera.vue";
@@ -110,7 +110,7 @@ export default {
       "text_ka",
       "imageForQuote",
     ]),
-    ...mapGetters(useQuotesStore, ["addQuoteData"]),
+    ...mapState(useQuotesStore, ["addQuoteData"]),
   },
   mounted() {
     this.getMovie();

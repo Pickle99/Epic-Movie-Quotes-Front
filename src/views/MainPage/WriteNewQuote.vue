@@ -59,7 +59,7 @@ import { Field, ErrorMessage, Form as ValidationForm } from "vee-validate";
 import BasicButton from "@/components/UI/BasicButton.vue";
 import ModalFormPanel from "@/components/Main/ModalFormPanel.vue";
 import { useQuotesStore } from "@/stores/useQuotesStore.js";
-import { mapGetters, mapWritableState, mapActions } from "pinia";
+import { mapState, mapWritableState, mapActions } from "pinia";
 import ChooseMovie from "@/components/UI/ChooseMovie.vue";
 import axios from "@/config/axios/index.js";
 import ImageUploadAnother from "@/components/UI/ImageUploadAnother.vue";
@@ -81,7 +81,7 @@ export default {
       "chosenMovieId",
       "imageForQuote",
     ]),
-    ...mapGetters(useQuotesStore, ["writeQuoteData"]),
+    ...mapState(useQuotesStore, ["writeQuoteData"]),
   },
   mounted() {
     this.handleGetMovies();
