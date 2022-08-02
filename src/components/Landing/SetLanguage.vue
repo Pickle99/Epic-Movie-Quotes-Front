@@ -38,16 +38,19 @@ export default {
     change(lang) {
       if(lang === 'en')
       {
-        console.log('setitem en');
         (this.$i18n.locale = 'ka')
         setLocale('en');
+        localStorage.setItem('locale', 'en')
+        localStorage.setItem('i18n', 'ka')
       }
       if(lang === 'ka')
       {
-        console.log('setitem ka');
         (this.$i18n.locale = 'en')
+        localStorage.setItem('locale', 'ka')
+        localStorage.setItem('i18n', 'en')
         setLocale('ka');
       }
+      setLocale(localStorage.getItem("locale"));
     },
     setDisabled() {
       this.isDisabled = !this.isDisabled;
