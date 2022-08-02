@@ -104,7 +104,7 @@ export default {
     handleGetPaginatedQuotes() {
       this.page = 1;
       axios
-        .get(`feed?page=${this.page}`)
+        .post(`feed?page=${this.page}`)
         .then((res) => {
           this.allQuotes = res.data.data;
           this.lastPage = res.data.meta.last_page;

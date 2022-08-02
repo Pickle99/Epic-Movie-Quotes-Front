@@ -214,7 +214,7 @@ export default {
       this.imageForMovie = document.querySelector(".image").files[0];
     },
     getMovie() {
-      axios.get(`movie/` + this.$route.params.movie + `/genres`).then((res) => {
+      axios.get(`movie/` + this.$route.params.movie).then((res) => {
         this.movie = res.data.data;
         this.title_en = this.movie.title.en;
         this.title_ka = this.movie.title.ka;
