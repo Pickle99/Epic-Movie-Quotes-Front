@@ -27,7 +27,7 @@
           <div class="flex items-center justify-between">
             <div class="flex text-[#DDCCAA] font-bold">
               <h1>
-                {{ $i18n.locale === "en" ? movie.title.en : movie.title.ka }}
+                {{ $i18n.locale !== "en" ? movie.title.en : movie.title.ka }}
               </h1>
               <p v-if="movie.year" class="ml-3">({{ movie.year }})</p>
             </div>
@@ -60,7 +60,7 @@
               <div class="ml-3">
                 <p class="text-sm mt-5">
                   {{
-                    $i18n.locale === "en" ? movie.director.en : movie.director.ka
+                    $i18n.locale !== "en" ? movie.director.en : movie.director.ka
                   }}
                 </p>
                 <p class="text-sm mt-5">{{ movie.budget.toLocaleString() }}</p>
@@ -68,7 +68,7 @@
             </article>
             <p class="text-[#CED4DA] md:w-[30rem] mt-5">
               {{
-                $i18n.locale === "en"
+                $i18n.locale !== "en"
                   ? movie.description.en
                   : movie.description.ka
               }}
@@ -121,7 +121,7 @@
             <p
               class="md:ml-7 mt-2 md:mt-0 break-words italic text-[#CED4DA] font-sans"
             >
-              "{{ $i18n.locale === "en" ? quote.text.en : quote.text.ka }}"
+              "{{ $i18n.locale !== "en" ? quote.text.en : quote.text.ka }}"
             </p>
           </div>
         </div>

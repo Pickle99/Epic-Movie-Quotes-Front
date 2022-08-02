@@ -153,6 +153,11 @@ export default {
         .post("user/" + this.localUserId + "/update", this.profileUpdateData)
         .then((res) => {
           this.user = res.data.data;
+          this.data.username = "";
+          this.data.email = "";
+          this.data.avatar = "";
+          this.data.provider = "";
+          this.created_at = "";
           localStorage.setItem("username", this.user.username);
           localStorage.setItem("avatar", this.user.avatar);
           window.location.href = "http://localhost:3000/profile";

@@ -64,7 +64,7 @@
           />
           <div class="font-bold uppercase flex">
             <p>
-              {{ $i18n.locale === "en" ? movie.title.en : movie.title.ka }}
+              {{ $i18n.locale !== "en" ? movie.title.en : movie.title.ka }}
             </p>
             <p v-if="movie.year" class="ml-3">({{ movie.year }})</p>
           </div>
@@ -107,7 +107,7 @@ export default {
     ...mapWritableState(useMoviesStore, ["userMovies", "userMoviesSearch"]),
     filteredUserMovies() {
       return this.userMovies.filter((movie) => {
-        if (this.$i18n.locale === "en") {
+        if (this.$i18n.locale !== "en") {
           return movie.title.en
             .toLowerCase()
             .match(this.userMoviesSearch.toLowerCase());

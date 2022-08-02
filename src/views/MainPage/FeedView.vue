@@ -54,7 +54,7 @@
             :key="quote"
             :movie-id="quote.movie.id"
             :movie-name="
-              $i18n.locale === 'en'
+              $i18n.locale !== 'en'
                 ? quote.movie.title.en
                 : quote.movie.title.ka
             "
@@ -72,7 +72,7 @@
             :key="quote"
             :movie-id="quote.movie.id"
             :movie-name="
-              $i18n.locale === 'en'
+              $i18n.locale !== 'en'
                 ? quote.movie.title.en
                 : quote.movie.title.ka
             "

@@ -10,11 +10,11 @@
       <div class="flex">
         <p>
           {{ $t("message.movie_name") }}:
-          {{ $i18n.locale === "en" ? name.en : name.ka }}
+          {{ $i18n.locale !== "en" ? name.en : name.ka }}
         </p>
         <p v-if="year" class="ml-3">({{ year }})</p>
       </div>
-      <p>Director: {{ $i18n.locale === "en" ? director.en : director.ka }}</p>
+      <p>Director: {{ $i18n.locale !== "en" ? director.en : director.ka }}</p>
       <p class="text-xs">Posted By: {{ userName }}</p>
       <p v-if="chosenMovie" class="text-green-500 text-xs">
         {{ $t("message.selected") }}

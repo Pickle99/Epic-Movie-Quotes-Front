@@ -56,14 +56,14 @@
           <div class="flex items-center">
             <IconCamera />
             <h1 class="ml-3">
-              {{ $i18n.locale === "en" ? movie.title.en : movie.title.ka }} ({{
+              {{ $i18n.locale !== "en" ? movie.title.en : movie.title.ka }} ({{
                 movie.year
               }})
             </h1>
           </div>
           <p class="mt-7">
             Director:
-            {{ $i18n.locale === "en" ? movie.director.en : movie.director.ka }}
+            {{ $i18n.locale !== "en" ? movie.director.en : movie.director.ka }}
           </p>
         </div>
       </div>

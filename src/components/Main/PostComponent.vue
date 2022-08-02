@@ -13,7 +13,7 @@
             <p class="ml-5">{{ postedBy }}</p>
           </header>
           <div class="flex mt-5">
-            <p>"{{ $i18n.locale === "en" ? quote.text.en : quote.text.ka }}"</p>
+            <p>"{{ $i18n.locale !== "en" ? quote.text.en : quote.text.ka }}"</p>
             <div class="flex items-center mx-2">
               <p>movie-</p>
               <RouterLink
