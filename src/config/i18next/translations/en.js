@@ -6,6 +6,7 @@ const en = {
     sign_in: "Sign in",
     eng: "Eng",
     geo: "Geo",
+    movie: 'movie',
     movie_quotes: "MOVIE QUOTES",
     find_any_quote: "Find any quote",
     millions_of_movie_lines: "millions of movie lines",

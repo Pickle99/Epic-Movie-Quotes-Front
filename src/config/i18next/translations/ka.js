@@ -7,6 +7,7 @@ const ka = {
     username: "მომხმარებლის სახელი",
     eng: "ინგ",
     geo: "ქარ",
+    movie: "ფილმი",
     movie_quotes: "ფილმის ციტატები",
     find_any_quote: "იპოვე ნებისმიერი ციტატა",
     millions_of_movie_lines: "მილიონობით ფილმების ხაზში",

@@ -12,10 +12,10 @@
       <IconArrowDownSlim />
     </div>
     <div v-if="isDisabled" class="absolute ml-4">
-      <p class="mt-2" @click="change('ka')">
+      <p class="mt-2" @click="change('en')">
         {{ $t("message.eng") }}
       </p>
-      <p class="mt-2" @click="change('en')">
+      <p class="mt-2" @click="change('ka')">
         {{ $t("message.geo") }}
       </p>
     </div>
@@ -36,8 +36,18 @@ export default {
   },
   methods: {
     change(lang) {
-      localStorage.setItem("locale", lang);
-      setLocale((this.$i18n.locale = localStorage.getItem("locale")));
+      if(lang === 'en')
+      {
+        console.log('setitem en');
+        (this.$i18n.locale = 'ka')
+        setLocale('en');
+      }
+      if(lang === 'ka')
+      {
+        console.log('setitem ka');
+        (this.$i18n.locale = 'en')
+        setLocale('ka');
+      }
     },
     setDisabled() {
       this.isDisabled = !this.isDisabled;
