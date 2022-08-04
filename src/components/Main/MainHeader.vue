@@ -97,7 +97,7 @@ export default {
         });
     },
     handleGetAllQuotes() {
-      axios.get("all-quotes").then((res) => {
+      axios.get("quotes").then((res) => {
         this.quotesForNotifications = res.data.data;
       });
     },
