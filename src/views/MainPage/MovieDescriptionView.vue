@@ -194,7 +194,7 @@ export default {
   methods: {
     deleteMovie() {
       axios
-        .delete(`movie/${this.$route.params.movie}/delete`)
+        .delete(`movie/${this.$route.params.movie}`)
         .then(() => {
           this.$router.push({ name: "movies" });
         })

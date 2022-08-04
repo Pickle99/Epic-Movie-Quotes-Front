@@ -102,7 +102,6 @@ export default {
       });
     },
     handleGetPaginatedQuotes() {
-      this.page = 1;
       axios
         .post(`feed?page=${this.page}`)
         .then((res) => {

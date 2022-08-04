@@ -140,9 +140,15 @@ export default {
       if (this.page > this.lastPage) {
         return;
       }
+      if(this.page === 1 && scroll === true)
+      {
+        this.page = 2;
+        this.lastPage = 3;
+      }
       axios
-        .get(`feed?page=${this.page}&search=${this.searchIn}`)
+        .post(`feed?page=${this.page}&search=${this.searchIn}`)
         .then((res) => {
+          console.log(res);
           if (this.search) {
             if (scroll) {
               this.filteredQuotes.push(...res.data.data);

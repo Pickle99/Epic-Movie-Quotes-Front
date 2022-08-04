@@ -117,7 +117,7 @@ export default {
     ...mapActions(useQuotesStore, ["writeQuoteResetFields"]),
     deleteQuote() {
       axios
-        .delete(`quote/${this.$route.params.quote}/delete`)
+        .delete(`quote/${this.$route.params.quote}`)
         .then(() => {
           this.$router.push({
             name: "movie-description",

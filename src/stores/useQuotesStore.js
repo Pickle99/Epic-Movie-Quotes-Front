@@ -59,8 +59,8 @@ export const useQuotesStore = defineStore("quotes", {
   },
   actions: {
     resetPage() {
-      this.page = 0;
-      this.lastPage = 1;
+      this.page = 1;
+      this.lastPage = 2;
     },
     writeQuoteResetFields() {
       this.text_en = "";

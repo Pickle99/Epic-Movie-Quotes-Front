@@ -29,7 +29,7 @@
         </div>
       </RouterLink>
 
-      <RouterLink :to="{ name: 'feed' }" class="flex items-center">
+      <RouterLink :to="{ name: 'feed' }" class="flex items-center" @click="resetPage">
         <div class="w-32 flex justify-center">
           <IconHouse v-if="$route.name !== 'feed'" />
           <IconHouseRed v-if="$route.name === 'feed'" />
@@ -82,9 +82,9 @@ export default {
   },
   methods: {
     ...mapActions(useUserStore, ["hideDropdown"]),
-    resetPages() {
-      this.page = 0;
-      this.lastPage = 1;
+    resetPage() {
+      this.page = 1;
+      this.lastPage = 2;
     },
   },
 };
