@@ -190,13 +190,13 @@ export default {
       this.isCommentsVisible = !this.isCommentsVisible;
     },
     handleAddOrRemoveLike() {
-      axios.get("quote/" + this.quoteId + "/add-like").catch((err) => {
+      axios.get("quote/" + this.quoteId).catch((err) => {
         console.log(err);
       });
     },
     handleAddComment() {
       axios
-        .post("quote/" + this.quoteId + "/add-comment", {
+        .post("quote/" + this.quoteId", {
           text: this.commentText,
         })
         .then(() => {

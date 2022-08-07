@@ -193,13 +193,13 @@ export default {
       if (!this.isLiked) {
         this.userLikedQuote = true;
       } else this.userLikedQuote = false;
-      axios.get("quote/" + this.quoteId + "/add-like").catch((err) => {
+      axios.get("quote/" + this.quoteId).catch((err) => {
         console.log(err);
       });
     },
     handleAddComment() {
       axios
-        .post("quote/" + this.quoteId + "/add-comment", {
+        .post("quote/" + this.quoteId, {
           text: this.commentText,
         })
         .then(() => {

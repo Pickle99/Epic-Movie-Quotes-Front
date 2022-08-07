@@ -204,14 +204,14 @@ export default {
       this.isUserLiked = this.isLiked;
       this.isUserLiked = !this.isUserLiked;
       axios
-        .get("quote/" + this.$route.params.quote + "/add-like")
+        .get("quote/" + this.$route.params.quote)
         .catch((err) => {
           console.log(err);
         });
     },
     handleAddComment() {
       axios
-        .post("quote/" + this.$route.params.quote + "/add-comment", {
+        .post("quote/" + this.$route.params.quote, {
           text: this.commentText,
         })
         .then(() => {
