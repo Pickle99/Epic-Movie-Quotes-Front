@@ -31,54 +31,15 @@ npm run dev
 npm run build
 ```
 
-## Used packages:
+### Tech Stack
 
-#### Tailwind
+<ul>
+<li id="tech"><a href="https://vee-validate.logaretm.com/v3">Vee-Validate</a> - package for form validations</li>
+<li><a href="https://kazupon.github.io/vue-i18n/installation.html#direct-download-cdn">i18next</a> - package for translation</li>
+<li><a href="https://tailwindcss.com/blog/tailwindcss-v3">Tailwind</a> - CSS framework</li>
+<li><a href="https://laravel.com/docs/9.x/broadcasting">Laravel-Echo</a> - Broadcaster/Live for client
+(video for vue <a href="https://www.youtube.com/watch?v=rNOGLLPXzwc&t=421s">click</a>)</li>
 
-```sh
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-```
 
-#### i18n for localization
-
-```sh
-npm install vue-i18n@8
-```
-
-Official documentation:
-
-```sh
-https://kazupon.github.io/vue-i18n/installation.html#direct-download-cdn
-```
-
-#### vee-validate for form validations
-
-```sh
-npm install vee-validate@3 --save
-```
-
-Official documentation:
-
-```sh
-https://vee-validate.logaretm.com/v3
-```
-
-#### Laravel Echo for broadcasting
-
-```sh
-npm install laravel-echo pusher-js
-```
-
-Official laravel documentation:
-
-```sh
-https://laravel.com/docs/9.x/broadcasting
-```
-
-Youtube video which may help a lot:
-
-```sh
-https://www.youtube.com/watch?v=rNOGLLPXzwc&t=421s
-```
+</ul>
 
