@@ -1,4 +1,4 @@
-import { createPinia } from "pinia/dist/pinia";
+import { createPinia } from "pinia";
 import { useUserStore } from "@/stores/useUserStore.js";
 import { useMoviesStore } from "@/stores/useMoviesStore.js";
 import { useRequestsStore } from "@/stores/useRequestsStore.js";
