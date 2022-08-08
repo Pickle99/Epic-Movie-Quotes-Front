@@ -93,9 +93,7 @@ export default {
       if (this.markedAsAllRead) {
         return false;
       }
-      if (this.visited) {
-        return true;
-      } else return false;
+      return this.visited;
     },
     reactionTimestamp() {
       if (this.timestamp.endsWith("000000Z")) {

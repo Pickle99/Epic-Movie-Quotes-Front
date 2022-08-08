@@ -96,9 +96,9 @@ export default {
       localAvatar: "avatar",
       localUserId: "userId",
     }),
-    ...mapActions(useMoviesStore, ["movieResetFields"]),
   },
   methods: {
+    ...mapActions(useMoviesStore, ["movieResetFields"]),
     deleteQuote() {
       axios
         .delete(`quote/${this.$route.params.quote}/delete`)
@@ -107,7 +107,7 @@ export default {
             name: "movie-description",
             params: { movie: this.$route.params.movie },
           });
-          this.movieResetFields;
+          this.movieResetFields();
         })
         .catch((err) => {
           console.log(err);

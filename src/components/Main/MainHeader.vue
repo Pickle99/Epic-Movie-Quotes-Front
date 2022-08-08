@@ -88,8 +88,8 @@ export default {
         .get("notifications")
         .then((res) => {
           this.notifications = Array.from(res.data.data);
-          this.notifications.sort(function (a, b) {
-            return new Date(b.created_date) - new Date(a.created_date);
+          this.notifications.sort(function (older, newer) {
+            return new Date(newer.created_date) - new Date(older.created_date);
           });
         })
         .catch((err) => {

@@ -232,13 +232,13 @@ export default {
     addTag(event) {
       if (event.code === "Comma" || event.code === "Enter") {
         event.preventDefault();
-        let val = event.target.value.trim().toLowerCase();
-        if (val.length > 0) {
-          if (this.userSelectedGenres.includes(val)) {
+        let genreTag = event.target.value.trim().toLowerCase();
+        if (genreTag.length > 0) {
+          if (this.userSelectedGenres.includes(genreTag)) {
             return (this.genresError = "Duplicate entry");
           } else
             this.userSelectedGenres.push(
-              val[0].toUpperCase() + val.slice(1).split(" ")[0]
+              genreTag[0].toUpperCase() + genreTag.slice(1).split(" ")[0]
             );
           event.target.value = "";
         }

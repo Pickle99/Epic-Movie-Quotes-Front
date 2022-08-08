@@ -145,9 +145,7 @@ export default {
       const userLike = currentQuote.likes.find(
         (item) => item.user_id === parseInt(this.userId)
       );
-      if (!userLike) {
-        return this.userLikedQuote;
-      } else return !this.userLikedQuote;
+      return !userLike ? this.userLikedQuote : !this.userLikedQuote;
     },
   },
   mounted() {

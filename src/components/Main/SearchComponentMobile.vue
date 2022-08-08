@@ -60,24 +60,21 @@ export default {
       axios
         .get(`feed?page=${this.page}&search=${this.searchIn}`)
         .then((res) => {
+          this.page++;
           if (this.search) {
             if (scroll) {
               this.filteredQuotes.push(...res.data.data);
-              this.page++;
             } else {
               this.filteredQuotes = res.data.data;
-              this.page++;
             }
             this.lastPage = res.data.meta.last_page;
           } else {
             if (scroll) {
               this.allQuotes.push(...res.data.data);
               this.lastPage = res.data.meta.last_page;
-              this.page++;
             } else {
               this.allQuotes = res.data.data;
               this.lastPage = res.data.meta.last_page;
-              this.page++;
             }
           }
         })

@@ -127,8 +127,8 @@ export default {
         .get("user-movies")
         .then((res) => {
           this.userMovies = res.data.data;
-          this.userMovies.sort((a, b) => {
-            return new Date(b.created_at) - new Date(a.created_at);
+          this.userMovies.sort((older, newer) => {
+            return new Date(newer.created_at) - new Date(older.created_at);
           });
         })
         .catch((err) => {

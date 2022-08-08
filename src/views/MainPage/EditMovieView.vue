@@ -238,13 +238,13 @@ function onSubmit() {
 function addTag(event) {
   if (event.code === "Comma" || event.code === "Enter") {
     event.preventDefault();
-    let val = event.target.value.trim().toLowerCase();
-    if (val.length > 0) {
-      if (MoviesStore.userSelectedGenres.includes(val)) {
+    let genreTag = event.target.value.trim().toLowerCase();
+    if (genreTag.length > 0) {
+      if (MoviesStore.userSelectedGenres.includes(genreTag)) {
         return (MoviesStore.genresError = "Duplicate entry");
       } else
         MoviesStore.userSelectedGenres.push(
-          val[0].toUpperCase() + val.slice(1).split(" ")[0]
+          genreTag[0].toUpperCase() + val.slice(1).split(" ")[0]
         );
       event.target.value = "";
     }
@@ -272,133 +272,3 @@ onMounted(() => {
   getMovie();
 });
 </script>
-
-<!--<script>-->
-<!--import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";-->
-<!--import ImageUpload from "@/components/UI/ImageUpload.vue";-->
-<!--import MovieFormButton from "@/components/UI/MovieFormButton.vue";-->
-<!--import { useMoviesStore } from "@/stores/useMoviesStore.js";-->
-<!--import { mapWritableState, mapState, mapActions } from "pinia";-->
-<!--import FormPanel from "@/components/Main/MovieFormPanel.vue";-->
-<!--import UserNavbar from "@/components/Main/UserNavbar.vue";-->
-<!--import axios from "@/config/axios/index.js";-->
-
-<!--export default {-->
-<!--  components: {-->
-<!--    ValidationForm,-->
-<!--    Field,-->
-<!--    ErrorMessage,-->
-<!--    ImageUpload,-->
-<!--    MovieFormButton,-->
-<!--    FormPanel,-->
-<!--    UserNavbar,-->
-<!--  },-->
-<!--  data() {-->
-<!--    return {-->
-<!--      movie: [],-->
-<!--    };-->
-<!--  },-->
-<!--  computed: {-->
-<!--    ...mapWritableState(useMoviesStore, [-->
-<!--      "title_en",-->
-<!--      "title_ka",-->
-<!--      "director_en",-->
-<!--      "director_ka",-->
-<!--      "year",-->
-<!--      "budget",-->
-<!--      "description_en",-->
-<!--      "description_ka",-->
-<!--      "imageForMovie",-->
-<!--      "allGenres",-->
-<!--      "userSelectedGenres",-->
-<!--      "genresError",-->
-<!--    ]),-->
-<!--    ...mapState(useMoviesStore, ["movieYear", "movieBudget", "movieData"]),-->
-<!--  },-->
-<!--  mounted() {-->
-<!--    this.getGenre();-->
-<!--    this.getMovie();-->
-<!--  },-->
-<!--  methods: {-->
-<!--    ...mapActions(useMoviesStore, ["movieResetFields"]),-->
-<!--    drop(e) {-->
-<!--      this.imageForMovie = e.dataTransfer.files[0];-->
-<!--    },-->
-<!--    selectedFile() {-->
-<!--      this.imageForMovie = document.querySelector(".image").files[0];-->
-<!--    },-->
-<!--    getMovie() {-->
-<!--      axios.get(`movie/` + this.$route.params.movie).then((res) => {-->
-<!--        this.movie = res.data.data;-->
-<!--        this.title_en = this.movie.title.en;-->
-<!--        this.title_ka = this.movie.title.ka;-->
-<!--        this.userSelectedGenres = this.movie.genres.map((genre) => genre.name);-->
-<!--        this.director_en = this.movie.director.en;-->
-<!--        this.director_ka = this.movie.director.ka;-->
-<!--        this.year = this.movie.year;-->
-<!--        this.budget = this.movie.budget;-->
-<!--        this.description_en = this.movie.description.en;-->
-<!--        this.description_ka = this.movie.description.ka;-->
-<!--      });-->
-<!--    },-->
-<!--    onSubmit() {-->
-<!--      axios-->
-<!--        .post("movie/" + this.$route.params.movie + "/update", this.movieData, {-->
-<!--          headers: {-->
-<!--            "Content-Type": "multipart/form-formData",-->
-<!--          },-->
-<!--        })-->
-<!--        .then(() => {-->
-<!--          this.$router.push({-->
-<!--            name: "movie-description",-->
-<!--            params: { movie: this.$route.params.movie },-->
-<!--          });-->
-<!--          this.movieResetFields();-->
-<!--        })-->
-<!--        .catch((error) => {-->
-<!--          console.log(error);-->
-<!--        });-->
-
-<!--      const found = this.userSelectedGenres.filter(-->
-<!--        (item) => !this.allGenres.includes(item)-->
-<!--      );-->
-<!--      const founder = this.userSelectedGenres;-->
-<!--      if (found.length > 0 || !founder.length) {-->
-<!--        return (this.genresError =-->
-<!--          "Invalid genre. available: Comedy, Horror, Action, Drama, Romantic, Thriller");-->
-<!--      }-->
-<!--      if (found.length < 0 || founder.length) {-->
-<!--        return (this.genresError = "");-->
-<!--      }-->
-<!--    },-->
-<!--    addTag(event) {-->
-<!--      if (event.code === "Comma" || event.code === "Enter") {-->
-<!--        event.preventDefault();-->
-<!--        let val = event.target.value.trim();-->
-<!--        if (val.length > 0) {-->
-<!--          if (this.userSelectedGenres.includes(val)) {-->
-<!--            return (this.genresError = "Duplicate entry");-->
-<!--          } else-->
-<!--            this.userSelectedGenres.push(-->
-<!--              val[0].toUpperCase() + val.slice(1).split(" ")[0]-->
-<!--            );-->
-<!--          event.target.value = "";-->
-<!--        }-->
-<!--      }-->
-<!--    },-->
-<!--    removeTag(index) {-->
-<!--      this.userSelectedGenres.splice(index, 1);-->
-<!--    },-->
-<!--    removeLastTag(event) {-->
-<!--      if (event.target.value.length === 0) {-->
-<!--        this.removeTag(this.userSelectedGenres.length - 1);-->
-<!--      }-->
-<!--    },-->
-<!--    getGenre() {-->
-<!--      axios.get("genres").then((res) => {-->
-<!--        this.allGenres = res.data.data.map((e) => e.name);-->
-<!--      });-->
-<!--    },-->
-<!--  },-->
-<!--};-->
-<!--</script>-->

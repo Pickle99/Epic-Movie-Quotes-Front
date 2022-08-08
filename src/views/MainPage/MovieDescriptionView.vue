@@ -211,8 +211,8 @@ export default {
           this.movieDescriptionData = res.data;
           this.movieDescriptionQuoteData =
             this.movieDescriptionData.data.quotes;
-          this.movieDescriptionQuoteData.sort((a, b) => {
-            return new Date(b.created_at) - new Date(a.created_at);
+          this.movieDescriptionQuoteData.sort((older, newer) => {
+            return new Date(newer.created_at) - new Date(older.created_at);
           });
         })
         .catch((err) => {
