@@ -140,8 +140,7 @@ export default {
       if (this.page > this.lastPage) {
         return;
       }
-      if(this.page === 1 && scroll === true)
-      {
+      if (this.page === 1 && scroll === true) {
         this.page = 2;
         this.lastPage = 3;
       }

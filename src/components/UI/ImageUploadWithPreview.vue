@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapState} from "pinia";
+import { mapState } from "pinia";
 import { Field } from "vee-validate";
 import IconPhoto from "@/components/icons/IconPhoto.vue";
 import { useEnvStore } from "@/stores/useEnvStore";

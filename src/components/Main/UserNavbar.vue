@@ -26,7 +26,11 @@
       </div>
     </RouterLink>
 
-    <RouterLink :to="{ name: 'feed' }" class="flex items-center" @click="resetPage">
+    <RouterLink
+      :to="{ name: 'feed' }"
+      class="flex items-center"
+      @click="resetPage"
+    >
       <div class="w-32 flex justify-center">
         <IconHouse v-if="$route.name !== 'feed'" />
         <IconHouseRed v-if="$route.name === 'feed'" />

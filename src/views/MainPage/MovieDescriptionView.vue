@@ -60,7 +60,9 @@
               <div class="ml-3">
                 <p class="text-sm mt-5">
                   {{
-                    $i18n.locale !== "en" ? movie.director.en : movie.director.ka
+                    $i18n.locale !== "en"
+                      ? movie.director.en
+                      : movie.director.ka
                   }}
                 </p>
                 <p class="text-sm mt-5">{{ movie.budget.toLocaleString() }}</p>

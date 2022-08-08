@@ -32,9 +32,7 @@
             class="flex items-center ml-5 my-7 w-fit"
           >
             <IconPen />
-            <p
-              class="text-sm ml-3"
-            >
+            <p class="text-sm ml-3">
               {{ $t("message.edit") }}
             </p>
           </RouterLink>

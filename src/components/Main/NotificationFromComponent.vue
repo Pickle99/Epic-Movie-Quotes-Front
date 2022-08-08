@@ -93,10 +93,9 @@ export default {
       if (this.markedAsAllRead) {
         return false;
       }
-        else if (this.visited) {
-          return true;
-        } else return false;
-
+      if (this.visited) {
+        return true;
+      } else return false;
     },
     reactionTimestamp() {
       if (this.timestamp.endsWith("000000Z")) {
@@ -112,7 +111,7 @@ export default {
   methods: {
     showCurrentQuote() {
       const currentQuoteOfNotification = this.quotesForNotifications.find(
-        (quote) => quote.id == this.quoteId
+        (quote) => quote.id === parseInt(this.quoteId)
       );
       this.movieId = currentQuoteOfNotification.movie.id;
       this.$router.push({
@@ -120,7 +119,7 @@ export default {
         params: { movie: this.movieId, quote: this.quoteId },
       });
       axios
-        .post(`notification/${this.notificationId}/mark-single-as-read`)
+        .get(`notification/${this.notificationId}/mark-single-as-read`)
         .then(() => {
           this.visited = true;
         })

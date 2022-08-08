@@ -15,7 +15,7 @@
           <div class="flex mt-5">
             <p>"{{ $i18n.locale !== "en" ? quote.text.en : quote.text.ka }}"</p>
             <div class="flex items-center mx-2">
-              <p>{{$t('message.movie')}}-</p>
+              <p>{{ $t("message.movie") }}-</p>
               <RouterLink
                 :to="{ name: 'movie-description', params: { movie: movieId } }"
                 class="cursor-pointer ml-1.5 text-[#DDCCAA] font-bold"
@@ -190,13 +190,13 @@ export default {
       this.isCommentsVisible = !this.isCommentsVisible;
     },
     handleAddOrRemoveLike() {
-      axios.get("quote/" + this.quoteId + '/add-like').catch((err) => {
+      axios.get("quote/" + this.quoteId + "/add-like").catch((err) => {
         console.log(err);
       });
     },
     handleAddComment() {
       axios
-        .post("quote/" + this.quoteId + '/add-comment', {
+        .post("quote/" + this.quoteId + "/add-comment", {
           text: this.commentText,
         })
         .then(() => {

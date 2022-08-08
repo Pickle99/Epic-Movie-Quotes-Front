@@ -160,7 +160,7 @@ export default {
           this.created_at = "";
           localStorage.setItem("username", this.user.username);
           localStorage.setItem("avatar", this.user.avatar);
-          window.location.href = import.meta.env.VITE_BASE_URL+"profile";
+          window.location.href = import.meta.env.VITE_BASE_URL + "profile";
         })
         .catch((err) => console.log(err));
     },

@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center">
-    <img class="rounded-full" width="128" :src="avatar" alt="avatar"/>
+    <img class="rounded-full" width="128" :src="avatar" alt="avatar" />
     <label
       for="image"
       class="cursor-pointer flex items-center absolute mt-52 flex-col bg-[#191725] w-fit p-3 rounded-md bg-opacity-70"

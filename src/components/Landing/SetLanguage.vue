@@ -36,19 +36,17 @@ export default {
   },
   methods: {
     change(lang) {
-      if(lang === 'en')
-      {
-        (this.$i18n.locale = 'ka')
-        setLocale('en');
-        localStorage.setItem('locale', 'en')
-        localStorage.setItem('i18n', 'ka')
+      if (lang === "en") {
+        this.$i18n.locale = "ka";
+        setLocale("en");
+        localStorage.setItem("locale", "en");
+        localStorage.setItem("i18n", "ka");
       }
-      if(lang === 'ka')
-      {
-        (this.$i18n.locale = 'en')
-        localStorage.setItem('locale', 'ka')
-        localStorage.setItem('i18n', 'en')
-        setLocale('ka');
+      if (lang === "ka") {
+        this.$i18n.locale = "en";
+        localStorage.setItem("locale", "ka");
+        localStorage.setItem("i18n", "en");
+        setLocale("ka");
       }
       setLocale(localStorage.getItem("locale"));
     },
