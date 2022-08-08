@@ -1,10 +1,13 @@
-# chad-movie-front
+# Look Around
 
-This template should help get you started developing with Vue 3 in Vite.
+Epic Movie Quotes is a site where you can post a movie,
+create a quote for it, edit and delete both the quote and the movie,
+and you can like and comment on the quote in real-time, resulting in real-time notifications.
 
-## Recommended IDE Setup
+## Integrate eslint & prettier
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Redberry documentation for installation:
+https://redberry.gitbook.io/resources/vue.js/eslint-and-prettier-is-gamartva-vue.js-proektshi
 
 ## Customize configuration
 
@@ -28,21 +31,54 @@ npm run dev
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Used packages:
+
+#### Tailwind
 
 ```sh
-npm run test:unit
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
 ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+#### i18n for localization
 
 ```sh
-npm run build
-npm run test:e2e # or `npm run test:e2e:ci` for headless testing
+npm install vue-i18n@8
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Official documentation:
 
 ```sh
-npm run lint
+https://kazupon.github.io/vue-i18n/installation.html#direct-download-cdn
 ```
+
+#### vee-validate for form validations
+
+```sh
+npm install vee-validate@3 --save
+```
+
+Official documentation:
+
+```sh
+https://vee-validate.logaretm.com/v3
+```
+
+#### Laravel Echo for broadcasting
+
+```sh
+npm install laravel-echo pusher-js
+```
+
+Official laravel documentation:
+
+```sh
+https://laravel.com/docs/9.x/broadcasting
+```
+
+Youtube video which may help a lot:
+
+```sh
+https://www.youtube.com/watch?v=rNOGLLPXzwc&t=421s
+```
+
