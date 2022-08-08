@@ -244,7 +244,7 @@ function addTag(event) {
         return (MoviesStore.genresError = "Duplicate entry");
       } else
         MoviesStore.userSelectedGenres.push(
-          genreTag[0].toUpperCase() + val.slice(1).split(" ")[0]
+          genreTag[0].toUpperCase() + genreTag.slice(1).split(" ")[0]
         );
       event.target.value = "";
     }
@@ -257,7 +257,7 @@ function removeTag(index) {
 
 function removeLastTag(event) {
   if (event.target.value.length === 0) {
-    this.removeTag(MoviesStore.userSelectedGenres.length - 1);
+    removeTag(MoviesStore.userSelectedGenres.length - 1);
   }
 }
 

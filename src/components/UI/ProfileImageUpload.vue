@@ -41,8 +41,8 @@ export default {
   },
   methods: {
     fileChange(e) {
-      let reader,
-        files = e.target.files;
+      let reader = new FileReader();
+      let files = e.target.files;
 
       reader = new FileReader();
 
