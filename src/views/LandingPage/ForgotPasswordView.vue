@@ -81,15 +81,16 @@ export default {
           email: this.data.forgot_password,
         })
         .then(() => {
-          this.isLoading = false;
           this.$router.push({ name: "password-reset-sent" });
         })
         .catch((error) => {
-          this.isLoading = false;
           this.data.error = error.response.data.error;
           setTimeout(() => {
             this.data.error = "";
           }, 3000);
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     },
   },
