@@ -11,6 +11,7 @@
   >
     <div class="bg-[#CED4DA] mb-2 flex items-center w-full rounded-md">
       <input
+        :id="inputId"
         :class="
           meta.touched
             ? meta.valid && !error
@@ -51,6 +52,10 @@ export default {
     placeholder: {
       type: String,
       required: true,
+    },
+    inputId: {
+      type: String,
+      required: false,
     },
     rules: {
       type: String,

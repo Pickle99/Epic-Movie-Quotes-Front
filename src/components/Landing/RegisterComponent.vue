@@ -20,24 +20,28 @@
             {{ data.error }}
             <div class="w-screen px-5 md:w-[30rem]">
               <basic-input
+                inputId="username"
                 name="username"
                 placeholder="message.at_least_3_max_15"
                 rules="required|min:3|max:15|alpha_lower"
                 label-name="message.name"
               />
               <basic-input
+                inputId="email"
                 name="email"
                 placeholder="message.enter_your_email"
                 rules="required|email"
                 label-name="message.email"
               />
               <password-input
+                inputId="password"
                 name="password"
                 placeholder="message.at_least_8_max_15"
                 rules="required|min:8|max:15|alpha_lower"
                 label-name="message.password"
               />
               <password-input
+                inputId="password_confirmation"
                 name="password_confirmation"
                 placeholder="message.confirm_password"
                 rules="required|confirmed:@password"
@@ -45,7 +49,7 @@
               />
             </div>
             <div class="mx-5">
-              <basic-button class="w-full" :is-disabled="!meta.valid"
+              <basic-button id="register-button" class="w-full" :is-disabled="!meta.valid"
                 >{{ $t("message.get_started") }}
               </basic-button>
             </div>

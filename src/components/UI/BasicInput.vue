@@ -15,6 +15,7 @@
       @mouseenter="focused = true"
     >
       <input
+        :id="inputId"
         :disabled="!isDisabled"
         :class="
           meta.touched
@@ -67,6 +68,10 @@ export default {
     placeholder: {
       type: String,
       required: true,
+    },
+    inputId: {
+      type: String,
+      required: false,
     },
     rules: {
       type: String,
