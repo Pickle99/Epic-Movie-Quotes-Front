@@ -34,11 +34,9 @@ npm run build
 ### Tech Stack
 
 <ul>
-<li id="tech"><a href="https://vee-validate.logaretm.com/v3">Vee-Validate</a> - package for form validations</li>
-<li><a href="https://kazupon.github.io/vue-i18n/installation.html#direct-download-cdn">i18next</a> - package for translation</li>
+<li id="tech"><a href="https://pinia.vuejs.org/">Pinia</a> - The Vue Store</li>
+<li><a href="https://vitejs.dev/guide/">Vite</a> - is a build tool that aims to provide a faster and leaner development experience for modern web projects</li>
 <li><a href="https://tailwindcss.com/blog/tailwindcss-v3">Tailwind</a> - CSS framework</li>
-<li><a href="https://laravel.com/docs/9.x/broadcasting">Laravel-Echo</a> - Broadcaster/Live for client
-(video for vue <a href="https://www.youtube.com/watch?v=rNOGLLPXzwc&t=421s">click</a>)</li>
 
 
 </ul>
