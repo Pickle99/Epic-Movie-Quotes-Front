@@ -75,14 +75,11 @@ export default {
   },
   methods: {
     onSubmit() {
+      this.isLoading = true;
       axios
-        .post(
-          "forgot-password",
-          {
-            email: this.data.forgot_password,
-          },
-          (this.isLoading = true)
-        )
+        .post("forgot-password", {
+          email: this.data.forgot_password,
+        })
         .then(() => {
           this.isLoading = false;
           this.$router.push({ name: "password-reset-sent" });

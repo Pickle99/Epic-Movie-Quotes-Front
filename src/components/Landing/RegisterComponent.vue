@@ -116,17 +116,14 @@ export default {
         .catch((err) => console.log(err));
     },
     onSubmit() {
+      this.isLoading = true;
       axios
-        .post(
-          "register",
-          {
-            email: this.data.email,
-            username: this.data.username,
-            password: this.data.password,
-            password_confirmation: this.data.password_confirmation,
-          },
-          (this.isLoading = true)
-        )
+        .post("register", {
+          email: this.data.email,
+          username: this.data.username,
+          password: this.data.password,
+          password_confirmation: this.data.password_confirmation,
+        })
         .then(() => {
           this.isLoading = false;
           this.$router.push({ name: "email-sent" });
