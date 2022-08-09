@@ -41,10 +41,8 @@ export default {
   },
   methods: {
     fileChange(e) {
-      let reader = new FileReader();
-      let files = e.target.files;
-
-      reader = new FileReader();
+      const files = e.target.files;
+      const reader = new FileReader();
 
       reader.onload = (e) => {
         this.previewAvatar = e.target.result;
