@@ -96,14 +96,10 @@ export default {
       return this.visited;
     },
     reactionTimestamp() {
-      if (this.timestamp.endsWith("000000Z")) {
-        return "now";
-      } else return this.timestamp;
+      return this.timestamp.endsWith("000000Z") ? "now" : this.timestamp;
     },
     commentOrLike() {
-      if (this.reaction === "like") {
-        return this.Liked;
-      } else return this.Commented;
+      return this.reaction === "like" ? this.Liked : this.Commented;
     },
   },
   methods: {

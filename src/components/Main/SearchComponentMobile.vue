@@ -62,11 +62,9 @@ export default {
         .then((res) => {
           this.page++;
           if (this.search) {
-            if (scroll) {
-              this.filteredQuotes.push(...res.data.data);
-            } else {
-              this.filteredQuotes = res.data.data;
-            }
+            scroll
+              ? this.filteredQuotes.push(...res.data.data)
+              : (this.filteredQuotes = res.data.data);
             this.lastPage = res.data.meta.last_page;
           } else {
             if (scroll) {

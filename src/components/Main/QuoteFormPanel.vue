@@ -106,14 +106,10 @@ export default {
       localUserId: "userId",
     }),
     correctAuthorUsername() {
-      if (this.authorUsername) {
-        return this.authorUsername;
-      } else return this.localUser;
+      return this.authorUsername ?? this.localUser;
     },
     correctAuthorAvatar() {
-      if (this.authorAvatar) {
-        return this.authorAvatar;
-      } else return this.localAvatar;
+      return this.authorAvatar ?? this.localAvatar;
     },
   },
   methods: {

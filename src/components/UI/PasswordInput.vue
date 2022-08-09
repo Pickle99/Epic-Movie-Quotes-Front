@@ -74,9 +74,7 @@ export default {
   computed: {
     ...mapWritableState(useUserStore, ["data"]),
     PasswordType() {
-      if (this.isPasswordVisible) {
-        return "text";
-      } else return "password";
+      return this.isPasswordVisible ? "text" : "password";
     },
   },
   methods: {

@@ -107,14 +107,13 @@ export default {
     ...mapWritableState(useMoviesStore, ["userMovies", "userMoviesSearch"]),
     filteredUserMovies() {
       return this.userMovies.filter((movie) => {
-        if (this.$i18n.locale !== "en") {
-          return movie.title.en
-            .toLowerCase()
-            .match(this.userMoviesSearch.toLowerCase());
-        } else
-          return movie.title.ka
-            .toLowerCase()
-            .match(this.userMoviesSearch.toLowerCase());
+        return this.$i18n.locale !== "en"
+          ? movie.title.en
+              .toLowerCase()
+              .match(this.userMoviesSearch.toLowerCase())
+          : movie.title.ka
+              .toLowerCase()
+              .match(this.userMoviesSearch.toLowerCase());
       });
     },
   },
@@ -127,8 +126,8 @@ export default {
         .get("user-movies")
         .then((res) => {
           this.userMovies = res.data.data;
-          this.userMovies.sort((older, newer) => {
-            return new Date(newer.created_at) - new Date(older.created_at);
+          this.userMovies.sort((a, nb) => {
+            return new Date(b.created_at) - new Date(a.created_at);
           });
         })
         .catch((err) => {

@@ -55,7 +55,6 @@ export default {
               item.quote_id === notification.quote_id &&
               item.like_id !== null
           );
-
           if (!isQuoteLiked) {
             this.notifications.unshift(notification);
           }

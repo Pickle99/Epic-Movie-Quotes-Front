@@ -34,9 +34,9 @@ export default {
   computed: {
     ...mapWritableState(useUserStore, ["data"]),
     avatar() {
-      if (this.previewAvatar) {
-        return this.previewAvatar;
-      } else return import.meta.env.VITE_IMAGES_URL + this.data.avatar;
+      return (
+        this.previewAvatar ?? import.meta.env.VITE_IMAGES_URL + this.data.avatar
+      );
     },
   },
   methods: {
