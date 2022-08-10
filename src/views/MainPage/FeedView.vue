@@ -15,11 +15,7 @@
       <div class="flex flex-col">
         <div class="flex mt-3">
           <div class="ml-10 md:ml-0 md:py-3 md:px-3 md:bg-[#24222F] rounded-md">
-            <div
-              v-if="!isNotificationVisible"
-              class="flex w-[10rem] cursor-pointer"
-              @click="showModal"
-            >
+            <div class="flex w-[10rem] cursor-pointer" @click="showModal">
               <IconPencil class="mr-4" />
               <p>{{ $t("message.write_new_quote") }}</p>
             </div>
@@ -44,7 +40,9 @@
         <div class="flex justify-center">
           <NotificationComponent
             :class="
-              !isNotificationVisible ? 'hidden' : '-mt-12 fixed md:hidden'
+              !isNotificationVisible
+                ? 'hidden'
+                : 'md:-mr-[90rem] md:-mt-16 -mt-12 fixed'
             "
           />
         </div>
@@ -102,8 +100,8 @@ import IconMagnifyingGlass from "@/components/icons/IconMagnifyingGlass.vue";
 import IconPencil from "@/components/icons/IconPencil.vue";
 import UserNavbarMobile from "@/components/Main/UserNavbarMobile.vue";
 import SearchComponentMobile from "@/components/Main/SearchComponentMobile.vue";
-import { useUserStore } from "@/stores/useUserStore.js";
 import NotificationComponent from "@/components/Main/NotificationComponent.vue";
+import { useUserStore } from "@/stores/useUserStore.js";
 import { useNotificationsStore } from "@/stores/useNotificationsStore.js";
 export default {
   components: {

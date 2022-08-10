@@ -128,15 +128,12 @@ export default {
     return {
       userLikedQuote: false,
       isCommentsVisible: false,
+      commentText: "",
     };
   },
   computed: {
     ...mapState(useEnvStore, ["back_url"]),
-    ...mapWritableState(useQuotesStore, [
-      "allQuotes",
-      "comments",
-      "commentText",
-    ]),
+    ...mapWritableState(useQuotesStore, ["allQuotes", "comments"]),
     ...mapWritableState(useLocalStorageStore, ["userId", "avatar"]),
     isLiked() {
       const currentQuote = this.allQuotes.find(
@@ -188,7 +185,9 @@ export default {
       this.isCommentsVisible = !this.isCommentsVisible;
     },
     handleAddOrRemoveLike() {
-      !this.isLiked ? this.userLikedQuote = true : this.userLikedQuote = false;
+      !this.isLiked
+        ? (this.userLikedQuote = true)
+        : (this.userLikedQuote = false);
       axios.get("quote/" + this.quoteId + "/add-like").catch((err) => {
         console.log(err);
       });

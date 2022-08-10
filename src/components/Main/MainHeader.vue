@@ -25,9 +25,6 @@
               />
             </div>
           </div>
-          <NotificationComponent
-            :class="!isNotificationVisible ? 'hidden' : 'hidden md:block'"
-          />
         </div>
         <SetLanguage class="mx-8 hidden md:block" />
         <p

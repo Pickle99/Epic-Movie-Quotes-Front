@@ -8,7 +8,11 @@
   <UserNavbar class="absolute" />
   <div class="flex justify-center -mt-12">
     <NotificationComponent
-      :class="!isNotificationVisible ? 'hidden' : 'fixed md:hidden'"
+      :class="
+        !isNotificationVisible
+          ? 'hidden'
+          : 'md:-mr-[90rem] md:-mt-16 -mt-12 fixed'
+      "
     />
   </div>
   <div
@@ -126,7 +130,7 @@ export default {
         .get("user-movies")
         .then((res) => {
           this.userMovies = res.data.data;
-          this.userMovies.sort((a, nb) => {
+          this.userMovies.sort((a, b) => {
             return new Date(b.created_at) - new Date(a.created_at);
           });
         })

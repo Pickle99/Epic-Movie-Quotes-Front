@@ -49,7 +49,10 @@
               />
             </div>
             <div class="mx-5">
-              <basic-button id="register-button" class="w-full" :is-disabled="!meta.valid"
+              <basic-button
+                id="register-button"
+                class="w-full"
+                :is-disabled="!meta.valid"
                 >{{ $t("message.get_started") }}
               </basic-button>
             </div>

@@ -139,7 +139,6 @@ export default {
   computed: {
     ...mapState(useEnvStore, ["back_url"]),
     ...mapWritableState(useMoviesStore, ["text_en", "text_ka"]),
-    ...mapWritableState(useQuotesStore, ["commentText"]),
     ...mapWritableState(useLocalStorageStore, ["userId", "avatar"]),
     currentUserAvatar() {
       return localStorage.getItem("avatar");

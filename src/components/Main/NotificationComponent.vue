@@ -45,7 +45,8 @@ export default {
     ]),
   },
   created() {
-    window.Echo.private("showNotification." + this.userId).listen(
+    console.log("wow");
+    window.Echo.private("showNotification." + parseInt(this.userId)).listen(
       "ShowNotification",
       ({ notification }) => {
         if (!notification.comment_id) {
@@ -58,7 +59,9 @@ export default {
           if (!isQuoteLiked) {
             this.notifications.unshift(notification);
           }
+          console.log("add before");
         } else {
+          console.log("lol");
           this.notifications.unshift(notification);
         }
       }

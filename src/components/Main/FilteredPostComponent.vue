@@ -135,15 +135,12 @@ export default {
     return {
       userLikedQuote: false,
       isCommentsVisible: false,
+      commentText: "",
     };
   },
   computed: {
     ...mapState(useEnvStore, ["back_url"]),
-    ...mapWritableState(useQuotesStore, [
-      "comments",
-      "filteredQuotes",
-      "commentText",
-    ]),
+    ...mapWritableState(useQuotesStore, ["comments", "filteredQuotes"]),
     ...mapWritableState(useLocalStorageStore, ["userId", "avatar"]),
     isLiked() {
       const currentQuote = this.filteredQuotes.find(
@@ -198,7 +195,7 @@ export default {
           text: this.commentText,
         })
         .then(() => {
-          this.text = "";
+          this.commentText = "";
         });
     },
   },

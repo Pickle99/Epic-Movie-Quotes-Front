@@ -38,4 +38,3 @@ npm run build
 <li><a href="https://vitejs.dev/guide/">Vite</a> - is a build tool that aims to provide a faster and leaner development experience for modern web projects</li>
 <li><a href="https://tailwindcss.com/blog/tailwindcss-v3">Tailwind</a> - CSS framework</li>
 </ul>
-

@@ -6,7 +6,11 @@
   <UserNavbar class="fixed" />
   <div class="flex justify-center -mt-12">
     <NotificationComponent
-      :class="!isNotificationVisible ? 'hidden' : 'fixed md:hidden'"
+      :class="
+        !isNotificationVisible
+          ? 'hidden'
+          : 'md:-mr-[90rem] md:-mt-16 -mt-12 fixed'
+      "
     />
   </div>
 
