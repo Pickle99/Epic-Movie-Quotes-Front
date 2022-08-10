@@ -28,7 +28,7 @@ export const useQuotesStore = defineStore("quotes", {
       }
     },
     filteredFeedView(state) {
-      state.search ? state.filteredQuoted : false;
+      return state.search ? state.filteredQuotes : false;
     },
     writeQuoteData() {
       const formData = new FormData();
