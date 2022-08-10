@@ -16,6 +16,7 @@ export const useQuotesStore = defineStore("quotes", {
       chosenMovie: "",
       allUsersMovies: [],
       imageForQuote: "",
+      searchActive: false,
     };
   },
   getters: {
@@ -26,8 +27,15 @@ export const useQuotesStore = defineStore("quotes", {
         return "q" + state.search.substring(1);
       }
     },
+    searchActiveBringBacker(state) {
+      if (state.search.length < 1) {
+        state.searchActive = false;
+      }
+    },
     filteredFeedView(state) {
-      return state.search ? state.filteredQuotes : false;
+      return state.search.length > 1 && state.searchActive
+        ? state.filteredQuotes
+        : false;
     },
     writeQuoteData() {
       const formData = new FormData();

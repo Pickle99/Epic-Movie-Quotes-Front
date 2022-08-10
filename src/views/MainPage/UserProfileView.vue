@@ -26,7 +26,7 @@
         >
           <div class="absolute top-52 flex flex-col items-center">
             <ProfileImageUpload
-              v-if="!isNotificationVisible"
+              :class="isNotificationVisible ? 'md:block hidden' : ''"
               @change="selectedFile"
             />
           </div>

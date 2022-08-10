@@ -126,6 +126,7 @@ export default {
       "lastPage",
       "search",
       "filteredQuotes",
+      "searchActive",
     ]),
     ...mapState(useQuotesStore, ["filteredFeedView", "searchIn"]),
   },
@@ -135,6 +136,8 @@ export default {
   methods: {
     ...mapActions(useQuotesStore, ["resetPage"]),
     handleGetQuote(scroll) {
+      this.searchActive = true;
+      console.log(this.searchActive);
       if (this.page > this.lastPage) {
         return;
       }
