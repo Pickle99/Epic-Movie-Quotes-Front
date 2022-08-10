@@ -4,12 +4,12 @@
     <UserNavbarMobile class="absolute z-10" />
   </div>
   <UserNavbar class="fixed" />
-  <div class="flex justify-center -mt-12">
+  <div class="flex justify-center">
     <NotificationComponent
       :class="
         !isNotificationVisible
           ? 'hidden'
-          : 'md:-mr-[90rem] md:-mt-16 -mt-12 fixed'
+          : 'md:-mr-[90rem] md:-mt-10 -mt-12 fixed'
       "
     />
   </div>

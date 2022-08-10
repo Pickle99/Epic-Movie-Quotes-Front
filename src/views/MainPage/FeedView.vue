@@ -42,7 +42,7 @@
             :class="
               !isNotificationVisible
                 ? 'hidden'
-                : 'md:-mr-[90rem] md:-mt-16 -mt-12 fixed'
+                : 'md:-mr-[90rem] md:-mt-20 -mt-12 fixed'
             "
           />
         </div>
